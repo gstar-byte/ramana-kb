@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍞 桌边碎语 | 拉玛那·马哈希知识库</title>
+    <meta name="description" content="Crumbs from the Table — 静修院日常对话录">
+    <meta name="keywords" content="拉玛那,马哈希,灵性修行,自我了悟,阿鲁那佳拉,真我,心智,解脱">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="layout">
+        <!-- 左侧边栏 -->
+        <aside class="sidebar" id="sidebar">
+            <button class="hamburger" onclick="toggleSidebar()">☰</button>
+            <div class="sidebar-header">
+                <a href="../index.html" class="logo">🙏 拉玛那知识库</a>
+            </div>
+            
+            <!-- 搜索框 -->
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="搜索标题或内容..." autocomplete="off">
+                <div id="search-results"></div>
+            </div>
+            
+                        <!-- 核心索引 -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">📚 核心索引</div>
+                <div class="sidebar-items">
+                    <a href="../books/index.html" class="sidebar-item active"><span class="emoji">📖</span> 书籍总览 <span class="count">18</span></a>
+                    <a href="../concepts/index.html" class="sidebar-item"><span class="emoji">🔮</span> 核心概念 <span class="count">30+</span></a>
+                    <a href="../methods/index.html" class="sidebar-item"><span class="emoji">🛤️</span> 修行方法 <span class="count">12</span></a>
+                    <a href="../qa/index.html" class="sidebar-item"><span class="emoji">💬</span> 修行问答 <span class="count">120+</span></a>
+                    <a href="../persons/index.html" class="sidebar-item"><span class="emoji">👤</span> 人物索引 <span class="count">3</span></a>
+                    <a href="../graph.html" class="sidebar-item"><span class="emoji">🕸️</span> 知识图谱</a>
+                </div>
+            </div>
+            
+            <!-- 经典著作 -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">📖 经典著作</div>
+                <div class="sidebar-items">
+                    <a href="be-as-you-are.html" class="sidebar-item">📖 走向静默，如你本来</a>
+                    <a href="gems.html" class="sidebar-item">💎 宝钻集</a>
+                    <a href="talks.html" class="sidebar-item">💬 对谈录</a>
+                    <a href="back-to-heart.html" class="sidebar-item">📕 回到你心中</a>
+                </div>
+            </div>
+            
+            <!-- 对话与日记 -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">📅 对话与日记</div>
+                <div class="sidebar-items">
+                    <a href="day-by-day.html" class="sidebar-item">📅 日日与彼</a>
+                    <a href="face-to-face.html" class="sidebar-item">👁️ 面对面</a>
+                    <a href="maharshi-gospel.html" class="sidebar-item">📜 马哈希福音</a>
+                </div>
+            </div>
+            
+            <!-- 哲学专著 -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">📚 哲学专著</div>
+                <div class="sidebar-items">
+                    <a href="collected-works.html" class="sidebar-item">📚 全集</a>
+                    <a href="spiritual-stories.html" class="sidebar-item">📖 灵性故事</a>
+                    <a href="reflections.html" class="sidebar-item">💭 反思录</a>
+                </div>
+            </div>
+            
+            <!-- 其他著作 -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">📗 其他著作</div>
+                <div class="sidebar-items">
+                    <a href="teachings.html" class="sidebar-item">📝 以言传意</a>
+                    <a href="surpassing-love.html" class="sidebar-item">💝 超越爱与恩典</a>
+                    <a href="crumbs.html" class="sidebar-item active">🍞 桌边碎语</a>
+                    <a href="timeless.html" class="sidebar-item">⏳ 时代中的永恒</a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                    <span class="topbar-title">🍞 桌边碎语</span>
+                </div>
+                <nav class="topbar-nav topbar-full">
+                    <a href="../index.html">首页</a>
+                    <a href="index.html" class="active">书籍</a>
+                    <a href="../concepts/index.html">概念</a>
+                    <a href="../methods/index.html">方法</a>
+                    <a href="../qa/index.html">问答</a>
+                    <a href="../persons/index.html">人物</a>
+                    <a href="../graph.html">图谱</a>
+                </nav>
+            </header>
+
+            <!-- 书籍内容 -->
+            <div class="content-wrapper">
+                <article class="book-detail">
+                    <header class="book-header">
+                        <div class="book-icon-large">🍞</div>
+                        <h1>桌边碎语</h1>
+                        <p class="book-subtitle">Crumbs from the Table</p>
+                        <p class="book-meta">马哈希日常生活的点滴记录，展现他在阿鲁那佳拉的真实生活</p>
+                    </header>
+
+                    <section class="book-intro">
+                        <h2>📖 书籍简介</h2>
+                        <p>《桌边碎语》是一部独特的著作，它记录了马哈希日常生活中的点滴片段。书名寓意这些记录就像是大师餐桌上的碎屑——虽然看似微小，却蕴含着丰富的营养。</p>
+                        <p>这本书不同于系统的教导著作，它展现了马哈希作为一个普通人的一面：他如何对待动物、如何处理日常事务、如何与弟子们互动。这些片段让读者得以一窥马哈希的真实生活，而不仅仅是他的教导。</p>
+                    </section>
+
+                    <section class="book-content">
+                        <h2>📑 核心内容</h2>
+                        
+                        <div class="chapter-card">
+                            <h4>第一章：与动物共处 <span class="chapter-toggle">▼</span></h4>
+                            <div class="chapter-content">
+                                <p><strong>核心要点：</strong>马哈希对动物展现出无条件的慈悲，他将它们视为真我的不同显现。</p>
+                                <div class="quote-box">
+                                    <p>它们和我们一样，都是真我的显现。为什么不应该爱它们呢？</p>
+                                    <cite>—— 马哈希</cite>
+                                </div>
+                                <p>书中详细描述了马哈希如何照顾静修院中的各种动物——鹿、猴子、狗、鸟等。他对它们的态度展现了无分别的慈悲。</p>
+                            </div>
+                        </div>
+
+                        <div class="chapter-card">
+                            <h4>第二章：日常劳作 <span class="chapter-toggle">▼</span></h4>
+                            <div class="chapter-content">
+                                <p><strong>核心要点：</strong>马哈希亲自参与静修院的日常劳作，从烹饪到园艺，他以身作则。</p>
+                                <div class="quote-box">
+                                    <p>工作不是问题，对工作的执着才是。以无执着的心工作，工作本身就是修行。</p>
+                                    <cite>—— 马哈希</cite>
+                                </div>
+                                <p>马哈希教导弟子们如何在日常劳作中保持觉知，如何将平凡的工作转化为神圣的奉献。</p>
+                            </div>
+                        </div>
+
+                        <div class="chapter-card">
+                            <h4>第三章：与访客交流 <span class="chapter-toggle">▼</span></h4>
+                            <div class="chapter-content">
+                                <p><strong>核心要点：</strong>马哈希以独特的方式回应每一位访客，根据他们的需要给予适当的教导。</p>
+                                <div class="quote-box">
+                                    <p>每个人来到这里都带着自己的问题。我的工作只是帮助他们找到内在的答案。</p>
+                                    <cite>—— 马哈希</cite>
+                                </div>
+                                <p>书中记录了许多访客与马哈希的互动，展现了马哈希如何以简洁而深刻的方式回应各种问题。</p>
+                            </div>
+                        </div>
+
+                        <div class="chapter-card">
+                            <h4>第四章：静默的力量 <span class="chapter-toggle">▼</span></h4>
+                            <div class="chapter-content">
+                                <p><strong>核心要点：</strong>即使在日常活动中，马哈希也保持着内在的静默。</p>
+                                <div class="quote-box">
+                                    <p>静默不是不说话，而是心智的静止。即使在行动中，也可以保持静默。</p>
+                                    <cite>—— 马哈希</cite>
+                                </div>
+                                <p>马哈希的静默不仅是外在的不语，更是一种内在的安宁状态，这种状态渗透在他生活的每一个瞬间。</p>
+                            </div>
+                        </div>
+
+                        <div class="chapter-card">
+                            <h4>第五章：简朴的生活 <span class="chapter-toggle">▼</span></h4>
+                            <div class="chapter-content">
+                                <p><strong>核心要点：</strong>马哈希过着极其简朴的生活，他教导弟子们外在的简单有助于内在的清明。</p>
+                                <div class="quote-box">
+                                    <p>你拥有的越少，你的心智就越自由。</p>
+                                    <cite>—— 马哈希</cite>
+                                </div>
+                                <p>书中描述了马哈希的日常生活细节——他的饮食、住所、衣着，以及他如何以最少的需求生活。</p>
+                            </div>
+                        </div>
+
+                        <div class="chapter-card">
+                            <h4>第六章：幽默与智慧 <span class="chapter-toggle">▼</span></h4>
+                            <div class="chapter-content">
+                                <p><strong>核心要点：</strong>马哈希经常用幽默的方式化解紧张，用轻松的态度面对困难。</p>
+                                <div class="quote-box">
+                                    <p>不要太严肃。生命本身就是一场游戏，学会享受它。</p>
+                                    <cite>—— 马哈希</cite>
+                                </div>
+                                <p>书中收录了许多马哈希的幽默故事和机智回答，展现了他轻松自在的一面。</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="book-quotes">
+                        <h2>💎 经典语录</h2>
+                        <div class="quote-grid">
+                            <div class="quote-card">
+                                <p>"每一个生命都值得尊重，因为它们都是真我的显现。"</p>
+                                <cite>—— 马哈希</cite>
+                            </div>
+                            <div class="quote-card">
+                                <p>"在日常琐事中保持觉知，这就是最高的修行。"</p>
+                                <cite>—— 马哈希</cite>
+                            </div>
+                            <div class="quote-card">
+                                <p>"简单的生活，清明的心智。"</p>
+                                <cite>—— 马哈希</cite>
+                            </div>
+                            <div class="quote-card">
+                                <p>"不要寻找伟大的体验，在日常中找到伟大。"</p>
+                                <cite>—— 马哈希</cite>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="book-related">
+                        <h2>🔗 相关概念</h2>
+                        <div class="concept-tags">
+                            <a href="../concepts/silence.html" class="concept-tag">静默</a>
+                            <a href="../concepts/atman.html" class="concept-tag">真我</a>
+                            <a href="../concepts/grace.html" class="concept-tag">恩典</a>
+                            <a href="../concepts/surrender.html" class="concept-tag">臣服</a>
+                        </div>
+                    </section>
+
+                    <section class="book-download">
+                        <h2>📥 源文档</h2>
+                        <p>此书籍内容整理自PDF源文档：</p>
+                        <a href="../../pdf_content/桌边碎语.txt" class="download-link" download>下载 TXT 源文件</a>
+                    </section>
+                </article>
+            </div>
+
+            <footer class="site-footer">
+                <p>拉玛那·马哈希知识库 | <a href="index.html">← 返回书籍列表</a></p>
+            </footer>
+        </main>
+    </div>
+    
+    <script>
+        document.querySelectorAll('.sidebar-section-title').forEach(title => {
+            title.addEventListener('click', () => title.parentElement.classList.toggle('collapsed'));
+        });
+        function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
+        
+        // 章节展开功能
+        document.querySelectorAll('.chapter-card').forEach(card => {
+            card.querySelector('h4').addEventListener('click', () => {
+                card.classList.toggle('expanded');
+            });
+        });
+        
+        // 键盘快捷键
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') document.getElementById('sidebar').classList.remove('open');
+        });
+    </script>
+</body>
+</html>

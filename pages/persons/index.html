@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="马哈希知识库关键人物传记">
+    <meta name="keywords" content="拉玛那,马哈希,灵性修行,自我了悟,阿鲁那佳拉,真我,心智,解脱">
+    <meta name="author" content="Ramana Maharshi Knowledge Base">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="👤 人物索引 | 拉玛那·马哈希知识库">
+    <meta property="og:description" content="马哈希知识库关键人物传记">
+    <meta property="og:type" content="article">
+    <title>👤 人物索引 | 拉玛那·马哈希知识库</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar" id="sidebar">
+            <button class="hamburger" onclick="toggleSidebar()">☰</button>
+            <div class="sidebar-header">
+                <a href="../index.html" class="logo">🙏 拉玛那知识库</a>
+            </div>
+            
+            <!-- 搜索框 -->
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="搜索标题或内容..." autocomplete="off">
+                <div id="search-results"></div>
+            </div>
+            
+            <!-- 核心索引 -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">📚 核心索引</div>
+                <div class="sidebar-items">
+                    <a href="../books/index.html" class="sidebar-item"><span class="emoji">📖</span> 书籍总览 <span class="count">18</span></a>
+                    <a href="../concepts/index.html" class="sidebar-item"><span class="emoji">🔮</span> 核心概念 <span class="count">30+</span></a>
+                    <a href="../methods/index.html" class="sidebar-item"><span class="emoji">🛤️</span> 修行方法 <span class="count">12</span></a>
+                    <a href="../qa/index.html" class="sidebar-item"><span class="emoji">💬</span> 修行问答 <span class="count">120+</span></a>
+                    <a href="index.html" class="sidebar-item active"><span class="emoji">👤</span> 人物索引 <span class="count">3</span></a>
+                    <a href="../graph.html" class="sidebar-item"><span class="emoji">🕸️</span> 知识图谱</a>
+                </div>
+            </div>
+            
+            <!-- 经典著作 -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">📖 经典著作</div>
+                <div class="sidebar-items">
+                    <a href="../books/be-as-you-are.html" class="sidebar-item">📖 走向静默，如你本来</a>
+                    <a href="../books/gems.html" class="sidebar-item">💎 宝钻集</a>
+                    <a href="../books/talks.html" class="sidebar-item">💬 对谈录</a>
+                    <a href="../books/back-to-heart.html" class="sidebar-item">📕 回到你心中</a>
+                </div>
+            </div>
+            
+            <!-- 核心概念 -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">🔮 核心概念</div>
+                <div class="sidebar-items">
+                    <a href="../concepts/atman.html" class="sidebar-item">🔮 真我/Atman</a>
+                    <a href="../concepts/whoami.html" class="sidebar-item">🔍 "我是谁？"</a>
+                    <a href="../concepts/mind.html" class="sidebar-item">🧠 心智/Citta</a>
+                    <a href="../concepts/moksha.html" class="sidebar-item">🕊️ 解脱/Moksha</a>
+                </div>
+            </div>
+            
+            <!-- 修行方法 -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">🛤️ 修行方法</div>
+                <div class="sidebar-items">
+                    <a href="../methods/index.html#whoami" class="sidebar-item">🔍 参究"我是谁"</a>
+                    <a href="../methods/index.html#surrender" class="sidebar-item">🙏 臣服上师</a>
+                    <a href="../methods/index.html#japa" class="sidebar-item">🔮 念诵咒语</a>
+                </div>
+            </div>
+            
+            <!-- 关键人物 -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">👤 关键人物</div>
+                <div class="sidebar-items">
+                    <a href="ramana.html" class="sidebar-item active">🙏 室利·拉玛那·马哈希</a>
+                    <a href="david.html" class="sidebar-item">📝 大卫·高德曼</a>
+                    <a href="venkataramana.html" class="sidebar-item">👩 韦卡罗达·南达</a>
+                </div>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                    <span class="topbar-title">👤 人物索引</span>
+                </div>
+                <nav class="topbar-nav topbar-full">
+                    <a href="../index.html">首页</a>
+                    <a href="../books/index.html">书籍</a>
+                    <a href="../concepts/index.html">概念</a>
+                    <a href="../methods/index.html">方法</a>
+                    <a href="../qa/index.html">问答</a>
+                    <a href="index.html" class="active">人物</a>
+                    <a href="../graph.html">图谱</a>
+                </nav>
+            </header>
+            
+            <div class="content-wrapper">
+                <nav class="breadcrumb"><a href="../index.html">首页</a> / <span>人物索引</span></nav>
+                
+                <header class="page-header">
+                    <h1>👤 关键人物</h1>
+                    <p class="subtitle">3位关键人物 · 拉玛那传承的核心</p>
+                </header>
+                
+                <!-- 人物卡片 -->
+                <div class="card">
+                    <div class="person-card">
+                        <div class="person-avatar">🙏</div>
+                        <div>
+                            <h2 style="color:var(--primary);margin-bottom:0.5rem;">室利·拉玛那·马哈希</h2>
+                            <p class="meta">Sri Ramana Maharshi (1879-1950)</p>
+                            <p style="margin-top:1rem;">印度近代最伟大的灵性导师之一。16岁时经历神秘体验，悟见真我。此后五十年在阿鲁那佳拉圣山静修，以静默和简直接的方式教导"我是谁"的参究法。</p>
+                            <a href="ramana.html" class="tag" style="margin-top:1rem;display:inline-block;">阅读完整传记 →</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="person-card">
+                        <div class="person-avatar">📝</div>
+                        <div>
+                            <h2 style="color:var(--primary);margin-bottom:0.5rem;">大卫·高德曼</h2>
+                            <p class="meta">David Godman (1954-)</p>
+                            <p style="margin-top:1rem;">当代最重要的马哈希文献编纂者和作家。他编辑了多部马哈希的核心著作，包括《走向静默，如你本来》。他是马哈希教法在当代传播的关键人物。</p>
+                            <a href="david.html" class="tag" style="margin-top:1rem;display:inline-block;">阅读完整传记 →</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="person-card">
+                        <div class="person-avatar">👩</div>
+                        <div>
+                            <h2 style="color:var(--primary);margin-bottom:0.5rem;">韦卡罗达·南达</h2>
+                            <p class="meta">Venkataramana (1873-1951)</p>
+                            <p style="margin-top:1rem;">马哈希的姨妈，后成为静修院的负责人。她是马哈希最亲近的弟子之一，负责照顾他的日常生活直到圆寂。她是静修院传统的重要守护者。</p>
+                            <a href="venkataramana.html" class="tag" style="margin-top:1rem;display:inline-block;">阅读完整传记 →</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 其他相关人物 -->
+                <div class="card">
+                    <h2 style="color:var(--primary);margin-bottom:1rem;">🌟 其他重要人物</h2>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;">
+                        <div class="chapter-card">
+                            <h4>保罗·布朗顿</h4>
+                            <p class="summary">西方作家，著有《秘密印度》，是第一个将马哈希介绍给西方世界的人。</p>
+                        </div>
+                        <div class="chapter-card">
+                            <h4>A. Devaraja Mudaliar</h4>
+                            <p class="summary">马哈希的亲密弟子，著有《日日与彼》和《宝钻集》。</p>
+                        </div>
+                        <div class="chapter-card">
+                            <h4>韦韦卡南达</h4>
+                            <p class="summary">马哈希英文著作的主要译者，将马哈希的教法传播到西方。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <footer class="site-footer">
+                <p>拉玛那·马哈希知识库 | <a href="../graph.html">🕸️ 知识图谱</a></p>
+            </footer>
+        </main>
+    </div>
+    
+    <script>
+        document.querySelectorAll('.sidebar-section-title').forEach(title => {
+            title.addEventListener('click', () => title.parentElement.classList.toggle('collapsed'));
+        });
+        function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
+        
+        // 键盘快捷键
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') document.getElementById('sidebar').classList.remove('open');
+        });
+    </script>
+    <script src="../search.js"></script>
+</body>
+</html>

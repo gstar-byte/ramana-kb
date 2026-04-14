@@ -1,0 +1,13 @@
+# 忽略非页面文件
+*.py
+*.zip
+*.pdf
+*.epub
+*.md
+LICENSE
+README.md
+.vercel
+node_modules/
+
+# 保留 pages/ 下所有内容（部署到 Vercel）
+# .workbuddy 也上传（包含 memory 和配置）

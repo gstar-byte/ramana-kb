@@ -1,0 +1,27 @@
+{
+  "name": "拉玛那·马哈希知识库",
+  "short_name": "拉玛那知识库",
+  "description": "拉玛那·马哈希灵性知识库 - 18本核心著作、30+核心概念、修行方法详解",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a0a2e",
+  "theme_color": "#c77dff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%231a0a2e' width='100' height='100' rx='20'/><text y='.9em' font-size='80' x='50%' text-anchor='middle'>🙏</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%231a0a2e' width='100' height='100' rx='20'/><text y='.9em' font-size='80' x='50%' text-anchor='middle'>🙏</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "lifestyle"],
+  "lang": "zh-CN",
+  "dir": "ltr"
+}

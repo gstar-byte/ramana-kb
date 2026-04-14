@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="拉玛那·马哈希知识图谱 — 概念、人物、书籍与修行方法的关联网络">
+    <meta name="keywords" content="拉玛那,马哈希,灵性修行,自我了悟,阿鲁那佳拉,真我,心智,解脱">
+    <meta name="author" content="Ramana Maharshi Knowledge Base">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="🕸️ 知识图谱 | 拉玛那·马哈希知识库">
+    <meta property="og:description" content="拉玛那·马哈希知识图谱 — 概念、人物、书籍与修行方法的关联网络">
+    <meta property="og:type" content="article">
+    <title>🕸️ 知识图谱 | 拉玛那·马哈希知识库</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        .graph-wrapper {
+            position: relative;
+            width: 100%;
+            min-height: 650px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: inset 0 0 100px rgba(0,0,0,0.3);
+        }
+        
+        #graph-svg {
+            width: 100%;
+            height: 650px;
+        }
+        
+        .node circle {
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 3px currentColor);
+        }
+        
+        .node text {
+            font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+            font-size: 13px;
+            fill: #ffffff;
+            pointer-events: none;
+            font-weight: 600;
+            stroke: #0f0f1a;
+            stroke-width: 4px;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            paint-order: stroke fill;
+        }
+        
+        .link {
+            stroke: rgba(150, 150, 200, 0.25);
+            stroke-width: 1.5;
+            transition: all 0.3s ease;
+            stroke-dasharray: 4,2;
+        }
+        
+        .link.highlight {
+            stroke: rgba(199, 125, 255, 0.9);
+            stroke-width: 3;
+            stroke-dasharray: none;
+        }
+        
+        .link.dim {
+            stroke-opacity: 0.05;
+        }
+        
+        /* 悬停提示框 */
+        .tooltip {
+            position: absolute;
+            background: rgba(20, 20, 40, 0.95);
+            border: 1px solid rgba(199, 125, 255, 0.5);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            font-size: 0.9rem;
+            color: #e8e0f0;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            max-width: 280px;
+            z-index: 100;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+        
+        .tooltip.visible {
+            opacity: 1;
+        }
+        
+        .tooltip .title {
+            color: #c77dff;
+            font-weight: bold;
+            margin-bottom: 0.4rem;
+            font-size: 1rem;
+        }
+        
+        .tooltip .type {
+            font-size: 0.75rem;
+            color: #a090b0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tooltip .desc {
+            line-height: 1.5;
+            color: #d0d0e0;
+        }
+        
+        /* 控制按钮 */
+        .graph-controls {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            z-index: 10;
+        }
+        
+        .graph-controls button {
+            background: rgba(30, 30, 60, 0.8);
+            border: 1px solid rgba(199, 125, 255, 0.4);
+            color: #e8e0f0;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+        
+        .graph-controls button:hover {
+            background: rgba(199, 125, 255, 0.3);
+            border-color: #c77dff;
+            transform: scale(1.05);
+        }
+        
+        /* 图例 */
+        .graph-legend {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            background: rgba(15, 15, 30, 0.95);
+            padding: 12px 16px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.15);
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 500;
+        }
+            background: rgba(20, 20, 40, 0.85);
+            border: 1px solid rgba(199, 125, 255, 0.3);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            font-size: 0.8rem;
+            z-index: 10;
+            backdrop-filter: blur(4px);
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .legend-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            box-shadow: 0 0 6px currentColor;
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <!-- 左侧边栏 -->
+        <aside class="sidebar" id="sidebar">
+            <button class="hamburger" onclick="toggleSidebar()">☰</button>
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">🙏 拉玛那知识库</a>
+            </div>
+            
+            <!-- 搜索框 -->
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="搜索标题或内容..." autocomplete="off">
+                <div id="search-results"></div>
+            </div>
+            
+            <!-- 核心索引 -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">📚 核心索引</div>
+                <div class="sidebar-items">
+                    <a href="books/index.html" class="sidebar-item"><span class="emoji">📖</span> 书籍总览 <span class="count">18</span></a>
+                    <a href="concepts/index.html" class="sidebar-item"><span class="emoji">🔮</span> 核心概念 <span class="count">30+</span></a>
+                    <a href="methods/index.html" class="sidebar-item"><span class="emoji">🛤️</span> 修行方法 <span class="count">12</span></a>
+                    <a href="qa/index.html" class="sidebar-item"><span class="emoji">💬</span> 修行问答 <span class="count">150+</span></a>
+                    <a href="persons/index.html" class="sidebar-item"><span class="emoji">👤</span> 人物索引 <span class="count">3</span></a>
+                    <a href="graph.html" class="sidebar-item active"><span class="emoji">🕸️</span> 知识图谱</a>
+                </div>
+            </div>
+            
+            <!-- 经典著作 -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">📖 经典著作</div>
+                <div class="sidebar-items">
+                    <a href="books/be-as-you-are.html" class="sidebar-item">📖 走向静默，如你本来</a>
+                    <a href="books/gems.html" class="sidebar-item">💎 宝钻集</a>
+                    <a href="books/talks.html" class="sidebar-item">💬 对谈录</a>
+                    <a href="books/back-to-heart.html" class="sidebar-item">📕 回到你心中</a>
+                </div>
+            </div>
+            
+            <!-- 核心概念 -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">🔮 核心概念</div>
+                <div class="sidebar-items">
+                    <a href="concepts/atman.html" class="sidebar-item">🔮 真我/Atman</a>
+                    <a href="concepts/whoami.html" class="sidebar-item">🔍 "我是谁？"</a>
+                    <a href="concepts/mind.html" class="sidebar-item">🧠 心智/Citta</a>
+                    <a href="concepts/ego.html" class="sidebar-item">🧠 自我/Ego</a>
+                    <a href="concepts/moksha.html" class="sidebar-item">🕊️ 解脱/Moksha</a>
+                    <a href="concepts/grace.html" class="sidebar-item">✨ 恩典/Grace</a>
+                </div>
+            </div>
+            
+            <!-- 修行方法 -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">🛤️ 修行方法</div>
+                <div class="sidebar-items">
+                    <a href="methods/index.html#whoami" class="sidebar-item">🔍 参究"我是谁"</a>
+                    <a href="methods/index.html#surrender" class="sidebar-item">🙏 臣服上师</a>
+                    <a href="methods/index.html#japa" class="sidebar-item">🔮 念诵咒语</a>
+                </div>
+            </div>
+            
+            <!-- 关键人物 -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">👤 关键人物</div>
+                <div class="sidebar-items">
+                    <a href="persons/ramana.html" class="sidebar-item">🙏 室利·拉玛那·马哈希</a>
+                    <a href="persons/david.html" class="sidebar-item">📝 大卫·高德曼</a>
+                    <a href="persons/venkataramana.html" class="sidebar-item">👩 韦卡罗达·南达</a>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <span class="topbar-title">🕸️ 知识图谱</span>
+                </div>
+                <nav class="topbar-nav topbar-full">
+                    <a href="index.html">首页</a>
+                    <a href="books/index.html">书籍</a>
+                    <a href="concepts/index.html">概念</a>
+                    <a href="methods/index.html">方法</a>
+                    <a href="qa/index.html">问答</a>
+                    <a href="persons/index.html">人物</a>
+                    <a href="graph.html" class="active">图谱</a>
+                </nav>
+            </header>
+            
+            <div class="content-wrapper">
+                <nav class="breadcrumb">
+                    <a href="index.html">首页</a> / <span>知识图谱</span>
+                </nav>
+
+                <header class="page-header">
+                    <h1>🕸️ 知识图谱</h1>
+                    <p class="subtitle">30+核心概念 · 18本著作 · 关键人物关系网络</p>
+                </header>
+                
+                <div class="card">
+                    <p style="color:var(--text-muted);margin-bottom:1rem;font-size:0.9rem;">🔍 鼠标悬停在节点上查看关联，<strong style="color:var(--primary);">点击节点</strong>跳转到详情页面</p>
+                    
+                    <div class="graph-wrapper">
+                        <svg id="graph-svg"></svg>
+                        <div class="tooltip" id="tooltip">
+                            <div class="title"></div>
+                            <div class="type"></div>
+                            <div class="desc"></div>
+                        </div>
+                        <div class="graph-controls">
+                            <button onclick="resetZoom()">🔄 重置</button>
+                            <button onclick="zoomIn()">➕ 放大</button>
+                            <button onclick="zoomOut()">➖ 缩小</button>
+                        </div>
+                        <div class="graph-legend">
+                            <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,#e0aaff,#c77dff);"></div> 本体论</div>
+                            <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,#ffd700,#ffb700);"></div> 心智与自我</div>
+                            <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,#4ecdc4,#45b7aa);"></div> 修行法门</div>
+                            <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,#00b894,#00a383);"></div> 解脱境界</div>
+                            <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,#fd79a8,#e84393);"></div> 核心书籍</div>
+                            <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,#74b9ff,#5da8f0);"></div> 关键人物</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 概念分类速查 - 扩展版 -->
+                <div class="card">
+                    <h2 style="color:var(--primary);margin-bottom:1rem;font-size:1.1rem;">📚 概念分类速查</h2>
+                    <p style="color:var(--text-muted);margin-bottom:1.5rem;font-size:0.9rem;">点击任意概念跳转到详情页面</p>
+                    <div class="concept-categories">
+                        <div class="concept-category">
+                            <h3>🔮 本体论</h3>
+                            <a href="concepts/atman.html">真我/Atman</a>
+                            <a href="concepts/brahman.html">梵/Brahman</a>
+                            <a href="concepts/maya.html">摩耶/Maya</a>
+                            <a href="concepts/self.html">本我/Self</a>
+                        </div>
+                        <div class="concept-category">
+                            <h3>🧠 心智与自我</h3>
+                            <a href="concepts/mind.html">心智/Citta</a>
+                            <a href="concepts/ego.html">自我/Ego</a>
+                            <a href="concepts/thoughts.html">念头/Thoughts</a>
+                            <a href="concepts/self.html">习气/Samskara</a>
+                            <a href="concepts/whoami.html">觉知/Awareness</a>
+                        </div>
+                        <div class="concept-category">
+                            <h3>🛤️ 修行法门</h3>
+                            <a href="concepts/whoami.html">"我是谁？"</a>
+                            <a href="concepts/silence.html">静默/Silence</a>
+                            <a href="concepts/samadhi.html">三摩地/Samadhi</a>
+                            <a href="concepts/surrender.html">臣服/Surrender</a>
+                        </div>
+                        <div class="concept-category">
+                            <h3>🕊️ 解脱与境界</h3>
+                            <a href="concepts/moksha.html">解脱/Moksha</a>
+                            <a href="concepts/samadhi.html">三摩地/Samadhi</a>
+                            <a href="concepts/grace.html">恩典/Grace</a>
+                        </div>
+                        <div class="concept-category">
+                            <h3>🙏 上师与传承</h3>
+                            <a href="concepts/guru.html">上师/Guru</a>
+                            <a href="concepts/grace.html">恩典/Grace</a>
+                            <a href="concepts/karma.html">业力/Karma</a>
+                        </div>
+                        <div class="concept-category">
+                            <h3>🔄 业力与轮回</h3>
+                            <a href="concepts/karma.html">业力/Karma</a>
+                            <a href="concepts/maya.html">摩耶/Maya</a>
+                            <a href="concepts/thoughts.html">轮回/Samsara</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 核心语录 -->
+                <div class="card">
+                    <h2 style="color:var(--primary);margin-bottom:1rem;font-size:1.1rem;">💎 核心语录</h2>
+                    <div class="quote-box">
+                        "知道你自己，一切都会被知晓。"
+                        <div class="source">— 室利·拉玛那·马哈希</div>
+                    </div>
+                    <div class="quote-box">
+                        "心智是碎片，真我是整体。一旦碎片融入整体，它们就不存在了。只有整体存在。"
+                        <div class="source">—《宝钻集》</div>
+                    </div>
+                    <div class="quote-box">
+                        "证悟不是到达某个地方。它是认识到你一直在那里，只是没有意识到。"
+                        <div class="source">— 室利·拉玛那·马哈希</div>
+                    </div>
+                </div>
+                
+                <!-- 关键书籍 -->
+                <div class="card">
+                    <h2 style="color:var(--primary);margin-bottom:1rem;font-size:1.1rem;">📖 核心著作</h2>
+                    <div class="concept-tags">
+                        <a href="books/be-as-you-are.html" class="tag">📖 走向静默，如你本来</a>
+                        <a href="books/gems.html" class="tag">💎 宝钻集</a>
+                        <a href="books/talks.html" class="tag">💬 对谈录</a>
+                        <a href="books/back-to-heart.html" class="tag">📕 回到你心中</a>
+                        <a href="books/day-by-day.html" class="tag">📅 日日与彼</a>
+                        <a href="books/face-to-face.html" class="tag">👁️ 面对面</a>
+                    </div>
+                </div>
+            </div>
+            
+            <footer class="site-footer">
+                <p>拉玛那·马哈希知识库 | 传承自印度阿鲁那佳拉圣山</p>
+            </footer>
+        </main>
+    </div>
+    
+    <script>
+        // 边栏切换
+        document.querySelectorAll('.sidebar-section-title').forEach(title => {
+            title.addEventListener('click', () => {
+                title.parentElement.classList.toggle('collapsed');
+            });
+        });
+        
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+        
+        // 阅读模式切换
+        function toggleReadingMode() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.querySelector('.main-content');
+            const toggleBtn = document.getElementById('sidebarToggle');
+            const topbar = document.querySelector('.topbar');
+            
+            sidebar.classList.toggle('hidden');
+            mainContent.classList.toggle('full-width');
+            toggleBtn.classList.toggle('collapsed');
+            
+            if (sidebar.classList.contains('hidden')) {
+                toggleBtn.innerHTML = '<span class="toggle-icon">▶</span>';
+                toggleBtn.title = '显示侧边栏 (R)';
+                topbar.classList.add('reading-mode');
+            } else {
+                toggleBtn.innerHTML = '<span class="toggle-icon">◀</span>';
+                toggleBtn.title = '切换阅读模式 (R)';
+                topbar.classList.remove('reading-mode');
+            }
+        }
+        
+        // 键盘快捷键
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') document.getElementById('sidebar').classList.remove('open');
+        });
+        
+        // ========== D3.js 知识图谱 ==========
+        const svg = d3.select("#graph-svg");
+        const width = svg.node().getBoundingClientRect().width;
+        const height = 600;
+        
+        const g = svg.append("g");
+        
+        // 缩放
+        const zoom = d3.zoom()
+            .scaleExtent([0.3, 3])
+            .on("zoom", (event) => {
+                g.attr("transform", event.transform);
+            });
+        
+        svg.call(zoom);
+        
+        // 数据 - 扩展版
+        const nodes = [
+            // 中心
+            { id: "ramana", name: "🙏 拉玛那", type: "center", url: "persons/ramana.html", desc: "室利·拉玛那·马哈希（1879-1950），印度近代最伟大的灵性导师" },
+            
+            // 本体论
+            { id: "atman", name: "🔮 真我", type: "atman", url: "concepts/atman.html", desc: "永恒的、不变的真我本体，是一切众生内在的神性" },
+            { id: "brahman", name: "梵", type: "atman", url: "concepts/brahman.html", desc: "宇宙终极实相，无所不在的最高存在" },
+            { id: "maya", name: "🌊 摩耶", type: "atman", url: "concepts/maya.html", desc: "幻相之力，创造出虚幻的世界体验" },
+            { id: "self", name: "💎 本我", type: "atman", url: "concepts/self.html", desc: "不生不灭的真我本体" },
+            
+            // 心智与自我
+            { id: "mind", name: "🧠 心智", type: "mind", url: "concepts/mind.html", desc: "意识的工具，产生念头和感知的器官" },
+            { id: "ego", name: "🧠 自我", type: "mind", url: "concepts/ego.html", desc: "虚假的身分认同，是一切痛苦的根源" },
+            { id: "thoughts", name: "💭 念头", type: "mind", url: "concepts/thoughts.html", desc: "心智的产物，真我的障碍" },
+            
+            // 修行法门
+            { id: "whoami", name: "🔍 \"我是谁？\"", type: "practice", url: "concepts/whoami.html", desc: "最直接的自我了悟方法，马哈希核心教法" },
+            { id: "silence", name: "🤫 静默", type: "practice", url: "concepts/silence.html", desc: "马哈希的标志性教法：超越言语的教导" },
+            { id: "samadhi", name: "🧘 三摩地", type: "practice", url: "concepts/samadhi.html", desc: "禅定的高级状态，心意完全专注" },
+            { id: "surrender", name: "🙏 臣服", type: "practice", url: "concepts/surrender.html", desc: "放下自我意志，完全交托给上师或真我" },
+            
+            // 解脱与境界
+            { id: "moksha", name: "🕊️ 解脱", type: "moksha", url: "concepts/moksha.html", desc: "从轮回和无明中解脱，证悟真我" },
+            { id: "grace", name: "✨ 恩典", type: "moksha", url: "concepts/grace.html", desc: "上师的加持，觉醒的关键因素" },
+            { id: "guru", name: "👆 上师", type: "moksha", url: "concepts/guru.html", desc: "灵性导师，引导学生走向解脱" },
+            { id: "karma", name: "🔄 业力", type: "moksha", url: "concepts/karma.html", desc: "行动与果报的法则" },
+            
+            // 书籍
+            { id: "be-as-you-are", name: "📖 走向静默", type: "book", url: "books/be-as-you-are.html", desc: "马哈希最核心的问答精选" },
+            { id: "gems", name: "💎 宝钻集", type: "book", url: "books/gems.html", desc: "马哈希语录精华" },
+            { id: "talks", name: "💬 对谈录", type: "book", url: "books/talks.html", desc: "与马哈希的完整对话记录" },
+            { id: "back-to-heart", name: "📕 回到心中", type: "book", url: "books/back-to-heart.html", desc: "关于本心的教导" },
+            { id: "day-by-day", name: "📅 日日与彼", type: "book", url: "books/day-by-day.html", desc: "弟子记录的马哈希日常教示" },
+            { id: "face-to-face", name: "👁️ 面对面", type: "book", url: "books/face-to-face.html", desc: "马哈希与其弟子的对话" },
+            
+            // 人物
+            { id: "david", name: "📝 高德曼", type: "person", url: "persons/david.html", desc: "大卫·高德曼，马哈希文献的权威编纂者" },
+            { id: "venkataramana", name: "👩 南达", type: "person", url: "persons/venkataramana.html", desc: "韦卡罗达·南达，马哈希的姨母与静修院守护者" },
+        ];
+        
+        // 关系 - 扩展版
+        const links = [
+            // 中心与核心概念
+            { source: "ramana", target: "atman", relation: "证悟" },
+            { source: "ramana", target: "mind", relation: "超越" },
+            { source: "ramana", target: "whoami", relation: "教导" },
+            { source: "ramana", target: "silence", relation: "体现" },
+            { source: "ramana", target: "grace", relation: "体现" },
+            { source: "ramana", target: "guru", relation: "成为" },
+            { source: "ramana", target: "samadhi", relation: "证入" },
+            
+            // 真我关系
+            { source: "atman", target: "brahman", relation: "等同" },
+            { source: "atman", target: "self", relation: "等同" },
+            { source: "atman", target: "maya", relation: "对立" },
+            { source: "atman", target: "ego", relation: "消灭" },
+            { source: "atman", target: "moksha", relation: "证得" },
+            { source: "brahman", target: "maya", relation: "幻化" },
+            { source: "self", target: "moksha", relation: "开悟" },
+            
+            // 心智与自我
+            { source: "mind", target: "thoughts", relation: "产生" },
+            { source: "mind", target: "ego", relation: "构成" },
+            { source: "mind", target: "silence", relation: "平息" },
+            { source: "mind", target: "whoami", relation: "参究" },
+            { source: "ego", target: "thoughts", relation: "强化" },
+            { source: "ego", target: "moksha", relation: "阻碍" },
+            { source: "thoughts", target: "whoami", relation: "参究" },
+            { source: "thoughts", target: "silence", relation: "平息" },
+            
+            // 修行方法
+            { source: "whoami", target: "silence", relation: "归于" },
+            { source: "whoami", target: "samadhi", relation: "导向" },
+            { source: "whoami", target: "grace", relation: "依赖" },
+            { source: "whoami", target: "guru", relation: "指引" },
+            { source: "surrender", target: "grace", relation: "招感" },
+            { source: "silence", target: "samadhi", relation: "导向" },
+            { source: "surrender", target: "whoami", relation: "辅助" },
+            
+            // 解脱与业力
+            { source: "moksha", target: "grace", relation: "需要" },
+            { source: "moksha", target: "karma", relation: "超越" },
+            { source: "karma", target: "ego", relation: "强化" },
+            { source: "karma", target: "mind", relation: "累积" },
+            
+            // 上师关系
+            { source: "guru", target: "grace", relation: "赐予" },
+            { source: "guru", target: "whoami", relation: "传授" },
+            { source: "guru", target: "surrender", relation: "接受" },
+            
+            // 书籍关联
+            { source: "be-as-you-are", target: "atman", relation: "阐述" },
+            { source: "be-as-you-are", target: "whoami", relation: "核心" },
+            { source: "be-as-you-are", target: "silence", relation: "归于" },
+            { source: "gems", target: "silence", relation: "记录" },
+            { source: "gems", target: "atman", relation: "指向" },
+            { source: "gems", target: "self", relation: "指向" },
+            { source: "talks", target: "mind", relation: "讨论" },
+            { source: "talks", target: "ego", relation: "剖析" },
+            { source: "talks", target: "karma", relation: "探讨" },
+            { source: "back-to-heart", target: "self", relation: "主题" },
+            { source: "back-to-heart", target: "silence", relation: "归于" },
+            { source: "day-by-day", target: "silence", relation: "记录" },
+            { source: "day-by-day", target: "whoami", relation: "实践" },
+            { source: "face-to-face", target: "whoami", relation: "教导" },
+            { source: "face-to-face", target: "surrender", relation: "示范" },
+            
+            // 人物关联
+            { source: "david", target: "be-as-you-are", relation: "编纂" },
+            { source: "david", target: "gems", relation: "编纂" },
+            { source: "david", target: "talks", relation: "编纂" },
+            { source: "venkataramana", target: "ramana", relation: "陪伴" },
+            { source: "venkataramana", target: "grace", relation: "见证" },
+        ];
+        
+        // 颜色映射
+        const colorMap = {
+            center: "#c77dff",
+            atman: "#e0aaff",
+            mind: "#ffd700",
+            practice: "#4ecdc4",
+            moksha: "#00b894",
+            book: "#fd79a8",
+            person: "#74b9ff"
+        };
+        
+        // 力导向模拟
+        const simulation = d3.forceSimulation(nodes)
+            .force("link", d3.forceLink(links).id(d => d.id).distance(100))
+            .force("charge", d3.forceManyBody().strength(-300))
+            .force("center", d3.forceCenter(width / 2, height / 2))
+            .force("collision", d3.forceCollide().radius(40));
+        
+        // 绘制连线
+        const link = g.append("g")
+            .selectAll("line")
+            .data(links)
+            .join("line")
+            .attr("class", "link")
+            .attr("stroke", d => colorMap[nodes.find(n => n.id === d.source.id)?.type || "center"] || "#c77dff")
+            .attr("stroke-opacity", 0.3);
+        
+        // 绘制节点组
+        const node = g.append("g")
+            .selectAll("g")
+            .data(nodes)
+            .join("g")
+            .attr("class", "node")
+            .style("cursor", "pointer")
+            .call(d3.drag()
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended));
+        
+        // 节点圆圈
+        node.append("circle")
+            .attr("r", d => d.type === "center" ? 30 : d.type === "book" || d.type === "person" ? 20 : 18)
+            .attr("fill", d => colorMap[d.type])
+            .attr("stroke", "#fff")
+            .attr("stroke-width", 2);
+        
+        // 节点标签
+        node.append("text")
+            .text(d => d.name)
+            .attr("text-anchor", "middle")
+            .attr("dy", d => (d.type === "center" ? 50 : 35))
+            .style("font-size", d => d.type === "center" ? "14px" : "11px");
+        
+        // 悬停效果
+        const tooltip = document.getElementById("tooltip");
+        
+        node.on("mouseover", function(event, d) {
+            // 强化当前节点
+            d3.select(this).select("circle")
+                .transition()
+                .duration(200)
+                .attr("r", d.type === "center" ? 35 : d.type === "book" || d.type === "person" ? 25 : 22);
+            
+            // 高亮关联连线
+            link.classed("highlight", l => l.source.id === d.id || l.target.id === d.id)
+                .classed("dim", l => l.source.id !== d.id && l.target.id !== d.id);
+            
+            // 高亮关联节点
+            const relatedIds = new Set();
+            links.forEach(l => {
+                if (l.source.id === d.id) relatedIds.add(l.target.id);
+                if (l.target.id === d.id) relatedIds.add(l.source.id);
+            });
+            node.style("opacity", n => n.id === d.id || relatedIds.has(n.id) ? 1 : 0.3);
+            
+            // 显示提示框
+            tooltip.querySelector(".title").textContent = d.name;
+            tooltip.querySelector(".type").textContent = d.type === "atman" ? "本体论" : 
+                                                        d.type === "mind" ? "心智与自我" :
+                                                        d.type === "practice" ? "修行法门" :
+                                                        d.type === "moksha" ? "解脱境界" :
+                                                        d.type === "book" ? "核心著作" :
+                                                        d.type === "person" ? "关键人物" : "中心";
+            tooltip.querySelector(".desc").textContent = d.desc;
+            tooltip.classList.add("visible");
+            
+            // 绘制蜘蛛网效果
+            drawSpiderWeb(d, relatedIds);
+        })
+        .on("mousemove", function(event) {
+            tooltip.style.left = (event.offsetX + 15) + "px";
+            tooltip.style.top = (event.offsetY - 10) + "px";
+        })
+        .on("mouseout", function(event, d) {
+            // 恢复节点大小
+            d3.select(this).select("circle")
+                .transition()
+                .duration(200)
+                .attr("r", d.type === "center" ? 30 : d.type === "book" || d.type === "person" ? 20 : 18);
+            
+            // 恢复连线
+            link.classed("highlight", false).classed("dim", false);
+            
+            // 恢复节点透明度
+            node.style("opacity", 1);
+            
+            // 隐藏提示框
+            tooltip.classList.remove("visible");
+            
+            // 清除蜘蛛网
+            g.selectAll(".spider-line").remove();
+        })
+        .on("click", function(event, d) {
+            if (d.url) window.location.href = d.url;
+        });
+        
+        // 绘制蜘蛛网效果
+        function drawSpiderWeb(centerNode, relatedIds) {
+            g.selectAll(".spider-line").remove();
+            
+            const relatedNodes = nodes.filter(n => relatedIds.has(n.id));
+            const centerX = centerNode.x;
+            const centerY = centerNode.y;
+            
+            relatedNodes.forEach(n => {
+                // 计算角度和距离
+                const angle = Math.atan2(n.y - centerY, n.x - centerX);
+                const dist = Math.sqrt(Math.pow(n.x - centerX, 2) + Math.pow(n.y - centerY, 2));
+                
+                // 绘制从中心到关联节点的蜘蛛丝
+                g.append("line")
+                    .attr("class", "spider-line")
+                    .attr("x1", centerX)
+                    .attr("y1", centerY)
+                    .attr("x2", n.x)
+                    .attr("y2", n.y)
+                    .attr("stroke", colorMap[n.type])
+                    .attr("stroke-width", 2)
+                    .attr("stroke-dasharray", "5,3")
+                    .attr("stroke-opacity", 0.8);
+                
+                // 在中点添加小圆点
+                g.append("circle")
+                    .attr("class", "spider-line")
+                    .attr("cx", (centerX + n.x) / 2)
+                    .attr("cy", (centerY + n.y) / 2)
+                    .attr("r", 3)
+                    .attr("fill", colorMap[n.type]);
+            });
+        }
+        
+        // 更新位置
+        simulation.on("tick", () => {
+            link
+                .attr("x1", d => d.source.x)
+                .attr("y1", d => d.source.y)
+                .attr("x2", d => d.target.x)
+                .attr("y2", d => d.target.y);
+            
+            node.attr("transform", d => `translate(${d.x},${d.y})`);
+        });
+        
+        // 拖拽函数
+        function dragstarted(event) {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            event.subject.fx = event.subject.x;
+            event.subject.fy = event.subject.y;
+        }
+        
+        function dragged(event) {
+            event.subject.fx = event.x;
+            event.subject.fy = event.y;
+        }
+        
+        function dragended(event) {
+            if (!event.active) simulation.alphaTarget(0);
+            event.subject.fx = null;
+            event.subject.fy = null;
+        }
+        
+        // 控制函数
+        function resetZoom() {
+            svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
+        }
+        
+        function zoomIn() {
+            svg.transition().duration(300).call(zoom.scaleBy, 1.3);
+        }
+        
+        function zoomOut() {
+            svg.transition().duration(300).call(zoom.scaleBy, 0.7);
+        }
+        
+        // 移动端菜单切换
+        function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
+    </script>
+    <script src="search.js"></script>
+</body>
+</html>

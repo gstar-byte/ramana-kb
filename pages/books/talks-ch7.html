@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="第七部分：日常生活中的修行 - 对谈录"><title>第七部分：日常生活中的修行 - 对谈录</title><link rel="stylesheet" href="../styles.css"></head>
+<body><div class="layout">        <aside class="sidebar" id="sidebar">
+            <button class="hamburger" onclick="toggleSidebar()">☰</button>
+            <div class="sidebar-header">
+                <a href="../index.html" class="logo">🙏 拉玛那知识库</a>
+            </div>
+            
+            <!-- 搜索框 -->
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="搜索标题或内容..." autocomplete="off">
+                <div id="search-results"></div>
+            </div>
+            
+            <!-- 核心索引 -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">📚 核心索引</div>
+                <div class="sidebar-items">
+                    <a href="../books/index.html" class="sidebar-item active"><span class="emoji">📖</span> 书籍总览 <span class="count">18</span></a>
+                    <a href="../concepts/index.html" class="sidebar-item"><span class="emoji">🔮</span> 核心概念 <span class="count">30+</span></a>
+                    <a href="../methods/index.html" class="sidebar-item"><span class="emoji">🛤️</span> 修行方法 <span class="count">12</span></a>
+                    <a href="../qa/index.html" class="sidebar-item"><span class="emoji">💬</span> 修行问答 <span class="count">120+</span></a>
+                    <a href="../persons/index.html" class="sidebar-item"><span class="emoji">👤</span> 人物索引 <span class="count">3</span></a>
+                    <a href="../graph.html" class="sidebar-item"><span class="emoji">🕸️</span> 知识图谱</a>
+                </div>
+            </div>
+            
+            <!-- 对谈录章节 -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">💬 对谈录章节</div>
+                <div class="sidebar-items">
+                    <a href="../books/talks-ch1.html" class="sidebar-item">第一部分：自我参究的本质</a>
+                    <a href="../books/talks-ch2.html" class="sidebar-item">第二部分：心智的本性</a>
+                    <a href="../books/talks-ch3.html" class="sidebar-item">第三部分：上师与恩典</a>
+                    <a href="../books/talks-ch4.html" class="sidebar-item">第四部分：修行与日常</a>
+                    <a href="../books/talks-ch5.html" class="sidebar-item">第五部分：死亡与转世</a>
+                    <a href="../books/talks-ch6.html" class="sidebar-item">第六部分：宇宙与神圣</a>
+                    <a href="../books/talks-ch7.html" class="sidebar-item active">第七部分：解脱与自由</a>
+                    <a href="../books/talks-ch8.html" class="sidebar-item">第八部分：静默的奥秘</a>
+                </div>
+            </div>
+        </aside><main class="main-content"><header class="topbar"><div class="topbar-left"><button class="menu-toggle" onclick="toggleSidebar()">☰</button><span class="topbar-title">💬 第七部分：日常生活</span></div><nav class="topbar-nav topbar-full"><a href="../index.html">首页</a><a href="index.html">书籍</a><a href="talks.html">对谈录</a><a href="#" class="active">第七部分</a></nav></header><div class="content-wrapper"><nav class="breadcrumb"><a href="../index.html">首页</a> / <a href="index.html">书籍</a> / <a href="talks.html">对谈录</a> / <span>第七部分</span></nav><header class="page-header"><h1>第七部分：日常生活中的修行</h1><p class="subtitle">对谈录 | Talks with Sri Ramana Maharshi</p></header><div class="card"><h2 style="color:var(--primary);margin-bottom:1rem;">📝 章节导言</h2><p style="margin-bottom:1rem;">如何在日常生活中保持觉知——行走坐卧皆是修行。修行不是要在特殊时刻才能进行。当你在做日常事务时，保持对"我在"的觉知——这就是continuous sadhana（持续修行）。</p></div><div class="card"><h2 style="color:var(--primary);margin-bottom:1.5rem;">📖 核心内容</h2><p style="margin-bottom:1rem;">（内容待从PDF填充）</p></div><div class="card"><h2 style="color:var(--primary);margin-bottom:1.5rem;">💬 经典对话</h2><div class="quote-box">"真正的修行者，无论做什么，都保持对'我在'的觉知。工作照常进行，但内心不受影响。"<div class="source">—《对谈录》第22篇</div></div></div><div class="card"><h2 style="color:var(--primary);margin-bottom:1rem;">🔗 相关概念</h2><div class="concept-tags"><a href="../concepts/samadhi.html" class="tag">🧘 三摩地/Samadhi</a><a href="../concepts/silence.html" class="tag">🤫 静默/Silence</a></div></div><div class="card" style="display:flex;justify-content:space-between;align-items:center;"><a href="talks-ch6.html" class="tag">← 第六部分</a><a href="talks.html" class="tag">返回书籍</a><a href="talks-ch8.html" class="tag">第八部分 →</a></div></div><footer class="site-footer"><p>拉玛那·马哈希知识库 | <a href="talks.html">← 返回书籍</a></p></footer></main></div><script>document.querySelectorAll('.sidebar-section-title').forEach(title => { title.addEventListener('click', () => title.parentElement.classList.toggle('collapsed')); });function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }document.addEventListener('keydown', (e) => { if (e.key === 'Escape') document.getElementById('sidebar').classList.remove('open'); });</script></body></html>
