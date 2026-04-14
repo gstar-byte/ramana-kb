@@ -12,6 +12,17 @@
       ],
       "destination": "https://ramanamaharshi.space/:1",
       "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "ramana-kb.vercel.app"
+        }
+      ],
+      "destination": "https://ramanamaharshi.space/:1",
+      "permanent": true
     }
   ],
   "headers": [
