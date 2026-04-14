@@ -1,0 +1,69 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  currentPage?: string;
+}
+
+const { title, description = "拉玛那·马哈希灵性知识库 - 18本核心著作、30+核心概念、修行方法详解", currentPage = "" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content={description}>
+  <meta name="robots" content="index, follow">
+  <title>{title}</title>
+  <link rel="stylesheet" href="/styles/global.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🙏</text></svg>">
+</head>
+<body>
+  <div class="layout">
+    <!-- 侧边栏 -->
+    <aside class="sidebar" id="sidebar">
+      <slot name="sidebar" />
+    </aside>
+
+    <!-- 主内容区 -->
+    <main class="main-content">
+      <!-- 顶部导航 -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <span class="topbar-title">🏛️ {currentPage}</span>
+        </div>
+        <nav class="topbar-nav">
+          <a href="/" class={currentPage === "首页" ? "active" : ""}>首页</a>
+          <a href="/books" class={currentPage === "书籍" ? "active" : ""}>书籍</a>
+          <a href="/concepts" class={currentPage === "概念" ? "active" : ""}>概念</a>
+          <a href="/methods" class={currentPage === "方法" ? "active" : ""}>方法</a>
+          <a href="/persons" class={currentPage === "人物" ? "active" : ""}>人物</a>
+          <a href="/graph" class={currentPage === "图谱" ? "active" : ""}>图谱</a>
+        </nav>
+      </header>
+
+      <!-- 页面内容 -->
+      <slot />
+    </main>
+  </div>
+
+  <script>
+    // 移动端菜单切换
+    function toggleSidebar() {
+      document.getElementById('sidebar')?.classList.toggle('open');
+    }
+
+    // 键盘快捷键
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.getElementById('sidebar')?.classList.remove('open');
+      }
+    });
+  </script>
+</body>
+</html>
+
+<style>
+  /* 页面特定样式可在此处添加 */
+</style>

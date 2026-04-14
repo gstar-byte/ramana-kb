@@ -1,0 +1,150 @@
+.calibre {
+    display: block;
+    font-size: 1em;
+    line-height: 1.618em;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: justify;
+    margin: 0 5pt
+    }
+.calibre1 {
+    height: 100%;
+    width: auto
+    }
+.calibre2 {
+    display: block
+    }
+.calibre3 {
+    color: gray;
+    display: block;
+    height: 2px;
+    border: currentColor inset 1px;
+    margin: 0.5em auto
+    }
+.calibre4 {
+    display: block;
+    text-indent: 2em;
+    margin: 1em 0
+    }
+.calibre5 {
+    display: block;
+    line-height: 1.5
+    }
+.calibre6 {
+    text-decoration: none
+    }
+.calibre7 {
+    font-size: 0.75em;
+    line-height: 1.5;
+    vertical-align: super
+    }
+.calibre8 {
+    display: block;
+    font-size: 1em;
+    line-height: 1.618em;
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0 5pt
+    }
+.calibre9 {
+    color: #00C
+    }
+.calibre10 {
+    line-height: 1.5;
+    text-decoration: none
+    }
+.chapter {
+    display: block;
+    margin-top: 5%;
+    text-align: justify
+    }
+.kindle-cn-bold {
+    font-weight: bold
+    }
+.kindle-cn-copyright-text {
+    display: block;
+    line-height: 1.618em;
+    text-align: justify;
+    text-indent: 0;
+    margin: 1em 0
+    }
+.kindle-cn-footnote {
+    display: block;
+    font-size: 0.83333em;
+    text-align: justify;
+    text-indent: -1em;
+    margin: 1em 0 1em 2em
+    }
+.kindle-cn-heading {
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+    line-height: 1.5;
+    text-align: center;
+    border-top: #c7c7c7 dashed 2px;
+    border-bottom: #c7c7c7 dashed 2px;
+    padding: 0.75em 0;
+    margin: 0.67em 0
+    }
+.kindle-cn-heading1 {
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+    line-height: 1.5;
+    text-align: center;
+    border-bottom: #c7c7c7 dashed 2px;
+    padding: 0.75em 0;
+    margin: 0.67em 0
+    }
+.kindle-cn-image {
+    display: block;
+    page-break-inside: avoid;
+    text-align: center;
+    margin: 0
+    }
+.kindle-cn-para-left {
+    display: block;
+    text-align: justify;
+    text-indent: 0;
+    margin: 1em 0
+    }
+.kindle-cn-para-right {
+    display: block;
+    text-align: right;
+    text-indent: 0;
+    margin: 1em 0
+    }
+.kindle-cn-poem-left {
+    display: block;
+    text-indent: 0;
+    margin: 1em 0 1em 2em
+    }
+.kindle-cn-poem-left1 {
+    display: block;
+    text-indent: 0;
+    margin: 1em 0 1em 4em
+    }
+.kindle-cn-signature {
+    display: block;
+    text-align: right;
+    text-indent: 2em;
+    margin: 1em 0
+    }
+.kindle-cn-toc-level {
+    display: block;
+    margin-left: 0
+    }
+.kindle-cn-toc-level1 {
+    display: block;
+    margin-left: 2em
+    }
+.kindle-cn-toc-title {
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+    letter-spacing: 1em;
+    line-height: 1.5;
+    text-align: center;
+    border-bottom: #000 dotted 1.5px;
+    margin: 0.67em 0 0.5em
+    }

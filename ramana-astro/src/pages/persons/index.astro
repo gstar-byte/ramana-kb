@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+
+const persons = [
+  { id: 'ramana', name: '室利·拉玛那·马哈希', title: 'Sri Ramana Maharshi', years: '1879-1950', role: '灵性导师', icon: '🙏', desc: '印度近代最伟大的灵性导师之一。16岁时经历神秘体验，悟见真我，此后五十年在阿鲁那佳拉圣山静修。' },
+  { id: 'david', name: '大卫·高德曼', title: 'David Godman', years: '1951-', role: '编纂者', icon: '📝', desc: '英国作家和编辑，整理出版了大量关于马哈希的著作。' },
+  { id: 'venkataramana', name: '韦卡罗达·南达', title: 'Venkatalakshmiammal', years: '1881-1956', role: '静修院照顾者', icon: '👩', desc: '马哈希的姨妈，在阿鲁那佳拉静修院的早期发展中发挥了重要作用。' },
+];
+---
+
+<BaseLayout title="人物索引 - 拉玛那·马哈希知识库" currentPage="人物">
+  <Sidebar slot="sidebar" />
+
+  <main>
+    <header class="page-header">
+      <h1>👤 关键人物</h1>
+      <p class="subtitle">3 位核心人物 · 传记与贡献</p>
+    </header>
+
+    <!-- 人物卡片 -->
+    <div class="concept-categories">
+      {persons.map(person => (
+        <a href={`/persons/${person.id}`} class="card" style="text-decoration:none;display:flex;gap:1.5rem;align-items:flex-start;">
+          <div class="person-avatar" style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;">
+            {person.icon}
+          </div>
+          <div>
+            <h3 style="color:var(--primary);margin-bottom:0.25rem;">{person.name}</h3>
+            <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:0.5rem;">{person.title} | {person.years}</p>
+            <p style="color:var(--accent);font-size:0.8rem;margin-bottom:0.75rem;">{person.role}</p>
+            <p style="font-size:0.9rem;">{person.desc}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <footer class="site-footer">
+      <p>拉玛那·马哈希知识库 | 传承自印度阿鲁那佳拉圣山</p>
+    </footer>
+  </main>
+</BaseLayout>

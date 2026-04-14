@@ -164,5 +164,14 @@
         document.querySelectorAll('.sidebar-section-title').forEach(t => t.addEventListener('click', () => t.parentElement.classList.toggle('collapsed')));
         function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
     </script>
-</body>
+
+        // Service Worker 注册 (PWA离线支持)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('SW registered:', reg.scope))
+                    .catch(err => console.log('SW registration failed:', err));
+            });
+        }
+    </body>
 </html>

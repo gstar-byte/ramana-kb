@@ -1,0 +1,113 @@
+<!--
+  侧边栏组件 - 全局复用
+  修改此文件 = 全站侧边栏更新
+-->
+<div class="sidebar-header">
+  <h1>🙏 拉玛那知识库</h1>
+  <p class="subtitle">Ramana Maharshi KB</p>
+</div>
+
+<!-- 核心索引 -->
+<div class="sidebar-section">
+  <div class="sidebar-section-title">📚 核心索引</div>
+  <div class="sidebar-items">
+    <a href="/books" class="sidebar-item active">
+      <span class="emoji">📖</span> 书籍总览
+      <span class="count">18</span>
+    </a>
+    <a href="/concepts" class="sidebar-item">
+      <span class="emoji">🔮</span> 核心概念
+      <span class="count">30+</span>
+    </a>
+    <a href="/methods" class="sidebar-item">
+      <span class="emoji">🛤️</span> 修行方法
+      <span class="count">12</span>
+    </a>
+    <a href="/persons" class="sidebar-item">
+      <span class="emoji">👤</span> 人物索引
+      <span class="count">3</span>
+    </a>
+    <a href="/graph" class="sidebar-item">
+      <span class="emoji">🕸️</span> 知识图谱
+    </a>
+  </div>
+</div>
+
+<!-- 经典著作 -->
+<div class="sidebar-section">
+  <div class="sidebar-section-title">📖 经典著作</div>
+  <div class="sidebar-items">
+    <a href="/books/be-as-you-are" class="sidebar-item">
+      <span class="emoji">📖</span> 走向静默，如你本来
+    </a>
+    <a href="/books/gems" class="sidebar-item">
+      <span class="emoji">💎</span> 宝钻集
+    </a>
+    <a href="/books/talks" class="sidebar-item">
+      <span class="emoji">💬</span> 对谈录
+    </a>
+    <a href="/books/back-to-heart" class="sidebar-item">
+      <span class="emoji">📕</span> 回到你心中
+    </a>
+    <div class="sidebar-subitems">
+      <a href="/books/day-by-day" class="sidebar-item">日日与彼</a>
+      <a href="/books/face-to-face" class="sidebar-item">面对面</a>
+      <a href="/books/maharshi-gospel" class="sidebar-item">马哈希福音</a>
+      <a href="/books/maha-yoga" class="sidebar-item">大瑜伽</a>
+    </div>
+  </div>
+</div>
+
+<!-- 核心概念 -->
+<div class="sidebar-section">
+  <div class="sidebar-section-title">🔮 核心概念</div>
+  <div class="sidebar-items">
+    <a href="/concepts/atman" class="sidebar-item">🔮 真我/Atman</a>
+    <a href="/concepts/whoami" class="sidebar-item">🔍 "我是谁？"</a>
+    <a href="/concepts/mind" class="sidebar-item">🧠 心智/Citta</a>
+    <a href="/concepts/ego" class="sidebar-item">🧠 自我/Ego</a>
+    <a href="/concepts/moksha" class="sidebar-item">🕊️ 解脱/Moksha</a>
+    <a href="/concepts/grace" class="sidebar-item">✨ 恩典/Grace</a>
+    <a href="/concepts/samadhi" class="sidebar-item">🧘 三摩地/Samadhi</a>
+    <a href="/concepts/silence" class="sidebar-item">🤫 静默/Silence</a>
+    <a href="/concepts/karma" class="sidebar-item">☸️ 业力/Karma</a>
+    <a href="/concepts/surrender" class="sidebar-item">🙏 臣服/Surrender</a>
+  </div>
+</div>
+
+<!-- 修行方法 -->
+<div class="sidebar-section">
+  <div class="sidebar-section-title">🛤️ 修行方法</div>
+  <div class="sidebar-items">
+    <a href="/methods#whoami" class="sidebar-item">🔍 参究"我是谁"</a>
+    <a href="/methods#surrender" class="sidebar-item">🙏 臣服上师</a>
+    <a href="/methods#japa" class="sidebar-item">🔮 念诵咒语</a>
+    <a href="/methods#silence" class="sidebar-item">🤫 静默修行</a>
+    <a href="/methods#dhyana" class="sidebar-item">🧘 禅定</a>
+  </div>
+</div>
+
+<!-- 关键人物 -->
+<div class="sidebar-section">
+  <div class="sidebar-section-title">👤 关键人物</div>
+  <div class="sidebar-items">
+    <a href="/persons/ramana" class="sidebar-item">
+      <span class="emoji">🙏</span> 室利·拉玛那·马哈希
+    </a>
+    <a href="/persons/david" class="sidebar-item">
+      <span class="emoji">📝</span> 大卫·高德曼
+    </a>
+    <a href="/persons/venkataramana" class="sidebar-item">
+      <span class="emoji">👩</span> 韦卡罗达·南达
+    </a>
+  </div>
+</div>
+
+<script>
+  // 侧边栏折叠功能
+  document.querySelectorAll('.sidebar-section-title').forEach(title => {
+    title.addEventListener('click', () => {
+      title.parentElement?.classList.toggle('collapsed');
+    });
+  });
+</script>

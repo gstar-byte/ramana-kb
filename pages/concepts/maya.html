@@ -150,5 +150,14 @@
         <p>拉玛那·马哈希知识库 | 传承自印度阿鲁那佳拉圣山</p>
     </footer>
     </div>
-</body>
+
+        // Service Worker 注册 (PWA离线支持)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('SW registered:', reg.scope))
+                    .catch(err => console.log('SW registration failed:', err));
+            });
+        }
+    </body>
 </html>

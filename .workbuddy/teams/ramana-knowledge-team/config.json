@@ -1,0 +1,33 @@
+{
+  "name": "ramana-knowledge-team",
+  "leadAgentId": "c550952a36bf4f07bb2444980e23df8d",
+  "workspacePath": "c:/Users/willp/WorkBuddy/20260410104230",
+  "createdAt": "2026-04-10T08:33:58.188Z",
+  "options": {
+    "workspacePath": "c:/Users/willp/WorkBuddy/20260410104230",
+    "isAutoTeam": false
+  },
+  "members": [
+    {
+      "memberId": "team-lead@ramana-knowledge-team",
+      "name": "team-lead",
+      "role": "Team Lead - coordinates the team and interacts with the user"
+    },
+    {
+      "memberId": "content-expert@ramana-knowledge-team",
+      "name": "content-expert",
+      "role": "内容理解专家"
+    },
+    {
+      "memberId": "person-expert@ramana-knowledge-team",
+      "name": "person-expert",
+      "role": "人物传记扩展专家"
+    },
+    {
+      "memberId": "concept-expert@ramana-knowledge-team",
+      "name": "concept-expert",
+      "role": "概念深化专家"
+    }
+  ],
+  "isAutoTeam": false
+}

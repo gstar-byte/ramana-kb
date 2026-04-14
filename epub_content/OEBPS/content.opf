@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:opf="http://www.idpf.org/2007/opf" unique-identifier="bookid" xmlns="http://www.idpf.org/2007/opf" version="2.0">
+   <metadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:opf="http://www.idpf.org/2007/opf" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <dc:identifier id="bookid">urn:uuid:273fd756-62f2-4858-8d67-99e08f24bba9</dc:identifier>
+        <dc:contributor opf:file-as="CompanyName" opf:role="own">Epubor</dc:contributor>
+        <dc:contributor opf:file-as="PersonalName" opf:role="own">Ultimate</dc:contributor>
+        <dc:contributor opf:file-as="eCore" opf:role="bkp">eCore v0.9.12.751 [ http://www.epubor.com/ecore.html ]</dc:contributor>
+        <dc:contributor opf:file-as="SiteURL" opf:role="own">http://www.epubor.com</dc:contributor>
+        <meta name="cover" content="cover-image"/>
+        <dc:creator opf:file-as="[印] 室利·拉玛那·马哈希" opf:role="aut">[印] 室利·拉玛那·马哈希</dc:creator>
+        <dc:date opf:event="publication">2016-10-31T16:00:00+00:00</dc:date>
+        <dc:description>&lt;div&gt;&lt;div&gt;&lt;div&gt;编辑推荐&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;    拉玛那•马哈希透过它切身的经验与体会，讲述了“真实”存在于我们体内，每个人都可以直接体会到它。它虽无形无相、不因外在改变，但万物却因它显现，它就是内在真实的我。拉玛那极少亲自动笔写下他的理念，他与来访者的对谈就是展现他教导的一手资料。&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;内容简介&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;    《走向静默，如你本来》是作者拉玛那•马哈希透过他切身的经验与体会，讲述了“真实”存在于我们体内，每个人都可以直接体会到它。它虽无形无相、不因外在改变，但万物却因它显现，它就是内在真实的我。本书借由他与来自世界各地的拜访者的对谈，破除了人们对心灵修行的偏见，以及各种因自我概念形成的枷锁、疑惑。同时，对于如何找寻“真我”，提出了具体的“参究自我”的方法。&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;    拉玛那极少亲自动笔写下他的理念，他与来访者的对谈就是展现他教导的一手资料。本书总共六百五十多个问题，从冥想、上师、修持、瑜伽等多个角度，帮助我们认识拉玛那教导的全貌，同时认清自我，获得宁静。&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;作者简介&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;    [印]室利•拉马纳•马哈希（Sri Ramana Maharshi），二十世纪初印度较有影响力的导师。他名声远扬，来自世界各地的拜访者络绎不绝，很多有影响力的大家皆前来聆听他的教导，足见其影响之深远。&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</dc:description>
+        <dc:identifier opf:scheme="ASIN">81356ffa-68ec-4624-acbb-f7ddc7442d29</dc:identifier>
+        <dc:language>zh</dc:language>
+        <dc:publisher>中国青年出版社</dc:publisher>
+        <dc:title>走向静默，如你本来</dc:title>
+   </metadata>
+   <manifest>
+        <item href="text00000.html" id="id_1" media-type="application/xhtml+xml"/>
+        <item href="text00001.html" id="id_2" media-type="application/xhtml+xml"/>
+        <item href="text00002.html" id="id_3" media-type="application/xhtml+xml"/>
+        <item href="text00003.html" id="id_4" media-type="application/xhtml+xml"/>
+        <item href="text00004.html" id="id_5" media-type="application/xhtml+xml"/>
+        <item href="text00005.html" id="id_6" media-type="application/xhtml+xml"/>
+        <item href="text00006.html" id="id_7" media-type="application/xhtml+xml"/>
+        <item href="text00007.html" id="id_8" media-type="application/xhtml+xml"/>
+        <item href="text00008.html" id="id_9" media-type="application/xhtml+xml"/>
+        <item href="text00009.html" id="id_10" media-type="application/xhtml+xml"/>
+        <item href="text00010.html" id="id_11" media-type="application/xhtml+xml"/>
+        <item href="text00011.html" id="id_12" media-type="application/xhtml+xml"/>
+        <item href="text00012.html" id="id_13" media-type="application/xhtml+xml"/>
+        <item href="text00013.html" id="id_14" media-type="application/xhtml+xml"/>
+        <item href="text00014.html" id="id_15" media-type="application/xhtml+xml"/>
+        <item href="text00015.html" id="id_16" media-type="application/xhtml+xml"/>
+        <item href="text00016.html" id="id_17" media-type="application/xhtml+xml"/>
+        <item href="text00017.html" id="id_18" media-type="application/xhtml+xml"/>
+        <item href="text00018.html" id="id_19" media-type="application/xhtml+xml"/>
+        <item href="text00019.html" id="id_20" media-type="application/xhtml+xml"/>
+        <item href="text00020.html" id="id_21" media-type="application/xhtml+xml"/>
+        <item href="text00021.html" id="id_22" media-type="application/xhtml+xml"/>
+        <item href="text00022.html" id="id_23" media-type="application/xhtml+xml"/>
+        <item href="text00023.html" id="id_24" media-type="application/xhtml+xml"/>
+        <item href="text00024.html" id="id_25" media-type="application/xhtml+xml"/>
+        <item href="text00025.html" id="id_26" media-type="application/xhtml+xml"/>
+        <item href="text00026.html" id="id_27" media-type="application/xhtml+xml"/>
+        <item href="text00027.html" id="id_28" media-type="application/xhtml+xml"/>
+        <item href="text00028.html" id="id_29" media-type="application/xhtml+xml"/>
+        <item href="text00029.html" id="id_30" media-type="application/xhtml+xml"/>
+        <item href="text00030.html" id="id_31" media-type="application/xhtml+xml"/>
+        <item href="text00031.html" id="id_32" media-type="application/xhtml+xml"/>
+        <item href="text00032.html" id="id_33" media-type="application/xhtml+xml"/>
+        <item href="text00033.html" id="id_34" media-type="application/xhtml+xml"/>
+        <item href="flow0001.css" id="id_35" media-type="text/css"/>
+        <item href="flow0002.css" id="id_36" media-type="text/css"/>
+        <item href="Image00000.jpg" id="cover-image" media-type="image/jpeg" properties="cover-image"/>
+        <item href="Image00001.jpg" id="id_38" media-type="image/jpeg"/>
+        <item href="Image00002.jpg" id="id_39" media-type="image/jpeg"/>
+        <item href="toc.ncx" id="ncx" media-type="application/x-dtbncx+xml"/>
+   </manifest>
+   <spine toc = "ncx">
+        <itemref idref="id_1"/>
+        <itemref idref="id_2"/>
+        <itemref idref="id_3"/>
+        <itemref idref="id_4"/>
+        <itemref idref="id_5"/>
+        <itemref idref="id_6"/>
+        <itemref idref="id_7"/>
+        <itemref idref="id_8"/>
+        <itemref idref="id_9"/>
+        <itemref idref="id_10"/>
+        <itemref idref="id_11"/>
+        <itemref idref="id_12"/>
+        <itemref idref="id_13"/>
+        <itemref idref="id_14"/>
+        <itemref idref="id_15"/>
+        <itemref idref="id_16"/>
+        <itemref idref="id_17"/>
+        <itemref idref="id_18"/>
+        <itemref idref="id_19"/>
+        <itemref idref="id_20"/>
+        <itemref idref="id_21"/>
+        <itemref idref="id_22"/>
+        <itemref idref="id_23"/>
+        <itemref idref="id_24"/>
+        <itemref idref="id_25"/>
+        <itemref idref="id_26"/>
+        <itemref idref="id_27"/>
+        <itemref idref="id_28"/>
+        <itemref idref="id_29"/>
+        <itemref idref="id_30"/>
+        <itemref idref="id_31"/>
+        <itemref idref="id_32"/>
+        <itemref idref="id_33"/>
+        <itemref idref="id_34"/>
+   </spine>
+   <guide>
+        <reference type="text" title="Start" href="text00002.html#chapter" />
+        <reference type="toc" title="Table of Contents" href="text00005.html#calibre_pb_0" />
+   </guide>
+</package>

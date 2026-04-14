@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+
+const methods = [
+  { id: 'whoami', title: '参究"我是谁"', icon: '🔍', desc: '马哈希最核心的修行法门。通过持续追问"我是谁"，让心智从念头中抽离，最终安住于真我。', source: '《走向静默，如你本来》' },
+  { id: 'surrender', title: '臣服上师', icon: '🙏', desc: '将自我完全臣服于上师。当自我消融时，真我自然显现。', source: '《大瑜伽》' },
+  { id: 'japa', title: '念诵咒语', icon: '🔮', desc: '重复念诵神圣的音节或名号，让心智专注于一境。', source: '《宝钻集》' },
+  { id: 'silence', title: '静默修行', icon: '🤫', desc: '保持内在的静默。当心智完全静止时，真我自会显现。', source: '马哈希的主要教示方式' },
+  { id: 'dhyana', title: '禅定', icon: '🧘', desc: '深度冥想，让心智从纷飞的念头中解脱。', source: '《大瑜伽》' },
+  { id: 'bhakti', title: '虔诚奉爱', icon: '💝', desc: '通过虔诚和爱来消融自我。', source: '《马哈希福音》' },
+];
+---
+
+<BaseLayout title="修行方法 - 拉玛那·马哈希知识库" currentPage="方法">
+  <Sidebar slot="sidebar" />
+
+  <main>
+    <header class="page-header">
+      <h1>🛤️ 修行方法</h1>
+      <p class="subtitle">12 种修行法门 · 马哈希教法</p>
+    </header>
+
+    <!-- 方法卡片 -->
+    <div class="concept-categories">
+      {methods.map(method => (
+        <div class="card" id={method.id}>
+          <h3 style="color:var(--primary);margin-bottom:0.75rem;">
+            {method.icon} {method.title}
+          </h3>
+          <p style="margin-bottom:1rem;">{method.desc}</p>
+          <p style="color:var(--text-muted);font-size:0.85rem;">📖 来源：{method.source}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- 核心理念 -->
+    <div class="card">
+      <h2 style="color:var(--primary);margin-bottom:1rem;">💡 核心理念</h2>
+      <p>马哈希认为，所有的修行方法最终都指向同一个目标——让心智从虚假的自我认同中解脱，复归于真我。无论你选择哪种方法，关键在于：</p>
+      <ul style="margin:1rem 0 0 1.5rem;color:var(--text-muted);">
+        <li>持续不断地追问和探索</li>
+        <li>不要被念头带走</li>
+        <li>保持对"我是谁"的觉知</li>
+        <li>信任内在的指引</li>
+      </ul>
+
+      <div class="quote-box" style="margin-top:1.5rem;">
+        "方法只是手指，月亮是真正的目标。不要执着于手指，要看月亮。"
+        <div class="source">— 室利·拉玛那·马哈希</div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <p>拉玛那·马哈希知识库 | 传承自印度阿鲁那佳拉圣山</p>
+    </footer>
+  </main>
+</BaseLayout>
