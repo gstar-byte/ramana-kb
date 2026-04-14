@@ -1,4 +1,8 @@
 {
+  "framework": null,
+  "buildCommand": "",
+  "installCommand": "",
+  "outputDirectory": "pages",
   "rootDirectory": "pages",
   "cleanUrls": true,
   "trailingSlash": false,
