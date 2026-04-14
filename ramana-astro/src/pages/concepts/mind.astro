@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+---
+
+<BaseLayout title="心智/Citta - 拉玛那·马哈希知识库" currentPage="概念">
+  <Sidebar slot="sidebar" />
+
+  <main>
+    <header class="page-header">
+      <h1>🧠 心智 / Citta</h1>
+      <p class="subtitle">念头的集合</p>
+    </header>
+
+    <div class="breadcrumb" style="padding:1rem 0;color:var(--text-muted);">
+      <a href="/">首页</a> /
+      <a href="/concepts">概念</a> /
+      <span style="color:var(--text);">心智</span>
+    </div>
+
+    <div class="card concept-detail">
+      <h2>定义</h2>
+      <p>心智（Citta）是念头、情绪、记忆、欲望等心理活动的集合。它不是真我，但常常被误认为是"我"。</p>
+
+      <h2>马哈希的教导</h2>
+      <p>"心智只是一连串的念头。没有念头，就没有心智。心智的本质就是波动。"</p>
+
+      <div class="quote-box">
+        "心智是虚幻的，它只是真我投射出的影子。"
+        <div class="source">— 室利·拉玛那·马哈希</div>
+      </div>
+
+      <h2>与其他概念的关系</h2>
+      <ul style="margin-left:1.5rem;color:var(--text-muted);">
+        <li>是自我（Ego）的载体</li>
+        <li>通过参究"我是谁"可以让心智静止</li>
+        <li>当心静止时，真我就显现了</li>
+        <li>与摩耶（Maya）紧密相连</li>
+      </ul>
+
+      <h2>相关书籍</h2>
+      <div class="book-links">
+        <a href="/books/be-as-you-are" class="tag">走向静默，如你本来</a>
+        <a href="/books/gems" class="tag">宝钻集</a>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <p>拉玛那·马哈希知识库 | 传承自印度阿鲁那佳拉圣山</p>
+    </footer>
+  </main>
+</BaseLayout>

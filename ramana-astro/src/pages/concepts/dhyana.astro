@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+---
+
+<BaseLayout title="禅定/Dhyana - 拉玛那·马哈希知识库" currentPage="概念">
+  <Sidebar slot="sidebar" />
+
+  <main>
+    <header class="page-header">
+      <h1>🧘 禅定 / Dhyana</h1>
+      <p class="subtitle">冥想修行</p>
+    </header>
+
+    <div class="breadcrumb" style="padding:1rem 0;color:var(--text-muted);">
+      <a href="/">首页</a> /
+      <a href="/concepts">概念</a> /
+      <span style="color:var(--text);">禅定</span>
+    </div>
+
+    <div class="card concept-detail">
+      <h2>定义</h2>
+      <p>禅定（Dhyana）是持续专注于单一对象的修行，最终能让心智逐渐静止，进入三摩地。</p>
+
+      <h2>马哈希的教导</h2>
+      <p>"参究'我是谁'就是最好的禅定。因为你不是在专注于某个外在的对象，而是在专注于你自己的真我。"</p>
+
+      <div class="quote-box">
+        "禅定的最终目的是让心智消失，让真我显现。"
+        <div class="source">— 室利·拉玛那·马哈希</div>
+      </div>
+
+      <h2>与其他概念的关系</h2>
+      <ul style="margin-left:1.5rem;color:var(--text-muted);">
+        <li>可以引导进入三摩地（Samadhi）</li>
+        <li>参究"我是谁"是最高形式的禅定</li>
+        <li>能让心智逐渐静止</li>
+        <li>帮助消除自我（Ego）</li>
+      </ul>
+
+      <h2>相关书籍</h2>
+      <div class="book-links">
+        <a href="/books/be-as-you-are" class="tag">走向静默，如你本来</a>
+        <a href="/books/talks" class="tag">对谈录</a>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <p>拉玛那·马哈希知识库 | 传承自印度阿鲁那佳拉圣山</p>
+    </footer>
+  </main>
+</BaseLayout>

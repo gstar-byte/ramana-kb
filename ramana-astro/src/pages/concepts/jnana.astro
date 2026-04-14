@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+---
+
+<BaseLayout title="般若/Jnana - 拉玛那·马哈希知识库" currentPage="概念">
+  <Sidebar slot="sidebar" />
+
+  <main>
+    <header class="page-header">
+      <h1>🔮 般若 / Jnana</h1>
+      <p class="subtitle">智慧之学</p>
+    </header>
+
+    <div class="breadcrumb" style="padding:1rem 0;color:var(--text-muted);">
+      <a href="/">首页</a> /
+      <a href="/concepts">概念</a> /
+      <span style="color:var(--text);">般若</span>
+    </div>
+
+    <div class="card concept-detail">
+      <h2>定义</h2>
+      <p>般若（Jnana）是超越概念的智慧，是对真我的直接认识。它不是书本知识或智力理解，而是直接的体验。</p>
+
+      <h2>马哈希的教导</h2>
+      <p>"般若不是你可以学习的东西，它是你本自具足的。你只需要移除遮蔽它的无明。"</p>
+
+      <div class="quote-box">
+        "般若就是认识到'我就是真我'。"
+        <div class="source">— 室利·拉玛那·马哈希</div>
+      </div>
+
+      <h2>与其他概念的关系</h2>
+      <ul style="margin-left:1.5rem;color:var(--text-muted);">
+        <li>通过参究"我是谁"可以获得</li>
+        <li>就是对真我（Atman）的认识</li>
+        <li>与梵（Brahman）合一的智慧</li>
+        <li>就是解脱（Moksha）本身</li>
+      </ul>
+
+      <h2>相关书籍</h2>
+      <div class="book-links">
+        <a href="/books/be-as-you-are" class="tag">走向静默，如你本来</a>
+        <a href="/books/gems" class="tag">宝钻集</a>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <p>拉玛那·马哈希知识库 | 传承自印度阿鲁那佳拉圣山</p>
+    </footer>
+  </main>
+</BaseLayout>

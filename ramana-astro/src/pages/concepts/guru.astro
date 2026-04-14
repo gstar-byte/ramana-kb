@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+---
+
+<BaseLayout title="上师/Guru - 拉玛那·马哈希知识库" currentPage="概念">
+  <Sidebar slot="sidebar" />
+
+  <main>
+    <header class="page-header">
+      <h1>👁️ 上师 / Guru</h1>
+      <p class="subtitle">灵性导师</p>
+    </header>
+
+    <div class="breadcrumb" style="padding:1rem 0;color:var(--text-muted);">
+      <a href="/">首页</a> /
+      <a href="/concepts">概念</a> /
+      <span style="color:var(--text);">上师</span>
+    </div>
+
+    <div class="card concept-detail">
+      <h2>定义</h2>
+      <p>上师（Guru）是已经证悟真我的灵性导师。"Gu"意为黑暗，"Ru"意为驱散，所以上师就是驱散无明黑暗的人。</p>
+
+      <h2>马哈希的教导</h2>
+      <p>"真正的上师不在外面，他就在你的心里。外在的上师只是帮助你发现内在上师的助缘。"</p>
+
+      <div class="quote-box">
+        "上师就是你内在的真我。当你准备好时，上师就会出现。"
+        <div class="source">— 室利·拉玛那·马哈希</div>
+      </div>
+
+      <h2>与其他概念的关系</h2>
+      <ul style="margin-left:1.5rem;color:var(--text-muted);">
+        <li>是恩典（Grace）的通道</li>
+        <li>教导参究"我是谁"和臣服</li>
+        <li>帮助消除业力（Karma）</li>
+        <li>最终让你认识到上师就是你自己的真我</li>
+      </ul>
+
+      <h2>相关书籍</h2>
+      <div class="book-links">
+        <a href="/books/be-as-you-are" class="tag">走向静默，如你本来</a>
+        <a href="/books/talks" class="tag">对谈录</a>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <p>拉玛那·马哈希知识库 | 传承自印度阿鲁那佳拉圣山</p>
+    </footer>
+  </main>
+</BaseLayout>

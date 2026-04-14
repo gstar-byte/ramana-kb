@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+---
+
+<BaseLayout title="大卫·高德曼 - 拉玛那·马哈希知识库" currentPage="人物">
+  <Sidebar slot="sidebar" />
+
+  <main>
+    <header class="page-header">
+      <h1>📝 大卫·高德曼</h1>
+      <p class="subtitle">David Godman</p>
+      <p style="color:var(--text-muted);margin-top:0.75rem;font-size:0.95rem;">马哈希教法的重要传译者和编辑者</p>
+    </header>
+
+    <div class="breadcrumb" style="padding:1rem 0;color:var(--text-muted);">
+      <a href="/">首页</a> /
+      <a href="/persons">人物</a> /
+      <span style="color:var(--text);">大卫·高德曼</span>
+    </div>
+
+    <div class="card">
+      <h2 style="color:var(--primary);margin-bottom:1rem;">📖 简介</h2>
+      <p style="margin-bottom:1rem;">大卫·高德曼（David Godman）是拉玛那·马哈希教法最重要的现代传译者之一。他编写和编辑了多本关于马哈希的书籍，其中最著名的是《走向静默，如你本来》（Be As You Are），这本书已成为进入马哈希教法的标准入门读物。</p>
+
+      <h2 style="color:var(--primary);margin-bottom:1rem;">💡 贡献</h2>
+      <p style="margin-bottom:1rem;">高德曼通过深入研究马哈希弟子们的原始记录，将马哈希的教法系统地整理和呈现给现代读者。他的工作使得马哈希的教导能够被更广泛的受众所理解和接受。</p>
+    </div>
+
+    <div class="card">
+      <h2 style="color:var(--primary);margin-bottom:1rem;">📚 主要著作</h2>
+      <div class="concept-tags">
+        <a href="/books/be-as-you-are" class="tag">走向静默，如你本来</a>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <p>拉玛那·马哈希知识库 | 传承自印度阿鲁那佳拉圣山</p>
+    </footer>
+  </main>
+</BaseLayout>

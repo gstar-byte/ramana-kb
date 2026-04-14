@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+---
+
+<BaseLayout title="静默/Silence - 拉玛那·马哈希知识库" currentPage="概念">
+  <Sidebar slot="sidebar" />
+
+  <main>
+    <header class="page-header">
+      <h1>🤫 静默 / Silence</h1>
+      <p class="subtitle">最高教导</p>
+    </header>
+
+    <div class="breadcrumb" style="padding:1rem 0;color:var(--text-muted);">
+      <a href="/">首页</a> /
+      <a href="/concepts">概念</a> /
+      <span style="color:var(--text);">静默</span>
+    </div>
+
+    <div class="card concept-detail">
+      <h2>定义</h2>
+      <p>静默（Silence）不只是没有声音，更是心智完全静止的状态。马哈希认为静默是最高的教导，它能直接传递真我的力量。</p>
+
+      <h2>马哈希的教导</h2>
+      <p>"静默是真实的语言。文字只是对静默的解释。如果你能安住于静默，那就是最好的修行。"</p>
+
+      <div class="quote-box">
+        "静默是上师的最高教导。它超越了所有语言。"
+        <div class="source">— 室利·拉玛那·马哈希</div>
+      </div>
+
+      <h2>与其他概念的关系</h2>
+      <ul style="margin-left:1.5rem;color:var(--text-muted);">
+        <li>就是真我的自然状态</li>
+        <li>当心智静止时，静默就显现</li>
+        <li>与三摩地（Samadhi）紧密相连</li>
+        <li>通过参究"我是谁"可以安住于静默</li>
+      </ul>
+
+      <h2>相关书籍</h2>
+      <div class="book-links">
+        <a href="/books/be-as-you-are" class="tag">走向静默，如你本来</a>
+        <a href="/books/gems" class="tag">宝钻集</a>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <p>拉玛那·马哈希知识库 | 传承自印度阿鲁那佳拉圣山</p>
+    </footer>
+  </main>
+</BaseLayout>

@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+---
+
+<BaseLayout title="三摩地/Samadhi - 拉玛那·马哈希知识库" currentPage="概念">
+  <Sidebar slot="sidebar" />
+
+  <main>
+    <header class="page-header">
+      <h1>🧘 三摩地 / Samadhi</h1>
+      <p class="subtitle">禅定境界</p>
+    </header>
+
+    <div class="breadcrumb" style="padding:1rem 0;color:var(--text-muted);">
+      <a href="/">首页</a> /
+      <a href="/concepts">概念</a> /
+      <span style="color:var(--text);">三摩地</span>
+    </div>
+
+    <div class="card concept-detail">
+      <h2>定义</h2>
+      <p>三摩地（Samadhi）是禅定的最高境界，指心智完全静止，融入觉知本身的状态。有不同层次的三摩地，最高的是 Sahaja Samadhi（自然三摩地）。</p>
+
+      <h2>马哈希的教导</h2>
+      <p>"有两种三摩地：一种是暂时的，需要努力才能进入；另一种是自然的，证悟后一直安住其中。后者才是真正的解脱。"</p>
+
+      <div class="quote-box">
+        "自然三摩地就是在日常活动中也安住于真我。"
+        <div class="source">— 室利·拉玛那·马哈希</div>
+      </div>
+
+      <h2>与其他概念的关系</h2>
+      <ul style="margin-left:1.5rem;color:var(--text-muted);">
+        <li>通过禅定（Dhyana）可以达到</li>
+        <li>参究"我是谁"也能引导进入三摩地</li>
+        <li>是心智完全静止的状态</li>
+        <li>自然三摩地就是解脱（Moksha）</li>
+      </ul>
+
+      <h2>相关书籍</h2>
+      <div class="book-links">
+        <a href="/books/be-as-you-are" class="tag">走向静默，如你本来</a>
+        <a href="/books/gems" class="tag">宝钻集</a>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <p>拉玛那·马哈希知识库 | 传承自印度阿鲁那佳拉圣山</p>
+    </footer>
+  </main>
+</BaseLayout>

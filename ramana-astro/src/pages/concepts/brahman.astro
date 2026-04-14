@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+---
+
+<BaseLayout title="梵/Brahman - 拉玛那·马哈希知识库" currentPage="概念">
+  <Sidebar slot="sidebar" />
+
+  <main>
+    <header class="page-header">
+      <h1>🔮 梵 / Brahman</h1>
+      <p class="subtitle">终极实相</p>
+    </header>
+
+    <div class="breadcrumb" style="padding:1rem 0;color:var(--text-muted);">
+      <a href="/">首页</a> /
+      <a href="/concepts">概念</a> /
+      <span style="color:var(--text);">梵</span>
+    </div>
+
+    <div class="card concept-detail">
+      <h2>定义</h2>
+      <p>Brahman（梵）是印度哲学中表示终极实相、绝对存在的概念。它是无限的、永恒的、不生不灭的，是一切存在的本源和归宿。</p>
+
+      <h2>马哈希的教导</h2>
+      <p>"梵就是真我，真我就是梵。当你证悟真我时，你就会明白你与梵是无二无别的。"</p>
+
+      <div class="quote-box">
+        "梵不在别处，它就是你内在的真我。"
+        <div class="source">— 室利·拉玛那·马哈希</div>
+      </div>
+
+      <h2>与其他概念的关系</h2>
+      <ul style="margin-left:1.5rem;color:var(--text-muted);">
+        <li>与真我（Atman）无二无别</li>
+        <li>被摩耶（Maya）所遮蔽</li>
+        <li>通过参究"我是谁"可证得</li>
+        <li>是解脱（Moksha）的目标</li>
+      </ul>
+
+      <h2>相关书籍</h2>
+      <div class="book-links">
+        <a href="/books/be-as-you-are" class="tag">走向静默，如你本来</a>
+        <a href="/books/gems" class="tag">宝钻集</a>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <p>拉玛那·马哈希知识库 | 传承自印度阿鲁那佳拉圣山</p>
+    </footer>
+  </main>
+</BaseLayout>
