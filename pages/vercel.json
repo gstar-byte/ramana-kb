@@ -3,25 +3,25 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/(.*)",
+      "source": "/:path*",
       "has": [
         {
           "type": "host",
           "value": "www.ramanamaharshi.space"
         }
       ],
-      "destination": "https://ramanamaharshi.space/:1",
+      "destination": "https://ramanamaharshi.space/:path*",
       "permanent": true
     },
     {
-      "source": "/(.*)",
+      "source": "/:path*",
       "has": [
         {
           "type": "host",
           "value": "ramana-kb.vercel.app"
         }
       ],
-      "destination": "https://ramanamaharshi.space/:1",
+      "destination": "https://ramanamaharshi.space/:path*",
       "permanent": true
     }
   ],
