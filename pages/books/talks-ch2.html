@@ -1,47 +1,105 @@
 <!DOCTYPE html>
-<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="第二部分：心智的本性 - 对谈录"><title>第二部分：心智的本性 - 对谈录</title><link rel="stylesheet" href="../styles.css">    <link rel="manifest" href="manifest.json">
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="第二章：心智的本性 - 对谈录 - 拉玛那·马哈希讲解心智如何产生、运作与消融">
+    <meta name="keywords" content="心智, 对谈录, 马哈希, 念头, 参究">
+    <title>💬 第二章：心智的本性 | 拉玛那马哈希Space</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#1a1a2e">
     <link rel="apple-touch-icon" href="icons/icon-192.png">
 </head>
-<body><div class="layout">        <aside class="sidebar" id="sidebar">
-            <button class="hamburger" onclick="toggleSidebar()">☰</button>
+<body>
+    <button class="hamburger" onclick="toggleSidebar()">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <div class="layout">
+        <aside class="sidebar" id="sidebar" data-chapter-mode="true">
             <div class="sidebar-header">
                 <a href="../index.html" class="logo">🙏 拉玛那知识库</a>
             </div>
-            
-            <!-- 搜索框 -->
-            <div class="search-box">
-                <input type="text" id="search-input" placeholder="搜索标题或内容..." autocomplete="off">
-                <div id="search-results"></div>
-            </div>
-            
-            <!-- 核心索引 -->
-            <div class="sidebar-section">
-                <div class="sidebar-section-title">📚 核心索引</div>
+            <div class="sidebar-section" id="chapter-section">
+                <div class="sidebar-section-title">💬 对谈录</div>
                 <div class="sidebar-items">
-                    <a href="../books/index.html" class="sidebar-item active"><span class="emoji">📖</span> 书籍总览 <span class="count">18</span></a>
-                    <a href="../concepts/index.html" class="sidebar-item"><span class="emoji">🔮</span> 核心概念 <span class="count">30+</span></a>
-                    <a href="../methods/index.html" class="sidebar-item"><span class="emoji">🛤️</span> 修行方法 <span class="count">12</span></a>
-                    <a href="../qa/index.html" class="sidebar-item"><span class="emoji">💬</span> 修行问答 <span class="count">120+</span></a>
-                    <a href="../persons/index.html" class="sidebar-item"><span class="emoji">👤</span> 人物索引 <span class="count">3</span></a>
-                    <a href="../graph.html" class="sidebar-item"><span class="emoji">🕸️</span> 知识图谱</a>
+                    <a href="talks-ch1.html" class="sidebar-item">💬 第一章：自我参究</a>
+                    <a href="talks-ch2.html" class="sidebar-item active">💬 第二章：心智的本性</a>
+                    <a href="talks-ch3.html" class="sidebar-item">💬 第三章：静默与言语</a>
+                    <a href="talks-ch4.html" class="sidebar-item">💬 第四章：梦境与醒觉</a>
+                    <a href="talks-ch5.html" class="sidebar-item">💬 第五章：上师与弟子</a>
+                    <a href="talks-ch6.html" class="sidebar-item">💬 第六章：修行与果位</a>
+                    <a href="talks-ch7.html" class="sidebar-item">💬 第七章：世界的本质</a>
+                    <a href="talks-ch8.html" class="sidebar-item">💬 第八章：解脱与自由</a>
                 </div>
             </div>
-            
-            <!-- 对谈录章节 -->
-            <div class="sidebar-section">
-                <div class="sidebar-section-title">💬 对谈录章节</div>
+            <div class="sidebar-section collapsed">
+                <div class="sidebar-section-title">📚 其他书籍</div>
                 <div class="sidebar-items">
-                    <a href="../books/talks-ch1.html" class="sidebar-item">第一部分：自我参究的本质</a>
-                    <a href="../books/talks-ch2.html" class="sidebar-item active">第二部分：心智的本性</a>
-                    <a href="../books/talks-ch3.html" class="sidebar-item">第三部分：上师与恩典</a>
-                    <a href="../books/talks-ch4.html" class="sidebar-item">第四部分：修行与日常</a>
-                    <a href="../books/talks-ch5.html" class="sidebar-item">第五部分：死亡与转世</a>
-                    <a href="../books/talks-ch6.html" class="sidebar-item">第六部分：宇宙与神圣</a>
-                    <a href="../books/talks-ch7.html" class="sidebar-item">第七部分：解脱与自由</a>
-                    <a href="../books/talks-ch8.html" class="sidebar-item">第八部分：静默的奥秘</a>
+                    <a href="index.html" class="sidebar-item">📚 书籍总览</a>
+                    <a href="be-as-you-are.html" class="sidebar-item">📖 走向静默，如你本来</a>
+                    <a href="gems.html" class="sidebar-item">💎 宝钻集</a>
+                    <a href="back-to-heart.html" class="sidebar-item">📕 回到你心中</a>
                 </div>
             </div>
-        </aside><main class="main-content"><header class="topbar"><div class="topbar-left"><button class="menu-toggle" onclick="toggleSidebar()">☰</button><span class="topbar-title">💬 第二部分：心智的本性</span></div><nav class="topbar-nav topbar-full"><a href="../index.html">首页</a><a href="index.html">书籍</a><a href="talks.html">对谈录</a><a href="#" class="active">第二部分</a></nav></header><div class="content-wrapper"><nav class="breadcrumb"><a href="../index.html">首页</a> / <a href="index.html">书籍</a> / <a href="talks.html">对谈录</a> / <span>第二部分</span></nav><header class="page-header"><h1>第二部分：心智的本性</h1><p class="subtitle">对谈录 | Talks with Sri Ramana Maharshi</p></header><div class="card"><h2 style="color:var(--primary);margin-bottom:1rem;">📝 章节导言</h2><p style="margin-bottom:1rem;">心智如何产生、如何运作、以及如何通过参究平息心智。马哈希详细解释了心智的产生过程：从真我中生起，认同于身体和念头，然后向外攀缘。参究"我是谁"让这个过程逆转——念头消融，心智回到源头。</p></div><div class="card"><h2 style="color:var(--primary);margin-bottom:1.5rem;">📖 核心内容</h2><p style="margin-bottom:1rem;">（内容待从PDF填充）</p></div><div class="card"><h2 style="color:var(--primary);margin-bottom:1.5rem;">💬 经典对话</h2><div class="quote-box">"心智是一种奇妙的能量。当它向外，它创造世界；当它向内，它回归真我。参究就是引导它向内。"<div class="source">—《对谈录》第3篇</div></div></div><div class="card"><h2 style="color:var(--primary);margin-bottom:1rem;">🔗 相关概念</h2><div class="concept-tags"><a href="../concepts/mind.html" class="tag">🧠 心智/Mind</a><a href="../concepts/whoami.html" class="tag">🔍 "我是谁？"</a></div></div><div class="card" style="display:flex;justify-content:space-between;align-items:center;"><a href="talks-ch1.html" class="tag">← 第一部分</a><a href="talks.html" class="tag">返回书籍</a><a href="talks-ch3.html" class="tag">第三部分 →</a></div></div><footer class="site-footer"><p>拉玛那马哈希Space | <a href="talks.html">← 返回书籍</a></p></footer></main></div><script>document.querySelectorAll('.sidebar-section-title').forEach(title => { title.addEventListener('click', () => title.parentElement.classList.toggle('collapsed')); });function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }document.addEventListener('keydown', (e) => { if (e.key === 'Escape') document.getElementById('sidebar').classList.remove('open'); });</script>
+        </aside>
+        <main class="main-content">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                    <span class="topbar-title">💬 第二章：心智的本性</span>
+                </div>
+                <nav class="topbar-nav topbar-full">
+                    <a href="../index.html">首页</a>
+                    <a href="index.html" class="active">书籍</a>
+                    <a href="../concepts/index.html">概念</a>
+                    <a href="../methods/index.html">方法</a>
+                    <a href="../qa/index.html">问答</a>
+                    <a href="../persons/index.html">人物</a>
+                    <a href="../graph.html">图谱</a>
+                </nav>
+            </header>
+            <div class="content-wrapper">
+                <nav class="breadcrumb">
+                    <a href="../index.html">首页</a> / <a href="index.html">书籍</a> / <a href="talks.html">对谈录</a> / <span>第二章：心智的本性</span>
+                </nav>
+                <div class="card">
+                    <h2 style="color:var(--primary);margin-bottom:1.5rem;">💬 核心内容</h2>
+                    <h3 style="color:var(--accent);margin:1.5rem 0 1rem;">心智的起源</h3>
+                    <p style="margin-bottom:1rem;">心智（mind）是如何产生的？马哈希指出：心智并非本来存在，而是从真我中"生起"的。当真我产生了一个微细的波动，认为自己与某物认同时，心智就产生了。</p>
+                    <p style="margin-bottom:1rem;">这个认同过程是渐进的：首先是"我与身体认同"，然后是"我与念头认同"，然后是"我与这个世界认同"。每增加一层认同，心智就变得更加稠密、更加复杂。</p>
+                    <h3 style="color:var(--accent);margin:1.5rem 0 1rem;">心智的运作</h3>
+                    <p style="margin-bottom:1rem;">心智的基本功能是"想"——产生念头。它有两种倾向：向外攀缘或向内回归。当心智向外时，它创造世界、追逐欲望、积累业力；当它向内时，它回归源头、恢复平静、了悟真理。</p>
+                    <p style="margin-bottom:1rem;">参究"我是谁"正是要逆转这个过程——让心智从向外转为向内。</p>
+                    <h3 style="color:var(--accent);margin:1.5rem 0 1rem;">心智的消融</h3>
+                    <p style="margin-bottom:1rem;">当心智不断向内，最终会发生什么？它不会"变成"真我，也不会"获得"真我。它只是消融——像冰融入水一样，心智消融于真我，而真我一直是它本来所是的样子。</p>
+                </div>
+                <div class="card">
+                    <h2 style="color:var(--primary);margin-bottom:1.5rem;">📜 经典引述</h2>
+                    <div class="quote-box">
+                        "心智是一种奇妙的能量。当它向外，它创造整个世界；当它向内，它回归真我。参究就是引导这种能量向内。"
+                        <div class="source">—《对谈录》第3篇</div>
+                    </div>
+                    <div class="quote-box">
+                        "不要问'如何让心智平静'，而要问'谁在关心心智平不平静'。那个在观看的，比被观看的更重要。"
+                        <div class="source">—《对谈录》第3篇</div>
+                    </div>
+                    <div class="quote-box">
+                        "心智是冰，真我是水。当冰融化，它不会变成别的东西——它只是回到它真正的本性。"
+                        <div class="source">—《对谈录》第3篇</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2 style="color:var(--primary);margin-bottom:1.5rem;">🛤️ 修行要点</h2>
+                    <ul style="margin-left:1.5rem;line-height:2;">
+                        <li>不要试图"控制"心智，而是观照它</li>
+                        <li>问"谁在观照这个心智"，而非"如何让心智平静"</li>
+                        <li>每个念头都是让心智向内的机会</li>
+                        <li>心智只是工具，真正的"你"是那观照者</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="../search.js"></script>
 </body>
 </html>

@@ -22,9 +22,11 @@
     <link rel="apple-touch-icon" href="icons/icon-192.png">
 </head>
 <body>
+    <button class="hamburger" onclick="toggleSidebar()">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
     <div class="layout">
-                <aside class="sidebar" id="sidebar" data-chapter-mode="true">
-            <button class="hamburger" onclick="toggleSidebar()">☰</button>
+
+<aside class="sidebar" id="sidebar" data-chapter-mode="true">
             <div class="sidebar-header">
                 <a href="../index.html" class="logo">🙏 拉玛那知识库</a>
             </div>
@@ -63,6 +65,7 @@
                 </div>
             </div>
         </aside>
+
         
                 <main class="main-content">
             <header class="topbar">
@@ -136,7 +139,12 @@
     </div>
     
     <script>
-        function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
+        function toggleSidebar() {
+            const s = document.getElementById('sidebar');
+            const o = document.getElementById('sidebarOverlay');
+            s.classList.toggle('open');
+            if (o) o.classList.toggle('open');
+        }
     </script>
     <script src="../search.js"></script>
 </body>

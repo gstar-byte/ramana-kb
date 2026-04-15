@@ -27,10 +27,11 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🙏</text></svg>">
 </head>
 <body>
+    <button class="hamburger" onclick="toggleSidebar()">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
     <div class="layout">
-        <!-- 左侧边栏 -->
-        <aside class="sidebar" id="sidebar">
-            <button class="hamburger" onclick="toggleSidebar()">☰</button>
+
+<aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <a href="index.html" class="logo">🙏 拉玛那知识库</a>
             </div>
@@ -99,6 +100,7 @@
                 </div>
             </div>
         </aside>
+
         
         <!-- 主内容区 -->
         <main class="main-content">
@@ -276,7 +278,10 @@
         
         // 移动端菜单切换
         function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('open');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.toggle('open');
+            if (overlay) overlay.classList.toggle('open');
         }
         
         // 键盘快捷键
