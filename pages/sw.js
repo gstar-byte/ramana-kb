@@ -1,5 +1,5 @@
 // Ramana Maharshi Knowledge Base - Service Worker
-const CACHE_NAME = 'ramana-kb-v2';
+const CACHE_NAME = 'ramana-kb-v3';
 const ASSETS = [
   '/',
   '/index.html',
@@ -181,7 +181,7 @@ self.addEventListener('activate', (e) => {
   );
 });
 
-// Fetch: network-first, fallback to cache
+// Fetch: cache-first strategy for offline reliability
 self.addEventListener('fetch', (e) => {
   // Skip non-GET and cross-origin requests (except Vercel CDN)
   if (e.request.method !== 'GET') return;
@@ -189,18 +189,42 @@ self.addEventListener('fetch', (e) => {
       !e.request.url.includes('vercel.app')) return;
 
   e.respondWith(
-    fetch(e.request)
-      .then((res) => {
-        // Cache successful responses
-        if (res.status === 200) {
-          const clone = res.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(e.request, clone));
+    caches.match(e.request)
+      .then((cachedResponse) => {
+        // If found in cache, return it immediately
+        if (cachedResponse) {
+          // Update cache in background
+          fetch(e.request)
+            .then((res) => {
+              if (res.status === 200) {
+                const clone = res.clone();
+                caches.open(CACHE_NAME).then((cache) => cache.put(e.request, clone));
+              }
+            })
+            .catch(() => {
+              // Network error, keep using cache
+            });
+          return cachedResponse;
         }
-        return res;
-      })
-      .catch(() => {
-        // Fallback to cache
-        return caches.match(e.request);
+        
+        // If not in cache, fetch from network
+        return fetch(e.request)
+          .then((res) => {
+            // Cache successful responses
+            if (res.status === 200) {
+              const clone = res.clone();
+              caches.open(CACHE_NAME).then((cache) => cache.put(e.request, clone));
+            }
+            return res;
+          })
+          .catch(() => {
+            // Network error, try to find similar resource in cache
+            const url = new URL(e.request.url);
+            if (url.pathname.endsWith('/')) {
+              return caches.match(url.pathname + 'index.html');
+            }
+            return caches.match('/'); // Fallback to home page
+          });
       })
   );
 });
