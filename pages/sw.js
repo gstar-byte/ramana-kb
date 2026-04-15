@@ -55,8 +55,27 @@ self.addEventListener('fetch', (e) => {
       })
       .catch((err) => {
         console.log('Network error, falling back to cache:', err);
+        // Try to match both the original request and the clean URL version
         return caches.match(e.request).then((cached) => {
-          return cached || caches.match('/');
+          if (cached) return cached;
+          
+          // Try clean URL version (without .html)
+          if (e.request.url.endsWith('.html')) {
+            const cleanUrl = e.request.url.replace(/\.html$/, '');
+            return caches.match(cleanUrl).then((cleanCached) => {
+              return cleanCached || caches.match('/');
+            });
+          }
+          
+          // Try .html version if clean URL
+          if (!e.request.url.endsWith('.html') && !e.request.url.endsWith('/')) {
+            const htmlUrl = e.request.url + '.html';
+            return caches.match(htmlUrl).then((htmlCached) => {
+              return htmlCached || caches.match('/');
+            });
+          }
+          
+          return caches.match('/');
         });
       })
   );
