@@ -45,13 +45,16 @@ self.addEventListener('fetch', (e) => {
   e.respondWith(
     fetch(e.request)
       .then((res) => {
-        if (res.status === 200) {
+        if (res && res.status === 200) {
           const clone = res.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(e.request, clone));
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(e.request, clone).catch(err => console.log('Cache put error:', err));
+          });
         }
         return res;
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log('Network error, falling back to cache:', err);
         return caches.match(e.request).then((cached) => {
           return cached || caches.match('/');
         });
