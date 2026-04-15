@@ -7,9 +7,17 @@
     <meta name="description" content="Maha Yoga — 斯瓦米·苏卡·南达上师记录的马哈希教导">
     <meta name="keywords" content="拉玛那,马哈希,灵性修行,自我了悟,阿鲁那佳拉,真我,心智,解脱">
     <link rel="stylesheet" href="../styles.css">
-    <link rel="manifest" href="manifest.json">
+
     <meta name="theme-color" content="#1a1a2e">
-    <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+
+    <!-- PWA 配置 -->
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="拉玛那知识库">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🙏</text></svg>">
 </head>
 <body>
     <button class="hamburger" onclick="toggleSidebar()">☰</button>
@@ -82,7 +90,6 @@
                 </div>
             </div>
         </aside>
-
 
         <main class="main-content">
                         <header class="topbar">
@@ -177,6 +184,20 @@
             if (o) o.classList.toggle('open');
         }
         document.querySelectorAll('.chapter-card h4').forEach(h => h.addEventListener('click', () => h.parentElement.classList.toggle('expanded')));
+    </script>
+
+    <script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('sw.js')
+                .then(function(registration) {
+                    console.log('SW registered:', registration.scope);
+                })
+                .catch(function(error) {
+                    console.log('SW registration failed:', error);
+                });
+        });
+    }
     </script>
 </body>
 </html>

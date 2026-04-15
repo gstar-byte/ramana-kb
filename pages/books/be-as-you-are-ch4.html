@@ -17,9 +17,17 @@
     
     <title>📖 第四章：静默 | 拉玛那马哈希Space</title>
     <link rel="stylesheet" href="../styles.css">
-    <link rel="manifest" href="manifest.json">
+
     <meta name="theme-color" content="#1a1a2e">
-    <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+
+    <!-- PWA 配置 -->
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="拉玛那知识库">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🙏</text></svg>">
 </head>
 <body>
     <button class="hamburger" onclick="toggleSidebar()">☰</button>
@@ -66,7 +74,6 @@
             </div>
         </aside>
 
-        
                 <main class="main-content">
             <header class="topbar">
                 <div class="topbar-left">
@@ -146,6 +153,20 @@
             if (o) o.classList.toggle('open');
         }
     </script>
-    <script src="../search.js"></script>
+    <script src="../script.js"></script>
+
+    <script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('sw.js')
+                .then(function(registration) {
+                    console.log('SW registered:', registration.scope);
+                })
+                .catch(function(error) {
+                    console.log('SW registration failed:', error);
+                });
+        });
+    }
+    </script>
 </body>
 </html>

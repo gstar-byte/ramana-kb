@@ -18,12 +18,17 @@
     
     <title>🙏 首页 | 拉玛那马哈希Space</title>
     <link rel="stylesheet" href="styles.css">
+    
+    <meta name="theme-color" content="#1a1a2e">
+
+    <text y='.9em' font-size='90'>🙏</text></svg>">
+
+    <!-- PWA 配置 -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#1a1a2e">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="拉玛那知识库">
-    <link rel="apple-touch-icon" href="icons/icon-192.png">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🙏</text></svg>">
 </head>
 <body>
@@ -101,7 +106,6 @@
             </div>
         </aside>
 
-        
         <!-- 主内容区 -->
         <main class="main-content">
             <!-- 顶部导航 -->
@@ -369,7 +373,7 @@
         document.getElementById('search-input').addEventListener('blur', () => setTimeout(() => document.getElementById('search-results').innerHTML = '', 200));
     </script>
     <script src="search.js"></script>
-    <!-- PWA Service Worker -->
+    
     <script>
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('sw.js').then(reg => {
