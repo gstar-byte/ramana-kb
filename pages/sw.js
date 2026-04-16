@@ -9,6 +9,7 @@ const CORE_ASSETS = [
   '/styles.css',
   '/script.js',
   '/search.js',
+  '/pwa-analytics.js',
   '/manifest.json',
   '/sw.js',
   // Books

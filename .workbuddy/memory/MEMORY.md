@@ -15,7 +15,7 @@
 - 主文件: `拉玛那马哈希知识库.html`（交互式单页面应用）
 - Skill: `~/.workbuddy/skills/拉玛那知识库/SKILL.md`
 - 架构: 三层节点（概念/书籍/人物）+ 可点击跳转
-- 已整合书籍（14本）：
+- 已整合书籍（18本）：
   1. 📖 走向静默，如你本来 (Be As You Are)
   2. 📕 回到你心中
   3. 📗 以言传意 (Teachings in His Own Words)
@@ -87,10 +87,10 @@
   - 《圣者》(毛姆) 已有完整中文翻译
   - 所有书籍都需要翻译、理解并整合到知识库中
 
-### 知识库多HTML重构（20260412-0413 - 重大升级）
+### 知识库多HTML重构（20260412-0415 - 重大升级）
 - 新目录: `c:/Users/willp/WorkBuddy/20260410104230/pages/`
 - 创建了90+个独立HTML文件 + 1个CSS文件（参考巴菲特知识库的多页结构）
-- **20260414重大修复（导航栏全站统一）**：
+- **导航栏全站统一（20260414修复）**：
   - 修复了全部90+HTML文件的左侧sidebar和顶部topbar不一致问题
   - sidebar标准结构：☰汉堡按钮 + 🙏logo + 搜索框 + 5大板块（核心索引含150+/经典著作/核心概念/修行方法/关键人物）
   - topbar标准结构：首页/书籍/概念/方法/问答/人物/图谱（共7项）
@@ -105,22 +105,33 @@
 - 文件结构：
   - pages/index.html - 首页
   - pages/graph.html - 知识图谱（D3.js）
+  - pages/sitemap.html - 网站地图
   - pages/styles.css - 共享样式
   - pages/books/ - 书籍页面（含be-as-you-are-ch1~9.html、gems-ch1~13.html等章节页）
   - pages/concepts/ - 30+概念详情页
   - pages/persons/ - 人物页面
   - pages/methods/ - 方法页面
-  - pages/qa/ - 问答页面（150+条，12分类，12页）
-- 每个页面都有完整的meta标签（description, keywords）利于SEO
+  - pages/qa/ - 问答页面（150+条，12分类，20页）
+- 每个页面都有完整的meta标签（description, keywords, robots）利于SEO
 - **GitHub + Vercel部署**：
   - GitHub：gstar-byte/ramana-kb
   - Vercel：ramana-kb（rootDirectory=pages）
   - 域名：ramanamaharshi.space（A记录→216.198.79.1）
-  - PWA：manifest.json + sw.js + 8种尺寸图标
-- **未来方向**：
-  - 按前两本书（走向静默/宝钻集）的模式继续丰富其他书籍
-  - 完善每个概念，把所有概念都放到知识图谱中
-  - 知识图谱要包含：人物、概念、书籍、方法等全面关联
+  - PWA：manifest.json + sw.js（v5，预缓存130+页面）
+- **响应式导航优化（20260415）**：
+  - 所有断点统一高度48px
+  - 汉堡菜单和顶部导航完美对齐
+  - 移除黄色竖线，保留底部金色边框
+  - 4档断点适配（<768px/768-900px/900-1024px/1025-1200px）
+
+### PWA 和 Analytics（20260416）
+- GA4: G-MYFWHFPSYB，已添加到132个页面
+- PWA Analytics: pwa-analytics.js，跟踪3个事件
+- Service Worker: sw.js v5，预缓存全部130+页面
+- SEO: 所有页面添加 noindex,nofollow
+- 辅助脚本：
+  - add_ga4.py - 幂等性添加GA4代码
+  - add_pwa_analytics.py - 添加PWA Analytics
 
 ## 用户偏好
 - 中文交流

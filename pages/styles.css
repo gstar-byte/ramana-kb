@@ -24,13 +24,13 @@
     
     /* 布局 */
     --sidebar-w: 260px;
-    --content-max: 1100px;
+    --content-max: 900px;
 }
 
 /* ===== 重置 ===== */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { font-size: 15px; scroll-behavior: smooth; }
+html { font-size: 15px; scroll-behavior: smooth; overflow-x: hidden; max-width: 100%; }
 
 body {
     font-family: var(--sans);
@@ -40,6 +40,7 @@ body {
     min-height: 100vh;
     line-height: 1.8;
     overflow-x: hidden;  /* 防止右侧溢出 */
+    max-width: 100%;
 }
 
 /* ===== 左侧边栏 ===== */
@@ -769,7 +770,7 @@ main,
     }
     .sidebar.open { transform: translateX(0); }
 
-    /* 汉堡菜单 - 固定在左上角，与顶部导航完美对齐 */
+    /* 汉堡菜单 - 三条杠居中 */
     .hamburger {
         display: flex !important;
         align-items: center;
@@ -785,7 +786,7 @@ main,
         border: none;
         border-bottom: 2px solid var(--gold);
         font-size: 20px;
-        padding: 0;
+        padding: 14px;
         margin: 0;
         cursor: pointer;
         box-sizing: border-box;
@@ -799,7 +800,7 @@ main,
         top: 0 !important;
         left: 44px !important;
         right: 0 !important;
-        height: 46px !important;
+        height: 48px !important;
         margin: 0 !important;
         padding: 0 !important;
         z-index: 100;
@@ -809,56 +810,113 @@ main,
     }
 
     .topbar-nav {
-        height: 42px;
+        height: 48px;
         align-items: center;
-        margin: 0;
+        display: flex !important;
+        flex-shrink: 0;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        background: transparent;
+        border: none;
         padding: 0;
+        gap: 0;
     }
+    .topbar-nav::-webkit-scrollbar { display: none; }
 
     .topbar-nav a {
-        height: 42px;
-        line-height: 42px;
+        height: 48px;
+        line-height: 48px;
         padding: 0 12px;
-        font-size: 13px;
-        margin: 0;
+        font-size: 14px;
         border: none;
-        border-right: 1px solid rgba(255,255,255,.1);
+        border-left: 1px solid rgba(255,255,255,.08);
+        white-space: nowrap;
+        flex-shrink: 0;
+        box-sizing: border-box;
     }
-
-    /* 顶部导航 - 显示首页、书籍、概念、问答、图谱，隐藏方法、人物 */
-    .topbar-nav a:nth-child(4)   /* 方法 */
-    { display: none !important; }
-    .topbar-nav a:nth-child(6)   /* 人物 */
-    { display: none !important; }
+    /* 900-1024px：显示全部7项，padding 收窄适配 */
+    .topbar-nav a {
+        padding: 0 8px;
+        font-size: 13px;
+    }
+    .topbar-nav a:last-child { border-right: none; }
 }
 
-/* 1024px - 1200px：显示完整7项 */
-@media (min-width: 1025px) and (max-width: 1200px) {
+/* 1200px+：桌面端，始终显示侧边栏，隐藏汉堡菜单 */
+@media (min-width: 1200px) {
+    .hamburger { display: none !important; }
+    .sidebar { transform: none !important; z-index: 99 !important; }
+    .sidebar-overlay { display: none !important; }
+    .main-content { margin-left: var(--sidebar-w) !important; margin-top: 0 !important; }
+    .topbar {
+        position: fixed !important;
+        top: 0 !important;
+        left: var(--sidebar-w) !important;
+        width: calc(100% - var(--sidebar-w)) !important;
+        height: 48px !important;
+        overflow: visible !important;
+        z-index: 200 !important; /* 高于 sidebar 的 100，确保不被遮挡 */
+        background: var(--navy) !important;
+        border-bottom: 2px solid var(--gold) !important;
+    }
+    .topbar-nav { overflow-x: visible !important; }
+    .topbar-nav a { flex-shrink: 0; }
+}
+
+/* 1025px - 1199px：iPad Pro / 大平板，汉堡菜单模式，内容不溢出 */
+@media (min-width: 1025px) and (max-width: 1199px) {
     html { font-size: 15px; }
+    
+    /* 防止整页横向溢出 */
+    html, body {
+        overflow-x: hidden;
+        max-width: 100vw;
+    }
     
     .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
     .quick-entry { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-    
     .stat-card .number { font-size: 30px; }
     .card h2 { font-size: 18px; }
     
-    main { padding: 20px 20px 60px; }
-    
-    /* 侧边栏隐藏，主内容无左边距 */
+    /* 主内容区域 - 不超出视窗 */
     .main-content { 
         margin-left: 0 !important; 
         margin-top: 48px;
+        width: 100%;
+        max-width: 100vw;
+        overflow-x: hidden;
+        box-sizing: border-box;
     }
     
-    /* 侧边栏 - 隐藏，用汉堡菜单 */
+    main {
+        padding: 20px 20px 60px;
+        max-width: 100%;
+        overflow-x: hidden;
+        box-sizing: border-box;
+    }
+    
+    .content-wrapper {
+        max-width: 100%;
+        padding: 24px 20px 80px;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
+    
+    /* 侧边栏 - 汉堡菜单模式 */
     .sidebar { 
         transform: translateX(-100%); 
-        transition: transform .3s ease; 
+        transition: transform .3s ease;
+        z-index: 200;
     }
     .sidebar.open { transform: translateX(0); }
     
+    /* 汉堡菜单按钮 */
     .hamburger {
         display: flex !important;
+        align-items: center;
+        justify-content: center;
         position: fixed;
         top: 0;
         left: 0;
@@ -867,7 +925,14 @@ main,
         z-index: 1001;
         background: var(--navy);
         border-bottom: 2px solid var(--gold);
+        font-size: 20px;
+        padding: 14px;
+        margin: 0;
+        cursor: pointer;
+        box-sizing: border-box;
+        flex-shrink: 0;
     }
+    .hamburger:hover { background: var(--navy-light); }
     
     .page-header h1 { font-size: 26px; }
     
@@ -877,16 +942,38 @@ main,
         top: 0 !important;
         left: 44px !important;
         right: 0 !important;
-        height: 46px;
+        width: calc(100% - 44px) !important;
+        height: 48px;
         z-index: 100;
         justify-content: flex-start !important;
+        overflow: visible;
+        box-sizing: border-box;
     }
     
-    /* 顶部导航 - 显示全部7项 */
-    .topbar-nav a { display: flex !important; }
+    /* 顶部导航 - 菜单项紧凑，显示全部7项 */
+    .topbar-nav {
+        display: flex !important;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        width: 100%;
+    }
+    .topbar-nav::-webkit-scrollbar { display: none; }
+    .topbar-nav a {
+        display: flex !important;
+        padding: 0 10px;
+        font-size: 13px;
+        flex-shrink: 0;
+        white-space: nowrap;
+        height: 48px;
+        line-height: 48px;
+        align-items: center;
+        box-sizing: border-box;
+    }
 }
 
-/* Tablet 小平板 (768px - 900px) - 显示首页、书籍、概念、问答、图谱 */
+/* Tablet 小平板 (768px - 900px) - 显示6项，隐藏人物 */
 @media (min-width: 768px) and (max-width: 900px) {
     html { font-size: 15px; }
     
@@ -898,10 +985,8 @@ main,
     
     main { padding: 20px 20px 60px; }
     
-    /* 侧边栏隐藏，主内容无左边距 */
     .main-content { margin-left: 0; margin-top: 48px; }
     
-    /* 侧边栏 - 隐藏，用汉堡菜单 */
     .sidebar { 
         transform: translateX(-100%); 
         transition: transform .3s ease; 
@@ -910,6 +995,8 @@ main,
     
     .hamburger {
         display: flex !important;
+        align-items: center;
+        justify-content: center;
         position: fixed;
         top: 0;
         left: 0;
@@ -918,30 +1005,66 @@ main,
         z-index: 1001;
         background: var(--navy);
         border-bottom: 2px solid var(--gold);
+        font-size: 20px;
+        padding: 14px;
+        margin: 0;
+        cursor: pointer;
+        box-sizing: border-box;
     }
+    .hamburger:hover { background: var(--navy-light); }
     
     .page-header h1 { font-size: 26px; }
     
-    /* 顶部导航 - 固定在顶部，从44px开始（避开汉堡菜单） */
     .topbar {
         position: fixed !important;
         top: 0 !important;
         left: 44px !important;
         right: 0 !important;
-        height: 46px;
+        height: 48px;
         z-index: 100;
         justify-content: flex-start !important;
+        background: var(--navy);
+        border-bottom: 2px solid var(--gold);
+        box-sizing: border-box;
     }
     
-    /* 顶部导航 - 显示首页、书籍、概念、问答、图谱，隐藏方法、人物 */
-    .topbar-nav a:nth-child(4)   /* 方法 */
-    { display: none !important; }
-    .topbar-nav a:nth-child(6)   /* 人物 */
-    { display: none !important; }
+    .topbar-nav {
+        height: 48px;
+        align-items: center;
+        display: flex !important;
+        flex-shrink: 0;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        background: transparent;
+        border: none;
+        padding: 0;
+        gap: 0;
+    }
+    .topbar-nav::-webkit-scrollbar { display: none; }
+    
+    .topbar-nav a {
+        height: 48px;
+        line-height: 48px;
+        padding: 0 12px;
+        font-size: 14px;
+        border: none;
+        border-left: 1px solid rgba(255,255,255,.08);
+        white-space: nowrap;
+        flex-shrink: 0;
+        box-sizing: border-box;
+    }
+    /* 768-900px：显示全部7项，padding 收窄适配 */
+    .topbar-nav a {
+        padding: 0 7px;
+        font-size: 13px;
+    }
+    .topbar-nav a:last-child { border-right: none; }
 }
 
-@media (max-width: 767px) {
-    /* 侧边栏 - 隐藏，用汉堡菜单 */
+/* 手机 (<480px)：显示5项 - 首页、书籍、概念、方法、问答 */
+@media (max-width: 479px) {
     .sidebar { 
         transform: translateX(-100%); 
         transition: transform .3s ease; 
@@ -949,7 +1072,7 @@ main,
     }
     .sidebar.open { transform: translateX(0); }
     
-    /* 汉堡菜单 - 固定在左上角，与顶部导航对齐 */
+    /* 汉堡菜单 - 三条杠居中，不过于靠边 */
     .hamburger {
         display: flex !important;
         align-items: center;
@@ -965,20 +1088,100 @@ main,
         border: none;
         border-bottom: 2px solid var(--gold);
         font-size: 20px;
-        padding: 0;
+        padding: 14px;
         margin: 0;
         cursor: pointer;
         box-sizing: border-box;
     }
     .hamburger:hover { background: var(--navy-light); }
     
-    /* 主内容区 - 无边栏偏移 */
-    .main-content { 
-        margin-left: 0; 
-        margin-top: 48px;
+    .main-content { margin-left: 0; margin-top: 48px; }
+    
+    .topbar {
+        position: fixed;
+        top: 0;
+        left: 44px;
+        right: 0;
+        height: 48px;
+        padding: 0;
+        background: var(--navy);
+        border-bottom: 2px solid var(--gold);
+        z-index: 100;
+        display: flex;
+        justify-content: flex-start;
+        overflow: visible; /* 允许子容器横向滚动 */
+        box-sizing: border-box;
     }
     
-    /* 顶部导航 - 固定在顶部，从44px开始 */
+    .topbar-left, .topbar-title { display: none; }
+    .menu-toggle { display: none; }
+    
+    .topbar-nav {
+        display: flex !important;
+        flex-shrink: 0;
+        background: transparent;
+        border: none;
+        padding: 0;
+        gap: 0;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        height: 48px;
+        align-items: center;
+        width: 100%;
+    }
+    .topbar-nav::-webkit-scrollbar { display: none; }
+    
+    /* 窄屏手机：全部7项，padding 紧凑，可横向滑动 */
+    .topbar-nav a {
+        height: 48px;
+        line-height: 48px;
+        padding: 0 8px;
+        font-size: 12px;
+        border: none;
+        border-left: 1px solid rgba(255,255,255,.08);
+        white-space: nowrap;
+        flex-shrink: 0;
+        box-sizing: border-box;
+        display: flex !important;
+    }
+    .topbar-nav a:last-child { border-right: none; }
+}
+
+/* 480-767px：显示6项 - 首页、书籍、概念、方法、问答、图谱 */
+@media (min-width: 480px) and (max-width: 767px) {
+    .sidebar { 
+        transform: translateX(-100%); 
+        transition: transform .3s ease; 
+        width: 280px;
+    }
+    .sidebar.open { transform: translateX(0); }
+    
+    .hamburger {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 48px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1001;
+        background: var(--navy);
+        color: #fff;
+        border: none;
+        border-bottom: 2px solid var(--gold);
+        font-size: 20px;
+        padding: 14px;
+        margin: 0;
+        cursor: pointer;
+        box-sizing: border-box;
+    }
+    .hamburger:hover { background: var(--navy-light); }
+    
+    .main-content { margin-left: 0; margin-top: 48px; }
+    
     .topbar {
         position: fixed;
         top: 0;
@@ -995,17 +1198,9 @@ main,
         box-sizing: border-box;
     }
     
-    .topbar-left {
-        display: none;
-    }
-    
-    .topbar-title { 
-        display: none;
-    }
-    
+    .topbar-left, .topbar-title { display: none; }
     .menu-toggle { display: none; }
     
-    /* 顶部导航 - 简化显示 */
     .topbar-nav {
         display: flex !important;
         flex-shrink: 0;
@@ -1033,12 +1228,10 @@ main,
         flex-shrink: 0;
         box-sizing: border-box;
     }
-    /* 手机：只显示首页、书籍、概念、问答 */
-    .topbar-nav a:nth-child(4),
-    .topbar-nav a:nth-child(6),
-    .topbar-nav a:nth-child(7)
-    { display: none !important; }
+    /* 中等宽屏：显示全部7项 */
+    .topbar-nav a { display: flex !important; }
     .topbar-nav a:last-child { border-right: none; }
+}
     
     /* 覆盖层 */
     .sidebar-overlay {
@@ -1053,10 +1246,7 @@ main,
     }
     .sidebar-overlay.open { display: block; }
     
-    /* 侧边栏头部 */
-    .sidebar-header {
-        padding-top: 60px;
-    }
+    /* 侧边栏头部 - 不需要额外 padding，因为汉堡菜单是 fixed 定位 */
     
     /* 主内容区域 */
     main { padding: 20px 16px 60px; }
