@@ -32,10 +32,10 @@ const chapters = [
     <div class="card">
       <h2 style="color:var(--primary);margin-bottom:1.5rem;">📖 章节内容</h2>
       {chapters.map(chapter => (
-        <div class="chapter-card">
+        <a href={`/books/back-to-heart/${chapter.id}/`} class="chapter-card" style="display:block;text-decoration:none;color:inherit;">
           <h4>{chapter.title}</h4>
           <p class="summary">{chapter.summary}</p>
-        </div>
+        </a>
       ))}
     </div>
 
