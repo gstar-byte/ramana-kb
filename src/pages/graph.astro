@@ -18,16 +18,16 @@ import Sidebar from '../components/Sidebar.astro';
       <p style="margin-bottom:1rem;">这张图谱展示了拉玛那·马哈希教法中核心概念之间的关系。点击任意节点可查看详情。</p>
 
       <div class="concept-tags">
-        <a href="/concepts/atman" class="tag">真我</a>
-        <a href="/concepts/mind" class="tag">心智</a>
-        <a href="/concepts/whoami" class="tag">我是谁</a>
-        <a href="/concepts/moksha" class="tag">解脱</a>
-        <a href="/concepts/grace" class="tag">恩典</a>
-        <a href="/concepts/silence" class="tag">静默</a>
-        <a href="/concepts/karma" class="tag">业力</a>
-        <a href="/concepts/samadhi" class="tag">三摩地</a>
-        <a href="/concepts/surrender" class="tag">臣服</a>
-        <a href="/concepts/guru" class="tag">上师</a>
+        <a href="/concepts/atman/" class="tag">真我</a>
+        <a href="/concepts/mind/" class="tag">心智</a>
+        <a href="/concepts/whoami/" class="tag">我是谁</a>
+        <a href="/concepts/moksha/" class="tag">解脱</a>
+        <a href="/concepts/grace/" class="tag">恩典</a>
+        <a href="/concepts/silence/" class="tag">静默</a>
+        <a href="/concepts/karma/" class="tag">业力</a>
+        <a href="/concepts/samadhi/" class="tag">三摩地</a>
+        <a href="/concepts/surrender/" class="tag">臣服</a>
+        <a href="/concepts/guru/" class="tag">上师</a>
       </div>
     </div>
 
@@ -36,29 +36,29 @@ import Sidebar from '../components/Sidebar.astro';
       <div style="position:relative;width:100%;height:350px;display:flex;align-items:center;justify-content:center;">
         <!-- 中心节点 -->
         <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);">
-          <a href="/concepts/atman" style="display:inline-block;padding:1rem 1.5rem;background:linear-gradient(135deg,#c77dff,#9b59b6);color:white;border-radius:25px;font-weight:bold;text-decoration:none;box-shadow:0 0 30px rgba(199,125,255,0.5);">
+          <a href="/concepts/atman/" style="display:inline-block;padding:1rem 1.5rem;background:linear-gradient(135deg,#c77dff,#9b59b6);color:white;border-radius:25px;font-weight:bold;text-decoration:none;box-shadow:0 0 30px rgba(199,125,255,0.5);">
             真我<br><small>Atman</small>
           </a>
         </div>
 
         <!-- 周围节点 -->
         <div style="position:absolute;top:15%;left:25%;">
-          <a href="/concepts/whoami" class="graph-node node-practice" style="background:linear-gradient(135deg,#4ecdc4,#45b7aa);">我是谁？</a>
+          <a href="/concepts/whoami/" class="graph-node node-practice" style="background:linear-gradient(135deg,#4ecdc4,#45b7aa);">我是谁？</a>
         </div>
         <div style="position:absolute;top:15%;right:25%;">
-          <a href="/concepts/mind" class="graph-node node-mind" style="background:linear-gradient(135deg,#ffd700,#ffb700);">心智</a>
+          <a href="/concepts/mind/" class="graph-node node-mind" style="background:linear-gradient(135deg,#ffd700,#ffb700);">心智</a>
         </div>
         <div style="position:absolute;top:50%;left:8%;">
-          <a href="/concepts/ego" class="graph-node node-ego" style="background:linear-gradient(135deg,#ff6b6b,#ee5a5a);">自我</a>
+          <a href="/concepts/ego/" class="graph-node node-ego" style="background:linear-gradient(135deg,#ff6b6b,#ee5a5a);">自我</a>
         </div>
         <div style="position:absolute;top:50%;right:8%;">
-          <a href="/concepts/moksha" class="graph-node node-moksha" style="background:linear-gradient(135deg,#00b894,#00a383);">解脱</a>
+          <a href="/concepts/moksha/" class="graph-node node-moksha" style="background:linear-gradient(135deg,#00b894,#00a383);">解脱</a>
         </div>
         <div style="position:absolute;bottom:15%;left:25%;">
-          <a href="/concepts/silence" class="graph-node" style="background:linear-gradient(135deg,#74b9ff,#5da8f0);">静默</a>
+          <a href="/concepts/silence/" class="graph-node" style="background:linear-gradient(135deg,#74b9ff,#5da8f0);">静默</a>
         </div>
         <div style="position:absolute;bottom:15%;right:25%;">
-          <a href="/concepts/grace" class="graph-node" style="background:linear-gradient(135deg,#fd79a8,#e84393);">恩典</a>
+          <a href="/concepts/grace/" class="graph-node" style="background:linear-gradient(135deg,#fd79a8,#e84393);">恩典</a>
         </div>
 
         <!-- 连线说明 -->
@@ -87,5 +87,34 @@ import Sidebar from '../components/Sidebar.astro';
   .graph-node:hover {
     transform: scale(1.1);
     box-shadow: 0 0 25px rgba(199, 125, 255, 0.5);
+  }
+  
+  /* 移动端响应式样式 */
+  @media (max-width: 768px) {
+    .graph-container {
+      min-height: 400px;
+      padding: 1rem;
+    }
+    
+    .graph-container > div {
+      height: 300px;
+    }
+    
+    .graph-node {
+      font-size: 0.8rem;
+      padding: 0.4rem 0.8rem;
+    }
+    
+    /* 调整节点位置以适应移动端 */
+    .graph-container > div > div:not(:first-child) {
+      position: static;
+      margin: 0.5rem;
+      display: inline-block;
+    }
+    
+    .graph-container > div > div:first-child {
+      position: static;
+      margin-bottom: 1rem;
+    }
   }
 </style>

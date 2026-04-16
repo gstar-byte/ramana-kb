@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+
+const chapters = [
+  { id: 1, title: '第一章：回到心中', summary: '探讨如何回归内心的寂静与真实。' },
+  { id: 2, title: '第二章：弟子体验', summary: '马哈希弟子们的修行体验分享。' },
+  { id: 3, title: '第三章：问答精选', summary: '精选的灵性问答内容。' },
+  { id: 4, title: '第四章：实践指导', summary: '日常修行的具体指导。' },
+  { id: 5, title: '第五章：证悟之路', summary: '证悟的过程与要点。' },
+];
+---
+
+<BaseLayout title="回到你心中 - 拉玛那·马哈希知识库" currentPage="书籍">
+  <Sidebar slot="sidebar" />
+
+  <main>
+    <header class="page-header">
+      <h1>📕 回到你心中</h1>
+      <p class="subtitle">Back to the Heart | 大卫·高德曼</p>
+      <p style="color:var(--text-muted);margin-top:0.75rem;font-size:0.95rem;">收录马哈希弟子们的深刻问答与修行体验</p>
+    </header>
+
+    <!-- 面包屑 -->
+    <div class="breadcrumb" style="padding:1rem 0;color:var(--text-muted);">
+      <a href="/">首页</a> /
+      <a href="/books">书籍</a> /
+      <span style="color:var(--text);">回到你心中</span>
+    </div>
+
+    <!-- 章节列表 -->
+    <div class="card">
+      <h2 style="color:var(--primary);margin-bottom:1.5rem;">📖 章节内容</h2>
+      {chapters.map(chapter => (
+        <div class="chapter-card">
+          <h4>{chapter.title}</h4>
+          <p class="summary">{chapter.summary}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- 相关概念 -->
+    <div class="card">
+      <h2 style="color:var(--primary);margin-bottom:1rem;">🔗 相关概念</h2>
+      <div class="concept-tags">
+        <a href="/concepts/atman" class="tag">真我</a>
+        <a href="/concepts/whoami" class="tag">"我是谁？"</a>
+        <a href="/concepts/silence" class="tag">静默</a>
+        <a href="/concepts/grace" class="tag">恩典</a>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <p>拉玛那·马哈希知识库 | 传承自印度阿鲁那佳拉圣山</p>
+    </footer>
+  </main>
+</BaseLayout>
+
+<script>
+  // 章节点击展开
+  document.querySelectorAll('.chapter-card').forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('expanded');
+    });
+  });
+</script>
+
+<style>
+  .chapter-card.expanded .summary {
+    display: none;
+  }
+  .chapter-card.expanded .chapter-content {
+    display: block;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+  .chapter-card .chapter-content {
+    display: none;
+  }
+</style>

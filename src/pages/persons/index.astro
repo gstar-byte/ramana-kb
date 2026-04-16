@@ -21,7 +21,7 @@ const persons = [
     <!-- 人物卡片 -->
     <div class="concept-categories">
       {persons.map(person => (
-        <a href={`/persons/${person.id}`} class="card" style="text-decoration:none;display:flex;gap:1.5rem;align-items:flex-start;">
+        <a href={`/persons/${person.id}/`} class="card" style="text-decoration:none;display:flex;gap:1.5rem;align-items:flex-start;">
           <div class="person-avatar" style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;">
             {person.icon}
           </div>
