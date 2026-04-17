@@ -133,6 +133,12 @@
   - add_ga4.py - 幂等性添加GA4代码
   - add_pwa_analytics.py - 添加PWA Analytics
 
+### SEO字符长度优化（20260417）
+- **title**: 45-55字符（最佳），pages/目录下有seo_title_final.py批量处理
+- **description**: 140-155字符（最佳），pages/目录下有seo_desc_auto.py批量处理
+- 全部130个页面已完成优化
+- 关键脚本：verify_titles.py / verify_desc.py 验证，seo_fill_remaining.py补充遗漏
+
 ## 用户偏好
 - 中文交流
 - 绝对路径优先
