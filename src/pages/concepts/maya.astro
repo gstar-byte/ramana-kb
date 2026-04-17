@@ -6,47 +6,45 @@ import Sidebar from '../../components/Sidebar.astro';
 <BaseLayout title="摩耶/Maya - 拉玛那·马哈希知识库" currentPage="概念">
   <Sidebar slot="sidebar" />
 
-  <main>
-    <header class="page-header">
-      <h1>🎭 摩耶 / Maya</h1>
-      <p class="subtitle">虚幻的显现</p>
-    </header>
+  <header class="page-header">
+    <h1>🎭 摩耶 / Maya</h1>
+    <p class="subtitle">虚幻的显现</p>
+  </header>
 
-    <div class="breadcrumb" style="padding:1rem 0;color:var(--text-muted);">
-      <a href="/">首页</a> /
-      <a href="/concepts">概念</a> /
-      <span style="color:var(--text);">摩耶</span>
+  <div class="breadcrumb" style="padding:1rem 0;color:var(--text-muted);">
+    <a href="/">首页</a> /
+    <a href="/concepts">概念</a> /
+    <span style="color:var(--text);">摩耶</span>
+  </div>
+
+  <div class="card concept-detail">
+    <h2>定义</h2>
+    <p>摩耶（Maya）是印度哲学中表示虚幻、错觉的概念。它使我们将不真实的东西视为真实，将真实的东西视为不真实。</p>
+
+    <h2>马哈希的教导</h2>
+    <p>"摩耶不是外在的东西，它就在你的心里。当你认识到真我时，摩耶就消失了。"</p>
+
+    <div class="quote-box">
+      "世界就像一场梦。在梦中，一切都显得真实；醒来后，你才知道那只是梦。"
+      <div class="source">— 室利·拉玛那·马哈希</div>
     </div>
 
-    <div class="card concept-detail">
-      <h2>定义</h2>
-      <p>摩耶（Maya）是印度哲学中表示虚幻、错觉的概念。它使我们将不真实的东西视为真实，将真实的东西视为不真实。</p>
+    <h2>与其他概念的关系</h2>
+    <ul style="margin-left:1.5rem;color:var(--text-muted);">
+      <li>遮蔽了梵（Brahman）和真我（Atman）</li>
+      <li>是自我（Ego）和心智的根源</li>
+      <li>通过参究"我是谁"可以超越</li>
+      <li>证悟解脱（Moksha）就是从摩耶中醒来</li>
+    </ul>
 
-      <h2>马哈希的教导</h2>
-      <p>"摩耶不是外在的东西，它就在你的心里。当你认识到真我时，摩耶就消失了。"</p>
-
-      <div class="quote-box">
-        "世界就像一场梦。在梦中，一切都显得真实；醒来后，你才知道那只是梦。"
-        <div class="source">— 室利·拉玛那·马哈希</div>
-      </div>
-
-      <h2>与其他概念的关系</h2>
-      <ul style="margin-left:1.5rem;color:var(--text-muted);">
-        <li>遮蔽了梵（Brahman）和真我（Atman）</li>
-        <li>是自我（Ego）和心智的根源</li>
-        <li>通过参究"我是谁"可以超越</li>
-        <li>证悟解脱（Moksha）就是从摩耶中醒来</li>
-      </ul>
-
-      <h2>相关书籍</h2>
-      <div class="book-links">
-        <a href="/books/be-as-you-are" class="tag">走向静默，如你本来</a>
-        <a href="/books/gems" class="tag">宝钻集</a>
-      </div>
+    <h2>相关书籍</h2>
+    <div class="book-links">
+      <a href="/books/be-as-you-are" class="tag">走向静默，如你本来</a>
+      <a href="/books/gems" class="tag">宝钻集</a>
     </div>
+  </div>
 
-    <footer class="site-footer">
-      <p>拉玛那·马哈希知识库 | 传承自印度阿鲁那佳拉圣山</p>
-    </footer>
-  </main>
+  <footer class="site-footer">
+    <p>拉玛那·马哈希知识库 | 传承自印度阿鲁那佳拉圣山</p>
+  </footer>
 </BaseLayout>
