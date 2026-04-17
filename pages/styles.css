@@ -1167,6 +1167,9 @@ main,
         display: flex !important;
     }
     .topbar-nav a:last-child { border-right: none; }
+    
+    /* 主内容区域 */
+    main { padding: 20px 4px 60px; }
 }
 
 /* 480-767px：显示6项 - 首页、书籍、概念、方法、问答、图谱 */
@@ -1269,7 +1272,7 @@ main,
     /* 侧边栏头部 - 不需要额外 padding，因为汉堡菜单是 fixed 定位 */
     
     /* 主内容区域 */
-    main { padding: 20px 16px 60px; }
+    main { padding: 20px 4px 60px; }
     
     .page-header { padding: 20px 0 16px; }
     .page-header h1 { font-size: 22px; }
