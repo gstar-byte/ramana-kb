@@ -444,6 +444,13 @@ main,
 
 .concept-tags { display: flex; flex-wrap: wrap; gap: 8px; }
 
+/* 概念卡片网格 */
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
 /* ===== 统计卡片 ===== */
 .stats-grid {
     display: grid;
@@ -899,9 +906,20 @@ main,
     
     .content-wrapper {
         max-width: 100%;
-        padding: 24px 20px 80px;
+        padding: 24px 12px 80px;
         box-sizing: border-box;
         overflow-x: hidden;
+    }
+    
+    /* 移动端：概念分类强制一列 */
+    .concept-categories {
+        grid-template-columns: 1fr !important;
+    }
+    .concept-category {
+        margin-bottom: 1rem;
+    }
+    .book-grid {
+        grid-template-columns: 1fr !important;
     }
     
     /* 侧边栏 - 汉堡菜单模式 */
