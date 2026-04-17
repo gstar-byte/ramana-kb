@@ -782,6 +782,11 @@ main,
 
     /* 侧边栏隐藏，主内容无左边距 */
     .main-content { margin-left: 0; margin-top: 48px; }
+    
+    /* 主内容区域 - 加宽10% */
+    .content-wrapper {
+        padding: 24px 0 80px;
+    }
 
     /* 侧边栏 - 隐藏，用汉堡菜单 */
     .sidebar { 
@@ -900,7 +905,7 @@ main,
     .stat-card .number { font-size: 30px; }
     .card h2 { font-size: 18px; }
     
-    /* 主内容区域 - 不超出视窗 */
+    /* 主内容区域 - 不超出视窗，加宽10% */
     .main-content { 
         margin-left: 0 !important; 
         margin-top: 48px;
@@ -919,7 +924,7 @@ main,
     
     .content-wrapper {
         max-width: 100%;
-        padding: 24px 4px 80px;
+        padding: 24px 0 80px;
         box-sizing: border-box;
         overflow-x: hidden;
     }
@@ -1006,6 +1011,11 @@ main,
     main { padding: 20px 20px 60px; }
     
     .main-content { margin-left: 0; margin-top: 48px; }
+    
+    /* 主内容区域 - 加宽10% */
+    .content-wrapper {
+        padding: 24px 0 80px;
+    }
     
     .sidebar { 
         transform: translateX(-100%); 
@@ -1168,8 +1178,11 @@ main,
     }
     .topbar-nav a:last-child { border-right: none; }
     
-    /* 主内容区域 */
+    /* 主内容区域 - 加宽10% */
     main { padding: 20px 0 60px; }
+    .content-wrapper {
+        padding: 24px 0 80px;
+    }
 }
 
 /* 480-767px：显示6项 - 首页、书籍、概念、方法、问答、图谱 */
@@ -1254,6 +1267,11 @@ main,
     /* 中等宽屏：显示全部7项 */
     .topbar-nav a { display: flex !important; }
     .topbar-nav a:last-child { border-right: none; }
+    
+    /* 主内容区域 - 加宽10% */
+    .content-wrapper {
+        padding: 24px 0 80px;
+    }
 }
     
     /* 覆盖层 */
