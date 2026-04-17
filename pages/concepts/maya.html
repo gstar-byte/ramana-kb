@@ -235,6 +235,7 @@
     </footer>
     </div>
 
+    <script>
         // Service Worker 注册 (PWA离线支持)
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
@@ -243,6 +244,7 @@
                     .catch(err => console.log('SW registration failed:', err));
             });
         }
+    </script>
     <script src="pwa-analytics.js"></script>
 </body>
 </html>
