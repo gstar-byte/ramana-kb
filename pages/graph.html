@@ -3,14 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="拉玛那·马哈希知识图谱 — 概念、人物、书籍与修行方法的关联网络">
+    <meta name="description" content="拉玛那马哈希教示体系的交互式知识图谱。可视化展示真我、梵、心智、业力、解脱等核心概念之间的关系，点击节点可查看详情。">
     <meta name="keywords" content="拉玛那,马哈希,灵性修行,自我了悟,阿鲁那佳拉,真我,心智,解脱">
     <meta name="author" content="Ramana Maharshi Knowledge Base">
-    <meta name="robots" content="noindex, nofollow">
-    <meta property="og:title" content="🕸️ 知识图谱 | 拉玛那马哈希Space">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ramanamaharshi.space/graph">
+    <!-- Open Graph -->
+    <meta property="og:title" content="知识图谱 | 拉玛那马哈希知识库">
+    <meta property="og:description" content="拉玛那马哈希教示体系的交互式知识图谱。可视化展示真我、梵、心智、业力、解脱等核心概念之间的关系，点击节点可查看详情。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ramanamaharshi.space/graph">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:site_name" content="拉玛那马哈希知识库">
+    <meta property="og:image" content="https://ramanamaharshi.space/images/og-default.jpg">
+
+    <meta property="og:title" content="知识图谱 | 拉玛那马哈希知识库">
     <meta property="og:description" content="拉玛那·马哈希知识图谱 — 概念、人物、书籍与修行方法的关联网络">
     <meta property="og:type" content="article">
-    <title>🕸️ 知识图谱 | 拉玛那马哈希Space</title>
+    <title>知识图谱 | 拉玛那马哈希知识库</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <style>
@@ -27,6 +37,32 @@
         #graph-svg {
             width: 100%;
             height: 650px;
+        }
+        
+        /* 移动端适配 */
+        @media (max-width: 767px) {
+            .graph-wrapper {
+                min-height: 350px;
+                height: 350px;
+                margin: 0 -4px;
+            }
+            #graph-svg {
+                height: 350px;
+            }
+            .concept-categories {
+                grid-template-columns: 1fr !important;
+            }
+            .graph-legend {
+                display: none;
+            }
+            .graph-controls {
+                top: 0.3rem;
+                right: 0.3rem;
+            }
+            .graph-controls button {
+                padding: 0.25rem 0.5rem;
+                font-size: 0.7rem;
+            }
         }
         
         .node circle {
@@ -178,33 +214,45 @@
             box-shadow: 0 0 6px currentColor;
         }
 
-        /* 概念分类网格：3列 */
+        /* 概念分类网格：PC端3列，移动端1列 */
         .concept-categories {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
+            gap: 12px;
         }
+        
+        /* 概念分类卡片：金色边框+紧凑 */
         .concept-category {
             background: rgba(255,255,255,0.05);
-            border-radius: 12px;
-            padding: 1rem;
-            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(201, 160, 55, 0.25);
+            border-left: 3px solid var(--gold);
         }
+        
         .concept-category h3 {
-            margin-bottom: 0.75rem;
-            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
             color: var(--gold);
         }
         .concept-category a {
             display: block;
-            padding: 3px 0;
+            padding: 2px 0;
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             text-decoration: none;
             transition: color 0.2s;
         }
         .concept-category a:hover {
             color: var(--gold);
+        }
+        
+        /* 移动端：1列+紧凑 */
+        @media (max-width: 767px) {
+            .concept-categories {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
         }
     </style>
 
@@ -228,6 +276,28 @@
   gtag('config', 'G-MYFWHFPSYB');
 </script>
 
+
+  <!-- SEO JSON-LD Structured Data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "拉玛那马哈希知识库",
+      "item": "https://ramanamaharshi.space/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "知识图谱",
+      "item": "https://ramanamaharshi.space/graph"
+    }
+  ]
+}
+</script>
 </head>
 <body>
     <button class="hamburger" onclick="toggleSidebar()">☰</button>
@@ -847,8 +917,18 @@
         
         // 控制函数
         function resetZoom() {
-            svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
+            // 缩小显示，让所有节点都可见
+            const scale = Math.min(width / 800, 0.7);
+            const x = width / 2 - (width / 2) * scale;
+            const y = height / 2 - (height / 2) * scale;
+            svg.transition().duration(500).call(
+                zoom.transform, 
+                d3.zoomIdentity.translate(x, y).scale(scale)
+            );
         }
+        
+        // 页面加载时自动缩小显示全部
+        setTimeout(resetZoom, 1000);
         
         function zoomIn() {
             svg.transition().duration(300).call(zoom.scaleBy, 1.3);

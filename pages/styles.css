@@ -906,26 +906,15 @@ main,
     
     .content-wrapper {
         max-width: 100%;
-        padding: 24px 12px 80px;
+        padding: 24px 4px 80px;
         box-sizing: border-box;
         overflow-x: hidden;
-    }
-    
-    /* 移动端：概念分类强制一列 */
-    .concept-categories {
-        grid-template-columns: 1fr !important;
-    }
-    .concept-category {
-        margin-bottom: 1rem;
-    }
-    .book-grid {
-        grid-template-columns: 1fr !important;
     }
     
     /* 侧边栏 - 汉堡菜单模式 */
     .sidebar { 
         transform: translateX(-100%); 
-        transition: transform .3s ease;
+        transition: transform .3s ease; 
         z-index: 200;
     }
     .sidebar.open { transform: translateX(0); }
@@ -1288,31 +1277,48 @@ main,
 }
 
 /* ===== 概念分类 ===== */
+/* PC端默认3列（可被子页面覆盖） */
 .concept-categories {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    gap: 12px;
 }
 .concept-category {
     background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 18px;
+    border: 1px solid rgba(201, 160, 55, 0.2);
+    border-left: 3px solid var(--gold);
+    border-radius: 8px;
+    padding: 12px 14px;
 }
 .concept-category h3 {
     font-family: var(--serif);
-    color: var(--navy);
-    font-size: 14px;
-    margin-bottom: 12px;
+    color: var(--gold);
+    font-size: 13px;
+    margin-bottom: 8px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
 }
 .concept-category a {
     display: block;
-    color: var(--text);
+    color: var(--text-muted);
     text-decoration: none;
-    font-size: 13px;
+    font-size: 12px;
+    padding: 2px 0;
+}
+
+/* 概念页专用：PC端2列 */
+.concept-categories.two-col {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* 移动端统一1列 */
+@media (max-width: 767px) {
+    .concept-categories,
+    .concept-categories.two-col {
+        grid-template-columns: 1fr;
+    }
+}
 
 /* ===== 搜索功能 ===== */
 .search-trigger {
