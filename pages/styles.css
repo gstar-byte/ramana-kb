@@ -43,6 +43,19 @@ body {
     max-width: 100%;
 }
 
+/* ===== 布局容器 ===== */
+.layout {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.main-content {
+    margin-left: var(--sidebar-w);
+    flex: 1;
+    min-height: 100vh;
+}
+
 /* ===== 左侧边栏 ===== */
 .sidebar {
     width: var(--sidebar-w);
