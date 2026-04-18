@@ -6,7 +6,8 @@ from datetime import datetime, timedelta
 import time
 
 VERCEL_TOKEN = "vcp_0XDk6lHvLZrM1gLBcZ3NNmcTWN4d7t3l6bYB7lTqfE7WU5CGw52ZNEpl"
-PROJECT_NAME = "ramana-kb"
+TEAM_ID = "team_Y89oibIIusVBBzwRLqZRsR6b"
+PROJECT_NAME = "site"
 CUTOFF_HOURS = 48
 
 
@@ -27,9 +28,9 @@ def make_request(url, method="GET", data=None):
 
 
 def main():
-    # Step 0: Get projects to find project ID
-    print("=== 正在获取项目列表... ===")
-    projects_url = "https://api.vercel.com/v9/projects"
+    # Step 0: Get project info with team ID
+    print(f"=== 正在获取项目 {PROJECT_NAME} 的信息 (团队: {TEAM_ID})... ===")
+    projects_url = f"https://api.vercel.com/v9/projects/{PROJECT_NAME}?teamId={TEAM_ID}"
     response_body, status_code = make_request(projects_url)
 
     if status_code != 200:
@@ -37,27 +38,13 @@ def main():
         print(response_body)
         return
 
-    projects_data = json.loads(response_body)
-    projects = projects_data.get("projects", [])
-    project_id = None
-    
-    for p in projects:
-        if p["name"] == PROJECT_NAME:
-            project_id = p["id"]
-            break
-
-    if not project_id:
-        print(f"未找到项目: {PROJECT_NAME}")
-        print("找到的项目:")
-        for p in projects:
-            print(f"  - {p['name']}")
-        return
-
+    project_data = json.loads(response_body)
+    project_id = project_data["id"]
     print(f"找到项目: {PROJECT_NAME}, ID: {project_id}\n")
 
-    # Step 1: Get all deployments
+    # Step 1: Get all deployments with team ID
     print(f"=== 正在获取 {PROJECT_NAME} 的所有部署... ===")
-    url = f"https://api.vercel.com/v6/deployments?projectId={project_id}"
+    url = f"https://api.vercel.com/v6/deployments?projectId={project_id}&teamId={TEAM_ID}"
     response_body, status_code = make_request(url)
 
     if status_code != 200:
@@ -108,7 +95,7 @@ def main():
     print(f"\n=== 开始删除 {len(old_deployments)} 个部署 ===")
     deleted = 0
     for d in old_deployments:
-        del_url = f"https://api.vercel.com/v13/deployments/{d['uid']}"
+        del_url = f"https://api.vercel.com/v13/deployments/{d['uid']}?teamId={TEAM_ID}"
         try:
             response_body, status_code = make_request(del_url, method="DELETE")
             if status_code in [200, 204]:
