@@ -1269,7 +1269,7 @@ main,
     /* 侧边栏头部 - 不需要额外 padding，因为汉堡菜单是 fixed 定位 */
     
     /* 主内容区域 */
-    main { padding: 20px 16px 60px; }
+    main { padding: 20px 32px 60px; }
     
     .page-header { padding: 20px 0 16px; }
     .page-header h1 { font-size: 22px; }
