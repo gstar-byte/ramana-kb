@@ -5146,10 +5146,8 @@
         let totalPages = 1;
 
         function initPagination() {
-            // 获取所有显示的问答项目
-            filteredItems = Array.from(qaList.querySelectorAll('.qa-item')).filter(item => {
-                return item.style.display !== 'none';
-            });
+            // 获取所有问答项目，不进行筛选
+            filteredItems = Array.from(qaList.querySelectorAll('.qa-item'));
             totalPages = Math.ceil(filteredItems.length / itemsPerPage);
             const pagination = document.getElementById('pagination');
             
@@ -5171,6 +5169,9 @@
                 option.textContent = `第 ${i} 页`;
                 pageSelect.appendChild(option);
             }
+            // 确保下拉菜单有足够的高度显示所有选项
+            pageSelect.style.maxHeight = '300px';
+            pageSelect.style.overflowY = 'auto';
         }
 
         function showPage(page) {
@@ -5180,6 +5181,7 @@
             const start = (page - 1) * itemsPerPage;
             const end = start + itemsPerPage;
             
+            // 先显示所有项目，然后隐藏不需要的
             filteredItems.forEach((item, index) => {
                 if (index >= start && index < end) {
                     item.style.display = '';
@@ -5193,7 +5195,11 @@
             document.getElementById('nextBtn').disabled = page === totalPages;
             
             // 更新下拉菜单选中状态
-            document.getElementById('pageSelect').value = page;
+            const pageSelect = document.getElementById('pageSelect');
+            pageSelect.value = page;
+            
+            // 确保下拉菜单位于可视区域
+            pageSelect.style.position = 'relative';
         }
 
         function changePage(delta) {
