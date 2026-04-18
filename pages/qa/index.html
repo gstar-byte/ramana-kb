@@ -6556,9 +6556,7 @@
                 <div class="pagination" id="pagination" style="margin-top:2rem;justify-content:center;flex-wrap:wrap;gap:12px;">
                     <button class="page-btn" id="prevBtn" onclick="changePage(-1)">← 上一页</button>
                     <span id="pageInfo" style="padding:0 1rem;color:var(--text2);"></span>
-                    <select id="pageSelect" onchange="goToPage(this.value)" style="padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--text);font-size:14px;cursor:pointer;min-width:120px;">
-                        <option value="">跳转到...</option>
-                    </select>
+
                     <button class="page-btn" id="nextBtn" onclick="changePage(1)">下一页 →</button>
                 </div>
                 
@@ -6628,26 +6626,13 @@
             
             if (totalPages > 1) {
                 pagination.style.display = 'flex';
-                updatePageSelect();
                 showPage(1);
             } else {
                 pagination.style.display = 'none';
             }
         }
 
-        function updatePageSelect() {
-            const pageSelect = document.getElementById('pageSelect');
-            pageSelect.innerHTML = '<option value="">跳转到...</option>';
-            for (let i = 1; i <= totalPages; i++) {
-                const option = document.createElement('option');
-                option.value = i;
-                option.textContent = `第 ${i} 页`;
-                pageSelect.appendChild(option);
-            }
-            // 确保下拉菜单有足够的高度显示所有选项
-            pageSelect.style.maxHeight = '300px';
-            pageSelect.style.overflowY = 'auto';
-        }
+
 
         function showPage(page) {
             totalPages = Math.ceil(filteredItems.length / itemsPerPage);
@@ -6669,12 +6654,7 @@
             document.getElementById('prevBtn').disabled = page === 1;
             document.getElementById('nextBtn').disabled = page === totalPages;
             
-            // 更新下拉菜单选中状态
-            const pageSelect = document.getElementById('pageSelect');
-            pageSelect.value = page;
-            
-            // 确保下拉菜单位于可视区域
-            pageSelect.style.position = 'relative';
+
         }
 
         function changePage(delta) {
@@ -6684,11 +6664,7 @@
             }
         }
 
-        function goToPage(page) {
-            if (page && page >= 1 && page <= totalPages) {
-                showPage(parseInt(page));
-            }
-        }
+
 
         // 初始化分页
         initPagination();
