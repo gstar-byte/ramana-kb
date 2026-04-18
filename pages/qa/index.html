@@ -6602,15 +6602,15 @@
                 buttons.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 
-                // 筛选问答
-                qaItems?.forEach(item => {
-                    const itemCat = item.getAttribute('data-category');
-                    if (category === '全部' || itemCat === category) {
-                        item.style.display = '';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
+                // 筛选问答并更新分页
+                if (category === '全部') {
+                    filteredItems = Array.from(qaItems);
+                } else {
+                    filteredItems = Array.from(qaItems).filter(item => item.getAttribute('data-category') === category);
+                }
+                totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+                updatePageSelect();
+                showPage(1);
             });
         });
 
