@@ -253,6 +253,12 @@
                 grid-template-columns: 1fr;
                 gap: 8px;
             }
+            .mobile-instructions {
+                display: block !important;
+            }
+            .card p:first-of-type:not(.mobile-instructions) {
+                display: none;
+            }
         }
     </style>
 
@@ -402,6 +408,7 @@
                 
                 <div class="card">
                     <p style="color:var(--text-muted);margin-bottom:1rem;font-size:0.9rem;">🔍 鼠标悬停在节点上查看关联，<strong style="color:var(--primary);">点击节点</strong>跳转到详情页面</p>
+                    <p style="color:var(--text-muted);margin-bottom:1rem;font-size:0.9rem;display:none;" class="mobile-instructions">📱 按住节点两秒以上松手可以查看关联，<strong style="color:var(--primary);">点击节点</strong>跳转到详情页面</p>
                     
                     <div class="graph-wrapper">
                         <svg id="graph-svg"></svg>
@@ -790,10 +797,12 @@
         
         // 悬停效果
         const tooltip = document.getElementById("tooltip");
+        let touchTimer = null;
+        let currentTouchNode = null;
         
-        node.on("mouseover", function(event, d) {
+        function showNodeDetails(d, element) {
             // 强化当前节点
-            d3.select(this).select("circle")
+            d3.select(element).select("circle")
                 .transition()
                 .duration(200)
                 .attr("r", d.type === "center" ? 35 : d.type === "book" || d.type === "person" ? 25 : 22);
@@ -823,14 +832,11 @@
             
             // 绘制蜘蛛网效果
             drawSpiderWeb(d, relatedIds);
-        })
-        .on("mousemove", function(event) {
-            tooltip.style.left = (event.offsetX + 15) + "px";
-            tooltip.style.top = (event.offsetY - 10) + "px";
-        })
-        .on("mouseout", function(event, d) {
+        }
+        
+        function hideNodeDetails(d, element) {
             // 恢复节点大小
-            d3.select(this).select("circle")
+            d3.select(element).select("circle")
                 .transition()
                 .duration(200)
                 .attr("r", d.type === "center" ? 30 : d.type === "book" || d.type === "person" ? 20 : 18);
@@ -846,9 +852,46 @@
             
             // 清除蜘蛛网
             g.selectAll(".spider-line").remove();
+        }
+        
+        node.on("mouseover", function(event, d) {
+            showNodeDetails(d, this);
+        })
+        .on("mousemove", function(event) {
+            tooltip.style.left = (event.offsetX + 15) + "px";
+            tooltip.style.top = (event.offsetY - 10) + "px";
+        })
+        .on("mouseout", function(event, d) {
+            hideNodeDetails(d, this);
         })
         .on("click", function(event, d) {
             if (d.url) window.location.href = d.url;
+        })
+        // 移动端触摸事件
+        .on("touchstart", function(event, d) {
+            event.preventDefault();
+            currentTouchNode = { element: this, data: d };
+            touchTimer = setTimeout(() => {
+                showNodeDetails(d, this);
+            }, 2000); // 2秒长按
+        })
+        .on("touchmove", function(event, d) {
+            if (touchTimer) {
+                clearTimeout(touchTimer);
+                touchTimer = null;
+            }
+        })
+        .on("touchend", function(event, d) {
+            if (touchTimer) {
+                clearTimeout(touchTimer);
+                touchTimer = null;
+            } else if (currentTouchNode) {
+                // 长按结束后显示一小段时间
+                setTimeout(() => {
+                    hideNodeDetails(d, this);
+                }, 3000);
+            }
+            currentTouchNode = null;
         });
         
         // 绘制蜘蛛网效果
