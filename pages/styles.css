@@ -783,9 +783,9 @@ main,
     /* 侧边栏隐藏，主内容无左边距 */
     .main-content { margin-left: 0; margin-top: 48px; }
     
-    /* 主内容区域 - 加宽10% */
+    /* 主内容区域 - 加宽10%，但保持边缘padding */
     .content-wrapper {
-        padding: 24px 0 80px;
+        padding: 24px 20px 80px;
     }
 
     /* 侧边栏 - 隐藏，用汉堡菜单 */
@@ -1012,9 +1012,9 @@ main,
     
     .main-content { margin-left: 0; margin-top: 48px; }
     
-    /* 主内容区域 - 加宽10% */
+    /* 主内容区域 - 加宽10%，但保持边缘padding */
     .content-wrapper {
-        padding: 24px 0 80px;
+        padding: 24px 20px 80px;
     }
     
     .sidebar { 
@@ -1179,7 +1179,7 @@ main,
     .topbar-nav a:last-child { border-right: none; }
     
     /* 主内容区域 - 加宽10% */
-    main { padding: 20px 0 60px; }
+    main { padding: 20px 16px 60px; }
     .content-wrapper {
         padding: 24px 0 80px;
     }
@@ -1268,9 +1268,9 @@ main,
     .topbar-nav a { display: flex !important; }
     .topbar-nav a:last-child { border-right: none; }
     
-    /* 主内容区域 - 加宽10% */
+    /* 主内容区域 - 加宽10%，但保持边缘padding */
     .content-wrapper {
-        padding: 24px 0 80px;
+        padding: 24px 20px 80px;
     }
 }
     
@@ -1290,7 +1290,7 @@ main,
     /* 侧边栏头部 - 不需要额外 padding，因为汉堡菜单是 fixed 定位 */
     
     /* 主内容区域 */
-    main { padding: 20px 0 60px; }
+    main { padding: 20px 16px 60px; }
     
     .page-header { padding: 20px 0 16px; }
     .page-header h1 { font-size: 22px; }
