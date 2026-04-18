@@ -3,17 +3,48 @@
 模拟 Vercel 的 cleanUrls 功能的本地测试服务器
 - /path → /path.html
 - /path/index → /path/index.html
+- 自动重定向：/books → /books/ (301)
 """
 import http.server
 import os
 import socketserver
+import urllib.parse
 
 PORT = 8003
 
 class CleanURLRequestHandler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
-        # 移除查询参数
-        path = self.path.split('?')[0]
+        # 移除查询参数和锚点
+        parsed_path = urllib.parse.urlparse(self.path)
+        path = parsed_path.path
+        query = parsed_path.query
+        fragment = parsed_path.fragment
+        
+        # 检查是否需要重定向添加末尾斜杠
+        if (path != '/' and 
+            not path.endswith('/') and
+            not '.' in os.path.basename(path)):  # 不是带扩展名的文件
+            # 检查对应的资源是否存在
+            test_path1 = path + '.html'
+            test_path2 = path + '/index.html'
+            test_dir = path.rstrip('/')
+            
+            # 如果对应的内容存在，就重定向
+            if (os.path.exists(self.translate_path(test_path1)) or 
+                os.path.exists(self.translate_path(test_path2)) or
+                os.path.isdir(self.translate_path(test_dir))):
+                # 构建重定向 URL
+                redirect_url = path + '/'
+                if query:
+                    redirect_url += '?' + query
+                if fragment:
+                    redirect_url += '#' + fragment
+                
+                # 发送 301 重定向
+                self.send_response(301)
+                self.send_header('Location', redirect_url)
+                self.end_headers()
+                return
         
         # 检查是否为根路径
         if path == '/' or path == '':
@@ -60,6 +91,6 @@ Handler = CleanURLRequestHandler
 
 with socketserver.TCPServer(('', PORT), Handler) as httpd:
     print(f'测试服务器运行在 http://localhost:{PORT}')
-    print('模拟 Vercel 的 cleanUrls 功能')
+    print('模拟 Vercel 的 cleanUrls 功能 + 自动重定向添加斜杠')
     print('按 Ctrl+C 停止服务器')
     httpd.serve_forever()
