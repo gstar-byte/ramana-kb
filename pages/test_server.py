@@ -10,7 +10,7 @@ import os
 import socketserver
 import urllib.parse
 
-PORT = 8003
+PORT = 8004
 
 class CleanURLRequestHandler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
@@ -52,36 +52,32 @@ class CleanURLRequestHandler(http.server.SimpleHTTPRequestHandler):
         
         # 检查路径是否已存在
         if not os.path.exists(self.translate_path(path)):
-            # 尝试添加 .html 扩展名
-            path_with_html = path + '.html'
-            if os.path.exists(self.translate_path(path_with_html)):
-                path = path_with_html
-            # 检查是否为目录，尝试 index.html
-            elif os.path.isdir(self.translate_path(path.rstrip('/'))):
-                index_path = path.rstrip('/') + '/index.html'
-                if os.path.exists(self.translate_path(index_path)):
-                    path = index_path
-            # 检查是否已带有 index，尝试补充为 index.html
-            elif path.endswith('/index'):
-                path_with_html = path + '.html'
-                if os.path.exists(self.translate_path(path_with_html)):
-                    path = path_with_html
-            # 检查是否带有 /index/ 的情况
-            elif path.endswith('/index/'):
-                path_with_html = path.rstrip('/') + '.html'
-                if os.path.exists(self.translate_path(path_with_html)):
-                    path = path_with_html
-            # 检查是否只是目录路径
-            elif not path.endswith('.html'):
-                # 先尝试直接加 .html
-                path_with_html = path + '.html'
-                if os.path.exists(self.translate_path(path_with_html)):
-                    path = path_with_html
-                else:
-                    # 再尝试加 /index.html
-                    path_with_index = path.rstrip('/') + '/index.html'
-                    if os.path.exists(self.translate_path(path_with_index)):
-                        path = path_with_index
+            # 尝试多种可能性
+            possible_paths = []
+            
+            # 1. 去掉末尾斜杠，然后加 .html (处理 /graph/ → /graph.html)
+            if path.endswith('/'):
+                possible_paths.append(path.rstrip('/') + '.html')
+            
+            # 2. 直接加 .html (处理 /graph → /graph.html)
+            possible_paths.append(path + '.html')
+            
+            # 3. 检查是否为目录，尝试 index.html (处理 /books/ → /books/index.html)
+            possible_paths.append(path.rstrip('/') + '/index.html')
+            
+            # 4. 检查是否带有 index，尝试补充为 index.html (处理 /books/index → /books/index.html)
+            if path.endswith('/index'):
+                possible_paths.append(path + '.html')
+            
+            # 5. 检查是否带有 /index/ 的情况 (处理 /books/index/ → /books/index.html)
+            if path.endswith('/index/'):
+                possible_paths.append(path.rstrip('/') + '.html')
+            
+            # 尝试所有可能的路径
+            for test_path in possible_paths:
+                if os.path.exists(self.translate_path(test_path)):
+                    path = test_path
+                    break
         
         # 更新 self.path
         self.path = path
