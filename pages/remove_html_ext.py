@@ -17,9 +17,9 @@ def clean_url(url):
     # 末尾的 .html 去掉
     if url.endswith('.html'):
         url = url[:-5]
-    # index.html → 转为目录，末尾加 /
+    # index.html 或 index → 转为目录，只保留到 /
     if url.endswith('/index'):
-        url = url + '/'
+        url = url[:-5] + '/'  # 变成 books/ 而不是 books/index/
     return url
 
 # 正则：仅匹配相对路径的 .html 链接，排除 http/https/ftp 等绝对URL

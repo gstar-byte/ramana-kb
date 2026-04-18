@@ -8,7 +8,7 @@ import http.server
 import os
 import socketserver
 
-PORT = 8002
+PORT = 8003
 
 class CleanURLRequestHandler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
