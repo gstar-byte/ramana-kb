@@ -7,7 +7,7 @@
 import re
 import os
 
-BASE = r'c:\Users\willp\WorkBuddy\20260410104230\pages'
+BASE = '/workspace/pages'
 
 # 正则：匹配 href="xxx.html" 或 href='xxx.html'
 HTML_LINK_RE = re.compile(r'(href=["\'])([^\"\']+\.html)(["\'])')
