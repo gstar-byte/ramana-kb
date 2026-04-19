@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+
+const chapters = [
+  { id: 1, title: '关于修行', summary: '修行不是努力，而是自然。不要试图成为觉醒者，而是发现你本来就是觉醒的。' },
+  { id: 2, title: '关于智慧', summary: '智慧不是获得，而是消融。当你放下一切，你就拥有了一切。' },
+  { id: 3, title: '关于虔诚', summary: '虔诚不是依赖，而是回归。对上师的虔诚，最终是向内的回归。' },
+];
+---
+
+<BaseLayout title="反思录 - 拉玛那·马哈希知识库" currentPage="书籍">
+  <Sidebar slot="sidebar" />
+
+  <main>
+    <header class="page-header">
+      <h1>💭 反思录</h1>
+      <p class="subtitle">Reflections | 大卫·高德曼 编</p>
+      <p style="color:var(--text-muted);margin-top:0.75rem;font-size:0.95rem;">马哈希关于灵性生活各方面——修行、智慧、虔诚、慈悲——的短篇反思集</p>
+    </header>
+
+    <!-- 面包屑 -->
+    <div class="breadcrumb" style="padding:1rem 0;color:var(--text-muted);">
+      <a href="/">首页</a> /
+      <a href="/books">书籍</a> /
+      <span style="color:var(--text);">反思录</span>
+    </div>
+
+    <!-- 书籍简介 -->
+    <div class="card">
+      <h2 style="color:var(--primary);margin-bottom:1rem;">📖 书籍简介</h2>
+      <p style="margin-bottom:1rem;"><strong>《反思录》</strong>是马哈希关于灵性生活各方面——修行、智慧、虔诚、慈悲——的短篇反思集。这些文字简短而深刻，适合每日阅读和反思。</p>
+      <p>每一条反思都像一面镜子，映照出我们内在的实相。</p>
+    </div>
+
+    <!-- 章节列表 -->
+    <div class="card">
+      <h2 style="color:var(--primary);margin-bottom:1.5rem;">📖 核心内容</h2>
+      {chapters.map(chapter => (
+        <div class="chapter-card" style="border:1px solid var(--border);border-radius:8px;padding:1rem;margin-bottom:1rem;cursor:pointer;">
+          <h4 style="margin:0;">{chapter.title} <span style="float:right;color:var(--text-muted);">▼</span></h4>
+          <p class="summary" style="color:var(--text-muted);margin-top:0.5rem;">{chapter.summary}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- 经典语录 -->
+    <div class="card">
+      <h2 style="color:var(--primary);margin-bottom:1rem;">💎 经典语录</h2>
+      <div class="quote-box" style="background:var(--card-bg);border-left:4px solid var(--primary);padding:1rem;margin-bottom:1rem;">
+        <p style="margin:0;">"不要试图成为觉醒者，而是发现你本来就是觉醒的。"</p>
+        <cite style="color:var(--text-muted);font-size:0.9rem;">—— 反思录</cite>
+      </div>
+      <div class="quote-box" style="background:var(--card-bg);border-left:4px solid var(--primary);padding:1rem;">
+        <p style="margin:0;">"当你放下一切，你就拥有了一切。"</p>
+        <cite style="color:var(--text-muted);font-size:0.9rem;">—— 反思录</cite>
+      </div>
+    </div>
+
+    <!-- 相关概念 -->
+    <div class="card">
+      <h2 style="color:var(--primary);margin-bottom:1rem;">🔗 相关概念</h2>
+      <div class="concept-tags">
+        <a href="/concepts/atman" class="tag">真我</a>
+        <a href="/concepts/grace" class="tag">恩典</a>
+        <a href="/concepts/surrender" class="tag">臣服</a>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <p>拉玛那·马哈希知识库 | 传承自印度阿鲁那佳拉圣山</p>
+    </footer>
+  </main>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll('.chapter-card').forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('expanded');
+    });
+  });
+</script>
+
+<style>
+  .chapter-card.expanded .summary {
+    display: none;
+  }
+</style>

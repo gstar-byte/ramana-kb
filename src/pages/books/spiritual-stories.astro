@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+
+const chapters = [
+  { id: 1, title: '关于真我的故事', summary: '真我就在你之内，不需要向外寻找。有人走遍千山万水寻找宝藏，却不知道它就在自家后院。' },
+  { id: 2, title: '关于心智的故事', summary: '心智是最大的骗子，它制造了一切幻相。心智就像猴子，从一棵树跳到另一棵，永远不停息。' },
+  { id: 3, title: '关于修行的故事', summary: '真正的修行是向内的旅程。修行不是要成为什么，而是发现你本来就是什么。' },
+];
+---
+
+<BaseLayout title="灵性故事 - 拉玛那·马哈希知识库" currentPage="书籍">
+  <Sidebar slot="sidebar" />
+
+  <main>
+    <header class="page-header">
+      <h1>📖 灵性故事</h1>
+      <p class="subtitle">Spiritual Stories | 马哈希讲述的灵性寓言</p>
+      <p style="color:var(--text-muted);margin-top:0.75rem;font-size:0.95rem;">马哈希擅长用故事来阐明深奥的灵性真理，既有趣味性，又蕴含深刻的智慧</p>
+    </header>
+
+    <!-- 面包屑 -->
+    <div class="breadcrumb" style="padding:1rem 0;color:var(--text-muted);">
+      <a href="/">首页</a> /
+      <a href="/books">书籍</a> /
+      <span style="color:var(--text);">灵性故事</span>
+    </div>
+
+    <!-- 书籍简介 -->
+    <div class="card">
+      <h2 style="color:var(--primary);margin-bottom:1rem;">📖 书籍简介</h2>
+      <p style="margin-bottom:1rem;"><strong>《灵性故事》</strong>收录了马哈希讲述的各种灵性寓言和故事，这些故事源自印度古老的智慧传统，但经过马哈希的点化，赋予了新的灵性意义。</p>
+      <p>马哈希擅长用故事来阐明深奥的灵性真理，这些故事既有趣味性，又蕴含深刻的智慧。</p>
+    </div>
+
+    <!-- 章节列表 -->
+    <div class="card">
+      <h2 style="color:var(--primary);margin-bottom:1.5rem;">📖 核心内容</h2>
+      {chapters.map(chapter => (
+        <div class="chapter-card" style="border:1px solid var(--border);border-radius:8px;padding:1rem;margin-bottom:1rem;cursor:pointer;">
+          <h4 style="margin:0;">{chapter.title} <span style="float:right;color:var(--text-muted);">▼</span></h4>
+          <p class="summary" style="color:var(--text-muted);margin-top:0.5rem;">{chapter.summary}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- 经典语录 -->
+    <div class="card">
+      <h2 style="color:var(--primary);margin-bottom:1rem;">💎 经典语录</h2>
+      <div class="quote-box" style="background:var(--card-bg);border-left:4px solid var(--primary);padding:1rem;margin-bottom:1rem;">
+        <p style="margin:0;">"有人走遍千山万水寻找宝藏，却不知道它就在自家后院。"</p>
+        <cite style="color:var(--text-muted);font-size:0.9rem;">—— 马哈希的故事</cite>
+      </div>
+      <div class="quote-box" style="background:var(--card-bg);border-left:4px solid var(--primary);padding:1rem;">
+        <p style="margin:0;">"心智就像猴子，从一棵树跳到另一棵，永远不停息。"</p>
+        <cite style="color:var(--text-muted);font-size:0.9rem;">—— 马哈希的故事</cite>
+      </div>
+    </div>
+
+    <!-- 相关概念 -->
+    <div class="card">
+      <h2 style="color:var(--primary);margin-bottom:1rem;">🔗 相关概念</h2>
+      <div class="concept-tags">
+        <a href="/concepts/atman" class="tag">真我</a>
+        <a href="/concepts/mind" class="tag">心智</a>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <p>拉玛那·马哈希知识库 | 传承自印度阿鲁那佳拉圣山</p>
+    </footer>
+  </main>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll('.chapter-card').forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('expanded');
+    });
+  });
+</script>
+
+<style>
+  .chapter-card.expanded .summary {
+    display: none;
+  }
+</style>

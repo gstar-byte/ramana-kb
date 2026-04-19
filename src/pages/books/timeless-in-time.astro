@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+
+const chapters = [
+  { id: 1, title: '第一章：历史背景', summary: '20世纪初的印度正处于剧变之中，马哈希的觉醒和教导在这一背景下具有特殊的意义。' },
+  { id: 2, title: '第二章：与独立运动', summary: '马哈希对政治保持中立，但他的教导深刻影响了许多独立运动领袖。' },
+  { id: 3, title: '第三章：东西方相遇', summary: '马哈希的教导吸引了来自世界各地的求道者，成为东西方灵性交流的重要桥梁。' },
+  { id: 4, title: '第四章：静修院的发展', summary: '从最初的山洞到后来的静修院，马哈希的道场见证了时代的变迁。' },
+  { id: 5, title: '第五章：教导的传承', summary: '马哈希的教导通过他的弟子们传承下来，在世界各地开花结果。' },
+  { id: 6, title: '第六章：永恒的讯息', summary: '无论时代如何变迁，马哈希的核心教导——认识你自己——永远具有现实意义。' },
+];
+---
+
+<BaseLayout title="时代中的永恒 - 拉玛那·马哈希知识库" currentPage="书籍">
+  <Sidebar slot="sidebar" />
+
+  <main>
+    <header class="page-header">
+      <h1>⏳ 时代中的永恒</h1>
+      <p class="subtitle">Timeless in Time | A. R. Natarajan 著</p>
+      <p style="color:var(--text-muted);margin-top:0.75rem;font-size:0.95rem;">将马哈希的教导置于20世纪印度社会变革的历史背景中考察</p>
+    </header>
+
+    <!-- 面包屑 -->
+    <div class="breadcrumb" style="padding:1rem 0;color:var(--text-muted);">
+      <a href="/">首页</a> /
+      <a href="/books">书籍</a> /
+      <span style="color:var(--text);">时代中的永恒</span>
+    </div>
+
+    <!-- 书籍简介 -->
+    <div class="card">
+      <h2 style="color:var(--primary);margin-bottom:1rem;">📖 书籍简介</h2>
+      <p style="margin-bottom:1rem;"><strong>《时代中的永恒》</strong>是一部独特的历史传记作品，将马哈希的教导置于20世纪印度社会变革的历史背景中考察。书名揭示了一个深刻的真理：虽然时代在变迁，但马哈希所指向的实相是超越时间的永恒。</p>
+      <p>这本书不仅记录了马哈希的生平，更探讨了他的教导如何在印度独立运动、社会变革、东西方文化交流等重大历史事件中保持其永恒的价值。</p>
+      <div class="concept-tags" style="margin-top:1rem;">
+        <span class="tag">历史传记</span>
+        <span class="tag">时代背景</span>
+        <span class="tag">永恒价值</span>
+      </div>
+    </div>
+
+    <!-- 章节列表 -->
+    <div class="card">
+      <h2 style="color:var(--primary);margin-bottom:1.5rem;">📋 完整章节</h2>
+      {chapters.map(chapter => (
+        <div class="chapter-card" style="border:1px solid var(--border);border-radius:8px;padding:1rem;margin-bottom:1rem;cursor:pointer;">
+          <h4 style="margin:0;">{chapter.title} <span style="float:right;color:var(--text-muted);">▼</span></h4>
+          <p class="summary" style="color:var(--text-muted);margin-top:0.5rem;">{chapter.summary}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- 经典语录 -->
+    <div class="card">
+      <h2 style="color:var(--primary);margin-bottom:1rem;">💎 经典语录</h2>
+      <div class="quote-box" style="background:var(--card-bg);border-left:4px solid var(--primary);padding:1rem;margin-bottom:1rem;">
+        <p style="margin:0;">"历史是时间的游戏，而你是那超越时间的见证。"</p>
+        <cite style="color:var(--text-muted);font-size:0.9rem;">—— 马哈希</cite>
+      </div>
+      <div class="quote-box" style="background:var(--card-bg);border-left:4px solid var(--primary);padding:1rem;margin-bottom:1rem;">
+        <p style="margin:0;">"不要被时代的喧嚣所迷惑，回归内在的静默。"</p>
+        <cite style="color:var(--text-muted);font-size:0.9rem;">—— 马哈希</cite>
+      </div>
+      <div class="quote-box" style="background:var(--card-bg);border-left:4px solid var(--primary);padding:1rem;">
+        <p style="margin:0;">"每一个时代都有它的挑战，但真我永远是答案。"</p>
+        <cite style="color:var(--text-muted);font-size:0.9rem;">—— 马哈希</cite>
+      </div>
+    </div>
+
+    <!-- 相关概念 -->
+    <div class="card">
+      <h2 style="color:var(--primary);margin-bottom:1rem;">🔗 相关概念</h2>
+      <div class="concept-tags">
+        <a href="/concepts/atman" class="tag">真我</a>
+        <a href="/concepts/silence" class="tag">静默</a>
+        <a href="/concepts/grace" class="tag">恩典</a>
+        <a href="/concepts/guru" class="tag">上师</a>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <p>拉玛那·马哈希知识库 | 传承自印度阿鲁那佳拉圣山</p>
+    </footer>
+  </main>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll('.chapter-card').forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('expanded');
+    });
+  });
+</script>
+
+<style>
+  .chapter-card.expanded .summary {
+    display: none;
+  }
+</style>

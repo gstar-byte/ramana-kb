@@ -11,8 +11,8 @@
 - Recent Drawings: localStorage Base64缓存 + 24小时过期 (ID: 29642493)
 
 ### 拉玛那马哈希知识库项目
-- 路径: `c:/Users/willp/WorkBuddy/20260410104230/`
-- 主文件: `拉玛那马哈希知识库.html`（交互式单页面应用）
+- **当前路径（已迁移）**: `c:/Users/willp/Desktop/2026年4月/kb01/`
+- 旧路径（已废弃）: `c:/Users/willp/WorkBuddy/20260410104230/`
 - Skill: `~/.workbuddy/skills/拉玛那知识库/SKILL.md`
 - 架构: 三层节点（概念/书籍/人物）+ 可点击跳转
 - 已整合书籍（18本）：
@@ -88,14 +88,14 @@
   - 所有书籍都需要翻译、理解并整合到知识库中
 
 ### 知识库多HTML重构（20260412-0415 - 重大升级）
-- 新目录: `c:/Users/willp/WorkBuddy/20260410104230/pages/`
+- 目录: `c:/Users/willp/Desktop/2026年4月/kb01/pages/`（已迁移，旧路径 `c:/Users/willp/WorkBuddy/20260410104230/pages/`）
 - 创建了90+个独立HTML文件 + 1个CSS文件（参考巴菲特知识库的多页结构）
 - **导航栏全站统一（20260414修复）**：
   - 修复了全部90+HTML文件的左侧sidebar和顶部topbar不一致问题
   - sidebar标准结构：☰汉堡按钮 + 🙏logo + 搜索框 + 5大板块（核心索引含150+/经典著作/核心概念/修行方法/关键人物）
   - topbar标准结构：首页/书籍/概念/方法/问答/人物/图谱（共7项）
   - 修复：双层`<main>`嵌套、重复面包屑、多余首页链接、404链接
-  - 修行问答计数统一为150+
+  - 修行问答计数统一为340+
 - **章节聚焦模式（be-as-you-are + gems两本书22章节页）**：
   - 侧边栏自动折叠无关板块，只显示当前书的章节目录
   - 删除了章节导航栏（chapter-nav-bar）
@@ -111,7 +111,7 @@
   - pages/concepts/ - 30+概念详情页
   - pages/persons/ - 人物页面
   - pages/methods/ - 方法页面
-  - pages/qa/ - 问答页面（150+条，12分类，20页）
+  - pages/qa/ - 问答页面（340+条，15主题，43页）
 - 每个页面都有完整的meta标签（description, keywords, robots）利于SEO
 - **GitHub + Vercel部署**：
   - GitHub：gstar-byte/ramana-kb
@@ -133,16 +133,44 @@
   - add_ga4.py - 幂等性添加GA4代码
   - add_pwa_analytics.py - 添加PWA Analytics
 
+### QA页面重构（20260419）
+- **问题发现**：qa-29~58（30页）内容为批量脚本Bug导致的重复垃圾内容
+- **修复方案**：删除qa-44~58，重写qa-29~43为15页真实内容
+- **新增15页主题**：归伏/念诵/苦行/情绪/关系/疾病/金钱/食物/睡眠/神通/经典/其他法门/生平/静修院/弟子
+- **当前状态**：43页，353条QA，7处重复（4处为原有，3处已修复）
+- **脚本**：generate_qa_v2.py / fix_qa_questions.py
+
 ### SEO字符长度优化（20260417）
 - **title**: 45-55字符（最佳），pages/目录下有seo_title_final.py批量处理
 - **description**: 140-155字符（最佳），pages/目录下有seo_desc_auto.py批量处理
 - 全部130个页面已完成优化
 - 关键脚本：verify_titles.py / verify_desc.py 验证，seo_fill_remaining.py补充遗漏
 
+### 书籍页面UI统一修复（20260419）
+- **问题**：《面对面》首页使用旧CSS类，与《宝钻集》不一致
+- **修复**：重写face-to-face.html主体内容，统一为标准类（page-header/card/chapter-card）
+- **受影响文件**：face-to-face.html
+
+### 章节页面面包屑修复（20260419）
+- **问题**：5个《面对面》章节页面面包屑缺少"书籍"层
+- **修复**：添加 `<a href="../books/index.html">书籍</a>` 层
+- **受影响文件**：face-to-face-ch1.html ~ ch5.html
+
+### 侧边栏折叠按钮修复（20260419）
+- **问题**：16个章节页面侧边栏折叠按钮无法点击
+- **根因**：事件绑定冲突（内联脚本与script.js重复绑定）
+- **修复**：批量移除内联脚本中的重复绑定代码
+- **受影响文件**：
+  - face-to-face-ch1~5.html（5个）
+  - be-as-you-are-ch1~3.html（3个）
+  - day-by-day-ch1~8.html（8个）
+- **验证**：浏览器F12检查Event Listeners应只有一个click监听器
+
 ## 用户偏好
 - 中文交流
 - 绝对路径优先
 - 知识图谱需要清晰的节点标签显示
+- **重要工作流**：新增页面时必须同步完成SEO（title/description）+ 更新sitemap.xml + 更新sitemap.html
 
 ## 重要书籍说明
 - pdf_content目录包含19本PDF提取的txt文件

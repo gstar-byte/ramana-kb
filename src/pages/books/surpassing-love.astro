@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+
+const chapters = [
+  { id: 1, title: '第一章：爱的本质', summary: '真正的爱不是情感或依恋，而是对真我的自然回归。当自我消融，爱自然显现。真正的爱是自我的缺席。当"我"消失，剩下的就是爱。' },
+  { id: 2, title: '第二章：恩典之流', summary: '恩典不是外来的赐予，而是真我的自然流露。它始终存在，只是被自我遮蔽。恩典就像空气，无处不在。你只需要打开窗户让它进来。' },
+  { id: 3, title: '第三章：臣服之道', summary: '臣服是接受恩典的主要途径。完全的臣服意味着将自我交托给真我。臣服不是软弱，而是最大的勇气。' },
+  { id: 4, title: '第四章：静修院的恩典', summary: '阿鲁那佳拉山和马哈希的临在本身就是强大的恩典场。只要来到这里，静默，恩典就会起作用。' },
+  { id: 5, title: '第五章：超越形式', summary: '最终，爱和恩典都超越了任何形式和概念。它们指向那无形无相的实相。形式和名称是暂时的，但形式背后的实相是永恒的。' },
+  { id: 6, title: '第六章：生活中的恩典', summary: '恩典不仅存在于静修院，它渗透在生活的每一个瞬间。每一个困难都是恩典的伪装，每一个挑战都是觉醒的机会。' },
+];
+---
+
+<BaseLayout title="超越爱与恩典 - 拉玛那·马哈希知识库" currentPage="书籍">
+  <Sidebar slot="sidebar" />
+
+  <main>
+    <header class="page-header">
+      <h1>💝 超越爱与恩典</h1>
+      <p class="subtitle">Surpassing Love and Grace</p>
+      <p style="color:var(--text-muted);margin-top:0.75rem;font-size:0.95rem;">探讨爱、恩典与灵性觉醒的关系，深入马哈希教导的核心</p>
+    </header>
+
+    <!-- 面包屑 -->
+    <div class="breadcrumb" style="padding:1rem 0;color:var(--text-muted);">
+      <a href="/">首页</a> /
+      <a href="/books">书籍</a> /
+      <span style="color:var(--text);">超越爱与恩典</span>
+    </div>
+
+    <!-- 书籍简介 -->
+    <div class="card">
+      <h2 style="color:var(--primary);margin-bottom:1rem;">📖 书籍简介</h2>
+      <p style="margin-bottom:1rem;"><strong>《超越爱与恩典》</strong>是一部深入探讨马哈希教导中"爱"与"恩典"主题的著作。书名本身就揭示了马哈希教导的核心——真正的爱和恩典是超越一般理解的，它们是通往实相的两扇门。</p>
+      <p>这本书汇集了马哈希关于爱与恩典的各种教导，以及弟子们在静修院中体验到的恩典的力量。</p>
+    </div>
+
+    <!-- 章节列表 -->
+    <div class="card">
+      <h2 style="color:var(--primary);margin-bottom:1.5rem;">📖 核心内容</h2>
+      {chapters.map(chapter => (
+        <div class="chapter-card" style="border:1px solid var(--border);border-radius:8px;padding:1rem;margin-bottom:1rem;cursor:pointer;">
+          <h4 style="margin:0;">{chapter.title} <span style="float:right;color:var(--text-muted);">▼</span></h4>
+          <p class="summary" style="color:var(--text-muted);margin-top:0.5rem;">{chapter.summary}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- 经典语录 -->
+    <div class="card">
+      <h2 style="color:var(--primary);margin-bottom:1rem;">💎 经典语录</h2>
+      <div class="quote-box" style="background:var(--card-bg);border-left:4px solid var(--primary);padding:1rem;margin-bottom:1rem;">
+        <p style="margin:0;">"真正的爱是自我的缺席。当'我'消失，剩下的就是爱。"</p>
+        <cite style="color:var(--text-muted);font-size:0.9rem;">—— 马哈希</cite>
+      </div>
+      <div class="quote-box" style="background:var(--card-bg);border-left:4px solid var(--primary);padding:1rem;margin-bottom:1rem;">
+        <p style="margin:0;">"恩典不是你可以赚取的，它是免费的赐予。你只需要敞开心扉接受。"</p>
+        <cite style="color:var(--text-muted);font-size:0.9rem;">—— 马哈希</cite>
+      </div>
+      <div class="quote-box" style="background:var(--card-bg);border-left:4px solid var(--primary);padding:1rem;">
+        <p style="margin:0;">"当你完全臣服，真我就完全显现。"</p>
+        <cite style="color:var(--text-muted);font-size:0.9rem;">—— 马哈希</cite>
+      </div>
+    </div>
+
+    <!-- 相关概念 -->
+    <div class="card">
+      <h2 style="color:var(--primary);margin-bottom:1rem;">🔗 相关概念</h2>
+      <div class="concept-tags">
+        <a href="/concepts/grace" class="tag">恩典</a>
+        <a href="/concepts/surrender" class="tag">臣服</a>
+        <a href="/concepts/atman" class="tag">真我</a>
+        <a href="/concepts/silence" class="tag">静默</a>
+        <a href="/concepts/guru" class="tag">上师</a>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <p>拉玛那·马哈希知识库 | 传承自印度阿鲁那佳拉圣山</p>
+    </footer>
+  </main>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll('.chapter-card').forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('expanded');
+    });
+  });
+</script>
+
+<style>
+  .chapter-card.expanded .summary {
+    display: none;
+  }
+</style>

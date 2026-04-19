@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+
+const chapters = [
+  { id: 1, title: '第一章：自我参究', summary: '马哈希反复强调的自我参究方法——"我是谁？"的探询，是通往真我的直接路径。"我是谁？"的探询不是念诵，而是向内寻找那个正在问这个问题的源头。' },
+  { id: 2, title: '第二章：心智的本质', summary: '心智是由念头构成的，而所有念头的根源是"我"的念头。当"我"的念头消失，心智也随之消融。心智不过是一连串的念头。如果没有念头，就没有心智。' },
+  { id: 3, title: '第三章：真我', summary: '真我是永恒的存在、意识和喜悦，是一切现象的基础。真我是唯一的实在。其他一切都是暂时的、虚幻的。' },
+  { id: 4, title: '第四章：恩典', summary: '恩典是真我的自然流露，它始终存在，只是被自我所遮蔽。恩典就像太阳的光芒，它始终照耀着，只是被云层遮蔽了。' },
+  { id: 5, title: '第五章：静默', summary: '真正的静默不是不说话，而是心智的止息。静默是最有力的教导。当心智静止，真我自然显现。' },
+  { id: 6, title: '第六章：日常生活中的修行', summary: '修行不只是在静坐时进行，而是要在日常生活中持续保持对真我的觉知。无论你在做什么，都要保持"我是谁？"的探询。' },
+];
+---
+
+<BaseLayout title="以言传意 - 拉玛那·马哈希知识库" currentPage="书籍">
+  <Sidebar slot="sidebar" />
+
+  <main>
+    <header class="page-header">
+      <h1>📝 以言传意</h1>
+      <p class="subtitle">Teachings in His Own Words | 马哈希亲口讲述的教诲精选</p>
+      <p style="color:var(--text-muted);margin-top:0.75rem;font-size:0.95rem;">直接呈现马哈希的原话，展现他独特的教导方式——直接、明确、直指核心</p>
+    </header>
+
+    <!-- 面包屑 -->
+    <div class="breadcrumb" style="padding:1rem 0;color:var(--text-muted);">
+      <a href="/">首页</a> /
+      <a href="/books">书籍</a> /
+      <span style="color:var(--text);">以言传意</span>
+    </div>
+
+    <!-- 书籍简介 -->
+    <div class="card">
+      <h2 style="color:var(--primary);margin-bottom:1rem;">📖 书籍简介</h2>
+      <p style="margin-bottom:1rem;"><strong>《以言传意》</strong>是马哈希亲口讲述的教诲精选集，由他的弟子们记录整理而成。这本书的独特之处在于，它直接呈现了马哈希的原话，而非经过编辑或转述的教导。</p>
+      <p>书中涵盖了马哈希关于自我参究、心智、真我、恩典等核心主题的教导，以及他对弟子们各种问题的回答。</p>
+    </div>
+
+    <!-- 章节列表 -->
+    <div class="card">
+      <h2 style="color:var(--primary);margin-bottom:1.5rem;">📖 核心内容</h2>
+      {chapters.map(chapter => (
+        <div class="chapter-card" style="border:1px solid var(--border);border-radius:8px;padding:1rem;margin-bottom:1rem;cursor:pointer;">
+          <h4 style="margin:0;">{chapter.title} <span style="float:right;color:var(--text-muted);">▼</span></h4>
+          <p class="summary" style="color:var(--text-muted);margin-top:0.5rem;">{chapter.summary}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- 经典语录 -->
+    <div class="card">
+      <h2 style="color:var(--primary);margin-bottom:1rem;">💎 经典语录</h2>
+      <div class="quote-box" style="background:var(--card-bg);border-left:4px solid var(--primary);padding:1rem;margin-bottom:1rem;">
+        <p style="margin:0;">"唯一的真实是你自己。其他一切都是暂时的。"</p>
+        <cite style="color:var(--text-muted);font-size:0.9rem;">—— 马哈希</cite>
+      </div>
+      <div class="quote-box" style="background:var(--card-bg);border-left:4px solid var(--primary);padding:1rem;margin-bottom:1rem;">
+        <p style="margin:0;">"不要试图停止念头，而是寻找那个正在思考的人。"</p>
+        <cite style="color:var(--text-muted);font-size:0.9rem;">—— 马哈希</cite>
+      </div>
+      <div class="quote-box" style="background:var(--card-bg);border-left:4px solid var(--primary);padding:1rem;margin-bottom:1rem;">
+        <p style="margin:0;">"幸福不在外在的事物中，它在你自己的本性中。"</p>
+        <cite style="color:var(--text-muted);font-size:0.9rem;">—— 马哈希</cite>
+      </div>
+      <div class="quote-box" style="background:var(--card-bg);border-left:4px solid var(--primary);padding:1rem;">
+        <p style="margin:0;">"当你知道你自己，你就知道了一切。"</p>
+        <cite style="color:var(--text-muted);font-size:0.9rem;">—— 马哈希</cite>
+      </div>
+    </div>
+
+    <!-- 相关概念 -->
+    <div class="card">
+      <h2 style="color:var(--primary);margin-bottom:1rem;">🔗 相关概念</h2>
+      <div class="concept-tags">
+        <a href="/concepts/whoami" class="tag">"我是谁？"</a>
+        <a href="/concepts/mind" class="tag">心智</a>
+        <a href="/concepts/atman" class="tag">真我</a>
+        <a href="/concepts/grace" class="tag">恩典</a>
+        <a href="/concepts/silence" class="tag">静默</a>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <p>拉玛那·马哈希知识库 | 传承自印度阿鲁那佳拉圣山</p>
+    </footer>
+  </main>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll('.chapter-card').forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('expanded');
+    });
+  });
+</script>
+
+<style>
+  .chapter-card.expanded .summary {
+    display: none;
+  }
+</style>

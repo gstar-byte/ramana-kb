@@ -1,0 +1,26 @@
+{
+  "name": "ramana-kb-team",
+  "leadAgentId": "886736ab5896426ebe5b8f393a3bb12e",
+  "workspacePath": "c:/Users/willp/WorkBuddy/20260410104230",
+  "createdAt": "2026-04-17T07:42:29.121Z",
+  "options": {
+    "workspacePath": "c:/Users/willp/WorkBuddy/20260410104230"
+  },
+  "members": [
+    {
+      "memberId": "team-lead@ramana-kb-team",
+      "name": "team-lead",
+      "role": "Team Lead - coordinates the team and interacts with the user"
+    },
+    {
+      "memberId": "qa-expander@ramana-kb-team",
+      "name": "qa-expander",
+      "role": "新增5页QA内容"
+    },
+    {
+      "memberId": "books-enhancer@ramana-kb-team",
+      "name": "books-enhancer",
+      "role": "完善缺失书籍页面"
+    }
+  ]
+}

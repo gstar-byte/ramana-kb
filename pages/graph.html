@@ -757,7 +757,7 @@
         const simulation = d3.forceSimulation(nodes)
             .force("link", d3.forceLink(links).id(d => d.id).distance(100))
             .force("charge", d3.forceManyBody().strength(-300))
-            .force("center", d3.forceCenter(width / 2, height / 2))
+            .force("center", d3.forceCenter(width / 2, svg.node().getBoundingClientRect().height / 2))
             .force("collision", d3.forceCollide().radius(40));
         
         // 绘制连线
@@ -960,10 +960,12 @@
         
         // 控制函数
         function resetZoom() {
+            // 获取当前实际高度（移动端可能不同）
+            const currentHeight = svg.node().getBoundingClientRect().height;
             // 缩小显示，让所有节点都可见
             const scale = Math.min(width / 800, 0.7);
             const x = width / 2 - (width / 2) * scale;
-            const y = height / 2 - (height / 2) * scale;
+            const y = currentHeight / 2 - (currentHeight / 2) * scale;
             svg.transition().duration(500).call(
                 zoom.transform, 
                 d3.zoomIdentity.translate(x, y).scale(scale)

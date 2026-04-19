@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+
+const chapters = [
+  { id: 1, title: '第一章：与动物共处', summary: '马哈希对动物展现出无条件的慈悲，他将它们视为真我的不同显现。它们和我们一样，都是真我的显现。为什么不应该爱它们呢？' },
+  { id: 2, title: '第二章：日常劳作', summary: '马哈希亲自参与静修院的日常劳作。工作不是问题，对工作的执着才是。以无执着的心工作，工作本身就是修行。' },
+  { id: 3, title: '第三章：与访客交流', summary: '马哈希以独特的方式回应每一位访客，根据他们的需要给予适当的教导。每个人来到这里都带着自己的问题。' },
+  { id: 4, title: '第四章：静默的力量', summary: '即使在日常活动中，马哈希也保持着内在的静默。静默不是不说话，而是心智的静止。即使在行动中，也可以保持静默。' },
+  { id: 5, title: '第五章：简朴的生活', summary: '马哈希过着极其简朴的生活，他教导弟子们外在的简单有助于内在的清明。你拥有的越少，你的心智就越自由。' },
+  { id: 6, title: '第六章：幽默与智慧', summary: '马哈希经常用幽默的方式化解紧张。不要太严肃。生命本身就是一场游戏，学会享受它。' },
+];
+---
+
+<BaseLayout title="桌边碎语 - 拉玛那·马哈希知识库" currentPage="书籍">
+  <Sidebar slot="sidebar" />
+
+  <main>
+    <header class="page-header">
+      <h1>🍞 桌边碎语</h1>
+      <p class="subtitle">Crumbs from the Table</p>
+      <p style="color:var(--text-muted);margin-top:0.75rem;font-size:0.95rem;">马哈希日常生活的点滴记录，展现他在阿鲁那佳拉的真实生活</p>
+    </header>
+
+    <!-- 面包屑 -->
+    <div class="breadcrumb" style="padding:1rem 0;color:var(--text-muted);">
+      <a href="/">首页</a> /
+      <a href="/books">书籍</a> /
+      <span style="color:var(--text);">桌边碎语</span>
+    </div>
+
+    <!-- 书籍简介 -->
+    <div class="card">
+      <h2 style="color:var(--primary);margin-bottom:1rem;">📖 书籍简介</h2>
+      <p style="margin-bottom:1rem;"><strong>《桌边碎语》</strong>是一部独特的著作，它记录了马哈希日常生活中的点滴片段。书名寓意这些记录就像是大师餐桌上的碎屑——虽然看似微小，却蕴含着丰富的营养。</p>
+      <p>这本书不同于系统的教导著作，它展现了马哈希作为一个普通人的一面：他如何对待动物、如何处理日常事务、如何与弟子们互动。</p>
+    </div>
+
+    <!-- 章节列表 -->
+    <div class="card">
+      <h2 style="color:var(--primary);margin-bottom:1.5rem;">📖 核心内容</h2>
+      {chapters.map(chapter => (
+        <div class="chapter-card" style="border:1px solid var(--border);border-radius:8px;padding:1rem;margin-bottom:1rem;cursor:pointer;">
+          <h4 style="margin:0;">{chapter.title} <span style="float:right;color:var(--text-muted);">▼</span></h4>
+          <p class="summary" style="color:var(--text-muted);margin-top:0.5rem;">{chapter.summary}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- 经典语录 -->
+    <div class="card">
+      <h2 style="color:var(--primary);margin-bottom:1rem;">💎 经典语录</h2>
+      <div class="quote-box" style="background:var(--card-bg);border-left:4px solid var(--primary);padding:1rem;margin-bottom:1rem;">
+        <p style="margin:0;">"每一个生命都值得尊重，因为它们都是真我的显现。"</p>
+        <cite style="color:var(--text-muted);font-size:0.9rem;">—— 马哈希</cite>
+      </div>
+      <div class="quote-box" style="background:var(--card-bg);border-left:4px solid var(--primary);padding:1rem;margin-bottom:1rem;">
+        <p style="margin:0;">"在日常琐事中保持觉知，这就是最高的修行。"</p>
+        <cite style="color:var(--text-muted);font-size:0.9rem;">—— 马哈希</cite>
+      </div>
+      <div class="quote-box" style="background:var(--card-bg);border-left:4px solid var(--primary);padding:1rem;margin-bottom:1rem;">
+        <p style="margin:0;">"简单的生活，清明的心智。"</p>
+        <cite style="color:var(--text-muted);font-size:0.9rem;">—— 马哈希</cite>
+      </div>
+      <div class="quote-box" style="background:var(--card-bg);border-left:4px solid var(--primary);padding:1rem;">
+        <p style="margin:0;">"不要寻找伟大的体验，在日常中找到伟大。"</p>
+        <cite style="color:var(--text-muted);font-size:0.9rem;">—— 马哈希</cite>
+      </div>
+    </div>
+
+    <!-- 相关概念 -->
+    <div class="card">
+      <h2 style="color:var(--primary);margin-bottom:1rem;">🔗 相关概念</h2>
+      <div class="concept-tags">
+        <a href="/concepts/silence" class="tag">静默</a>
+        <a href="/concepts/atman" class="tag">真我</a>
+        <a href="/concepts/grace" class="tag">恩典</a>
+        <a href="/concepts/surrender" class="tag">臣服</a>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <p>拉玛那·马哈希知识库 | 传承自印度阿鲁那佳拉圣山</p>
+    </footer>
+  </main>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll('.chapter-card').forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('expanded');
+    });
+  });
+</script>
+
+<style>
+  .chapter-card.expanded .summary {
+    display: none;
+  }
+</style>
