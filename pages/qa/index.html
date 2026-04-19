@@ -287,42 +287,63 @@
             if (e.key === 'Escape') document.getElementById('sidebar').classList.remove('open');
         });
 
-        // 从所有qa页面加载数据
+        // 从所有qa页面加载数据（并行加载）
         async function loadAllQa() {
             const qaList = document.getElementById('qaList');
-            qaList.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--text2);"><p>正在加载问答内容...</p></div>';
+            qaList.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--text2);"><p>正在加载问答内容...</p><p id="loadProgress" style="font-size:12px;margin-top:8px;">0 / 39</p></div>';
             
             allQaItems = [];
+            let loadedCount = 0;
+            const progressEl = document.getElementById('loadProgress');
             
+            // 并行加载所有文件
+            const loadPromises = [];
             for (let i = 1; i <= totalPages; i++) {
-                try {
-                    const response = await fetch(`qa-${i}.html`);
-                    if (!response.ok) continue;
-                    
-                    const html = await response.text();
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(html, 'text/html');
-                    
-                    // 提取所有qa-item
-                    const items = doc.querySelectorAll('.qa-item');
-                    items.forEach(item => {
-                        const questionEl = item.querySelector('.qa-q');
-                        const answerEl = item.querySelector('.qa-a');
-                        const metaEl = item.querySelector('.qa-meta');
+                const promise = fetch(`qa-${i}.html`)
+                    .then(response => {
+                        loadedCount++;
+                        if (progressEl) progressEl.textContent = `${loadedCount} / ${totalPages}`;
+                        if (!response.ok) return null;
+                        return response.text();
+                    })
+                    .then(html => {
+                        if (!html) return;
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(html, 'text/html');
                         
-                        if (questionEl && answerEl) {
-                            allQaItems.push({
-                                question: questionEl.innerHTML,
-                                answer: answerEl.innerHTML,
-                                meta: metaEl ? metaEl.textContent : '',
-                                category: item.getAttribute('data-category') || '其他'
-                            });
-                        }
+                        // 提取所有qa-item
+                        const items = doc.querySelectorAll('.qa-item');
+                        const pageItems = [];
+                        items.forEach(item => {
+                            const questionEl = item.querySelector('.qa-q');
+                            const answerEl = item.querySelector('.qa-a');
+                            const metaEl = item.querySelector('.qa-meta');
+                            
+                            if (questionEl && answerEl) {
+                                pageItems.push({
+                                    question: questionEl.innerHTML,
+                                    answer: answerEl.innerHTML,
+                                    meta: metaEl ? metaEl.textContent : '',
+                                    category: item.getAttribute('data-category') || '其他'
+                                });
+                            }
+                        });
+                        return pageItems;
+                    })
+                    .catch(e => {
+                        loadedCount++;
+                        if (progressEl) progressEl.textContent = `${loadedCount} / ${totalPages}`;
+                        console.error(`加载 qa-${i}.html 失败:`, e);
+                        return [];
                     });
-                } catch (e) {
-                    console.error(`加载 qa-${i}.html 失败:`, e);
-                }
+                loadPromises.push(promise);
             }
+            
+            // 等待所有加载完成
+            const results = await Promise.all(loadPromises);
+            results.forEach(pageItems => {
+                if (pageItems) allQaItems.push(...pageItems);
+            });
             
             // 更新统计
             document.getElementById('totalQaCount').textContent = allQaItems.length + '+';
@@ -331,7 +352,7 @@
             // 初始化显示
             filteredItems = [...allQaItems];
             initPagination();
-            showPage(1);
+            showPage(currentPage);
         }
 
         // 初始化分页
