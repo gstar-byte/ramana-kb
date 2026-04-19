@@ -133,6 +133,49 @@ def extract_qa_simple(filepath):
     
     return items
 
+# 文件来源映射表
+SOURCE_MAP = {
+    'qa-1.html': '《走向静默，如你本来》',
+    'qa-2.html': '《回到你心中》',
+    'qa-3.html': '《回到你心中》',
+    'qa-4.html': '《以言传意》',
+    'qa-5.html': '《以言传意》',
+    'qa-6.html': '《宝钻集》',
+    'qa-7.html': '《宝钻集》',
+    'qa-8.html': '《对谈录》',
+    'qa-9.html': '《对谈录》',
+    'qa-10.html': '《日日与彼》',
+    'qa-11.html': '《日日与彼》',
+    'qa-12.html': '《日日与彼》',
+    'qa-13.html': '《面对面》',
+    'qa-14.html': '《面对面》',
+    'qa-15.html': '《秘密印度》',
+    'qa-16.html': '《圣者》',
+    'qa-17.html': '《马哈希福音》',
+    'qa-18.html': '《大瑜伽》',
+    'qa-19.html': '《上师言颂》',
+    'qa-20.html': '《时代中的永恒》',
+    'qa-21.html': '《反思录》',
+    'qa-22.html': '《灵性故事》',
+    'qa-23.html': '《超越爱与恩典》',
+    'qa-24.html': '《桌边碎语》',
+    'qa-25.html': '《桌边碎语》',
+    'qa-26.html': '《全集》',
+    'qa-27.html': '《全集》',
+    'qa-28.html': '《全集》',
+    'qa-29.html': '《时代中的永恒》',
+    'qa-30.html': '《桌边碎语》',
+    'qa-31.html': '《桌边碎语》',
+    'qa-32.html': '《桌边碎语》',
+    'qa-33.html': '《超越爱与恩典》',
+    'qa-34.html': '《超越爱与恩典》',
+    'qa-35.html': '《超越爱与恩典》',
+    'qa-36.html': '《超越爱与恩典》',
+    'qa-37.html': '《超越爱与恩典》',
+    'qa-38.html': '《超越爱与恩典》',
+    'qa-39.html': '《超越爱与恩典》',
+}
+
 def main():
     qa_dir = os.path.dirname(os.path.abspath(__file__))
     all_items = []
@@ -143,8 +186,15 @@ def main():
     for filepath in qa_files:
         filename = os.path.basename(filepath)
         items = extract_qa_simple(filepath)
+        
+        # 为每个item添加来源
+        source = SOURCE_MAP.get(filename, '拉玛那马哈希教导')
+        for item in items:
+            if not item.get('meta'):
+                item['meta'] = f'来源：{source}'
+        
         all_items.extend(items)
-        print(f'✓ {filename}: {len(items)} 条')
+        print(f'✓ {filename}: {len(items)} 条 ({source})')
     
     # 保存为JSON
     output_path = os.path.join(qa_dir, 'qa-data.json')
