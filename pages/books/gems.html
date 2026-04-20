@@ -271,17 +271,20 @@
                 </div>
                 
                 <!-- 相关概念 -->
+                
+                
+                                <!-- 相关书籍 -->
                 <div class="card">
-                    <h2 style="color:var(--primary);margin-bottom:1rem;">🔗 相关概念</h2>
+                    <h2 style="color:var(--primary);margin-bottom:1rem;">📚 相关书籍</h2>
                     <div class="concept-tags">
-                        <a href="../concepts/atman.html" class="tag">🔮 真我/Atman</a>
-                        <a href="../concepts/heart.html" class="tag">💖 本心/Hrdaya</a>
-                        <a href="../concepts/whoami.html" class="tag">🔍 "我是谁？"</a>
-                        <a href="../concepts/jnana.html" class="tag">🛤️ 参究法</a>
-                        <a href="../concepts/silence.html" class="tag">🤫 静默/Silence</a>
-                        <a href="../concepts/surrender.html" class="tag">🙏 臣服/Surrender</a>
+                        <a href="be-as-you-are.html" class="tag">📖 走向静默，如你本来</a>
+                        <a href="talks.html" class="tag">💬 对谈录</a>
+                        <a href="day-by-day.html" class="tag">📅 日日与彼</a>
                     </div>
                 </div>
+                
+
+                
                 
                 <!-- 下载链接 -->
                 <div class="card">
@@ -297,28 +300,6 @@
             </footer>
         </main>
     </div>
-    
-    <script>
-        document.querySelectorAll('.sidebar-section-title').forEach(title => {
-            title.addEventListener('click', () => title.parentElement.classList.toggle('collapsed'));
-        });
-        function toggleSidebar() {
-            const s = document.getElementById('sidebar');
-            const o = document.getElementById('sidebarOverlay');
-            s.classList.toggle('open');
-            if (o) o.classList.toggle('open');
-        }
-        
-        // 键盘快捷键
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') document.getElementById('sidebar').classList.remove('open');
-            // Ctrl+K 聚焦搜索
-            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-                e.preventDefault();
-                document.getElementById('search-input')?.focus();
-            }
-        });
-    </script>
     <script src="../search.js"></script>
 
     <script>

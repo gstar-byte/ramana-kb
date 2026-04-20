@@ -243,37 +243,30 @@
                 </div>
                 
                 <!-- 相关概念 -->
+                
+            
+                
+                <!-- 相关书籍 -->
                 <div class="card">
-                    <h2 style="color:var(--primary);margin-bottom:1.5rem;">🔗 相关概念</h2>
+                    <h2 style="color:var(--primary);margin-bottom:1rem;">📚 相关书籍</h2>
                     <div class="concept-tags">
-                        <a href="../concepts/silence.html" class="concept-tag">静默</a>
-                        <a href="../concepts/grace.html" class="concept-tag">恩典</a>
-                        <a href="../concepts/awareness.html" class="concept-tag">觉知</a>
-                        <a href="../concepts/presence.html" class="concept-tag">临在</a>
-                        <a href="../concepts/surrender.html" class="concept-tag">臣服</a>
-                        <a href="../persons/ramana.html" class="concept-tag">马哈希</a>
+                        <a href="day-by-day.html" class="tag">📅 日日与彼</a>
+                        <a href="talks.html" class="tag">💬 对谈录</a>
+                        <a href="gems.html" class="tag">💎 宝钻集</a>
                     </div>
                 </div>
-            </div>
+                
+                <!-- 源文档 -->
+                <div class="card">
+                    <h2 style="color:var(--primary);margin-bottom:1rem;">📥 源文档</h2>
+                    <div class="concept-tags">
+                        <a href="../pdf_content/face_to_face.txt" class="tag" download>📄 Face to Face with Sri Ramana Maharshi 原文 (TXT)</a>
+                    </div>
+                </div></div>
 
 
         </main>
     </div>
-    
-    <script>
-        function toggleSidebar() {
-            const s = document.getElementById('sidebar');
-            const o = document.getElementById('sidebarOverlay');
-            s.classList.toggle('open');
-            if (o) o.classList.toggle('open');
-        }
-        document.querySelectorAll('.sidebar-section-title').forEach(title => {
-            title.addEventListener('click', () => title.parentElement.classList.toggle('collapsed'));
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') document.getElementById('sidebar').classList.remove('open');
-        });
-    </script>
 <script src="../script.js"></script>
 </body>
 </html>

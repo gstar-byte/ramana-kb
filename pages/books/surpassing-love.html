@@ -293,11 +293,11 @@
                     <section class="book-related">
                         <h2>🔗 相关概念</h2>
                         <div class="concept-tags">
-                            <a href="../concepts/grace.html" class="concept-tag">恩典</a>
-                            <a href="../concepts/surrender.html" class="concept-tag">臣服</a>
-                            <a href="../concepts/atman.html" class="concept-tag">真我</a>
-                            <a href="../concepts/silence.html" class="concept-tag">静默</a>
-                            <a href="../concepts/guru.html" class="concept-tag">上师</a>
+                            <a href="../concepts/grace.html" class="tag">✨ 恩典</a>
+                            <a href="../concepts/surrender.html" class="tag">🙏 臣服</a>
+                            <a href="../concepts/atman.html" class="tag">🔮 真我</a>
+                            <a href="../concepts/silence.html" class="tag">🤫 静默</a>
+                            <a href="../concepts/guru.html" class="tag">👆 上师</a>
                         </div>
                     </section>
 
@@ -314,30 +314,6 @@
             </footer>
         </main>
     </div>
-    
-    <script>
-        document.querySelectorAll('.sidebar-section-title').forEach(title => {
-            title.addEventListener('click', () => title.parentElement.classList.toggle('collapsed'));
-        });
-        function toggleSidebar() {
-            const s = document.getElementById('sidebar');
-            const o = document.getElementById('sidebarOverlay');
-            s.classList.toggle('open');
-            if (o) o.classList.toggle('open');
-        }
-        
-        // 章节展开功能
-        document.querySelectorAll('.chapter-card').forEach(card => {
-            card.querySelector('h4').addEventListener('click', () => {
-                card.classList.toggle('expanded');
-            });
-        });
-        
-        // 键盘快捷键
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') document.getElementById('sidebar').classList.remove('open');
-        });
-    </script>
 
     <script>
     if ('serviceWorker' in navigator) {

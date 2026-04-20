@@ -242,15 +242,20 @@
                 </div>
 
                 <!-- 相关概念 -->
+                
+
+                                <!-- 相关书籍 -->
                 <div class="card">
-                    <h2 style="color:var(--primary);margin-bottom:1rem;">🔗 相关概念</h2>
+                    <h2 style="color:var(--primary);margin-bottom:1rem;">📚 相关书籍</h2>
                     <div class="concept-tags">
-                        <a href="../concepts/atman.html" class="tag">🔮 真我</a>
-                        <a href="../concepts/silence.html" class="tag">🤫 静默</a>
-                        <a href="../concepts/grace.html" class="tag">✨ 恩典</a>
-                        <a href="../concepts/guru.html" class="tag">👆 上师</a>
+                        <a href="be-as-you-are.html" class="tag">📖 走向静默，如你本来</a>
+                        <a href="reflections.html" class="tag">💭 反思录</a>
+                        <a href="surpassing-love.html" class="tag">💝 超越爱与恩典</a>
                     </div>
                 </div>
+                
+
+                
 
                 <!-- 下载链接 -->
                 <div class="card">
@@ -266,23 +271,6 @@
             </footer>
         </main>
     </div>
-    
-    <script>
-        document.querySelectorAll('.sidebar-section-title').forEach(title => {
-            title.addEventListener('click', () => title.parentElement.classList.toggle('collapsed'));
-        });
-        function toggleSidebar() {
-            const s = document.getElementById('sidebar');
-            const o = document.getElementById('sidebarOverlay');
-            s.classList.toggle('open');
-            if (o) o.classList.toggle('open');
-        }
-        
-        // 键盘快捷键
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') document.getElementById('sidebar').classList.remove('open');
-        });
-    </script>
 
     <script>
     if ('serviceWorker' in navigator) {

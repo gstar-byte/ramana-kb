@@ -171,9 +171,11 @@
                     </div>
                 </div>
 
-                <div class="card" style="display:flex;justify-content:space-between;">
-                    <a href="timeless-ch2.html" class="btn-secondary">← 第二章</a>
-                    <a href="timeless-ch4.html" class="btn-primary">第四章：静修院的发展 →</a>
+                <div class="card">
+                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                        <a href="timeless-ch2.html" class="btn-secondary">← 上一章</a>
+                        <a href="timeless-ch4.html" class="btn-primary">下一章 →</a>
+                    </div>
                 </div>
             </div>
 
@@ -182,18 +184,6 @@
             </footer>
         </main>
     </div>
-    
-    <script>
-        document.querySelectorAll('.sidebar-section-title').forEach(title => {
-            title.addEventListener('click', () => title.parentElement.classList.toggle('collapsed'));
-        });
-        function toggleSidebar() {
-            const s = document.getElementById('sidebar');
-            const o = document.getElementById('sidebarOverlay');
-            s.classList.toggle('open');
-            if (o) o.classList.toggle('open');
-        }
-    </script>
 
     <script>
     if ('serviceWorker' in navigator) {

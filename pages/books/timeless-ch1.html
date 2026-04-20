@@ -175,9 +175,11 @@
                     </div>
                 </div>
 
-                <div class="card" style="display:flex;justify-content:space-between;">
-                    <span style="color:var(--text-muted);">← 第一章（共六章）</span>
-                    <a href="timeless-ch2.html" class="btn-primary">第二章：与独立运动 →</a>
+                <div class="card">
+                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                        <span style="color:var(--text-muted);">时代中的永恒</span>
+                        <a href="timeless-ch2.html" class="btn-primary">下一章 →</a>
+                    </div>
                 </div>
             </div>
 
@@ -186,21 +188,6 @@
             </footer>
         </main>
     </div>
-    
-    <script>
-        document.querySelectorAll('.sidebar-section-title').forEach(title => {
-            title.addEventListener('click', () => title.parentElement.classList.toggle('collapsed'));
-        });
-        function toggleSidebar() {
-            const s = document.getElementById('sidebar');
-            const o = document.getElementById('sidebarOverlay');
-            s.classList.toggle('open');
-            if (o) o.classList.toggle('open');
-        }
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') document.getElementById('sidebar').classList.remove('open');
-        });
-    </script>
 
     <script>
     if ('serviceWorker' in navigator) {
