@@ -3,13 +3,13 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/:path*/",
-      "destination": "/:path*/index.html",
+      "source": "/(qa|methods|concepts|books|persons)",
+      "destination": "/:1/",
       "permanent": true
     },
     {
-      "source": "/(qa|methods|concepts|books|persons)",
-      "destination": "/:1/index.html",
+      "source": "/:path*/",
+      "destination": "/:path*/index.html",
       "permanent": true
     },
     {
