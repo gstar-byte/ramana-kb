@@ -13,16 +13,10 @@ EXCLUDE_FILES = {"_template.html", "sitemap.html"}
 
 
 def get_url_path(filepath):
-    """将文件路径转换为URL路径（与 og:url 一致）"""
+    """将文件路径转换为URL路径（与实际可访问的链接一致）"""
     rel = os.path.relpath(filepath, PAGES_DIR).replace(os.sep, "/")
     
-    if rel.endswith(".html"):
-        rel = rel[:-5]
-    
-    if rel.endswith("/index"):
-        rel = rel[:-6] or "/"
-    
-    if rel == "" or rel == "/":
+    if rel == "index.html":
         return "/"
     
     if not rel.startswith("/"):
