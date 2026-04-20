@@ -46,12 +46,12 @@ def add_canonical():
                 url_path = get_url_path(fpath)
                 full_url = BASE_URL + url_path
                 new_canonical = f'<link rel="canonical" href="{full_url}">'
+                new_og_url = f'<meta property="og:url" content="{full_url}">'
                 
-                # 检查是否已有 canonical
+                # 更新 canonical 标签
                 has_canonical = bool(re.search(r'<link\s+rel=["\']canonical["\']', content))
                 
                 if has_canonical:
-                    # 更新已有的 canonical
                     content = re.sub(
                         r'<link\s+rel=["\']canonical["\'][^>]*>',
                         new_canonical,
@@ -61,8 +61,6 @@ def add_canonical():
                     action = "updated"
                     updated += 1
                 else:
-                    # 在 robots meta 后插入 canonical（或 </title> 之后）
-                    # 策略：找 <meta name="robots"，在其后插入
                     robots_match = re.search(r'(<meta[^>]*name=["\']robots["\'][^>]*>)', content)
                     if robots_match:
                         insert_pos = robots_match.end()
@@ -70,7 +68,6 @@ def add_canonical():
                         action = "added (after robots)"
                         added += 1
                     else:
-                        # 备选：在 </title> 或第一个 meta 后插入
                         title_match = re.search(r'(</title>)', content)
                         if title_match:
                             insert_pos = title_match.end()
@@ -80,6 +77,14 @@ def add_canonical():
                         else:
                             skipped += 1
                             continue
+                
+                # 更新 og:url 标签
+                content = re.sub(
+                    r'<meta\s+property=["\']og:url["\'][^>]*>',
+                    new_og_url,
+                    content,
+                    flags=re.IGNORECASE
+                )
                 
                 with open(fpath, "w", encoding="utf-8") as f:
                     f.write(content)
