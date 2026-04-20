@@ -318,36 +318,7 @@
         </main>
     </div>
     
-    <script>
-        // 侧边栏折叠功能
-        document.querySelectorAll('.sidebar-section-title').forEach(title => {
-            title.addEventListener('click', () => {
-                title.parentElement.classList.toggle('collapsed');
-            });
-        });
-        
-        // 移动端菜单切换
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebarOverlay');
-            sidebar.classList.toggle('open');
-            if (overlay) overlay.classList.toggle('open');
-        }
-        
-        // 键盘快捷键
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') document.getElementById('sidebar').classList.remove('open');
-        });
-        
-        // PWA 注册
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js')
-                    .then(reg => console.log('SW registered'))
-                    .catch(err => console.log('SW registration failed'));
-            });
-        }
-    </script>
+    
     
     <script>
         // 搜索数据索引

@@ -217,22 +217,6 @@
             </footer>
         </main>
     </div>
-    
-    <script>
-        document.querySelectorAll('.sidebar-section-title').forEach(title => {
-            title.addEventListener('click', () => title.parentElement.classList.toggle('collapsed'));
-        });
-        function toggleSidebar() {
-            const s = document.getElementById('sidebar');
-            const o = document.getElementById('sidebarOverlay');
-            s.classList.toggle('open');
-            if (o) o.classList.toggle('open');
-        }
-        
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') document.getElementById('sidebar').classList.remove('open');
-        });
-    </script>
 
     <script>
     if ('serviceWorker' in navigator) {

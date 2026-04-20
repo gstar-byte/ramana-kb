@@ -244,15 +244,6 @@
             <footer class="site-footer"><p>拉玛那马哈希Space | <a href="index.html">← 返回概念</a></p></footer>
         </main>
     </div>
-    <script>
-        document.querySelectorAll('.sidebar-section-title').forEach(t => t.addEventListener('click', () => t.parentElement.classList.toggle('collapsed')));
-        function toggleSidebar() {
-            const s = document.getElementById('sidebar');
-            const o = document.getElementById('sidebarOverlay');
-            s.classList.toggle('open');
-            if (o) o.classList.toggle('open');
-        }
-    </script>
 
     <script>
     if ('serviceWorker' in navigator) {
