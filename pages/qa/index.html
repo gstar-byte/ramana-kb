@@ -190,7 +190,135 @@
             </div>
         </main>
     </div>
-    
-    
+
+    <script src="../script.js"></script>
+    <script>
+        // ===== QA 数据加载系统 =====
+        let allQaItems = [];
+        let currentPage = 1;
+        const itemsPerPage = 12;
+        let currentCategory = 'all';
+
+        const categoryKeywords = {
+            '真我': ['真我'],
+            '心智': ['心智', 'mind', '念头', '思维'],
+            '参究': ['参究', '我是谁', 'who am i'],
+            '静默': ['静默', 'silence', '沉默'],
+            '恩典': ['恩典', 'grace'],
+            '三摩地': ['三摩地', 'samadhi', '禅定'],
+            '日常': ['日常', '生活', '工作', 'work']
+        };
+
+        function filterItems(category) {
+            if (category === 'all') return allQaItems;
+            const keywords = categoryKeywords[category] || [category];
+            return allQaItems.filter(item => {
+                const q = (item.question || '').toLowerCase();
+                return keywords.some(kw => q.includes(kw.toLowerCase()));
+            });
+        }
+
+        function renderPage(items, page) {
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageItems = items.slice(start, end);
+            const qaList = document.getElementById('qaList');
+
+            if (pageItems.length === 0) {
+                qaList.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--text2);"><p>该分类下暂无问答</p></div>';
+                return;
+            }
+
+            qaList.innerHTML = pageItems.map(item => `
+                <div class="qa-item">
+                    <div class="qa-q">❓ ${item.question || ''}</div>
+                    <div class="qa-a">${item.answer || ''}</div>
+                    ${item.source ? `<div style="margin-top:0.5rem;font-size:12px;color:var(--text2);">— ${item.source}</div>` : ''}
+                </div>
+            `).join('');
+        }
+
+        function renderPagination(items) {
+            const totalPages = Math.ceil(items.length / itemsPerPage);
+            const pagination = document.getElementById('pagination');
+            const pageInfo = document.getElementById('pageInfo');
+            const pageSelect = document.getElementById('pageSelect');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            if (totalPages <= 1) {
+                pagination.style.display = 'none';
+                return;
+            }
+            pagination.style.display = 'flex';
+            pageInfo.textContent = `第 ${currentPage} / ${totalPages} 页`;
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === totalPages;
+
+            pageSelect.innerHTML = '';
+            for (let i = 1; i <= totalPages; i++) {
+                const opt = document.createElement('option');
+                opt.value = i;
+                opt.textContent = `跳转到第 ${i} 页`;
+                if (i === currentPage) opt.selected = true;
+                pageSelect.appendChild(opt);
+            }
+        }
+
+        function showCategory(category) {
+            currentCategory = category;
+            currentPage = 1;
+            const filtered = filterItems(category);
+            renderPage(filtered, currentPage);
+            renderPagination(filtered);
+        }
+
+        window.changePage = function(delta) {
+            const filtered = filterItems(currentCategory);
+            const totalPages = Math.ceil(filtered.length / itemsPerPage);
+            currentPage = Math.max(1, Math.min(totalPages, currentPage + delta));
+            renderPage(filtered, currentPage);
+            renderPagination(filtered);
+            window.scrollTo(0, 0);
+        };
+
+        window.goToPage = function(page) {
+            const filtered = filterItems(currentCategory);
+            const totalPages = Math.ceil(filtered.length / itemsPerPage);
+            currentPage = Math.max(1, Math.min(totalPages, parseInt(page)));
+            renderPage(filtered, currentPage);
+            renderPagination(filtered);
+            window.scrollTo(0, 0);
+        };
+
+        // 加载 QA 数据
+        fetch('qa-data.json')
+            .then(r => r.json())
+            .then(data => {
+                allQaItems = data;
+                const countEl = document.getElementById('totalQaCount');
+                if (countEl) countEl.textContent = data.length;
+                showCategory('all');
+            })
+            .catch(err => {
+                document.getElementById('qaList').innerHTML =
+                    '<div style="text-align:center;padding:3rem;color:var(--text2);"><p>⚠️ 问答数据加载失败，请刷新页面重试</p></div>';
+                console.error('QA load error:', err);
+            });
+
+        // 分类按钮点击
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                showCategory(this.dataset.category);
+            });
+        });
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('../sw.js');
+        }
+    </script>
+    <script src="../pwa-analytics.js"></script>
 </body>
 </html>
