@@ -7,22 +7,16 @@ import os
 import re
 
 BASE_URL = "https://ramanamaharshi.space"
-PAGES_DIR = "c:/Users/willp/WorkBuddy/20260410104230/pages"
+PAGES_DIR = "/workspace/pages"
 
 EXCLUDE_FILES = {"_template.html", "sitemap.html"}
 
 
 def get_url_path(filepath):
-    """将文件路径转换为URL路径"""
+    """将文件路径转换为URL路径（与实际可访问的链接一致）"""
     rel = os.path.relpath(filepath, PAGES_DIR).replace(os.sep, "/")
     
-    if rel.endswith(".html"):
-        rel = rel[:-5]
-    
-    if rel.endswith("/index"):
-        rel = rel[:-6] or "/"
-    
-    if rel == "" or rel == "/":
+    if rel == "index.html":
         return "/"
     
     if not rel.startswith("/"):
@@ -52,12 +46,12 @@ def add_canonical():
                 url_path = get_url_path(fpath)
                 full_url = BASE_URL + url_path
                 new_canonical = f'<link rel="canonical" href="{full_url}">'
+                new_og_url = f'<meta property="og:url" content="{full_url}">'
                 
-                # 检查是否已有 canonical
+                # 更新 canonical 标签
                 has_canonical = bool(re.search(r'<link\s+rel=["\']canonical["\']', content))
                 
                 if has_canonical:
-                    # 更新已有的 canonical
                     content = re.sub(
                         r'<link\s+rel=["\']canonical["\'][^>]*>',
                         new_canonical,
@@ -67,8 +61,6 @@ def add_canonical():
                     action = "updated"
                     updated += 1
                 else:
-                    # 在 robots meta 后插入 canonical（或 </title> 之后）
-                    # 策略：找 <meta name="robots"，在其后插入
                     robots_match = re.search(r'(<meta[^>]*name=["\']robots["\'][^>]*>)', content)
                     if robots_match:
                         insert_pos = robots_match.end()
@@ -76,7 +68,6 @@ def add_canonical():
                         action = "added (after robots)"
                         added += 1
                     else:
-                        # 备选：在 </title> 或第一个 meta 后插入
                         title_match = re.search(r'(</title>)', content)
                         if title_match:
                             insert_pos = title_match.end()
@@ -86,6 +77,59 @@ def add_canonical():
                         else:
                             skipped += 1
                             continue
+                
+                # 更新 og:url 标签
+                content = re.sub(
+                    r'<meta\s+property=["\']og:url["\'][^>]*>',
+                    new_og_url,
+                    content,
+                    flags=re.IGNORECASE
+                )
+                
+                # 更新 JSON-LD 中的 URL - 需要智能匹配处理
+                # 1. 处理 BreadcrumbList 中的 item URL
+                # 2. 处理其他类型（如 Book, WebPage 等）中的 url 字段
+                # 我们需要更新所有可能的目录 URL 模式
+                
+                # 先定义所有需要更新的目录 URL 映射
+                # 把不带 index.html 的目录 URL → 带 index.html 的目录 URL
+                directory_urls = {
+                    "/books": "/books/index.html",
+                    "/concepts": "/concepts/index.html",
+                    "/methods": "/methods/index.html",
+                    "/qa": "/qa/index.html",
+                    "/persons": "/persons/index.html"
+                }
+                
+                # 替换所有可能的旧 URL 模式
+                for old_dir, new_dir in directory_urls.items():
+                    old_full = BASE_URL + old_dir
+                    new_full = BASE_URL + new_dir
+                    # 替换 JSON-LD 中的 url 或 item 字段
+                    content = re.sub(
+                        rf'"url"\s*:\s*"{re.escape(old_full)}"',
+                        f'"url": "{new_full}"',
+                        content
+                    )
+                    content = re.sub(
+                        rf'"item"\s*:\s*"{re.escape(old_full)}"',
+                        f'"item": "{new_full}"',
+                        content
+                    )
+                
+                # 现在处理当前页面对应的旧 URL（不带 html 后缀）
+                if not url_path.endswith("/index.html") and url_path != "/":
+                    old_page_url = BASE_URL + url_path[:-5]  # 去掉 .html
+                    content = re.sub(
+                        rf'"url"\s*:\s*"{re.escape(old_page_url)}"',
+                        f'"url": "{full_url}"',
+                        content
+                    )
+                    content = re.sub(
+                        rf'"item"\s*:\s*"{re.escape(old_page_url)}"',
+                        f'"item": "{full_url}"',
+                        content
+                    )
                 
                 with open(fpath, "w", encoding="utf-8") as f:
                     f.write(content)
