@@ -86,6 +86,51 @@ def add_canonical():
                     flags=re.IGNORECASE
                 )
                 
+                # 更新 JSON-LD 中的 URL - 需要智能匹配处理
+                # 1. 处理 BreadcrumbList 中的 item URL
+                # 2. 处理其他类型（如 Book, WebPage 等）中的 url 字段
+                # 我们需要更新所有可能的目录 URL 模式
+                
+                # 先定义所有需要更新的目录 URL 映射
+                # 把不带 index.html 的目录 URL → 带 index.html 的目录 URL
+                directory_urls = {
+                    "/books": "/books/index.html",
+                    "/concepts": "/concepts/index.html",
+                    "/methods": "/methods/index.html",
+                    "/qa": "/qa/index.html",
+                    "/persons": "/persons/index.html"
+                }
+                
+                # 替换所有可能的旧 URL 模式
+                for old_dir, new_dir in directory_urls.items():
+                    old_full = BASE_URL + old_dir
+                    new_full = BASE_URL + new_dir
+                    # 替换 JSON-LD 中的 url 或 item 字段
+                    content = re.sub(
+                        rf'"url"\s*:\s*"{re.escape(old_full)}"',
+                        f'"url": "{new_full}"',
+                        content
+                    )
+                    content = re.sub(
+                        rf'"item"\s*:\s*"{re.escape(old_full)}"',
+                        f'"item": "{new_full}"',
+                        content
+                    )
+                
+                # 现在处理当前页面对应的旧 URL（不带 html 后缀）
+                if not url_path.endswith("/index.html") and url_path != "/":
+                    old_page_url = BASE_URL + url_path[:-5]  # 去掉 .html
+                    content = re.sub(
+                        rf'"url"\s*:\s*"{re.escape(old_page_url)}"',
+                        f'"url": "{full_url}"',
+                        content
+                    )
+                    content = re.sub(
+                        rf'"item"\s*:\s*"{re.escape(old_page_url)}"',
+                        f'"item": "{full_url}"',
+                        content
+                    )
+                
                 with open(fpath, "w", encoding="utf-8") as f:
                     f.write(content)
                 
