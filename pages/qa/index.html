@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -190,135 +190,348 @@
             </div>
         </main>
     </div>
-
-    <script src="../script.js"></script>
+    
     <script>
-        // ===== QA 数据加载系统 =====
-        let allQaItems = [];
-        let currentPage = 1;
+        // 配置
         const itemsPerPage = 12;
-        let currentCategory = 'all';
-
-        const categoryKeywords = {
-            '真我': ['真我'],
-            '心智': ['心智', 'mind', '念头', '思维'],
-            '参究': ['参究', '我是谁', 'who am i'],
-            '静默': ['静默', 'silence', '沉默'],
-            '恩典': ['恩典', 'grace'],
-            '三摩地': ['三摩地', 'samadhi', '禅定'],
-            '日常': ['日常', '生活', '工作', 'work']
-        };
-
-        function filterItems(category) {
-            if (category === 'all') return allQaItems;
-            const keywords = categoryKeywords[category] || [category];
-            return allQaItems.filter(item => {
-                const q = (item.question || '').toLowerCase();
-                return keywords.some(kw => q.includes(kw.toLowerCase()));
-            });
+        const totalPages = 39;  // 加载所有39个QA文件
+        let currentPage = 1;
+        let currentFilter = 'all';
+        let allQaItems = [];
+        let filteredItems = [];
+        
+        // 从URL获取参数
+        function getUrlParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                page: parseInt(params.get('page')) || 1,
+                filter: params.get('filter') || 'all'
+            };
+        }
+        
+        // 更新URL参数
+        function updateUrlParams(page, filter) {
+            const params = new URLSearchParams();
+            if (page > 1) params.set('page', page);
+            if (filter && filter !== 'all') params.set('filter', filter);
+            const newUrl = params.toString() 
+                ? `${window.location.pathname}?${params.toString()}`
+                : window.location.pathname;
+            window.history.replaceState({}, '', newUrl);
+        }
+        
+        // 更新SEO标题和描述
+        function updateSEO(page, filter, totalItems) {
+            const filterNames = {
+                'all': '全部',
+                '真我': '真我',
+                '心智': '心智',
+                '参究': '参究',
+                '静默': '静默',
+                '恩典': '恩典',
+                '奉爱': '奉爱',
+                '三摩地': '三摩地',
+                '日常': '日常',
+                '世界': '世界',
+                '解脱': '解脱'
+            };
+            
+            const filterText = filterNames[filter] || '';
+            const pageText = page > 1 ? `第${page}页` : '';
+            const baseTitle = '精选问答343则 | 拉玛那马哈希灵性对话精编指南详解 | 拉玛那马哈希知识库';
+            const baseDesc = '拉玛那马哈希精选问答343则，涵盖真我、心智、参究、奉爱、静默、恩典、三摩地、日常、世界、解脱等核心主题，助您深入理解这位伟大灵性导师的教示精髓与修行智慧。';
+            
+            let title = baseTitle;
+            let desc = baseDesc;
+            
+            if (filterText && filterText !== '全部') {
+                title = `${filterText}主题问答 | ${baseTitle}`;
+                desc = `探索拉玛那马哈希关于${filterText}的教导，${desc}`;
+            }
+            if (pageText) {
+                title = `${pageText} - ${title}`;
+            }
+            
+            document.title = title;
+            
+            // 更新meta描述
+            const metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) metaDesc.content = desc;
+            
+            // 更新og标签
+            const ogTitle = document.querySelector('meta[property="og:title"]');
+            const ogDesc = document.querySelector('meta[property="og:description"]');
+            if (ogTitle) ogTitle.content = title;
+            if (ogDesc) ogDesc.content = desc;
+            
+            // 更新canonical URL
+            const canonical = document.querySelector('link[rel="canonical"]');
+            if (canonical) {
+                const params = new URLSearchParams();
+                if (page > 1) params.set('page', page);
+                if (filter && filter !== 'all') params.set('filter', filter);
+                const url = params.toString()
+                    ? `https://ramanamaharshi.space/qa/index.html?${params.toString()}`
+                    : 'https://ramanamaharshi.space/qa/index.html';
+                canonical.href = url;
+            }
         }
 
-        function renderPage(items, page) {
-            const start = (page - 1) * itemsPerPage;
-            const end = start + itemsPerPage;
-            const pageItems = items.slice(start, end);
+        // 侧边栏折叠
+        document.querySelectorAll('.sidebar-section-title').forEach(title => {
+            title.addEventListener('click', () => title.parentElement.classList.toggle('collapsed'));
+        });
+        function toggleSidebar() { 
+            document.getElementById('sidebar').classList.toggle('open'); 
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') document.getElementById('sidebar').classList.remove('open');
+        });
+
+        // 从JSON文件加载所有QA数据（单次请求，瞬间加载）
+        async function loadAllQa() {
             const qaList = document.getElementById('qaList');
-
-            if (pageItems.length === 0) {
-                qaList.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--text2);"><p>该分类下暂无问答</p></div>';
-                return;
+            qaList.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--text2);"><p>正在加载问答内容...</p></div>';
+            
+            try {
+                const response = await fetch('qa-data.json');
+                if (!response.ok) throw new Error('加载失败');
+                
+                allQaItems = await response.json();
+                
+                // 为每个item添加HTML格式
+                allQaItems.forEach(item => {
+                    item.question = `❓ ${item.question}`;
+                });
+                
+                // 更新统计
+                document.getElementById('totalQaCount').textContent = allQaItems.length + '+';
+                console.log('[QA] 加载完成，共', allQaItems.length, '条');
+                
+                // 初始化显示
+                filteredItems = [...allQaItems];
+                initPagination();
+                showPage(currentPage);
+            } catch (e) {
+                console.error('[QA] 加载失败:', e);
+                qaList.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--text2);"><p>加载失败，请刷新重试</p></div>';
             }
-
-            qaList.innerHTML = pageItems.map(item => `
-                <div class="qa-item">
-                    <div class="qa-q">❓ ${item.question || ''}</div>
-                    <div class="qa-a">${item.answer || ''}</div>
-                    ${item.source ? `<div style="margin-top:0.5rem;font-size:12px;color:var(--text2);">— ${item.source}</div>` : ''}
-                </div>
-            `).join('');
         }
 
-        function renderPagination(items) {
-            const totalPages = Math.ceil(items.length / itemsPerPage);
+        // 初始化分页
+        function initPagination() {
+            const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
             const pagination = document.getElementById('pagination');
-            const pageInfo = document.getElementById('pageInfo');
-            const pageSelect = document.getElementById('pageSelect');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-
-            if (totalPages <= 1) {
+            
+            if (totalPages > 1) {
+                pagination.style.display = 'flex';
+                updatePageSelect();
+            } else {
                 pagination.style.display = 'none';
-                return;
             }
-            pagination.style.display = 'flex';
-            pageInfo.textContent = `第 ${currentPage} / ${totalPages} 页`;
-            prevBtn.disabled = currentPage === 1;
-            nextBtn.disabled = currentPage === totalPages;
+        }
 
+                // 更新页码选择器
+        function updatePageSelect() {
+            const pageSelect = document.getElementById('pageSelect');
+            const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
             pageSelect.innerHTML = '';
             for (let i = 1; i <= totalPages; i++) {
-                const opt = document.createElement('option');
-                opt.value = i;
-                opt.textContent = `跳转到第 ${i} 页`;
-                if (i === currentPage) opt.selected = true;
-                pageSelect.appendChild(opt);
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = `第 ${i} 页`;
+                pageSelect.appendChild(option);
             }
         }
 
-        function showCategory(category) {
-            currentCategory = category;
-            currentPage = 1;
-            const filtered = filterItems(category);
-            renderPage(filtered, currentPage);
-            renderPagination(filtered);
+        // 显示指定页
+        function showPage(page) {
+            const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+            currentPage = page;
+            
+            // 更新URL和SEO
+            updateUrlParams(currentPage, currentFilter);
+            updateSEO(currentPage, currentFilter, filteredItems.length);
+            
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageItems = filteredItems.slice(start, end);
+            
+            const qaList = document.getElementById('qaList');
+            qaList.innerHTML = pageItems.map(item => `
+                <div class="qa-item" data-category="${item.category}">
+                    <div class="qa-question">
+                        <span class="qa-icon">❓</span>
+                        <div class="qa-content">
+                            <h3>${item.question.replace(/^❓\s*/, '')}</h3>
+                            ${item.meta ? `<p class="qa-meta">${item.meta}</p>` : ''}
+                        </div>
+                    </div>
+                    <div class="qa-answer">
+                        <span class="qa-icon">💡</span>
+                        <div class="qa-content">
+                            <p>${item.answer}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            // 添加点击展开事件
+            document.querySelectorAll('.qa-item').forEach(item => {
+                item.addEventListener('click', () => item.classList.toggle('expanded'));
+            });
+            
+            document.getElementById('pageInfo').textContent = `第 ${page} / ${totalPages} 页，共 ${filteredItems.length} 条`;
+            document.getElementById('prevBtn').disabled = page === 1;
+            document.getElementById('nextBtn').disabled = page === totalPages;
+            
+            // 更新下拉菜单选中状态
+            const pageSelect = document.getElementById('pageSelect');
+            pageSelect.value = page;
         }
 
-        window.changePage = function(delta) {
-            const filtered = filterItems(currentCategory);
-            const totalPages = Math.ceil(filtered.length / itemsPerPage);
-            currentPage = Math.max(1, Math.min(totalPages, currentPage + delta));
-            renderPage(filtered, currentPage);
-            renderPagination(filtered);
-            window.scrollTo(0, 0);
-        };
+        // 翻页
+        function changePage(delta) {
+            const newPage = currentPage + delta;
+            const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+            if (newPage >= 1 && newPage <= totalPages) {
+                showPage(newPage);
+            }
+        }
 
-        window.goToPage = function(page) {
-            const filtered = filterItems(currentCategory);
-            const totalPages = Math.ceil(filtered.length / itemsPerPage);
-            currentPage = Math.max(1, Math.min(totalPages, parseInt(page)));
-            renderPage(filtered, currentPage);
-            renderPagination(filtered);
-            window.scrollTo(0, 0);
-        };
+        // 跳转到指定页
+        function goToPage(page) {
+            if (page && page >= 1) {
+                currentPage = parseInt(page);
+                updateUrlParams(currentPage, currentFilter);
+                updateSEO(currentPage, currentFilter, filteredItems.length);
+                showPage(currentPage);
+            }
+        }
 
-        // 加载 QA 数据
-        fetch('qa-data.json')
-            .then(r => r.json())
-            .then(data => {
-                allQaItems = data;
-                const countEl = document.getElementById('totalQaCount');
-                if (countEl) countEl.textContent = data.length;
-                showCategory('all');
-            })
-            .catch(err => {
-                document.getElementById('qaList').innerHTML =
-                    '<div style="text-align:center;padding:3rem;color:var(--text2);"><p>⚠️ 问答数据加载失败，请刷新页面重试</p></div>';
-                console.error('QA load error:', err);
-            });
+        // 分类筛选
+        const tabNav = document.getElementById('tabNav');
+        const buttons = tabNav?.querySelectorAll('.tab-btn');
 
-        // 分类按钮点击
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                showCategory(this.dataset.category);
+        buttons?.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const category = btn.getAttribute('data-category');
+                console.log('[QA] 点击标签:', category, '当前总数:', allQaItems.length);
+                
+                // 更新按钮状态
+                buttons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // 筛选
+                if (category === 'all') {
+                    filteredItems = [...allQaItems];
+                    console.log('[QA] 显示全部:', filteredItems.length);
+                } else {
+                    console.log('[QA] 筛选类别:', category);
+                    filteredItems = allQaItems.filter(item => {
+                        // 只根据问题中的关键词匹配
+                        const question = item.question.toLowerCase();
+                        const categoryKeywords = {
+                            '真我': ['真我', 'self'],
+                            '心智': ['心智', 'mind', '念头', '思维'],
+                            '参究': ['参究', '我是谁', 'who am i'],
+                            '静默': ['静默', 'silence', '沉默'],
+                            '恩典': ['恩典', 'grace'],
+                            '奉爱': ['奉爱', 'bhakti', 'devotion'],
+                            '三摩地': ['三摩地', 'samadhi', '禅定'],
+                            '日常': ['日常', '生活', '工作', 'work'],
+                            '世界': ['世界', 'world'],
+                            '解脱': ['解脱', 'liberation']
+                        };
+                        const keywords = categoryKeywords[category] || [category];
+                        return keywords.some(kw => question.includes(kw.toLowerCase()));
+                    });
+                }
+                
+                currentPage = 1;
+                currentFilter = category;
+                updateUrlParams(currentPage, currentFilter);
+                updateSEO(currentPage, currentFilter, filteredItems.length);
+                initPagination();
+                showPage(1);
             });
         });
 
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('../sw.js');
+        // 搜索功能
+        const searchInput = document.getElementById('search-input');
+        const searchResults = document.getElementById('search-results');
+
+        searchInput?.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            
+            if (query.length < 2) {
+                searchResults.style.display = 'none';
+                filteredItems = [...allQaItems];
+                initPagination();
+                showPage(1);
+                return;
+            }
+            
+            filteredItems = allQaItems.filter(item => 
+                item.question.toLowerCase().includes(query) ||
+                item.answer.toLowerCase().includes(query) ||
+                item.meta.toLowerCase().includes(query)
+            );
+            
+            currentPage = 1;
+            initPagination();
+            showPage(1);
+        });
+
+        // 页面加载时启动
+        async function init() {
+            await loadAllQa();
+            
+            // 读取URL参数
+            const params = getUrlParams();
+            currentPage = params.page;
+            currentFilter = params.filter;
+            
+            // 应用筛选
+            if (currentFilter !== 'all') {
+                // 更新按钮状态
+                const buttons = document.querySelectorAll('.tab-btn');
+                buttons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('data-category') === currentFilter) {
+                        btn.classList.add('active');
+                    }
+                });
+                
+                // 执行筛选
+                const categoryKeywords = {
+                    '真我': ['真我'],
+                    '心智': ['心智', 'mind', '念头', '思维'],
+                    '参究': ['参究', '我是谁', 'who am i'],
+                    '静默': ['静默', 'silence', '沉默'],
+                    '恩典': ['恩典', 'grace'],
+                    '奉爱': ['奉爱', 'bhakti', 'devotion'],
+                    '三摩地': ['三摩地', 'samadhi', '禅定'],
+                    '日常': ['日常', '生活', '工作', 'work'],
+                    '世界': ['世界', 'world'],
+                    '解脱': ['解脱', 'liberation']
+                };
+                const keywords = categoryKeywords[currentFilter] || [currentFilter];
+                filteredItems = allQaItems.filter(item => {
+                    const question = item.question.toLowerCase();
+                    return keywords.some(kw => question.includes(kw.toLowerCase()));
+                });
+            }
+            
+            // 更新SEO
+            updateSEO(currentPage, currentFilter, filteredItems.length);
+            
+            // 显示页面
+            initPagination();
+            showPage(currentPage);
         }
+        
+        init();
     </script>
-    <script src="../pwa-analytics.js"></script>
 </body>
 </html>
