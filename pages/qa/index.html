@@ -294,7 +294,7 @@
             qaList.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--text2);"><p>正在加载问答内容...</p></div>';
             
             try {
-                const response = await fetch('qa-data.json');
+                const response = await fetch('./qa-data.json');
                 if (!response.ok) throw new Error('加载失败');
                 
                 allQaItems = await response.json();
