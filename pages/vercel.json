@@ -1,6 +1,6 @@
 {
   "cleanUrls": false,
-  "trailingSlash": true,
+  "trailingSlash": false,
   "redirects": [
     {
       "source": "/:path*",
