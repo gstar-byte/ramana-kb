@@ -7,7 +7,7 @@ import os
 import re
 
 BASE_URL = "https://ramanamaharshi.space"
-PAGES_DIR = "c:/Users/willp/WorkBuddy/20260410104230/pages"
+PAGES_DIR = "/workspace/pages"
 
 EXCLUDE_FILES = {"_template.html", "sitemap.html"}
 
