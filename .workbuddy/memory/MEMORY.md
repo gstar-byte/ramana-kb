@@ -101,6 +101,13 @@
   - 删除了章节导航栏（chapter-nav-bar）
   - 顶部topbar始终保持标准7项不变
 - **QA页面扩充**：第11-12页，新增30条问答，新分类（世界/死亡/轮回/幸福）
+- **书籍页面结构规范（20260420总结）**：
+  - 模板基准文件: `be-as-you-are.html`
+  - 书籍主页: `<div class="card">` 而非 `<section>` + `<a class="chapter-card">` 整块可点击
+  - 章节页: `<header class="page-header">` + 多个 `<div class="card">`
+  - 底部: page-nav（上一本/下一本）在 footer 之前
+  - ⚠️ 旧模板残留: `article.book-detail`、`header.book-header`、`section.book-intro/book-content`、`chapter-toggle` 折叠
+- **《全集》已更名为《权威合集》**（20260420）
 - **概念页面完善**：创建了20+个概念详情页（bhakti/japa/world/enlightenment/sahaja/peace/fate/freewill/awareness/heart/jnana/jnani/samsara/satchidananda/self-enquiry/svasthya等）
 - 文件结构：
   - pages/index.html - 首页
