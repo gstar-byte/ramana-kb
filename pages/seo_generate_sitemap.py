@@ -4,8 +4,7 @@
 - 添加 lastmod (今日日期)
 - 添加 priority (按页面层级)
 - 添加 changefreq
-- 修复 /index → /
-- 确保所有 HTML 页面都包含
+- 确保所有 URL 与实际可访问的页面一致（保留 .html 后缀）
 """
 import os
 import re
@@ -17,26 +16,22 @@ BASE_URL = "https://ramanamaharshi.space"
 TODAY = date.today().strftime("%Y-%m-%d")
 
 def get_url_and_priority(rel_path):
-    """从相对路径生成 URL 和优先级"""
+    """从相对路径生成 URL 和优先级（保留 .html 后缀）"""
     # 统一使用正斜杠
     p = rel_path.replace('\\', '/')
     
-    # 去掉 .html 后缀
-    p = re.sub(r'\.html$', '', p)
-    
-    # 修正 index 页面
-    if p == 'index':
+    # 修正 index.html 页面
+    if p == 'index.html':
         return '/', 1.0, 'weekly'
-    if p.endswith('/index'):
-        p = p[:-6]  # 去掉 /index
     
     # 计算优先级
     depth = p.count('/')
-    if depth == 0:  # 顶级页面（graph, methods等）
+    basename = os.path.basename(p)
+    
+    if depth == 0:  # 顶级页面（graph.html等）
         priority = 0.8
         freq = 'monthly'
-    elif depth == 1:  # 二级页面（books/index, concepts/index 等）
-        basename = os.path.basename(p)
+    elif depth == 1:  # 二级页面
         if 'ch' in basename or re.match(r'qa-\d+', basename):
             priority = 0.6  # 章节页面
             freq = 'monthly'
@@ -57,6 +52,8 @@ def main():
     exclude_patterns = {
         '_template.html',
         'sitemap.html',  # sitemap HTML 版本不需要
+        'index_fixed.html',  # 临时修复文件不需要
+        'index.html.backup',  # 备份文件不需要
     }
     
     urls = []
