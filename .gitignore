@@ -23,3 +23,9 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 .vercel
+
+# backup and cache files
+*.bak
+__pycache__/
+*.pyc
+
