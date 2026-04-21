@@ -1,7 +1,32 @@
 {
   "cleanUrls": false,
-  "trailingSlash": false,
+  "trailingSlash": true,
   "redirects": [
+    {
+      "source": "/books/",
+      "destination": "/books/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/qa/",
+      "destination": "/qa/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/persons/",
+      "destination": "/persons/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/concepts/",
+      "destination": "/concepts/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/methods/",
+      "destination": "/methods/index.html",
+      "permanent": true
+    },
     {
       "source": "/:path*",
       "has": [
@@ -66,6 +91,24 @@
         {
           "key": "Content-Type",
           "value": "application/xml"
+        }
+      ]
+    },
+    {
+      "source": "/(.*\\.css|.*\\.js|.*\\.png|.*\\.jpg|.*\\.jpeg|.*\\.gif|.*\\.svg|.*\\.ico|.*\\.woff|.*\\.woff2|.*\\.ttf|.*\\.eot)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(.*\\.html)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300, must-revalidate"
         }
       ]
     }
