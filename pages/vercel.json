@@ -1,28 +1,29 @@
 {
   "cleanUrls": false,
+  "trailingSlash": true,
   "redirects": [
     {
-      "source": "/books",
+      "source": "/books/",
       "destination": "/books/index.html",
       "permanent": true
     },
     {
-      "source": "/qa",
+      "source": "/qa/",
       "destination": "/qa/index.html",
       "permanent": true
     },
     {
-      "source": "/persons",
+      "source": "/persons/",
       "destination": "/persons/index.html",
       "permanent": true
     },
     {
-      "source": "/concepts",
+      "source": "/concepts/",
       "destination": "/concepts/index.html",
       "permanent": true
     },
     {
-      "source": "/methods",
+      "source": "/methods/",
       "destination": "/methods/index.html",
       "permanent": true
     },
