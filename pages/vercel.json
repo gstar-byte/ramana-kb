@@ -1,7 +1,31 @@
 {
   "cleanUrls": false,
-  "trailingSlash": false,
   "redirects": [
+    {
+      "source": "/books/",
+      "destination": "/books/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/concepts/",
+      "destination": "/concepts/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/methods/",
+      "destination": "/methods/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/persons/",
+      "destination": "/persons/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/qa/",
+      "destination": "/qa/index.html",
+      "permanent": true
+    },
     {
       "source": "/:path*",
       "has": [
