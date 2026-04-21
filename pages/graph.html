@@ -23,7 +23,7 @@
     <meta property="og:type" content="article">
     <title>拉玛那马哈希核心概念知识图谱 | 灵修思想可视化指南修行智慧详解指南 | 拉玛那马哈希知识库</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="d3.min.js"></script>
     <style>
         .graph-wrapper {
             position: relative;
@@ -333,7 +333,7 @@
                 <div class="sidebar-section-title">📚 核心索引</div>
                 <div class="sidebar-items">
                     <a href="books/index.html" class="sidebar-item"><span class="emoji">📖</span> 书籍总览 <span class="count">18</span></a>
-                    <a href="concepts/index.html" class="sidebar-item"><span class="emoji">🔮</span> 核心概念 <span class="count">39+</span></a>
+                    <a href="concepts/index.html" class="sidebar-item"><span class="emoji">🔮</span> 核心概念 <span class="count">57+</span></a>
                     <a href="methods/index.html" class="sidebar-item"><span class="emoji">🛤️</span> 修行方法 <span class="count">12</span></a>
                     <a href="qa/index.html" class="sidebar-item"><span class="emoji">💬</span> 修行问答 <span class="count">28</span></a>
                     <a href="persons/index.html" class="sidebar-item"><span class="emoji">👤</span> 人物索引 <span class="count">3</span></a>
@@ -655,6 +655,23 @@
             { id: "prarabdha", name: "📜 宿业", type: "moksha", url: "concepts/prarabdha.html", desc: "宿业/Prarabdha，今生必须体验的成熟业力" },
             { id: "jiva", name: "👤 个体灵魂", type: "mind", url: "concepts/jiva.html", desc: "个体灵魂/Jiva，认同身体的个体存在" },
             { id: "avidya", name: "🌫️ 无明", type: "mind", url: "concepts/avidya.html", desc: "无明/Avidya，对真实本性的无知" },
+            
+            // 新增节点 - 20260421 扩展概念
+            { id: "sharanagati", name: "🙏 归依", type: "practice", url: "concepts/sharanagati.html", desc: "归依/Sharanagati，彻底归投上师的修行" },
+            { id: "santosha", name: "☮️ 知足", type: "moksha", url: "concepts/santosha.html", desc: "知足/Santosha，内在的满足与安然" },
+            { id: "abhyasa", name: "🧘 修行实践", type: "practice", url: "concepts/abhyasa.html", desc: "修行实践/Abhyasa，持续不断的修习" },
+            { id: "shraddha", name: "🙏 信心", type: "moksha", url: "concepts/shraddha.html", desc: "信心/Shraddha，灵性修行的基础" },
+            { id: "anityata", name: "🔄 无常", type: "atman", url: "concepts/anityata.html", desc: "无常/Anityata，一切皆变化的真相" },
+            { id: "sukha", name: "☀️ 世间乐", type: "atman", url: "concepts/sukha.html", desc: "世间乐/Sukha，相对的、短暂的幸福" },
+            { id: "siddhi", name: "✨ 神通", type: "practice", url: "concepts/siddhi.html", desc: "神通/Siddhi，超自然的灵性能力" },
+            { id: "turiya", name: "🌅 第四态", type: "mind", url: "concepts/turiya.html", desc: "第四态/Turiya，超越三态的觉知" },
+            { id: "peace", name: "☮️ 平安", type: "moksha", url: "concepts/peace.html", desc: "平安/Peace，真我的本质属性" },
+            { id: "meditation", name: "🧘 禅修", type: "practice", url: "concepts/meditation.html", desc: "禅修/Meditation，心意专注的练习" },
+            { id: "viveka", name: "⚡ 抉择", type: "mind", url: "concepts/viveka.html", desc: "抉择/Viveka，区分真假的能力" },
+            { id: "prana", name: "🌬️ 生命能", type: "mind", url: "concepts/prana.html", desc: "生命能/Prana，呼吸与生命的能量" },
+            { id: "body", name: "🧍 身体", type: "mind", url: "concepts/body.html", desc: "身体/Body，灵魂的载体与业力的显现" },
+            { id: "drishti", name: "👁️ 所见", type: "mind", url: "concepts/drishti.html", desc: "所见/Drishti，心智的观看方式" },
+            { id: "sraddha", name: "💫 信念", type: "moksha", url: "concepts/sraddha.html", desc: "信念/Sraddha，对真理的坚定信心" },
         ];
         
         // 关系 - 扩展版
@@ -757,6 +774,35 @@
             { source: "samskara", target: "svasthya", relation: "影响" },
             { source: "enquiry", target: "whoami", relation: "等同" },
             { source: "enquiry", target: "silence", relation: "归于" },
+            
+            // 新增节点关系 - 20260421
+            { source: "sharanagati", target: "surrender", relation: "等同" },
+            { source: "sharanagati", target: "guru", relation: "归投" },
+            { source: "sharanagati", target: "grace", relation: "招感" },
+            { source: "santosha", target: "peace", relation: "带来" },
+            { source: "santosha", target: "moksha", relation: "铺垫" },
+            { source: "abhyasa", target: "whoami", relation: "实践" },
+            { source: "abhyasa", target: "meditation", relation: "包含" },
+            { source: "shraddha", target: "guru", relation: "基础" },
+            { source: "shraddha", target: "jnana", relation: "导向" },
+            { source: "anityata", target: "maya", relation: "体现" },
+            { source: "anityata", target: "jnana", relation: "领悟" },
+            { source: "sukha", target: "ananda", relation: "对比" },
+            { source: "sukha", target: "mind", relation: "依赖" },
+            { source: "siddhi", target: "samadhi", relation: "可能" },
+            { source: "siddhi", target: "jnani", relation: "非必需" },
+            { source: "turiya", target: "self", relation: "超越" },
+            { source: "turiya", target: "awareness", relation: "等同" },
+            { source: "peace", target: "silence", relation: "体现" },
+            { source: "peace", target: "atman", relation: "本质" },
+            { source: "meditation", target: "mind", relation: "平息" },
+            { source: "meditation", target: "samadhi", relation: "导向" },
+            { source: "viveka", target: "jnana", relation: "产生" },
+            { source: "viveka", target: "whoami", relation: "辅助" },
+            { source: "prana", target: "mind", relation: "连结" },
+            { source: "prana", target: "body", relation: "支撑" },
+            { source: "drishti", target: "mind", relation: "表现" },
+            { source: "drishti", target: "ego", relation: "强化" },
         ];
         
         // 颜色映射
