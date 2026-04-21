@@ -13,6 +13,12 @@
 - **解决**：回退到 4d28142 提交版本
 - **教训**：Trae solo 的 git 操作为覆盖式而非增量修改，会丢失原有文件内容
 
+### 移动端汉堡菜单修复（20260421）
+- **问题**：移动端汉堡菜单点击无反应
+- **根因**：页面HTML没有引用 `script.js`，导致 `toggleSidebar()` 函数不存在
+- **解决**：创建批量修复脚本，为85个包含hamburger按钮的HTML文件添加 `<script src="script.js">` 引用
+- **教训**：添加新页面模板时，确保引入必要的JS文件
+
 ### 书签知识库（备用）
 - 路径: `C:/Users/willp/Desktop/书签/`
 - GitHub: willp/bookmarks-kb

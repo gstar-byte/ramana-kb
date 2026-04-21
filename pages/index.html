@@ -99,7 +99,7 @@
                     <a href="books/index.html" class="sidebar-item"><span class="emoji">📖</span> 书籍总览 <span class="count">18</span></a>
                     <a href="concepts/index.html" class="sidebar-item"><span class="emoji">🔮</span> 核心概念 <span class="count">57+</span></a>
                     <a href="methods/index.html" class="sidebar-item"><span class="emoji">🛤️</span> 修行方法 <span class="count">12</span></a>
-                    <a href="qa/index.html" class="sidebar-item"><span class="emoji">💬</span> 修行问答 <span class="count">363+</span></a>
+                    <a href="qa/index.html" class="sidebar-item"><span class="emoji">💬</span> 修行问答 <span class="count">374</span></a>
                     <a href="persons/index.html" class="sidebar-item"><span class="emoji">👤</span> 人物索引 <span class="count">3</span></a>
                     <a href="graph.html" class="sidebar-item"><span class="emoji">🕸️</span> 知识图谱</a>
                 </div>
@@ -386,11 +386,9 @@
                 </a>
             `).join('');
         }
-        
-        document.getElementById('search-input').addEventListener('input', (e) => doSearch(e.target.value));
-        document.getElementById('search-input').addEventListener('blur', () => setTimeout(() => document.getElementById('search-results').innerHTML = '', 200));
     </script>
     <script src="search.js"></script>
+    <script src="script.js"></script>
     
     <script>
       if ('serviceWorker' in navigator) {
