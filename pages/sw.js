@@ -1,5 +1,5 @@
 // Ramana Maharshi Knowledge Base - Service Worker v8
-const CACHE_NAME = 'ramana-kb-v8';
+const CACHE_NAME = 'ramana-kb-v9';
 // 只预缓存核心资源，避免安装失败
 const CORE_ASSETS = [
   '/',
@@ -15,7 +15,7 @@ const CORE_ASSETS = [
 self.addEventListener('install', (e) => {
   e.waitUntil(
     caches.open(CACHE_NAME).then(async (cache) => {
-      console.log('[SW] Installing v8...');
+      console.log('[SW] Installing v9...');
       for (const url of CORE_ASSETS) {
         try {
           const resp = await fetch(url);
