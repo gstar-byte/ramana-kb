@@ -1,5 +1,5 @@
-// Ramana Maharshi Knowledge Base - Service Worker v8
-const CACHE_NAME = 'ramana-kb-v9';
+// Ramana Maharshi Knowledge Base - Service Worker v9
+const CACHE_NAME = 'ramana-kb-v10';
 // 只预缓存核心资源，避免安装失败
 const CORE_ASSETS = [
   '/',
