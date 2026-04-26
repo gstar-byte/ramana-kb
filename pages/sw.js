@@ -1,5 +1,5 @@
-// Ramana Maharshi Knowledge Base - Service Worker v11
-const CACHE_NAME = 'ramana-kb-v11';
+// Ramana Maharshi Knowledge Base - Service Worker v12
+const CACHE_NAME = 'ramana-kb-v12';
 
 // 预缓存核心资源（必须能离线打开首页）
 const CORE_ASSETS = [
@@ -15,7 +15,7 @@ const CORE_ASSETS = [
 self.addEventListener('install', (e) => {
   e.waitUntil(
     caches.open(CACHE_NAME).then(async (cache) => {
-      console.log('[SW] Installing v11...');
+      console.log('[SW] Installing v12...');
       for (const url of CORE_ASSETS) {
         try {
           const resp = await fetch(url);
