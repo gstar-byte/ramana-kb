@@ -1,38 +1,39 @@
-// Ramana Maharshi Knowledge Base - Service Worker v9
-const CACHE_NAME = 'ramana-kb-v10';
-// 只预缓存核心资源，避免安装失败
+// Ramana Maharshi Knowledge Base - Service Worker v11
+const CACHE_NAME = 'ramana-kb-v11';
+
+// 预缓存核心资源（必须能离线打开首页）
 const CORE_ASSETS = [
   '/',
+  '/index.html',
   '/styles.css',
   '/script.js',
   '/search.js',
-  '/pwa-analytics.js',
-  '/manifest.json',
-  '/sw.js'
+  '/manifest.json'
 ];
 
-// Install: 逐个缓存，失败不影响其他，SW 必定安装成功
+// Install: 预缓存核心资源，逐个处理失败不影响安装
 self.addEventListener('install', (e) => {
   e.waitUntil(
     caches.open(CACHE_NAME).then(async (cache) => {
-      console.log('[SW] Installing v9...');
+      console.log('[SW] Installing v11...');
       for (const url of CORE_ASSETS) {
         try {
           const resp = await fetch(url);
           if (resp.ok) {
             await cache.put(url, resp.clone());
+            console.log('[SW] Pre-cached:', url);
           }
         } catch (err) {
-          console.warn('[SW] Failed to cache:', url, err.message);
+          console.warn('[SW] Failed to pre-cache:', url, err.message);
         }
       }
-      console.log('[SW] Install complete, skipping wait');
+      console.log('[SW] Install complete');
       return self.skipWaiting();
     })
   );
 });
 
-// Activate: 删除旧缓存
+// Activate: 删除旧缓存，接管所有客户端
 self.addEventListener('activate', (e) => {
   e.waitUntil(
     caches.keys().then((keys) => {
@@ -49,58 +50,77 @@ self.addEventListener('activate', (e) => {
   );
 });
 
-// Fetch: 网络优先，降级到缓存
+// Fetch: 网络优先 + 缓存回退（含 HTML 页面）
 self.addEventListener('fetch', (e) => {
   const { request } = e;
   const url = new URL(request.url);
 
   // 跳过非 GET / 非同域 / chrome-extension 请求
-  if (request.method !== 'GET' || url.origin !== self.location.origin ||
+  if (request.method !== 'GET' ||
+      url.origin !== self.location.origin ||
       url.protocol === 'chrome-extension:') {
     return;
   }
 
-  // Google Analytics 请求跳过
+  // GA 请求直接跳过（不缓存不拦截）
   if (url.hostname === 'www.google-analytics.com' ||
-      url.hostname === 'analytics.google.com') {
+      url.hostname === 'analytics.google.com' ||
+      url.hostname === 'www.googletagmanager.com') {
     return;
   }
 
+  // 判断是否为可缓存的静态资源
+  const path = url.pathname;
+  const isCacheable = (
+    path.endsWith('/') ||
+    path.endsWith('.html') ||
+    path.endsWith('.css') ||
+    path.endsWith('.js') ||
+    path.endsWith('.json') ||
+    path.endsWith('.png') ||
+    path.endsWith('.jpg') ||
+    path.endsWith('.jpeg') ||
+    path.endsWith('.webp') ||
+    path.endsWith('.svg') ||
+    path.endsWith('.ico') ||
+    path.endsWith('.woff2') ||
+    path.endsWith('.woff')
+  );
+
+  if (!isCacheable) {
+    return; // 不可缓存的请求直接透传
+  }
+
   e.respondWith(
-    fetch(request, {
-      cache: 'no-cache', // 确保每次都请求最新内容
-      credentials: 'same-origin'
-    })
+    fetch(request, { credentials: 'same-origin' })
       .then((resp) => {
-        // 成功响应则缓存（静态资源和HTML）
+        // 网络请求成功 → 动态缓存
         if (resp.ok) {
           const clone = resp.clone();
           caches.open(CACHE_NAME).then((cache) => {
-            // 只缓存静态资源和HTML
-            if (url.pathname.endsWith('/') || 
-                url.pathname.endsWith('.css') || 
-                url.pathname.endsWith('.js') ||
-                url.pathname.endsWith('.png') ||
-                url.pathname.endsWith('.svg') ||
-                url.pathname.endsWith('.ico')) {
-              cache.put(request, clone);
-            }
+            cache.put(request, clone);
           });
         }
         return resp;
       })
       .catch(() => {
-        // 网络失败 → 缓存
+        // 网络失败 → 从缓存回退
         return caches.match(request).then((cached) => {
           if (cached) {
-            console.log('[SW] Serving from cache:', request.url);
+            console.log('[SW] Offline fallback from cache:', path);
             return cached;
           }
-          // 缓存也没有 → 返回离线页面
-          return new Response('网络连接已断开，请检查网络连接后重试', {
-            status: 503,
-            headers: { 'Content-Type': 'text/plain; charset=utf-8' }
-          });
+          // 对 HTML 请求，返回缓存的首页（比纯文本错误体验更好）
+          if (path.endsWith('.html') || path.endsWith('/')) {
+            return caches.match('/index.html').then((fallback) => {
+              if (fallback) return fallback;
+              return new Response(
+                '<html><body><h2>离线模式</h2><p>请先联网访问本页面，以便离线缓存。</p><a href="/">返回首页</a></body></html>',
+                { status: 200, headers: { 'Content-Type': 'text/html; charset=utf-8' } }
+              );
+            });
+          }
+          return new Response('', { status: 503 });
         });
       })
   );
