@@ -4,8 +4,8 @@
   "description": "室利·拉玛那·马哈希的生平、教导与修行方法——印度近代最伟大的悟道者之一",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#2d2d2b",
-  "theme_color": "#2d2d2b",
+  "background_color": "#0d1117",
+  "theme_color": "#1a1a2e",
   "orientation": "any",
   "icons": [
     {
