@@ -220,6 +220,27 @@
             border-radius: 50%;
             box-shadow: 0 0 6px currentColor;
         }
+        
+        /* 图例关闭按钮 */
+        .legend-close-btn {
+            position: absolute;
+            top: 6px;
+            right: 8px;
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.5);
+            font-size: 12px;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+        .legend-close-btn:hover {
+            color: #fff;
+        }
+        #graph-legend {
+            position: relative; /* 让 close-btn absolute 定位生效 */
+        }
 
         /* 概念分类网格：PC端3列，移动端1列 */
         .concept-categories {
@@ -434,7 +455,8 @@
                             <button onclick="zoomIn()">➕ 放大</button>
                             <button onclick="zoomOut()">➖ 缩小</button>
                         </div>
-                        <div class="graph-legend">
+                        <div class="graph-legend" id="graph-legend">
+                            <button class="legend-close-btn" onclick="document.getElementById('graph-legend').style.display='none'" title="关闭图例">✕</button>
                             <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,#e0aaff,#c77dff);"></div> 本体论</div>
                             <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,#ffd700,#ffb700);"></div> 心智与自我</div>
                             <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,#4ecdc4,#45b7aa);"></div> 修行法门</div>
@@ -454,41 +476,49 @@
                             <h3>🔮 本体论</h3>
                             <a href="concepts/atman.html">真我/Atman</a>
                             <a href="concepts/brahman.html">梵/Brahman</a>
-                            <a href="concepts/maya.html">摩耶/Maya</a>
                             <a href="concepts/self.html">本我/Self</a>
+                            <a href="concepts/satchidananda.html">存在-意识-喜悦</a>
+                            <a href="concepts/heart.html">本心/Heart</a>
                         </div>
                         <div class="concept-category">
                             <h3>🧠 心智与自我</h3>
                             <a href="concepts/mind.html">心智/Citta</a>
                             <a href="concepts/ego.html">自我/Ego</a>
                             <a href="concepts/thoughts.html">念头/Thoughts</a>
-                            <a href="concepts/self.html">习气/Samskara</a>
-                            <a href="concepts/whoami.html">觉知/Awareness</a>
+                            <a href="concepts/awareness.html">觉知/Awareness</a>
+                            <a href="concepts/vasanas.html">习气/Vasanas</a>
                         </div>
                         <div class="concept-category">
                             <h3>🛤️ 修行法门</h3>
                             <a href="concepts/whoami.html">"我是谁？"</a>
                             <a href="concepts/silence.html">静默/Silence</a>
-                            <a href="concepts/samadhi.html">三摩地/Samadhi</a>
                             <a href="concepts/surrender.html">臣服/Surrender</a>
+                            <a href="concepts/samadhi.html">三摩地/Samadhi</a>
+                            <a href="concepts/japa.html">念诵/Japa</a>
                         </div>
                         <div class="concept-category">
                             <h3>🕊️ 解脱与境界</h3>
                             <a href="concepts/moksha.html">解脱/Moksha</a>
-                            <a href="concepts/samadhi.html">三摩地/Samadhi</a>
-                            <a href="concepts/grace.html">恩典/Grace</a>
+                            <a href="concepts/jnani.html">觉者/Jnani</a>
+                            <a href="concepts/enlightenment.html">开悟/Enlightenment</a>
+                            <a href="concepts/sahaja.html">自然安住/Sahaja</a>
+                            <a href="concepts/peace.html">平安/Peace</a>
                         </div>
                         <div class="concept-category">
-                            <h3>🙏 上师与传承</h3>
+                            <h3>🙏 上师与恩典</h3>
                             <a href="concepts/guru.html">上师/Guru</a>
                             <a href="concepts/grace.html">恩典/Grace</a>
-                            <a href="concepts/karma.html">业力/Karma</a>
+                            <a href="concepts/upadesha.html">教示/Upadesha</a>
+                            <a href="concepts/bhakti.html">奉爱/Bhakti</a>
+                            <a href="concepts/satsang.html">莎桑/Satsang</a>
                         </div>
                         <div class="concept-category">
                             <h3>🔄 业力与轮回</h3>
                             <a href="concepts/karma.html">业力/Karma</a>
                             <a href="concepts/maya.html">摩耶/Maya</a>
-                            <a href="concepts/thoughts.html">轮回/Samsara</a>
+                            <a href="concepts/prarabdha.html">宿业/Prarabdha</a>
+                            <a href="concepts/jiva.html">个体灵魂/Jiva</a>
+                            <a href="concepts/world.html">世界/World</a>
                         </div>
                     </div>
                 </div>
@@ -678,6 +708,29 @@
             { id: "body", name: "🧍 身体", type: "mind", url: "concepts/body.html", desc: "身体/Body，灵魂的载体与业力的显现" },
             { id: "drishti", name: "👁️ 所见", type: "mind", url: "concepts/drishti.html", desc: "所见/Drishti，心智的观看方式" },
             { id: "sraddha", name: "💫 信念", type: "moksha", url: "concepts/sraddha.html", desc: "信念/Sraddha，对真理的坚定信心" },
+
+            // 新增节点 - 20260427 扩展
+            { id: "upadesha", name: "📜 教示", type: "practice", url: "concepts/upadesha.html", desc: "教示/Upadesha，上师的无言与有言之教" },
+            { id: "antaryamin", name: "💕 内在之神", type: "atman", url: "concepts/antaryamin.html", desc: "内在之神/Antaryamin，居于心中的神性存在" },
+            { id: "dharma", name: "⚖️ 达摩", type: "moksha", url: "concepts/dharma.html", desc: "达摩/Dharma，宇宙法则与正道" },
+            { id: "jnana-yoga", name: "🛤️ 智慧瑜伽", type: "practice", url: "concepts/jnana.html", desc: "智慧瑜伽/Jnana Yoga，通过知识证悟真我" },
+            { id: "karma-yoga", name: "🔄 行动瑜伽", type: "practice", url: "concepts/karma.html", desc: "行动瑜伽/Karma Yoga，以无私行动修行" },
+            { id: "bhakti-yoga", name: "💝 奉爱瑜伽", type: "practice", url: "concepts/bhakti.html", desc: "奉爱瑜伽/Bhakti Yoga，以虔诚之爱修行" },
+            { id: "lakshya", name: "🎯 所缘", type: "mind", url: "concepts/lakshya.html", desc: "所缘/Lakshya，心念专注的对象" },
+            { id: "manonasha", name: "💫 心灭", type: "moksha", url: "concepts/manonasha.html", desc: "心灭/Manonasha，心智的彻底消亡" },
+            { id: "chit", name: "✨ 识", type: "atman", url: "concepts/chit.html", desc: "识/Chit，纯粹的意识本体" },
+            { id: "anahata", name: "💖 心轮", type: "practice", url: "concepts/heart.html", desc: "心轮/Anahata，真我居所的精神中心" },
+            { id: "mano", name: "💭 意", type: "mind", url: "concepts/mano.html", desc: "意/Manas，分别与思量的心识功能" },
+            { id: "satsang", name: "🙏 莎桑", type: "practice", url: "concepts/satsang.html", desc: "莎桑/Satsang，与真理之人的亲近与共处" },
+            { id: "sattva", name: "☀️ 善性", type: "atman", url: "concepts/sattva.html", desc: "善性/Sattva，三德中的清净之德" },
+            { id: "manas", name: "🧠 意根", type: "mind", url: "concepts/mano.html", desc: "意根/Manas，六根之一，统摄思维" },
+            { id: "self-enquiry", name: "🔎 自我参究", type: "practice", url: "concepts/whoami.html", desc: "自我参究/Self-Enquiry，马哈希核心修行法" },
+            { id: "chidabhasa", name: "🪞 意识之影", type: "mind", url: "concepts/awareness.html", desc: "意识之影/Chidabhasa，真我投射在心智上的倒影" },
+            { id: "sanchita", name: "📦 总业", type: "moksha", url: "concepts/prarabdha.html", desc: "总业/Sanchita，所有积累的业力仓库" },
+            { id: "agami", name: "🌱 新业", type: "moksha", url: "concepts/karma.html", desc: "新业/Agami，未来将要产生的业力" },
+            { id: "samadhi-sahaja", name: "🌿 自然三摩地", type: "moksha", url: "concepts/sahaja.html", desc: "自然三摩地/Sahaja Samadhi，觉者的恒常状态" },
+            { id: "neti-neti", name: "🚫 非此非彼", type: "practice", url: "concepts/viveka.html", desc: "非此非彼/Neti-Neti，否定一切非真我的方法论" },
+            { id: "japa-om", name: "🔮 嗡", type: "practice", url: "concepts/japa.html", desc: "嗡/Om，最古老的神圣音节，宇宙的原音" },
         ];
         
         // 关系 - 扩展版
@@ -809,6 +862,419 @@
             { source: "prana", target: "body", relation: "支撑" },
             { source: "drishti", target: "mind", relation: "表现" },
             { source: "drishti", target: "ego", relation: "强化" },
+
+            // 新增关系 - 20260427
+            { source: "upadesha", target: "guru", relation: "传授" },
+            { source: "upadesha", target: "silence", relation: "核心" },
+            { source: "upadesha", target: "whoami", relation: "引导" },
+            { source: "upadesha", target: "grace", relation: "载体" },
+            { source: "antaryamin", target: "atman", relation: "等同" },
+            { source: "antaryamin", target: "grace", relation: "体现" },
+            { source: "antaryamin", target: "guru", relation: "内在化" },
+            { source: "dharma", target: "karma", relation: "规范" },
+            { source: "dharma", target: "moksha", relation: "导向" },
+            { source: "jnana-yoga", target: "whoami", relation: "核心" },
+            { source: "jnana-yoga", target: "jnana", relation: "目标" },
+            { source: "jnana-yoga", target: "viveka", relation: "辅助" },
+            { source: "karma-yoga", target: "surrender", relation: "相近" },
+            { source: "karma-yoga", target: "ego", relation: "消融" },
+            { source: "bhakti-yoga", target: "bhakti", relation: "实践" },
+            { source: "bhakti-yoga", target: "surrender", relation: "导向" },
+            { source: "bhakti-yoga", target: "grace", relation: "招感" },
+            { source: "lakshya", target: "whoami", relation: "所缘" },
+            { source: "lakshya", target: "dhyana", relation: "对象" },
+            { source: "lakshya", target: "mind", relation: "指向" },
+            { source: "manonasha", target: "mind", relation: "消灭" },
+            { source: "manonasha", target: "moksha", relation: "达成" },
+            { source: "manonasha", target: "jnani", relation: "体验" },
+            { source: "chit", target: "atman", relation: "本质" },
+            { source: "chit", target: "satchidananda", relation: "组成" },
+            { source: "chit", target: "awareness", relation: "等同" },
+            { source: "anahata", target: "hrdaya", relation: "所在" },
+            { source: "anahata", target: "atman", relation: "居所" },
+            { source: "mano", target: "mind", relation: "部分" },
+            { source: "mano", target: "thoughts", relation: "产生" },
+            { source: "mano", target: "ego", relation: "强化" },
+            { source: "satsang", target: "guru", relation: "亲近" },
+            { source: "satsang", target: "satsang", relation: "修行" },
+            { source: "satsang", target: "grace", relation: "招感" },
+            { source: "sattva", target: "mind", relation: "影响" },
+            { source: "sattva", target: "jnana", relation: "辅助" },
+            { source: "self-enquiry", target: "whoami", relation: "等同" },
+            { source: "self-enquiry", target: "jnani", relation: "导向" },
+            { source: "chidabhasa", target: "awareness", relation: "反射" },
+            { source: "chidabhasa", target: "mind", relation: "介质" },
+            { source: "chidabhasa", target: "ego", relation: "混淆" },
+            { source: "sanchita", target: "karma", relation: "存储" },
+            { source: "sanchita", target: "prarabdha", relation: "包含" },
+            { source: "agami", target: "karma", relation: "新增" },
+            { source: "agami", target: "prarabdha", relation: "积累" },
+            { source: "samadhi-sahaja", target: "samadhi", relation: "终极" },
+            { source: "samadhi-sahaja", target: "jnani", relation: "常态" },
+            { source: "samadhi-sahaja", target: "sahaja", relation: "等同" },
+            { source: "neti-neti", target: "viveka", relation: "方法" },
+            { source: "neti-neti", target: "jnana", relation: "辅助" },
+            { source: "neti-neti", target: "atman", relation: "趋向" },
+            { source: "japa-om", target: "japa", relation: "核心" },
+            { source: "japa-om", target: "silence", relation: "消融" },
+            { source: "japa-om", target: "atman", relation: "共鸣" },
+            { source: "ramana", target: "upadesha", relation: "赐予" },
+            { source: "ramana", target: "antaryamin", relation: "体现" },
+            { source: "manas", target: "mano", relation: "等同" },
+            { source: "manas", target: "mind", relation: "功能" },
+
+            // 补充大量关联线 - 20260427
+            // ramana 与更多节点的关联
+            { source: "ramana", target: "arunachala", relation: "驻锡" },
+            { source: "ramana", target: "hrdaya", relation: "指向" },
+            { source: "ramana", target: "moksha", relation: "示范" },
+            { source: "ramana", target: "self", relation: "证悟" },
+            { source: "ramana", target: "bhakti", relation: "接纳" },
+            { source: "ramana", target: "jivanmukti", relation: "成为" },
+            { source: "ramana", target: "surrender", relation: "教导" },
+            { source: "ramana", target: "sadhana", relation: "指引" },
+            { source: "ramana", target: "peace", relation: "散发" },
+
+            // arunachala 关联
+            { source: "arunachala", target: "silence", relation: "象征" },
+            { source: "arunachala", target: "grace", relation: "赐予" },
+            { source: "arunachala", target: "atman", relation: "化身" },
+            { source: "arunachala", target: "guru", relation: "无形" },
+
+            // hrdaya 本心关联
+            { source: "hrdaya", target: "atman", relation: "等同" },
+            { source: "hrdaya", target: "self", relation: "居所" },
+            { source: "hrdaya", target: "awareness", relation: "源头" },
+            { source: "hrdaya", target: "anahata", relation: "超越" },
+
+            // jivanmukti 在生解脱
+            { source: "jivanmukti", target: "moksha", relation: "在世" },
+            { source: "jivanmukti", target: "jnani", relation: "状态" },
+            { source: "jivanmukti", target: "sahaja", relation: "表现" },
+            { source: "jivanmukti", target: "prarabdha", relation: "仍有" },
+
+            // sadhana 修行
+            { source: "sadhana", target: "whoami", relation: "核心" },
+            { source: "sadhana", target: "meditation", relation: "包含" },
+            { source: "sadhana", target: "japa", relation: "包含" },
+            { source: "sadhana", target: "surrender", relation: "包含" },
+            { source: "sadhana", target: "vasanas", relation: "消融" },
+
+            // vasanas 习气（新节点）
+            { source: "vasanas", target: "mind", relation: "驱动" },
+            { source: "vasanas", target: "ego", relation: "构成" },
+            { source: "vasanas", target: "karma", relation: "来源" },
+            { source: "vasanas", target: "samskara", relation: "等同" },
+            { source: "vasanas", target: "whoami", relation: "消融" },
+            { source: "vasanas", target: "moksha", relation: "障碍" },
+
+            // prarabdha 宿业
+            { source: "prarabdha", target: "karma", relation: "成熟" },
+            { source: "prarabdha", target: "body", relation: "决定" },
+            { source: "prarabdha", target: "mind", relation: "塑造" },
+            { source: "prarabdha", target: "jnani", relation: "继续" },
+
+            // jiva 个体灵魂
+            { source: "jiva", target: "ego", relation: "等同" },
+            { source: "jiva", target: "atman", relation: "本质" },
+            { source: "jiva", target: "maya", relation: "束缚" },
+            { source: "jiva", target: "moksha", relation: "证悟" },
+            { source: "jiva", target: "body", relation: "认同" },
+            { source: "jiva", target: "karma", relation: "承受" },
+
+            // aham-vritti 我念
+            { source: "aham-vritti", target: "ego", relation: "根源" },
+            { source: "aham-vritti", target: "thoughts", relation: "首念" },
+            { source: "aham-vritti", target: "whoami", relation: "参究对象" },
+            { source: "aham-vritti", target: "self", relation: "指向" },
+            { source: "aham-vritti", target: "mind", relation: "核心" },
+
+            // chit-jada-granthi 意识-物质纽结
+            { source: "chit-jada-granthi", target: "ego", relation: "形成" },
+            { source: "chit-jada-granthi", target: "body", relation: "混同" },
+            { source: "chit-jada-granthi", target: "awareness", relation: "遮蔽" },
+            { source: "chit-jada-granthi", target: "whoami", relation: "解开" },
+            { source: "chit-jada-granthi", target: "moksha", relation: "断除" },
+
+            // jnana 智慧
+            { source: "jnana", target: "atman", relation: "证得" },
+            { source: "jnana", target: "moksha", relation: "导向" },
+            { source: "jnana", target: "ego", relation: "消融" },
+            { source: "jnana", target: "maya", relation: "洞穿" },
+
+            // dhyana 禅定
+            { source: "dhyana", target: "mind", relation: "平息" },
+            { source: "dhyana", target: "samadhi", relation: "深化" },
+            { source: "dhyana", target: "silence", relation: "趋向" },
+            { source: "dhyana", target: "japa", relation: "辅助" },
+
+            // japa 念诵
+            { source: "japa", target: "mind", relation: "净化" },
+            { source: "japa", target: "silence", relation: "归于" },
+            { source: "japa", target: "bhakti", relation: "表达" },
+            { source: "japa", target: "guru", relation: "专注" },
+
+            // vairagya 出离
+            { source: "vairagya", target: "jnana", relation: "辅助" },
+            { source: "vairagya", target: "ego", relation: "削弱" },
+            { source: "vairagya", target: "moksha", relation: "铺垫" },
+            { source: "vairagya", target: "viveka", relation: "伴随" },
+
+            // ananda 喜悦
+            { source: "ananda", target: "atman", relation: "本质" },
+            { source: "ananda", target: "moksha", relation: "体验" },
+            { source: "ananda", target: "self", relation: "属性" },
+
+            // awareness 觉知
+            { source: "awareness", target: "atman", relation: "等同" },
+            { source: "awareness", target: "self", relation: "本质" },
+            { source: "awareness", target: "thoughts", relation: "观照" },
+            { source: "awareness", target: "ego", relation: "超越" },
+
+            // satchidananda 三位一体
+            { source: "satchidananda", target: "self", relation: "等同" },
+            { source: "satchidananda", target: "moksha", relation: "体验" },
+            { source: "satchidananda", target: "ananda", relation: "包含" },
+
+            // enlightenment 开悟
+            { source: "enlightenment", target: "self", relation: "认识" },
+            { source: "enlightenment", target: "ego", relation: "消融" },
+            { source: "enlightenment", target: "silence", relation: "体现" },
+            { source: "enlightenment", target: "grace", relation: "赋予" },
+
+            // sahaja 自然安住
+            { source: "sahaja", target: "awareness", relation: "恒住" },
+            { source: "sahaja", target: "silence", relation: "本质" },
+            { source: "sahaja", target: "moksha", relation: "表现" },
+            { source: "sahaja", target: "peace", relation: "包含" },
+
+            // bhakti 奉爱
+            { source: "bhakti", target: "surrender", relation: "深化" },
+            { source: "bhakti", target: "guru", relation: "归依" },
+            { source: "bhakti", target: "jnana", relation: "合一" },
+            { source: "bhakti", target: "atman", relation: "归向" },
+
+            // fate & freewill
+            { source: "freewill", target: "moksha", relation: "终极" },
+            { source: "freewill", target: "ego", relation: "幻觉" },
+            { source: "fate", target: "prarabdha", relation: "体现" },
+
+            // world 世界
+            { source: "world", target: "jiva", relation: "体验" },
+            { source: "world", target: "brahman", relation: "本质" },
+            { source: "world", target: "ego", relation: "投射" },
+
+            // svasthya 自性
+            { source: "svasthya", target: "self", relation: "趋向" },
+            { source: "svasthya", target: "silence", relation: "体现" },
+            { source: "svasthya", target: "awareness", relation: "等同" },
+
+            // samskara 习气（与vasanas已关联，补充更多）
+            { source: "samskara", target: "karma", relation: "强化" },
+            { source: "samskara", target: "thoughts", relation: "触发" },
+            { source: "samskara", target: "ego", relation: "巩固" },
+
+            // enquiry 参究
+            { source: "enquiry", target: "atman", relation: "趋向" },
+            { source: "enquiry", target: "ego", relation: "消融" },
+            { source: "enquiry", target: "self-enquiry", relation: "等同" },
+
+            // jnani 觉者
+            { source: "jnani", target: "silence", relation: "安住" },
+            { source: "jnani", target: "grace", relation: "传递" },
+            { source: "jnani", target: "world", relation: "不受" },
+
+            // peace 平安
+            { source: "peace", target: "self", relation: "本质" },
+            { source: "peace", target: "moksha", relation: "象征" },
+
+            // turiya 第四态
+            { source: "turiya", target: "samadhi", relation: "超越" },
+            { source: "turiya", target: "silence", relation: "体现" },
+            { source: "turiya", target: "atman", relation: "等同" },
+
+            // siddhi 神通
+            { source: "siddhi", target: "ego", relation: "诱惑" },
+            { source: "siddhi", target: "sadhana", relation: "副产品" },
+
+            // viveka 抉择
+            { source: "viveka", target: "vairagya", relation: "带来" },
+            { source: "viveka", target: "maya", relation: "识破" },
+            { source: "viveka", target: "ego", relation: "觉察" },
+
+            // prana 生命能
+            { source: "prana", target: "thoughts", relation: "驱动" },
+            { source: "prana", target: "samadhi", relation: "止息" },
+            { source: "prana", target: "ego", relation: "支撑" },
+
+            // body 身体
+            { source: "body", target: "ego", relation: "认同" },
+            { source: "body", target: "mind", relation: "载体" },
+            { source: "body", target: "prarabdha", relation: "体现" },
+
+            // drishti 所见
+            { source: "drishti", target: "world", relation: "创造" },
+            { source: "drishti", target: "maya", relation: "强化" },
+            { source: "drishti", target: "awareness", relation: "净化" },
+
+            // sraddha/shraddha 信念/信心
+            { source: "sraddha", target: "sadhana", relation: "基础" },
+            { source: "sraddha", target: "guru", relation: "依止" },
+            { source: "sraddha", target: "moksha", relation: "铺垫" },
+            { source: "shraddha", target: "sadhana", relation: "推动" },
+            { source: "shraddha", target: "whoami", relation: "坚持" },
+
+            // santosha 知足
+            { source: "santosha", target: "vairagya", relation: "相近" },
+            { source: "santosha", target: "ananda", relation: "趋向" },
+
+            // abhyasa 修行实践
+            { source: "abhyasa", target: "sadhana", relation: "构成" },
+            { source: "abhyasa", target: "japa", relation: "包含" },
+            { source: "abhyasa", target: "dhyana", relation: "包含" },
+            { source: "abhyasa", target: "vasanas", relation: "削减" },
+
+            // anityata 无常
+            { source: "anityata", target: "world", relation: "揭示" },
+            { source: "anityata", target: "vairagya", relation: "生起" },
+            { source: "anityata", target: "sukha", relation: "揭穿" },
+
+            // sukha 世间乐
+            { source: "sukha", target: "world", relation: "依附" },
+            { source: "sukha", target: "ego", relation: "强化" },
+
+            // meditation 禅修
+            { source: "meditation", target: "dhyana", relation: "等同" },
+            { source: "meditation", target: "japa", relation: "配合" },
+            { source: "meditation", target: "awareness", relation: "培养" },
+            { source: "meditation", target: "vasanas", relation: "削弱" },
+
+            // dharma 达摩
+            { source: "dharma", target: "karma-yoga", relation: "体现" },
+            { source: "dharma", target: "jiva", relation: "约束" },
+            { source: "dharma", target: "prarabdha", relation: "相关" },
+
+            // lakshya 所缘
+            { source: "lakshya", target: "atman", relation: "最终" },
+            { source: "lakshya", target: "meditation", relation: "对象" },
+            { source: "lakshya", target: "samadhi", relation: "支撑" },
+
+            // manonasha 心灭
+            { source: "manonasha", target: "ego", relation: "消灭" },
+            { source: "manonasha", target: "thoughts", relation: "止息" },
+            { source: "manonasha", target: "awareness", relation: "显现" },
+
+            // chit 识
+            { source: "chit", target: "self", relation: "等同" },
+            { source: "chit", target: "ananda", relation: "伴随" },
+
+            // mano & manas
+            { source: "mano", target: "vasanas", relation: "储存" },
+            { source: "mano", target: "awareness", relation: "遮蔽" },
+            { source: "manas", target: "thoughts", relation: "产生" },
+            { source: "manas", target: "ego", relation: "构成" },
+
+            // satsang 莎桑
+            { source: "satsang", target: "silence", relation: "传递" },
+            { source: "satsang", target: "bhakti", relation: "深化" },
+            { source: "satsang", target: "jnani", relation: "亲近" },
+
+            // sattva 善性
+            { source: "sattva", target: "viveka", relation: "产生" },
+            { source: "sattva", target: "meditation", relation: "辅助" },
+            { source: "sattva", target: "peace", relation: "带来" },
+
+            // upadesha 教示
+            { source: "upadesha", target: "satsang", relation: "包含" },
+            { source: "upadesha", target: "surrender", relation: "引导" },
+            { source: "upadesha", target: "atman", relation: "指向" },
+
+            // antaryamin 内在之神
+            { source: "antaryamin", target: "self", relation: "等同" },
+            { source: "antaryamin", target: "hrdaya", relation: "居于" },
+            { source: "antaryamin", target: "surrender", relation: "接受" },
+
+            // sharanagati 归依
+            { source: "sharanagati", target: "bhakti", relation: "包含" },
+            { source: "sharanagati", target: "antaryamin", relation: "归向" },
+            { source: "sharanagati", target: "jnani", relation: "亲近" },
+
+            // chidabhasa 意识之影
+            { source: "chidabhasa", target: "jiva", relation: "构成" },
+            { source: "chidabhasa", target: "atman", relation: "折射" },
+            { source: "chidabhasa", target: "thoughts", relation: "赋能" },
+
+            // sanchita & agami
+            { source: "sanchita", target: "vasanas", relation: "积累" },
+            { source: "sanchita", target: "jiva", relation: "承载" },
+            { source: "agami", target: "vasanas", relation: "加深" },
+            { source: "agami", target: "ego", relation: "产生" },
+            { source: "agami", target: "surrender", relation: "消融" },
+
+            // samadhi-sahaja 自然三摩地
+            { source: "samadhi-sahaja", target: "awareness", relation: "恒住" },
+            { source: "samadhi-sahaja", target: "peace", relation: "体验" },
+            { source: "samadhi-sahaja", target: "turiya", relation: "超越" },
+
+            // neti-neti 非此非彼
+            { source: "neti-neti", target: "ego", relation: "解构" },
+            { source: "neti-neti", target: "maya", relation: "识破" },
+            { source: "neti-neti", target: "body", relation: "排除" },
+
+            // japa-om 嗡
+            { source: "japa-om", target: "dhyana", relation: "导入" },
+            { source: "japa-om", target: "mind", relation: "集中" },
+            { source: "japa-om", target: "brahman", relation: "象征" },
+
+            // jnana-yoga 智慧瑜伽
+            { source: "jnana-yoga", target: "neti-neti", relation: "运用" },
+            { source: "jnana-yoga", target: "atman", relation: "证悟" },
+            { source: "jnana-yoga", target: "enquiry", relation: "核心" },
+
+            // karma-yoga 行动瑜伽
+            { source: "karma-yoga", target: "vasanas", relation: "消融" },
+            { source: "karma-yoga", target: "karma", relation: "净化" },
+            { source: "karma-yoga", target: "moksha", relation: "铺垫" },
+
+            // bhakti-yoga 奉爱瑜伽
+            { source: "bhakti-yoga", target: "atman", relation: "归向" },
+            { source: "bhakti-yoga", target: "satsang", relation: "践行" },
+            { source: "bhakti-yoga", target: "jnana-yoga", relation: "汇合" },
+
+            // avidya 无明（两个同名节点已存在，统一用一个）
+            { source: "avidya", target: "ego", relation: "生起" },
+            { source: "avidya", target: "maya", relation: "等同" },
+            { source: "avidya", target: "jnana", relation: "对立" },
+            { source: "avidya", target: "vasanas", relation: "维持" },
+
+            // david & venkataramana 更多关联
+            { source: "david", target: "ramana", relation: "研究" },
+            { source: "david", target: "face-to-face", relation: "编纂" },
+            { source: "david", target: "day-by-day", relation: "参考" },
+            { source: "venkataramana", target: "arunachala", relation: "守护" },
+            { source: "venkataramana", target: "bhakti", relation: "体现" },
+
+            // 书籍更多关联
+            { source: "be-as-you-are", target: "surrender", relation: "阐述" },
+            { source: "be-as-you-are", target: "guru", relation: "介绍" },
+            { source: "be-as-you-are", target: "mind", relation: "分析" },
+            { source: "gems", target: "guru", relation: "强调" },
+            { source: "gems", target: "moksha", relation: "指引" },
+            { source: "gems", target: "mind", relation: "教导" },
+            { source: "talks", target: "atman", relation: "阐释" },
+            { source: "talks", target: "grace", relation: "探讨" },
+            { source: "talks", target: "samadhi", relation: "描述" },
+            { source: "back-to-heart", target: "hrdaya", relation: "探讨" },
+            { source: "back-to-heart", target: "atman", relation: "主旨" },
+            { source: "back-to-heart", target: "guru", relation: "论述" },
+            { source: "day-by-day", target: "bhakti", relation: "记录" },
+            { source: "day-by-day", target: "grace", relation: "见证" },
+            { source: "face-to-face", target: "grace", relation: "体现" },
+            { source: "face-to-face", target: "atman", relation: "触及" },
+
+            // 三脉瑜伽之间互联
+            { source: "jnana-yoga", target: "bhakti-yoga", relation: "互补" },
+            { source: "jnana-yoga", target: "karma-yoga", relation: "共存" },
         ];
         
         // 颜色映射
@@ -827,7 +1293,8 @@
             .force("link", d3.forceLink(links).id(d => d.id).distance(100))
             .force("charge", d3.forceManyBody().strength(-300))
             .force("center", d3.forceCenter(width / 2, svg.node().getBoundingClientRect().height / 2))
-            .force("collision", d3.forceCollide().radius(40));
+            .force("collision", d3.forceCollide().radius(40))
+            .alphaDecay(0.04);  // 加速收敛，默认0.0228
         
         // 绘制连线
         const link = g.append("g")
@@ -1043,6 +1510,17 @@
         
         // 页面加载时自动缩小显示全部
         setTimeout(resetZoom, 1000);
+        
+        // 第3秒后强制停止大幅跳动：把 alpha 压低，让节点基本稳定
+        setTimeout(() => {
+            // 把当前位置全部固定，等一帧后再松开 → 节点从此只有极小的热运动
+            nodes.forEach(d => { d.fx = d.x; d.fy = d.y; });
+            simulation.alpha(0.05).alphaTarget(0).alphaDecay(0.1).restart();
+            // 短暂延迟后解除固定，允许拖拽仍然有效
+            setTimeout(() => {
+                nodes.forEach(d => { d.fx = null; d.fy = null; });
+            }, 300);
+        }, 3000);
         
         function zoomIn() {
             svg.transition().duration(300).call(zoom.scaleBy, 1.3);
