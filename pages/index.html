@@ -20,8 +20,18 @@
 
     
     <title>拉玛那马哈希知识库 | 灵性教示完整指南（核心著作/概念/问答）修行指南详解 | 拉玛那马哈希知识库</title>
+    <!-- 预加载关键资源 -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="app.js" as="script">
+
+    <!-- DNS 预解析和预连接 -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+
     <link rel="stylesheet" href="styles.css">
-    
+
     <!-- PWA 配置 -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#1a1a2e">
@@ -29,18 +39,17 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="拉玛那知识库">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🙏%3C/text%3E%3C/svg%3E">
-    <!-- Google Analytics 预连接 -->
-    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
-    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MYFWHFPSYB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-MYFWHFPSYB');
-</script>
+    <!-- Google Analytics (异步加载，不阻塞渲染) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MYFWHFPSYB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MYFWHFPSYB', {send_page_view: false});
+      window.addEventListener('load', function() {
+        gtag('event', 'page_view');
+      });
+    </script>
 
 
   <!-- SEO JSON-LD Structured Data -->
@@ -390,8 +399,8 @@
             `).join('');
         }
     </script>
-    <script src="search.js" defer></script>
-    <script src="script.js" defer></script>
+    <!-- 合并后的主脚本（已包含搜索功能） -->
+    <script src="app.js" defer></script>
     
     <script>
       if ('serviceWorker' in navigator) {

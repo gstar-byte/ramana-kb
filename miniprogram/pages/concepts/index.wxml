@@ -1,0 +1,12 @@
+<view class="container">
+  <view class="header">
+    <view class="title">🔮 核心概念</view>
+    <view class="desc">57+核心概念详解，深入理解马哈希教示</view>
+  </view>
+  <view class="concept-list">
+    <view class="concept-item" wx:for="{{concepts}}" wx:key="id" bindtap="onConceptTap" data-id="{{item.id}}">
+      <view class="concept-title">{{item.title}}</view>
+      <view class="concept-desc">{{item.description}}</view>
+    </view>
+  </view>
+</view>

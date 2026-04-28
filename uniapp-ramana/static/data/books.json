@@ -1,0 +1,254 @@
+[
+  {
+    "id": "be-as-you-are",
+    "title": "走向静默，如你本来",
+    "subtitle": "Be As You Are",
+    "editor": "大卫·高德曼 编",
+    "description": "马哈希最核心的问答精选，进入马哈希教法的最佳入门读物",
+    "chapters": [
+      {"id": "ch1", "title": "第一章：自我参究"},
+      {"id": "ch2", "title": "第二章：心智的本质"},
+      {"id": "ch3", "title": "第三章：真我"},
+      {"id": "ch4", "title": "第四章：修行方法"},
+      {"id": "ch5", "title": "第五章：上师与恩典"},
+      {"id": "ch6", "title": "第六章：三摩地"},
+      {"id": "ch7", "title": "第七章：业力与命运"},
+      {"id": "ch8", "title": "第八章：世界与神"},
+      {"id": "ch9", "title": "第九章：解脱"}
+    ]
+  },
+  {
+    "id": "gems",
+    "title": "宝钻集",
+    "subtitle": "Gems from Bhagavan",
+    "description": "马哈希语录精华，每一则都如宝石般珍贵",
+    "chapters": [
+      {"id": "ch1", "title": "第一章：真我"},
+      {"id": "ch2", "title": "第二章：心智"},
+      {"id": "ch3", "title": "第三章：自我参究"},
+      {"id": "ch4", "title": "第四章：臣服"},
+      {"id": "ch5", "title": "第五章：上师"},
+      {"id": "ch6", "title": "第六章：静默"},
+      {"id": "ch7", "title": "第七章：三摩地"},
+      {"id": "ch8", "title": "第八章：业力"},
+      {"id": "ch9", "title": "第九章：解脱"},
+      {"id": "ch10", "title": "第十章：虔信"},
+      {"id": "ch11", "title": "第十一章：智慧"},
+      {"id": "ch12", "title": "第十二章：修行"},
+      {"id": "ch13", "title": "第十三章：证悟"}
+    ]
+  },
+  {
+    "id": "talks",
+    "title": "对谈录",
+    "subtitle": "Talks with Sri Ramana Maharshi",
+    "description": "与马哈希的对话记录，涵盖修行生活的方方面面",
+    "chapters": [
+      {"id": "ch1", "title": "第一章：初次见面"},
+      {"id": "ch2", "title": "第二章：自我参究"},
+      {"id": "ch3", "title": "第三章：心智控制"},
+      {"id": "ch4", "title": "第四章：真我证悟"},
+      {"id": "ch5", "title": "第五章：日常生活"},
+      {"id": "ch6", "title": "第六章：疑难解答"},
+      {"id": "ch7", "title": "第七章：深度教示"},
+      {"id": "ch8", "title": "第八章：最终指向"}
+    ]
+  },
+  {
+    "id": "back-to-heart",
+    "title": "回到你心中",
+    "description": "回到真我本源的心法指引",
+    "chapters": [
+      {"id": "ch1", "title": "第一章：心的位置"},
+      {"id": "ch2", "title": "第二章：回归之道"},
+      {"id": "ch3", "title": "第三章：安住于真我"},
+      {"id": "ch4", "title": "第四章：日常修行"},
+      {"id": "ch5", "title": "第五章：最终证悟"}
+    ]
+  },
+  {
+    "id": "day-by-day",
+    "title": "日日与彼",
+    "subtitle": "Day by Day with Bhagavan",
+    "description": "弟子记录的马哈希每日教示",
+    "chapters": [
+      {"id": "ch1", "title": "第一章：日常教示"},
+      {"id": "ch2", "title": "第二章：问答精选"},
+      {"id": "ch3", "title": "第三章：修行指导"},
+      {"id": "ch4", "title": "第四章：深度对话"},
+      {"id": "ch5", "title": "第五章：灵性故事"},
+      {"id": "ch6", "title": "第六章：弟子见证"},
+      {"id": "ch7", "title": "第七章：最后教示"},
+      {"id": "ch8", "title": "第八章：永恒智慧"}
+    ]
+  },
+  {
+    "id": "face-to-face",
+    "title": "面对面",
+    "description": "马哈希与求道者的对话实录",
+    "chapters": [
+      {"id": "ch1", "title": "第一章：初次相见"},
+      {"id": "ch2", "title": "第二章：深入对话"},
+      {"id": "ch3", "title": "第三章：核心教示"},
+      {"id": "ch4", "title": "第四章：修行实践"},
+      {"id": "ch5", "title": "第五章：证悟指向"}
+    ]
+  },
+  {
+    "id": "search-secret-india",
+    "title": "秘密印度",
+    "description": "保罗·布伦顿的朝圣记录",
+    "chapters": [
+      {"id": "ch1", "title": "第一章：寻找之旅"},
+      {"id": "ch2", "title": "第二章：印度灵性"},
+      {"id": "ch3", "title": "第三章：遇见马哈希"},
+      {"id": "ch4", "title": "第四章：静默力量"},
+      {"id": "ch5", "title": "第五章：深度体验"},
+      {"id": "ch6", "title": "第六章：教示精华"},
+      {"id": "ch7", "title": "第七章：灵性转化"},
+      {"id": "ch8", "title": "第八章：内在觉醒"},
+      {"id": "ch9", "title": "第九章：真我之光"},
+      {"id": "ch10", "title": "第十章：永恒之道"},
+      {"id": "ch11", "title": "第十一章：最终领悟"},
+      {"id": "ch12", "title": "第十二章：回归"},
+      {"id": "ch13", "title": "第十三章：余音"},
+      {"id": "ch14", "title": "第十四章：朝圣结束"},
+      {"id": "ch15", "title": "第十五章：永恒印记"},
+      {"id": "ch16", "title": "第十六章：传承"},
+      {"id": "ch17", "title": "第十七章：不朽智慧"}
+    ]
+  },
+  {
+    "id": "maharshi-gospel",
+    "title": "马哈希福音",
+    "description": "马哈希的灵性教导集",
+    "chapters": [
+      {"id": "ch1", "title": "第一章：自我参究"},
+      {"id": "ch2", "title": "第二章：真我认识"},
+      {"id": "ch3", "title": "第三章：心智超越"},
+      {"id": "ch4", "title": "第四章：臣服之道"},
+      {"id": "ch5", "title": "第五章：上师恩典"},
+      {"id": "ch6", "title": "第六章：静默修行"},
+      {"id": "ch7", "title": "第七章：三摩地境"},
+      {"id": "ch8", "title": "第八章：业力解脱"},
+      {"id": "ch9", "title": "第九章：虔信之路"},
+      {"id": "ch10", "title": "第十章：智慧之光"},
+      {"id": "ch11", "title": "第十一章：修行实践"},
+      {"id": "ch12", "title": "第十二章：证悟境界"},
+      {"id": "ch13", "title": "第十三章：永恒安住"},
+      {"id": "ch14", "title": "第十四章：究竟圆满"}
+    ]
+  },
+  {
+    "id": "maha-yoga",
+    "title": "大瑜伽",
+    "description": "上师教法记录",
+    "chapters": [
+      {"id": "ch1", "title": "第一章：大瑜伽概述"},
+      {"id": "ch2", "title": "第二章：修行基础"},
+      {"id": "ch3", "title": "第三章：深入实践"},
+      {"id": "ch4", "title": "第四章：证悟体验"},
+      {"id": "ch5", "title": "第五章：究竟境界"}
+    ]
+  },
+  {
+    "id": "guru-vachaka-kovai",
+    "title": "上师言颂",
+    "description": "马哈希弟子编纂的精华语录",
+    "chapters": []
+  },
+  {
+    "id": "collected-works",
+    "title": "马哈希文集",
+    "description": " collected works of Sri Ramana Maharshi",
+    "chapters": [
+      {"id": "whoami", "title": "我是谁？"},
+      {"id": "self-enquiry", "title": "自我参究"},
+      {"id": "upadesa-saram", "title": "教示精华"},
+      {"id": "upadesa-manjari", "title": "教示花环"}
+    ]
+  },
+  {
+    "id": "crumbs",
+    "title": "碎屑集",
+    "description": "马哈希教示的珍贵片段",
+    "chapters": [
+      {"id": "ch1", "title": "第一章：日常碎屑"},
+      {"id": "ch2", "title": "第二章：智慧碎屑"},
+      {"id": "ch3", "title": "第三章：修行碎屑"},
+      {"id": "ch4", "title": "第四章：证悟碎屑"}
+    ]
+  },
+  {
+    "id": "reflections",
+    "title": "反思录",
+    "description": "弟子对马哈希教示的反思",
+    "chapters": [
+      {"id": "ch1", "title": "第一章：初次反思"},
+      {"id": "ch2", "title": "第二章：深入反思"},
+      {"id": "ch3", "title": "第三章：修行反思"},
+      {"id": "ch4", "title": "第四章：教示反思"},
+      {"id": "ch5", "title": "第五章：生活反思"},
+      {"id": "ch6", "title": "第六章：深度反思"},
+      {"id": "ch7", "title": "第七章：证悟反思"},
+      {"id": "ch8", "title": "第八章：终极反思"},
+      {"id": "ch9", "title": "第九章：永恒反思"},
+      {"id": "ch10", "title": "第十章：究竟反思"},
+      {"id": "ch11", "title": "第十一章：圆满反思"},
+      {"id": "ch12", "title": "第十二章：安住反思"},
+      {"id": "ch13", "title": "第十三章：超越反思"},
+      {"id": "ch14", "title": "第十四章：无尽反思"}
+    ]
+  },
+  {
+    "id": "spiritual-stories",
+    "title": "灵性故事",
+    "description": "马哈希讲述的灵性故事",
+    "chapters": [
+      {"id": "ch1", "title": "第一章：古老故事"},
+      {"id": "ch2", "title": "第二章：寓言故事"},
+      {"id": "ch3", "title": "第三章：弟子故事"},
+      {"id": "ch4", "title": "第四章：圣者故事"},
+      {"id": "ch5", "title": "第五章：证悟故事"},
+      {"id": "ch6", "title": "第六章：修行故事"},
+      {"id": "ch7", "title": "第七章：解脱故事"}
+    ]
+  },
+  {
+    "id": "surpassing-love",
+    "title": "超越之爱",
+    "description": "马哈希的慈悲与爱",
+    "chapters": [
+      {"id": "ch1", "title": "第一章：爱的本质"},
+      {"id": "ch2", "title": "第二章：超越之爱"}
+    ]
+  },
+  {
+    "id": "teachings",
+    "title": "教示精华",
+    "description": "马哈希核心教示精选",
+    "chapters": [
+      {"id": "ch1", "title": "第一章：自我参究"},
+      {"id": "ch2", "title": "第二章：真我认识"},
+      {"id": "ch3", "title": "第三章：心智超越"},
+      {"id": "ch4", "title": "第四章：臣服之道"},
+      {"id": "ch5", "title": "第五章：上师恩典"},
+      {"id": "ch6", "title": "第六章：静默修行"},
+      {"id": "ch7", "title": "第七章：三摩地境"},
+      {"id": "ch8", "title": "第八章：究竟圆满"}
+    ]
+  },
+  {
+    "id": "timeless",
+    "title": "永恒智慧",
+    "description": "马哈希的永恒教示",
+    "chapters": [
+      {"id": "ch1", "title": "第一章：永恒之道"},
+      {"id": "ch2", "title": "第二章： timeless 教示"},
+      {"id": "ch3", "title": "第三章：智慧传承"},
+      {"id": "ch4", "title": "第四章：证悟指向"},
+      {"id": "ch5", "title": "第五章：安住真我"},
+      {"id": "ch6", "title": "第六章：究竟圆满"}
+    ]
+  }
+]

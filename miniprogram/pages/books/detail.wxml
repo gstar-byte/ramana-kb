@@ -1,0 +1,26 @@
+<view class="container">
+  <view class="header">
+    <view class="title">{{book.title}}</view>
+    <view class="subtitle" wx:if="{{book.subtitle}}">{{book.subtitle}}</view>
+    <view class="desc">{{book.description}}</view>
+  </view>
+
+  <view class="chapters" wx:if="{{book.chapters.length > 0}}">
+    <view class="section-title">📑 章节列表</view>
+    <view 
+      class="chapter-item" 
+      wx:for="{{book.chapters}}" 
+      wx:key="id"
+      bindtap="onChapterTap"
+      data-book="{{book.id}}"
+      data-chapter="{{item.id}}"
+    >
+      <view class="chapter-title">{{item.title}}</view>
+      <view class="arrow">→</view>
+    </view>
+  </view>
+
+  <view class="empty" wx:else>
+    <view class="empty-text">章节内容加载中...</view>
+  </view>
+</view>

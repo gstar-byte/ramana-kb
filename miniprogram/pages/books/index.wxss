@@ -1,0 +1,66 @@
+/* pages/books/index.wxss */
+.header {
+  text-align: center;
+  padding: 40rpx 0 40rpx;
+}
+
+.title {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.desc {
+  font-size: 24rpx;
+  color: var(--text2);
+  margin-top: 12rpx;
+}
+
+.book-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.book-item {
+  display: flex;
+  gap: 24rpx;
+  background: var(--card);
+  padding: 24rpx;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.05);
+}
+
+.book-cover {
+  font-size: 64rpx;
+  flex-shrink: 0;
+}
+
+.book-info {
+  flex: 1;
+}
+
+.book-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4rpx;
+}
+
+.book-subtitle {
+  font-size: 24rpx;
+  color: var(--text2);
+  margin-bottom: 8rpx;
+}
+
+.book-desc {
+  font-size: 26rpx;
+  color: var(--text);
+  line-height: 1.5;
+  margin-bottom: 8rpx;
+}
+
+.book-chapters {
+  font-size: 22rpx;
+  color: var(--gold);
+}

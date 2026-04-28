@@ -1,0 +1,10 @@
+/* pages/persons/index.wxss */
+.header { text-align: center; padding: 40rpx 0; }
+.title { font-size: 40rpx; font-weight: 700; color: var(--gold); }
+.desc { font-size: 24rpx; color: var(--text2); margin-top: 12rpx; }
+.person-list { display: flex; flex-direction: column; gap: 24rpx; }
+.person-item { display: flex; gap: 24rpx; background: var(--card); padding: 28rpx; border-radius: 16rpx; box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.05); }
+.avatar { font-size: 64rpx; flex-shrink: 0; }
+.person-info { flex: 1; }
+.name { font-size: 32rpx; font-weight: 600; color: var(--text); margin-bottom: 8rpx; }
+.bio { font-size: 26rpx; color: var(--text2); line-height: 1.5; }

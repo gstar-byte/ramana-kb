@@ -1,0 +1,9 @@
+/* pages/methods/index.wxss */
+.header { text-align: center; padding: 40rpx 0; }
+.title { font-size: 40rpx; font-weight: 700; color: var(--gold); }
+.desc { font-size: 24rpx; color: var(--text2); margin-top: 12rpx; }
+.method-list { display: flex; flex-direction: column; gap: 24rpx; }
+.method-item { background: var(--card); padding: 28rpx; border-radius: 16rpx; box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.05); border-left: 4rpx solid var(--gold); }
+.method-title { font-size: 32rpx; font-weight: 600; color: var(--text); margin-bottom: 8rpx; }
+.method-desc { font-size: 26rpx; color: var(--gold); margin-bottom: 16rpx; }
+.method-content { font-size: 28rpx; color: var(--text); line-height: 1.8; white-space: pre-line; }

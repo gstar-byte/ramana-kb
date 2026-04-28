@@ -1,0 +1,26 @@
+<view class="container">
+  <view class="header">
+    <view class="title">📚 书籍总览</view>
+    <view class="desc">18本核心著作，涵盖问答、语录、日记、传记等多种形式</view>
+  </view>
+
+  <view class="book-list">
+    <view 
+      class="book-item" 
+      wx:for="{{books}}" 
+      wx:key="id"
+      bindtap="onBookTap"
+      data-id="{{item.id}}"
+    >
+      <view class="book-cover">📖</view>
+      <view class="book-info">
+        <view class="book-title">{{item.title}}</view>
+        <view class="book-subtitle" wx:if="{{item.subtitle}}">{{item.subtitle}}</view>
+        <view class="book-desc">{{item.description}}</view>
+        <view class="book-chapters" wx:if="{{item.chapters.length > 0}}">
+          {{item.chapters.length}} 章
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

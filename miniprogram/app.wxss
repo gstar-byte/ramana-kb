@@ -1,0 +1,38 @@
+/* app.wxss */
+page {
+  background-color: #FAF7F2;
+  color: #1B1B18;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 28rpx;
+  line-height: 1.6;
+  box-sizing: border-box;
+}
+
+view, text, image {
+  box-sizing: border-box;
+}
+
+.container {
+  padding: 24rpx;
+  width: 100%;
+}
+
+.card {
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.05);
+}
+
+.section-title {
+  color: #B8860B;
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-bottom: 20rpx;
+}
+
+.text-muted {
+  color: #6B6560;
+  font-size: 24rpx;
+}

@@ -1,0 +1,33 @@
+<view class="container">
+  <view class="search-box">
+    <input 
+      class="search-input" 
+      placeholder="搜索标题或内容..." 
+      value="{{query}}"
+      bindinput="onInput"
+      bindconfirm="onSearch"
+    />
+  </view>
+
+  <view class="results" wx:if="{{results.length > 0}}">
+    <view 
+      class="result-item" 
+      wx:for="{{results}}" 
+      wx:key="id"
+      bindtap="onResultTap"
+      data-url="{{item.url}}"
+    >
+      <view class="result-type">{{item.typeText}}</view>
+      <view class="result-title">{{item.title}}</view>
+      <view class="result-excerpt">{{item.excerpt}}</view>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{searched && results.length === 0}}">
+    <view class="empty-text">未找到相关结果</view>
+  </view>
+
+  <view class="empty" wx:if="{{!searched}}">
+    <view class="empty-text">输入关键词开始搜索</view>
+  </view>
+</view>

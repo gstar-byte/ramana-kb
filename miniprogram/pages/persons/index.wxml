@@ -1,0 +1,15 @@
+<view class="container">
+  <view class="header">
+    <view class="title">👤 人物索引</view>
+    <view class="desc">关键人物传记</view>
+  </view>
+  <view class="person-list">
+    <view class="person-item" wx:for="{{persons}}" wx:key="id" bindtap="onPersonTap" data-id="{{item.id}}">
+      <view class="avatar">🙏</view>
+      <view class="person-info">
+        <view class="name">{{item.name}}</view>
+        <view class="bio">{{item.bio}}</view>
+      </view>
+    </view>
+  </view>
+</view>

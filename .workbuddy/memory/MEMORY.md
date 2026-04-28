@@ -57,6 +57,12 @@
 - push 后线上有时不更新，需要空提交触发 redeploy
 - 用户强制刷新(Ctrl+Shift+R)也可能无效 → Vercel CDN 缓存延迟
 
+### Service Worker 缓存策略教训（20260426）
+- SW 使用"网络优先+缓存回退"策略，但 CDN 长缓存会导致 SW 拿到旧数据并缓存
+- **JSON 数据文件更新后必须升级 SW 版本号**，否则 PWA 用户持续看到旧数据
+- vercel.json 已为 JSON 文件配置 `max-age=60, must-revalidate`
+- 当前 SW 版本：v12（cache name: `ramana-kb-v12`）
+
 ## 用户偏好
 - 中文交流
 - 绝对路径优先

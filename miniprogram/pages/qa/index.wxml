@@ -1,0 +1,13 @@
+<view class="container">
+  <view class="header">
+    <view class="title">💬 修行问答</view>
+    <view class="desc">374条精选问答，解答修行中的疑惑</view>
+  </view>
+  <view class="qa-list">
+    <view class="qa-item" wx:for="{{qaList}}" wx:key="id" bindtap="onQaTap" data-id="{{item.id}}">
+      <view class="question">❓ {{item.question}}</view>
+      <view class="answer-preview">{{item.answer}}</view>
+      <view class="source">{{item.source}}</view>
+    </view>
+  </view>
+</view>

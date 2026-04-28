@@ -1,32 +1,34 @@
-// Ramana Maharshi Knowledge Base - Service Worker v12
-const CACHE_NAME = 'ramana-kb-v12';
+// Ramana Maharshi Knowledge Base - Service Worker v13 (优化版)
+const CACHE_NAME = 'ramana-kb-v13';
 
-// 预缓存核心资源（必须能离线打开首页）
+// 预缓存核心资源（合并后的 app.js 替代 script.js + search.js）
 const CORE_ASSETS = [
   '/',
   '/index.html',
   '/styles.css',
-  '/script.js',
-  '/search.js',
+  '/app.js',
   '/manifest.json'
 ];
 
-// Install: 预缓存核心资源，逐个处理失败不影响安装
+// Install: 预缓存核心资源，使用 Promise.all 并行处理
 self.addEventListener('install', (e) => {
   e.waitUntil(
     caches.open(CACHE_NAME).then(async (cache) => {
-      console.log('[SW] Installing v12...');
-      for (const url of CORE_ASSETS) {
-        try {
-          const resp = await fetch(url);
-          if (resp.ok) {
-            await cache.put(url, resp.clone());
-            console.log('[SW] Pre-cached:', url);
+      console.log('[SW] Installing v13...');
+      // 并行预缓存，提升安装速度
+      await Promise.all(
+        CORE_ASSETS.map(async (url) => {
+          try {
+            const resp = await fetch(url, { cache: 'no-cache' });
+            if (resp.ok) {
+              await cache.put(url, resp.clone());
+              console.log('[SW] Pre-cached:', url);
+            }
+          } catch (err) {
+            console.warn('[SW] Failed to pre-cache:', url, err.message);
           }
-        } catch (err) {
-          console.warn('[SW] Failed to pre-cache:', url, err.message);
-        }
-      }
+        })
+      );
       console.log('[SW] Install complete');
       return self.skipWaiting();
     })

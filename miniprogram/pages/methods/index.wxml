@@ -1,0 +1,13 @@
+<view class="container">
+  <view class="header">
+    <view class="title">🛤️ 修行方法</view>
+    <view class="desc">12种修行方法指南</view>
+  </view>
+  <view class="method-list">
+    <view class="method-item" wx:for="{{methods}}" wx:key="id">
+      <view class="method-title">{{item.title}}</view>
+      <view class="method-desc">{{item.description}}</view>
+      <view class="method-content">{{item.content}}</view>
+    </view>
+  </view>
+</view>

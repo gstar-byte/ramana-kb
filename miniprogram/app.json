@@ -1,0 +1,92 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/books/index",
+    "pages/books/detail",
+    "pages/concepts/index",
+    "pages/concepts/detail",
+    "pages/methods/index",
+    "pages/qa/index",
+    "pages/qa/detail",
+    "pages/persons/index",
+    "pages/persons/detail",
+    "pages/search/search"
+  ],
+  "subpackages": [
+    {
+      "root": "subpackages/books",
+      "name": "books",
+      "pages": [
+        "be-as-you-are",
+        "gems",
+        "talks",
+        "back-to-heart",
+        "day-by-day",
+        "face-to-face",
+        "search-secret-india",
+        "maharshi-gospel",
+        "maha-yoga",
+        "guru-vachaka-kovai",
+        "collected-works",
+        "crumbs",
+        "reflections",
+        "spiritual-stories",
+        "surpassing-love",
+        "teachings",
+        "timeless"
+      ]
+    },
+    {
+      "root": "subpackages/concepts",
+      "name": "concepts",
+      "pages": [
+        "atman",
+        "brahman",
+        "mind",
+        "ego",
+        "moksha",
+        "grace",
+        "maya",
+        "karma",
+        "samadhi",
+        "silence",
+        "surrender",
+        "guru",
+        "whoami"
+      ]
+    }
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1A2332",
+    "navigationBarTitleText": "拉玛那马哈希知识库",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#FAF7F2"
+  },
+  "tabBar": {
+    "color": "#6B6560",
+    "selectedColor": "#B8860B",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/books/index",
+        "text": "书籍"
+      },
+      {
+        "pagePath": "pages/concepts/index",
+        "text": "概念"
+      },
+      {
+        "pagePath": "pages/qa/index",
+        "text": "问答"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

@@ -1,0 +1,12 @@
+<view class="container">
+  <view class="header">
+    <view class="title">{{person.name}}</view>
+  </view>
+  <view class="card">
+    <view class="bio-title">简介</view>
+    <view class="bio">{{person.bio}}</view>
+    <view class="divider"></view>
+    <view class="bio-title">详细传记</view>
+    <view class="content">{{person.content}}</view>
+  </view>
+</view>

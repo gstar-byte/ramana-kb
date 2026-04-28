@@ -1,39 +1,63 @@
-import re
+"""Extract chapter content from surpassing_love.txt for chapters 1-8 (chapters 9-10 not in PDF)"""
+import re, json
 
-txt = open(r'c:/Users/willp/Desktop/2026年4月/kb01/pdf_content/maha_yoga.txt', 'r', encoding='utf-8').read()
-lines = txt.split('\n')
+with open('pdf_content/surpassing_love.txt', 'r', encoding='utf-8') as f:
+    content = f.read()
 
-# 找所有页码标记的位置和紧跟其后的内容
-chapters = []
+def clean_garbled(text):
+    return re.sub(r'(.)\1{4,}', r'\1', text)
 
-for i, l in enumerate(lines):
-    s = l.strip()
-    m = re.match(r'^--- 第(\d+)页 ---$', s)
+parts = content.split('--- 第')
+pages = {}
+for part in parts[1:]:
+    m = re.match(r'(\d+)页 ---(.*)', part, re.DOTALL)
     if m:
-        pg = int(m.group(1))
-        # 找紧跟的章节标题行（下一行）
-        title = ''
-        for j in range(1, 5):
-            if i+j < len(lines):
-                ns = lines[i+j].strip()
-                if ns and len(ns) < 100 and not ns.startswith('*'):
-                    title = ns
-                    break
-        chapters.append((pg, title, i+1))  # (页码, 标题, 行号)
+        pages[int(m.group(1))] = m.group(2)
 
-print('=== 书籍结构 ===')
-for c in chapters:
-    print('Page %3d | Line %5d | %s' % (c[0], c[1], c[2][:80]))
+# Manual PDF page mapping based on analysis
+# Each chapter: (start_pdf_page, end_pdf_page_exclusive, title)
+chapters_map = {
+    1: (11, 24, 'Reminiscences-I — Viswanatha Swami'),
+    2: (24, 29, 'From Early Days'),
+    3: (29, 40, "Scenes from Ramana's Life — B.V. Narasimha Swami"),
+    4: (40, 65, 'How Bhagavan Came to Me'),
+    5: (65, 70, 'Incidents Connected with the Life of Sri Bhagavan — M.V. Krishnan'),
+    6: (70, 72, "Lessons from Bhagavan's Life — K.R.K. Murthy"),
+    7: (72, 75, 'Loving Devotion — T.P.R.'),
+    8: (75, 81, 'Memorable Days with the Sage of Arunachala'),
+}
 
-# 提取每章内容
-print('\n=== 每章内容长度 ===')
-for idx in range(len(chapters) - 1):
-    pg1, title1, ln1 = chapters[idx]
-    pg2, title2, ln2 = chapters[idx+1]
-    content = '\n'.join(lines[ln1:ln2])
-    # 清理
-    content = re.sub(r'\n--- 第\d+页 ---\n', '', content)
-    content = re.sub(r'\n\d+\n---', '\n', content)
-    print('Ch %d (%s): %d chars, %d lines' % (idx+1, title1[:40], len(content), ln2-ln1))
-    print('  前100字: ' + content[:100].replace('\n', ' '))
-    print()
+chapters = {}
+for ch_num, (start, end, title) in sorted(chapters_map.items()):
+    parts_list = []
+    for pn in range(start, end):
+        if pn in pages:
+            cleaned = clean_garbled(pages[pn])
+            # Remove literal \n remnants
+            cleaned = cleaned.replace('\\n', ' ')
+            # Remove leading \n
+            cleaned = cleaned.lstrip('\r\n')
+            parts_list.append(cleaned)
+    
+    full_text = '\r\n\r\n'.join(parts_list)
+    # Remove standalone book page numbers at start of sections
+    full_text = re.sub(r'^\d{1,3}\r\n', '', full_text, flags=re.MULTILINE)
+    # Clean up whitespace
+    full_text = re.sub(r'\r\n{3,}', '\r\n\r\n', full_text)
+    full_text = full_text.strip()
+    
+    chapters[ch_num] = {
+        'title': title,
+        'content': full_text,
+        'chars': len(full_text),
+    }
+
+for ch_num, data in sorted(chapters.items()):
+    print(f"Ch {ch_num} ({data['title']}): {data['chars']} chars")
+    print(f"  Preview: {data['content'][:200]}...")
+
+with open('chapters_sl_extracted.json', 'w', encoding='utf-8') as f:
+    json.dump(chapters, f, ensure_ascii=False, indent=2)
+
+print(f"\nSaved {len(chapters)} chapters to chapters_sl_extracted.json")
+print("Note: Chapters 9-10 are not covered in the PDF (only 80 pages scanned, book ends at page ~296)")
