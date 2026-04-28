@@ -50,30 +50,69 @@
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
     <div class="layout">
 
-<aside class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-        <a href="../index.html" class="logo">🙏 拉玛那知识库</a>
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="logo">🙏 拉玛那知识库</a>
                 <button class="sidebar-close-btn" title="收起侧边栏">◀</button>
-    </div>
-    
-    <div class="search-box">
-        <input type="text" id="search-input" placeholder="搜索标题或内容..." autocomplete="off">
-        <div id="search-results"></div>
-    </div>
-    
-    <div class="sidebar-section">
-        <div class="sidebar-section-title">📚 核心索引</div>
-        <div class="sidebar-items">
-            <a href="../index.html" class="sidebar-item">🏠 首页</a>
-            <a href="../books/index.html" class="sidebar-item">📖 书籍总览</a>
-            <a href="index.html" class="sidebar-item active">🔮 核心概念</a>
-            <a href="../methods/index.html" class="sidebar-item">🛤️ 修行方法</a>
-            <a href="../qa/index.html" class="sidebar-item">💬 修行问答</a>
-            <a href="../persons/index.html" class="sidebar-item">👤 人物索引</a>
-            <a href="../graph.html" class="sidebar-item">🕸️ 知识图谱</a>
-        </div>
-    </div>
-</aside>
+            </div>
+
+            <!-- 搜索框 -->
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="搜索标题或内容..." autocomplete="off">
+                <div id="search-results"></div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">📚 核心索引</div>
+                <div class="sidebar-items">
+                    <a href="../books/index.html" class="sidebar-item"><span class="emoji">📖</span> 书籍总览 <span class="count">19</span></a>
+                    <a href="index.html" class="sidebar-item active"><span class="emoji">🔮</span> 核心概念 <span class="count">57+</span></a>
+                    <a href="../methods/index.html" class="sidebar-item"><span class="emoji">🛤️</span> 修行方法 <span class="count">12</span></a>
+                    <a href="../qa/index.html" class="sidebar-item"><span class="emoji">💬</span> 修行问答 <span class="count">374</span></a>
+                    <a href="../persons/index.html" class="sidebar-item"><span class="emoji">👤</span> 人物索引 <span class="count">3</span></a>
+                    <a href="../graph.html" class="sidebar-item"><span class="emoji">🕸️</span> 知识图谱</a>
+                </div>
+            </div>
+
+            <!-- 核心概念 -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">🔮 核心概念</div>
+                <div class="sidebar-items">
+                    <a href="atman.html" class="sidebar-item">🔮 真我/Atman</a>
+                    <a href="brahman.html" class="sidebar-item">🌀 梵/Brahman</a>
+                    <a href="whoami.html" class="sidebar-item">🔍 "我是谁？"</a>
+                    <a href="mind.html" class="sidebar-item">🧠 心智/Citta</a>
+                    <a href="ego.html" class="sidebar-item">🧠 自我/Ego</a>
+                    <a href="moksha.html" class="sidebar-item">🕊️ 解脱/Moksha</a>
+                    <a href="karma.html" class="sidebar-item">☸️ 业力/Karma</a>
+                    <a href="maya.html" class="sidebar-item">🎭 摩耶/Maya</a>
+                    <a href="grace.html" class="sidebar-item">✨ 恩典/Grace</a>
+                    <a href="silence.html" class="sidebar-item">🤫 静默/Silence</a>
+                    <a href="surrender.html" class="sidebar-item">🙏 臣服/Surrender</a>
+                    <a href="samadhi.html" class="sidebar-item">🧘 三摩地/Samadhi</a>
+                </div>
+            </div>
+
+            <!-- 修行方法 -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">🛤️ 修行方法</div>
+                <div class="sidebar-items">
+                    <a href="../methods/index.html#whoami" class="sidebar-item">🔍 参究"我是谁"</a>
+                    <a href="../methods/index.html#surrender" class="sidebar-item">🙏 臣服上师</a>
+                    <a href="../methods/index.html#japa" class="sidebar-item">🔮 念诵咒语</a>
+                </div>
+            </div>
+
+            <!-- 关键人物 -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">👤 关键人物</div>
+                <div class="sidebar-items">
+                    <a href="../persons/ramana.html" class="sidebar-item">🙏 室利·拉玛那·马哈希</a>
+                    <a href="../persons/david.html" class="sidebar-item">📝 大卫·高德曼</a>
+                    <a href="../persons/venkataramana.html" class="sidebar-item">👩 韦卡罗达·南达</a>
+                </div>
+            </div>
+        </aside>
 
 <main class="main-content">
     <header class="topbar">
