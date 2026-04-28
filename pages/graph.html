@@ -371,8 +371,8 @@
                 </header>
                 
                 <div class="card">
-                    <p style="color:var(--text-muted);margin-bottom:1rem;font-size:0.9rem;">🔍 鼠标悬停在节点上查看关联，<strong style="color:var(--primary);">点击节点</strong>跳转到详情页面</p>
-                    <p style="color:var(--text-muted);margin-bottom:1rem;font-size:0.9rem;display:none;" class="mobile-instructions">📱 按住节点两秒以上松手可以查看关联，<strong style="color:var(--primary);">点击节点</strong>跳转到详情页面</p>
+                    <p style="color:var(--text-muted);margin-bottom:1rem;font-size:0.9rem;">🖱️ 鼠标<strong>悬停</strong>节点查看关联线，<strong style="color:var(--primary);">单击</strong>跳转详情页</p>
+                    <p style="color:var(--text-muted);margin-bottom:1rem;font-size:0.9rem;display:none;" class="mobile-instructions">👆 <strong>轻触</strong>节点显示关联线（3秒后自动跳转详情页）；<strong>长按</strong>仅查看关联不跳转</p>
                     
                     <div class="graph-wrapper">
                         <svg id="graph-svg"></svg>
@@ -525,6 +525,11 @@
         });
         
         // ========== D3.js 知识图谱 ==========
+        // 判断是否触摸设备（移动端）
+        function isTouchDevice() {
+            return ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+        }
+        
         const svg = d3.select("#graph-svg");
         const width = svg.node().getBoundingClientRect().width;
         const height = 600;
@@ -1313,43 +1318,83 @@
         }
         
         node.on("mouseover", function(event, d) {
+            // 移动端不触发 mouseover
+            if (isTouchDevice()) return;
             showNodeDetails(d, this);
         })
         .on("mousemove", function(event) {
+            if (isTouchDevice()) return;
             tooltip.style.left = (event.offsetX + 15) + "px";
             tooltip.style.top = (event.offsetY - 10) + "px";
         })
         .on("mouseout", function(event, d) {
+            if (isTouchDevice()) return;
             hideNodeDetails(d, this);
         })
         .on("click", function(event, d) {
+            // 移动端 click 由 touchend 逻辑控制，此处忽略
+            if (isTouchDevice()) return;
             if (d.url) window.location.href = d.url;
         })
         // 移动端触摸事件
+        // 短按（< 600ms）：显示关联线3秒后跳转
+        // 长按（>= 600ms）：仅查看关联，不跳转，手抬起后3秒自动隐藏
         .on("touchstart", function(event, d) {
             event.preventDefault();
-            currentTouchNode = { element: this, data: d };
+            const self = this;
+            const startTime = Date.now();
+            currentTouchNode = { element: self, data: d, startTime: startTime, longPress: false };
+
+            // 600ms 后标记为长按
             touchTimer = setTimeout(() => {
-                showNodeDetails(d, this);
-            }, 2000); // 2秒长按
+                if (currentTouchNode && currentTouchNode.startTime === startTime) {
+                    currentTouchNode.longPress = true;
+                    showNodeDetails(d, self);
+                }
+            }, 600);
         })
         .on("touchmove", function(event, d) {
+            // 手指移动则取消所有待定操作
             if (touchTimer) {
                 clearTimeout(touchTimer);
                 touchTimer = null;
+            }
+            if (currentTouchNode) {
+                currentTouchNode = null;
             }
         })
         .on("touchend", function(event, d) {
+            const self = this;
+            const touchInfo = currentTouchNode;
+            currentTouchNode = null;
+
+            if (!touchInfo) return;
+
+            const elapsed = Date.now() - touchInfo.startTime;
+
             if (touchTimer) {
                 clearTimeout(touchTimer);
                 touchTimer = null;
-            } else if (currentTouchNode) {
-                // 长按结束后显示一小段时间
+            }
+
+            if (touchInfo.longPress) {
+                // 长按：仅查看，3秒后隐藏
                 setTimeout(() => {
-                    hideNodeDetails(d, this);
+                    hideNodeDetails(d, self);
+                }, 3000);
+            } else if (elapsed < 600) {
+                // 短按：显示关联线，3秒后跳转
+                showNodeDetails(d, self);
+                // 定位 tooltip 到节点附近
+                const touch = event.changedTouches[0];
+                const rect = document.getElementById('graph-svg').getBoundingClientRect();
+                tooltip.style.left = (touch.clientX - rect.left + 15) + "px";
+                tooltip.style.top = (touch.clientY - rect.top - 10) + "px";
+                setTimeout(() => {
+                    hideNodeDetails(d, self);
+                    if (d.url) window.location.href = d.url;
                 }, 3000);
             }
-            currentTouchNode = null;
         });
         
         // 绘制蜘蛛网效果
