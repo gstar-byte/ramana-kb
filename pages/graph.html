@@ -1262,18 +1262,16 @@
             .data(nodes)
             .join("g")
             .attr("class", "node")
-            .style("cursor", "pointer")
-            .call(d3.drag()
+            .style("cursor", "pointer");
+
+        // 仅在非触摸设备上启用拖拽
+        if (!isTouchDevice()) {
+            node.call(d3.drag()
                 .on("start", dragstarted)
                 .on("drag", dragged)
                 .on("end", dragended)
-                // 禁用移动端的拖拽（触摸交互由自定义 touch 事件处理）
-                .filter(function(event) {
-                    // 在触摸设备上禁用拖拽，让节点可点击
-                    return !event.sourceEvent ||
-                           event.sourceEvent.type !== 'touchstart';
-                })
             );
+        }
         
         // 节点圆圈
         node.append("circle")
