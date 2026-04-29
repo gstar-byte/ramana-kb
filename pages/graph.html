@@ -48,6 +48,8 @@
         #graph-svg {
             width: 100%;
             height: 650px;
+            /* 修复移动端触摸问题：允许触摸事件穿透到节点 */
+            touch-action: none;
         }
         
         /* 概念分类链接字体 */
@@ -76,6 +78,18 @@
             .graph-controls button {
                 padding: 0.25rem 0.5rem;
                 font-size: 0.7rem;
+            }
+            /* 修复移动端汉堡菜单触摸 */
+            .hamburger {
+                touch-action: manipulation;
+                -webkit-tap-highlight-color: transparent;
+                /* 确保 z-index 足够高 */
+                z-index: 1001 !important;
+            }
+            /* 修复侧边栏触摸 */
+            .sidebar {
+                touch-action: pan-y; /* 允许垂直滚动，禁用水平手势 */
+                overscroll-behavior: contain;
             }
         }
         
@@ -1252,7 +1266,14 @@
             .call(d3.drag()
                 .on("start", dragstarted)
                 .on("drag", dragged)
-                .on("end", dragended));
+                .on("end", dragended)
+                // 禁用移动端的拖拽（触摸交互由自定义 touch 事件处理）
+                .filter(function(event) {
+                    // 在触摸设备上禁用拖拽，让节点可点击
+                    return !event.sourceEvent ||
+                           event.sourceEvent.type !== 'touchstart';
+                })
+            );
         
         // 节点圆圈
         node.append("circle")
@@ -1350,6 +1371,8 @@
         // 短按（< 600ms）：显示关联线3秒后跳转
         // 长按（>= 600ms）：仅查看关联，不跳转，手抬起后3秒自动隐藏
         .on("touchstart", function(event, d) {
+            // 关键修复：立即停止传播，防止 D3 drag 拦截触摸事件
+            event.stopPropagation();
             event.preventDefault();
             const self = this;
             const startTime = Date.now();
@@ -1364,6 +1387,8 @@
             }, 600);
         })
         .on("touchmove", function(event, d) {
+            // 手指移动也停止传播，确保触摸交互正确
+            event.stopPropagation();
             // 手指移动则取消所有待定操作
             if (touchTimer) {
                 clearTimeout(touchTimer);
@@ -1374,6 +1399,8 @@
             }
         })
         .on("touchend", function(event, d) {
+            // 停止传播，确保触摸结束事件正确处理
+            event.stopPropagation();
             const self = this;
             const touchInfo = currentTouchNode;
             currentTouchNode = null;
@@ -1488,15 +1515,27 @@
         // 页面加载时自动缩小显示全部
         setTimeout(resetZoom, 1000);
         
-        // 第3秒后强制停止大幅跳动：把 alpha 压低，让节点基本稳定
+        // 第3秒后强制停止节点抖动
         setTimeout(() => {
-            // 把当前位置全部固定，等一帧后再松开 → 节点从此只有极小的热运动
-            nodes.forEach(d => { d.fx = d.x; d.fy = d.y; });
-            simulation.alpha(0.05).alphaTarget(0).alphaDecay(0.1).restart();
-            // 短暂延迟后解除固定，允许拖拽仍然有效
+            // 方案1：完全停止 simulation，让节点固定在当前位置
+            simulation.stop();
+
+            // 方案2：同时固定所有节点位置，防止任何后续运动
+            nodes.forEach(d => {
+                d.fx = d.x;
+                d.fy = d.y;
+                d.vx = 0;  // 清除速度
+                d.vy = 0;
+            });
+
+            // 500ms 后允许拖拽（松开固定），但 simulation 已停止，节点不会抖动
             setTimeout(() => {
-                nodes.forEach(d => { d.fx = null; d.fy = null; });
-            }, 300);
+                nodes.forEach(d => {
+                    d.fx = null;
+                    d.fy = null;
+                    // vx/vy 保持为 0，确保节点不动
+                });
+            }, 500);
         }, 3000);
         
         function zoomIn() {
