@@ -1289,8 +1289,6 @@
         
         // 悬停效果
         const tooltip = document.getElementById("tooltip");
-        let touchTimer = null;
-        let currentTouchNode = null;
         
         function showNodeDetails(d, element) {
             // 强化当前节点
@@ -1361,74 +1359,21 @@
             hideNodeDetails(d, this);
         })
         .on("click", function(event, d) {
-            // 移动端 click 由 touchend 逻辑控制，此处忽略
-            if (isTouchDevice()) return;
-            if (d.url) window.location.href = d.url;
-        })
-        // 移动端触摸事件
-        // 短按（< 600ms）：显示关联线3秒后跳转
-        // 长按（>= 600ms）：仅查看关联，不跳转，手抬起后3秒自动隐藏
-        .on("touchstart", function(event, d) {
-            // 关键修复：立即停止传播，防止 D3 drag 拦截触摸事件
-            event.stopPropagation();
-            event.preventDefault();
-            const self = this;
-            const startTime = Date.now();
-            currentTouchNode = { element: self, data: d, startTime: startTime, longPress: false };
+            // 显示节点详情
+            showNodeDetails(d, this);
 
-            // 600ms 后标记为长按
-            touchTimer = setTimeout(() => {
-                if (currentTouchNode && currentTouchNode.startTime === startTime) {
-                    currentTouchNode.longPress = true;
-                    showNodeDetails(d, self);
+            // 移动端延迟3秒后跳转，PC端立即跳转
+            if (d.url) {
+                if (isTouchDevice()) {
+                    // 移动端：3秒后跳转
+                    setTimeout(() => {
+                        hideNodeDetails(d, this);
+                        window.location.href = d.url;
+                    }, 3000);
+                } else {
+                    // PC端：立即跳转
+                    window.location.href = d.url;
                 }
-            }, 600);
-        })
-        .on("touchmove", function(event, d) {
-            // 手指移动也停止传播，确保触摸交互正确
-            event.stopPropagation();
-            // 手指移动则取消所有待定操作
-            if (touchTimer) {
-                clearTimeout(touchTimer);
-                touchTimer = null;
-            }
-            if (currentTouchNode) {
-                currentTouchNode = null;
-            }
-        })
-        .on("touchend", function(event, d) {
-            // 停止传播，确保触摸结束事件正确处理
-            event.stopPropagation();
-            const self = this;
-            const touchInfo = currentTouchNode;
-            currentTouchNode = null;
-
-            if (!touchInfo) return;
-
-            const elapsed = Date.now() - touchInfo.startTime;
-
-            if (touchTimer) {
-                clearTimeout(touchTimer);
-                touchTimer = null;
-            }
-
-            if (touchInfo.longPress) {
-                // 长按：仅查看，3秒后隐藏
-                setTimeout(() => {
-                    hideNodeDetails(d, self);
-                }, 3000);
-            } else if (elapsed < 600) {
-                // 短按：显示关联线，3秒后跳转
-                showNodeDetails(d, self);
-                // 定位 tooltip 到节点附近
-                const touch = event.changedTouches[0];
-                const rect = document.getElementById('graph-svg').getBoundingClientRect();
-                tooltip.style.left = (touch.clientX - rect.left + 15) + "px";
-                tooltip.style.top = (touch.clientY - rect.top - 10) + "px";
-                setTimeout(() => {
-                    hideNodeDetails(d, self);
-                    if (d.url) window.location.href = d.url;
-                }, 3000);
             }
         });
         
