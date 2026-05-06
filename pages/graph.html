@@ -618,7 +618,7 @@
             { id: "jnana", name: "🕯️ 智慧", type: "moksha", url: "concepts/jnana.html", desc: "智慧/Jnana，超越知识的究竟知识" },
             { id: "avidya", name: "🌫️ 无明", type: "mind", url: "concepts/maya.html", desc: "无明/Avidya，对真实本性的无知" },
             { id: "ananda", name: "✨ 喜悦", type: "atman", url: "concepts/satchidananda.html", desc: "喜悦/Ananda，真我的本质属性" },
-            { id: "samskara", name: "🔄 习气", type: "mind", url: "concepts/svasthya.html", desc: "习气/Samskara，根深蒂固的心理印痕" },
+            { id: "samskara", name: "🔄 熏习", type: "mind", url: "concepts/samskara.html", desc: "熏习/Samskara，根深蒂固的心理印记，是Vasanas的来源" },
             
             // 新增节点10个 - 扩展概念
             { id: "satchidananda", name: "✨ 存在-意识-喜悦", type: "atman", url: "concepts/satchidananda.html", desc: "存在-意识-喜悦/Satchidananda，梵的永恒本质" },
@@ -682,6 +682,24 @@
             { id: "samadhi-sahaja", name: "🌿 自然三摩地", type: "moksha", url: "concepts/sahaja.html", desc: "自然三摩地/Sahaja Samadhi，觉者的恒常状态" },
             { id: "neti-neti", name: "🚫 非此非彼", type: "practice", url: "concepts/viveka.html", desc: "非此非彼/Neti-Neti，否定一切非真我的方法论" },
             { id: "japa-om", name: "🔮 嗡", type: "practice", url: "concepts/japa.html", desc: "嗡/Om，最古老的神圣音节，宇宙的原音" },
+            
+            // ===== 第1批新增（7个概念）=====
+            { id: "advaita", name: "☯️ 非二元", type: "atman", url: "concepts/advaita.html", desc: "非二元/Advaita，梵我不二的终极真理" },
+            { id: "shiva", name: "🕉️ 湿婆", type: "atman", url: "concepts/shiva.html", desc: "湿婆/Shiva，至上的意识与毁灭重生之力" },
+            { id: "satya", name: "💎 真理", type: "atman", url: "concepts/satya.html", desc: "真理/Satya，永恒不变的终极实在" },
+            { id: "vichara", name: "🕯️ 参究", type: "practice", url: "concepts/vichara.html", desc: "参究/Vichara，深入探究真我的修行" },
+            { id: "samsara", name: "🔄 轮回", type: "moksha", url: "concepts/samsara.html", desc: "轮回/Samsara，生死流转的循环" },
+            { id: "nishtha", name: "🎯 专住", type: "moksha", url: "concepts/nishtha.html", desc: "专住/Nishtha，安住于真我的坚定" },
+            { id: "kundalini", name: "🐍 昆达里尼", type: "practice", url: "concepts/kundalini.html", desc: "昆达里尼/Kundalini，沉睡的灵性能量" },
+            
+            // ===== 第2批新增（7个概念）=====
+            { id: "yoga", name: "🧘‍♂️ 瑜伽", type: "practice", url: "concepts/yoga.html", desc: "瑜伽/Yoga，与真我合一的修行之道" },
+            { id: "tapas", name: "🔥 苦行", type: "practice", url: "concepts/tapas.html", desc: "苦行/Tapas，自我净化的炽热修行" },
+            { id: "mantra", name: "📿 曼陀罗", type: "practice", url: "concepts/mantra.html", desc: "曼陀罗/Mantra，神圣音节与持诵之力" },
+            { id: "darshana", name: "👁️ 见地", type: "atman", url: "concepts/darshana.html", desc: "见地/Darshana，哲学观点与灵性洞见" },
+            { id: "isvara", name: "👑 伊湿瓦罗", type: "atman", url: "concepts/isvara.html", desc: "伊湿瓦罗/Isvara，至上的个人神与宇宙主宰" },
+            { id: "klesha", name: "😣 烦恼", type: "mind", url: "concepts/klesha.html", desc: "烦恼/Klesha，痛苦的根源与障碍" },
+            { id: "smriti", name: "🧠 忆念", type: "practice", url: "concepts/smriti.html", desc: "忆念/Smriti，正念与真我之忆" },
         ];
         
         // 关系 - 扩展版
@@ -1226,6 +1244,47 @@
             // 三脉瑜伽之间互联
             { source: "jnana-yoga", target: "bhakti-yoga", relation: "互补" },
             { source: "jnana-yoga", target: "karma-yoga", relation: "共存" },
+            
+            // ===== 第1批新增关系（7个概念）=====
+            { source: "advaita", target: "atman", relation: "核心" },
+            { source: "advaita", target: "brahman", relation: "不二" },
+            { source: "advaita", target: "maya", relation: "破除" },
+            { source: "shiva", target: "atman", relation: "象征" },
+            { source: "shiva", target: "brahman", relation: "体现" },
+            { source: "satya", target: "atman", relation: "本质" },
+            { source: "satya", target: "brahman", relation: "等同" },
+            { source: "vichara", target: "whoami", relation: "深入" },
+            { source: "vichara", target: "jnana", relation: "产生" },
+            { source: "vichara", target: "atman", relation: "趋向" },
+            { source: "samsara", target: "maya", relation: "创造" },
+            { source: "samsara", target: "ego", relation: "维系" },
+            { source: "samsara", target: "moksha", relation: "超越" },
+            { source: "nishtha", target: "jnani", relation: "安住" },
+            { source: "nishtha", target: "atman", relation: "定于" },
+            { source: "kundalini", target: "hrdaya", relation: "上升" },
+            { source: "kundalini", target: "samadhi", relation: "触发" },
+            
+            // ===== 第2批新增关系（7个概念）=====
+            { source: "yoga", target: "atman", relation: "合一" },
+            { source: "yoga", target: "sadhana", relation: "方法" },
+            { source: "yoga", target: "samadhi", relation: "导向" },
+            { source: "tapas", target: "ego", relation: "净化" },
+            { source: "tapas", target: "mind", relation: "降伏" },
+            { source: "tapas", target: "grace", relation: "招感" },
+            { source: "mantra", target: "japa", relation: "形式" },
+            { source: "mantra", target: "mind", relation: "集中" },
+            { source: "mantra", target: "atman", relation: "共鸣" },
+            { source: "darshana", target: "atman", relation: "洞见" },
+            { source: "darshana", target: "jnana", relation: "产生" },
+            { source: "isvara", target: "brahman", relation: "人格化" },
+            { source: "isvara", target: "guru", relation: "体现" },
+            { source: "isvara", target: "grace", relation: "赐予" },
+            { source: "klesha", target: "ego", relation: "根源" },
+            { source: "klesha", target: "mind", relation: "扰乱" },
+            { source: "klesha", target: "moksha", relation: "障碍" },
+            { source: "smriti", target: "whoami", relation: "保持" },
+            { source: "smriti", target: "atman", relation: "忆念" },
+            { source: "smriti", target: "mind", relation: "净化" },
         ];
         
         // 颜色映射
@@ -1241,11 +1300,11 @@
         
         // 力导向模拟
         const simulation = d3.forceSimulation(nodes)
-            .force("link", d3.forceLink(links).id(d => d.id).distance(100))
-            .force("charge", d3.forceManyBody().strength(-300))
+            .force("link", d3.forceLink(links).id(d => d.id).distance(120))
+            .force("charge", d3.forceManyBody().strength(-500))
             .force("center", d3.forceCenter(width / 2, svg.node().getBoundingClientRect().height / 2))
-            .force("collision", d3.forceCollide().radius(40))
-            .alphaDecay(0.04);  // 加速收敛，默认0.0228
+            .force("collision", d3.forceCollide().radius(d => d.type === "center" ? 55 : d.type === "book" || d.type === "person" ? 45 : 40).strength(0.8))
+            .alphaDecay(0.02);  // 减慢收敛，让布局更稳定
         
         // 绘制连线
         const link = g.append("g")
