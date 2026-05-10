@@ -28,6 +28,31 @@
       "permanent": true
     },
     {
+      "source": "/zh-TW/books/",
+      "destination": "/zh-TW/books/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/zh-TW/qa/",
+      "destination": "/zh-TW/qa/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/zh-TW/persons/",
+      "destination": "/zh-TW/persons/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/zh-TW/concepts/",
+      "destination": "/zh-TW/concepts/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/zh-TW/methods/",
+      "destination": "/zh-TW/methods/index.html",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [
         {
