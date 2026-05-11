@@ -103,6 +103,10 @@ def main():
     
     # 生成 sitemap.xml
     lines = ['<?xml version="1.0" encoding="UTF-8"?>']
+    lines.append(
+        "<!-- 供搜索引擎抓取。人类可读、带版式的索引页："
+        f"{BASE_URL}/sitemap.html（简体）与 {BASE_URL}/zh-TW/sitemap.html（繁体） -->"
+    )
     lines.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"')
     lines.append('        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"')
     lines.append('        xmlns:xhtml="http://www.w3.org/1999/xhtml"')
