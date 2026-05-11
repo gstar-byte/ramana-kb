@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="拉玛那馬哈希知識庫完整网站地图，包含所有頁面索引：书籍導讀、核心概念、修行方法、精選問答、關鍵人物等板块的完整导航指南。涵盖拉玛那馬哈希全集導讀、自我參究核心概念、修行方法、精選問答与關鍵人物傳記，是深入探索非二元吠檀多智慧的完整入口。">
-    <title>拉玛那馬哈希知識庫网站地图 | 完整頁面索引指南 | 拉玛那馬哈希</title>
+    <meta name="description" content="拉瑪那馬哈希知識庫完整網站地圖，包含所有頁面索引。">
+    <title>網站地圖 | 拉瑪那馬哈希知識庫</title>
 
-    <meta property="og:title" content="拉玛那馬哈希知識庫网站地图 | 完整頁面索引指南 | 拉玛那馬哈希">
-    <meta property="og:description" content="拉玛那馬哈希知識庫完整网站地图，包含所有頁面索引：书籍導讀、核心概念、修行方法、精選問答、關鍵人物等板块的完整导航指南。涵盖拉玛那馬哈希全集導讀、自我參究核心概念、修行方法、精選問答与關鍵人物傳記，是深入探索非二元吠檀多智慧的完整入口。">
+    <meta property="og:title" content="網站地圖 | 拉瑪那馬哈希知識庫">
+    <meta property="og:description" content="拉瑪那馬哈希知識庫完整網站地圖，包含所有頁面索引。">
      rel="canonical" href="https://ramanamaharshi.space/zh-TW/sitemap.html">
         <!-- <!-- 预加载關鍵資源  -->
     <link rel="preload" href="../styles.min.css" as="style">
@@ -22,100 +22,47 @@
 <link rel="stylesheet" href="../styles.min.css">
         <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🙏%3C/text%3E%3C/svg%3E">
     <style>
-        .sitemap {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1.5rem;
-        }
-        .sitemap h1 {
-            text-align: center;
-            color: var(--primary);
-            margin-bottom: 2rem;
-            font-size: 2rem;
-        }
-        .sitemap-grid {
+        .sitemap-wrapper {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
         }
         .sitemap-section {
             background: var(--card-bg);
             border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            border-left: 4px solid var(--primary);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .sitemap-section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            padding: 1.2rem;
+            border-left: 3px solid var(--primary);
         }
         .sitemap-section h2 {
             color: var(--primary);
-            margin-bottom: 1rem;
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 0.5rem;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+            margin: 0 0 0.8rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid var(--border);
         }
-        .sitemap-section h3 {
-            color: var(--text-primary);
-            margin: 1rem 0 0.5rem 0;
-            padding-left: 1rem;
-            font-size: 1rem;
+        .sitemap-section h2 span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: normal;
         }
-        .sitemap-links {
+        .sitemap-section ul {
             list-style: none;
             padding: 0;
             margin: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
         }
-        .sitemap-links li {
-            margin: 0;
-            padding-left: 1.5rem;
-            position: relative;
+        .sitemap-section li {
+            padding: 0.35rem 0;
+            font-size: 0.9rem;
         }
-        .sitemap-links li::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-            font-weight: bold;
-        }
-        .sitemap-links a {
+        .sitemap-section a {
             color: var(--text-primary);
             text-decoration: none;
-            transition: color 0.3s ease, padding-left 0.3s ease;
-            display: block;
-            padding: 0.2rem 0;
         }
-        .sitemap-links a:hover {
+        .sitemap-section a:hover {
             color: var(--primary);
-            padding-left: 0.5rem;
         }
-        .section-count {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-left: 0.5rem;
-            font-weight: normal;
-        }
-        .sitemap-section-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-        }
-        .sitemap-section-header h2 {
-            margin: 0;
-            border: none;
-            padding: 0;
-        }
-        .section-divider {
-            height: 2px;
-            background: linear-gradient(to right, var(--primary), transparent);
-            margin: 1rem 0;
+        @media (max-width: 768px) {
+            .sitemap-wrapper { grid-template-columns: 1fr; }
         }
     </style>
     <!-- <!-- Google Analytics 预连接  -->
@@ -186,16 +133,12 @@
             </header>
             
             <div class="content-wrapper">
-                <div class="sitemap">
-                    <h1>🌐 網站地圖</h1>
-                    <div class="sitemap-grid">
-                    <!-- <!-- 书籍頁面  -->
+                <h1 style="text-align:center;color:var(--primary);margin-bottom:1.5rem;">🌐 網站地圖</h1>
+                <div class="sitemap-wrapper">
+                    <!-- 書籍頁面 -->
                     <div class="sitemap-section">
-                        <div class="sitemap-section-header">
-                            <h2>📖 書籍總覽 <span class="section-count">(18本著作)</span></h2>
-                        </div>
-                        <div class="section-divider"></div>
-                        <ul class="sitemap-links">
+                        <h2>📖 書籍總覽 <span>(18本)</span></h2>
+                        <ul>
                             <li><a href="books/index.html">書籍索引</a></li>
                             <li><a href="books/be-as-you-are.html">走向靜默，如你本來（9章）</a></li>
                             <li><a href="books/gems.html">寶鑽集（13章）</a></li>
@@ -215,18 +158,15 @@
                             <li><a href="books/timeless.html">永恆</a></li>
                         </ul>
                     </div>
-                    
-                    <!-- <!-- 核心概念  -->
+
+                    <!-- 核心概念 -->
                     <div class="sitemap-section">
-                        <div class="sitemap-section-header">
-                            <h2>🔮 核心概念 <span class="section-count">(70概念)</span></h2>
-                        </div>
-                        <div class="section-divider"></div>
-                        <ul class="sitemap-links">
+                        <h2>🔮 核心概念 <span>(70+)</span></h2>
+                        <ul>
                             <li><a href="concepts/index.html">概念索引</a></li>
                             <li><a href="concepts/atman.html">真我/Atman</a></li>
                             <li><a href="concepts/brahman.html">梵/Brahman</a></li>
-                            <li><a href="concepts/whoami.html">"我是誰？"</a></li>
+                            <li><a href="concepts/whoami.html">我是誰？</a></li>
                             <li><a href="concepts/mind.html">心智/Citta</a></li>
                             <li><a href="concepts/ego.html">自我/Ego</a></li>
                             <li><a href="concepts/moksha.html">解脫/Moksha</a></li>
@@ -244,54 +184,27 @@
                             <li><a href="concepts/awareness.html">覺知/Awareness</a></li>
                             <li><a href="concepts/thoughts.html">念頭/Thoughts</a></li>
                             <li><a href="concepts/samsara.html">輪迴/Samsara</a></li>
-                            <li><a href="concepts/fate.html">命運/Fate</a></li>
-                            <li><a href="concepts/freewill.html">自由意志/Free Will</a></li>
                             <li><a href="concepts/world.html">世界/World</a></li>
                             <li><a href="concepts/enlightenment.html">開悟/Enlightenment</a></li>
-                            <li><a href="concepts/jnani.html">覺者/Jnani</a></li>
-                            <li><a href="concepts/sahaja.html">自然安住/Sahaja</a></li>
                             <li><a href="concepts/peace.html">安寧/Peace</a></li>
                             <li><a href="concepts/advaita.html">非二元/Advaita</a></li>
-                            <li><a href="concepts/shiva.html">溼婆/Shiva</a></li>
-                            <li><a href="concepts/shakti.html">沙克蒂/Shakti</a></li>
-                            <li><a href="concepts/dhyana.html">禪定/Dhyana</a></li>
-                            <li><a href="concepts/vairagya.html">出離/Vairagya</a></li>
-                            <li><a href="concepts/surrender.html">臣服/Surrender</a></li>
-                            <li><a href="concepts/self-enquiry.html">自我參究</a></li>
-                            <li><a href="concepts/satchidananda.html">存在-意識-喜悅</a></li>
-                            <li><a href="concepts/turiya.html">第四態/Turiya</a></li>
                             <li><a href="concepts/kundalini.html">昆達里尼/Kundalini</a></li>
-                            <li><a href="concepts/tapas.html">苦行/Tapas</a></li>
-                            <li><a href="concepts/dharma.html">達摩/Dharma</a></li>
-                            <li><a href="concepts/isvara.html">伊溼瓦羅/Isvara</a></li>
-                            <li><a href="concepts/mantra.html">曼陀羅/Mantra</a></li>
-                            <li><a href="concepts/klesha.html">煩惱/Klesha</a></li>
-                            <li><a href="concepts/smriti.html">憶念/Smriti</a></li>
-                            <li><a href="concepts/darshana.html">見地/Darshana</a></li>
-                            <li><a href="concepts/yoga.html">瑜伽/Yoga</a></li>
-                            <li style="color:var(--text-muted);font-size:0.85rem;">...及其他20個概念，詳見 <a href="concepts/index.html">概念索引</a></li>
                         </ul>
                     </div>
-                    
-                    <!-- <!-- 修行方法  -->
+
+                    <!-- 修行方法 -->
                     <div class="sitemap-section">
-                        <div class="sitemap-section-header">
-                            <h2>🛤️ 修行方法</h2>
-                        </div>
-                        <div class="section-divider"></div>
-                        <ul class="sitemap-links">
+                        <h2>🛤️ 修行方法</h2>
+                        <ul>
                             <li><a href="methods/index.html">方法索引</a></li>
                         </ul>
                     </div>
-                    
-                    <!-- <!-- 修行問答  -->
+
+                    <!-- 修行問答 -->
                     <div class="sitemap-section">
-                        <div class="sitemap-section-header">
-                            <h2>💬 修行問答 <span class="section-count">(51頁·453條)</span></h2>
-                        </div>
-                        <div class="section-divider"></div>
-                        <ul class="sitemap-links">
-                            <li><a href="qa/index.html">問答索引（按主題篩選）</a></li>
+                        <h2>💬 修行問答 <span>(51頁)</span></h2>
+                        <ul>
+                            <li><a href="qa/index.html">問答索引</a></li>
                             <li><a href="qa/qa-1.html">問答 1：真我</a></li>
                             <li><a href="qa/qa-2.html">問答 2：死亡</a></li>
                             <li><a href="qa/qa-3.html">問答 3：業力與輪迴</a></li>
@@ -313,30 +226,19 @@
                             <li><a href="qa/qa-19.html">問答 19：馬哈希與弟子</a></li>
                             <li><a href="qa/qa-20.html">問答 20：靜默</a></li>
                             <li><a href="qa/qa-21.html">問答 21：幸福與苦難</a></li>
-                            <li><a href="qa/qa-22.html">問答 22：死亡深入</a></li>
-                            <li><a href="qa/qa-23.html">問答 23：三摩地深入</a></li>
-                            <li><a href="qa/qa-24.html">問答 24：世界深入</a></li>
-                            <li><a href="qa/qa-25.html">問答 25：日常修行</a></li>
+                            <li><a href="qa/qa-22.html">問答 22-25</a></li>
                             <li><a href="qa/qa-42.html">問答 42：瑜伽與身體</a></li>
                             <li><a href="qa/qa-43.html">問答 43：呼吸與調息</a></li>
                             <li><a href="qa/qa-44.html">問答 44：飲食與清淨</a></li>
                             <li><a href="qa/qa-45.html">問答 45：梵咒與音聲</a></li>
-                            <li><a href="qa/qa-46.html">問答 46：時間與永恆</a></li>
-                            <li><a href="qa/qa-47.html">問答 47：潛意識</a></li>
-                            <li><a href="qa/qa-48.html">問答 48：社會與責任</a></li>
-                            <li><a href="qa/qa-49.html">問答 49：疾病與療愈</a></li>
-                            <li><a href="qa/qa-50.html">問答 50：信心與虔誠</a></li>
-                            <li><a href="qa/qa-51.html">問答 51：獨身與在家</a></li>
+                            <li><a href="qa/qa-46.html">問答 46-51</a></li>
                         </ul>
                     </div>
-                    
-                    <!-- <!-- 人物索引  -->
+
+                    <!-- 人物索引 -->
                     <div class="sitemap-section">
-                        <div class="sitemap-section-header">
-                            <h2>👤 人物索引</h2>
-                        </div>
-                        <div class="section-divider"></div>
-                        <ul class="sitemap-links">
+                        <h2>👤 人物索引</h2>
+                        <ul>
                             <li><a href="persons/index.html">人物索引</a></li>
                             <li><a href="persons/ramana.html">室利·拉瑪那·馬哈希</a></li>
                             <li><a href="persons/david.html">大衛·高德曼</a></li>
@@ -344,47 +246,28 @@
                         </ul>
                     </div>
 
-                    <!-- <!-- 其他頁面  -->
+                    <!-- 其他頁面 -->
                     <div class="sitemap-section">
-                        <div class="sitemap-section-header">
-                            <h2>🔗 其他</h2>
-                        </div>
-                        <div class="section-divider"></div>
-                        <ul class="sitemap-links">
+                        <h2>🔗 其他</h2>
+                        <ul>
                             <li><a href="index.html">首頁</a></li>
                             <li><a href="graph.html">知識圖譜</a></li>
                         </ul>
-                    </div>
                     </div>
                 </div>
             </div>
             
             <footer class="site-footer">
                 <p><a href="index.html">拉瑪那馬哈希</a> | 傳承自印度阿魯那佳拉聖山</p>
-                <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-muted);">© 2026 拉瑪那馬哈希. 保留所有權利。</p>
-                <p style="margin-top:1rem; font-size:0.9rem;"><a href="sitemap.html" style="color: var(--text-muted); text-decoration: underline;">🌐 網站地圖</a> <span style="margin: 0 1rem;">|</span> <a href="mailto:591611431@qq.com" style="color: var(--text-muted); text-decoration: underline;">聯絡我</a></p>
+                <p style="margin-top:0.5rem;font-size:0.9rem;"><a href="sitemap.html">🌐 網站地圖</a> <span style="margin:0 1rem;">|</span> <a href="mailto:591611431@qq.com">聯絡我</a></p>
             </footer>
         </main>
     </div>
     
-    <script>
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-            navigator.serviceWorker.register('sw.js')
-                .then(function(registration) {
-                    console.log('SW registered:', registration.scope);
-                })
-                .catch(function(error) {
-                    console.log('SW registration failed:', error);
-                });
-        });
-    }
-    </script>
-<script src="pwa-analytics.js" defer></script>
     <script src="../bundle.min.js" defer></script>
-<script>document.addEventListener("click",function(e){if(e.target.closest(".sidebar-close-btn,.sidebar-open-btn")){e.preventDefault();var s=document.getElementById("sidebar"),m=document.querySelector(".main-content"),t=document.querySelector(".topbar"),b=document.querySelector(".sidebar-close-btn");if(!s)return;if(s.classList.contains("desktop-hidden")){s.classList.remove("desktop-hidden");if(m)m.classList.remove("full-width");if(t)t.classList.remove("reading-mode");if(b){b.textContent="◀";b.title="收起侧边栏";}}else{s.classList.add("desktop-hidden");if(m)m.classList.add("full-width");if(t)t.classList.add("reading-mode");if(b){b.textContent="▶";b.title="展开侧边栏";}}}});</script>
-<!-- sidebar-toggle-css -->
-<style>.sidebar.desktop-hidden{transform:translateX(-100%) !important;transition:transform .3s ease;}.sidebar-close-btn{display:block;background:rgba(255,255,255,.1);border:none;color:#cbd5e1;font-size:14px;cursor:pointer;padding:6px 10px;border-radius:4px;transition:all .15s;line-height:1;}.sidebar-close-btn:hover{background:rgba(255,255,255,.2);color:#fff;}.main-content.full-width{margin-left:0 !important;max-width:100vw !important;transition:margin-left .3s ease;}.main-content.full-width .topbar{left:0 !important;width:100% !important;}.main-content.full-width .content-wrapper,.main-content.full-width main{max-width:100% !important;}.main-content.full-width .content-wrapper{padding:24px 48px !important;}.sidebar-open-btn{display:none;position:fixed;top:9px;left:8px;z-index:201;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);color:#cbd5e1;font-size:16px;cursor:pointer;padding:5px 10px;border-radius:4px;transition:all .15s;line-height:1.2;}.sidebar-open-btn:hover{background:rgba(255,255,255,.25);color:#fff;}.main-content.full-width .sidebar-open-btn{display:block;}</style>
-<!-- sidebar-toggle -->
+    <!-- sidebar-toggle-css -->
+    <style>.sidebar.desktop-hidden{transform:translateX(-100%) !important;transition:transform .3s ease;}.sidebar-close-btn{display:block;background:rgba(255,255,255,.1);border:none;color:#cbd5e1;font-size:14px;cursor:pointer;padding:6px 10px;border-radius:4px;transition:all .15s;line-height:1;}.sidebar-close-btn:hover{background:rgba(255,255,255,.2);color:#fff;}.main-content.full-width{margin-left:0 !important;max-width:100vw !important;transition:margin-left .3s ease;}.main-content.full-width .topbar{left:0 !important;width:100% !important;}.main-content.full-width .content-wrapper,.main-content.full-width main{max-width:100% !important;}.main-content.full-width .content-wrapper{padding:24px 48px !important;}.sidebar-open-btn{display:none;position:fixed;top:9px;left:8px;z-index:201;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);color:#cbd5e1;font-size:16px;cursor:pointer;padding:5px 10px;border-radius:4px;transition:all .15s;line-height:1.2;}.sidebar-open-btn:hover{background:rgba(255,255,255,.25);color:#fff;}.main-content.full-width .sidebar-open-btn{display:block;}</style>
+    <!-- sidebar-toggle -->
+    <script>document.addEventListener("click",function(e){if(e.target.closest(".sidebar-close-btn,.sidebar-open-btn")){e.preventDefault();var s=document.getElementById("sidebar"),m=document.querySelector(".main-content"),t=document.querySelector(".topbar"),b=document.querySelector(".sidebar-close-btn");if(!s)return;if(s.classList.contains("desktop-hidden")){s.classList.remove("desktop-hidden");if(m)m.classList.remove("full-width");if(t)t.classList.remove("reading-mode");if(b){b.textContent="◀";b.title="收起側邊欄";}}else{s.classList.add("desktop-hidden");if(m)m.classList.add("full-width");if(t)t.classList.add("reading-mode");if(b){b.textContent="▶";b.title="展開側邊欄";}}}});</script>
 </body>
 </html>
