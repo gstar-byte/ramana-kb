@@ -21,8 +21,8 @@
     
     <title>拉玛那马哈希知识库 | 灵性教示完整指南（核心著作/概念/问答/修行方法）|拉玛那马哈希</title>
     <!-- 预加载关键资源 -->
-    <link rel="preload" href="styles.css" as="style">
-    <link rel="preload" href="app.js" as="script">
+    <link rel="preload" href="styles.min.css" as="style">
+    <link rel="preload" href="bundle.min.js" as="script">
 
     <!-- DNS 预解析和预连接 -->
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
@@ -30,7 +30,7 @@
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
     <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.min.css">
 
     <!-- PWA 配置 -->
     <link rel="manifest" href="manifest.json">
@@ -408,7 +408,7 @@
         }
     </script>
     <!-- 合并后的主脚本（已包含搜索功能） -->
-    <script src="app.js" defer></script>
+    <script src="bundle.min.js" defer></script>
     
     <script>
       if ('serviceWorker' in navigator) {

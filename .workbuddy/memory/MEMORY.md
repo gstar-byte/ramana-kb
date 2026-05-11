@@ -61,7 +61,13 @@
 - SW 使用"网络优先+缓存回退"策略，但 CDN 长缓存会导致 SW 拿到旧数据并缓存
 - **JSON 数据文件更新后必须升级 SW 版本号**，否则 PWA 用户持续看到旧数据
 - vercel.json 已为 JSON 文件配置 `max-age=60, must-revalidate`
-- 当前 SW 版本：v12（cache name: `ramana-kb-v12`）
+- 当前 SW 版本：v13（cache name: `ramana-kb-v13`）- 2026-04-28 性能优化升级
+
+### 前端性能优化最佳实践（20260428）
+- **dns-prefetch vs preconnect**：两者互补，`dns-prefetch` 保底，`preconnect` 加强，关键资源用 `preload`
+- **JS合并**：多个小文件合并为1个，减少HTTP请求数
+- **GA优化**：异步加载 + 延迟 `page_view`，不阻塞首屏渲染
+- **SW预缓存**：使用 `Promise.all` 并行处理，提升安装速度
 
 ## 用户偏好
 - 中文交流

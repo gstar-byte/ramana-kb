@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
-  <rect fill="#1a0a2e" width="192" height="192" rx="32"/>
-  <circle cx="96" cy="80" r="45" fill="none" stroke="#c77dff" stroke-width="3"/>
-  <circle cx="96" cy="80" r="35" fill="none" stroke="#a855f7" stroke-width="2"/>
-  <text x="96" y="100" font-size="50" text-anchor="middle" dominant-baseline="middle" fill="#c77dff">🙏</text>
-  <text x="96" y="150" font-size="14" text-anchor="middle" fill="#a78bfa">拉玛那</text>
-</svg>
