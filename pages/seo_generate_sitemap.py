@@ -5,6 +5,7 @@
 - 添加 priority (按页面层级)
 - 添加 changefreq
 - 确保所有 URL 与实际可访问的页面一致（保留 .html 后缀）
+- 每条 URL 添加 xhtml:link hreflang（zh-CN / zh-TW）；整站仅此一份 XML 站点地图（含 /zh-TW 下页面）
 """
 import os
 import re
@@ -13,7 +14,37 @@ from datetime import date
 
 PAGES_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_URL = "https://ramanamaharshi.space"
+ZH_TW_ROOT = "/zh-TW"
 TODAY = date.today().strftime("%Y-%m-%d")
+
+
+def hreflang_urls(url_path):
+    """
+    根据站点路径返回 (zh-CN 完整 URL, zh-TW 完整 URL)。
+    url_path 形如 /、/books/x.html、/zh-TW/...（与 get_url_and_priority 输出一致）。
+    """
+    if url_path.startswith(f"{ZH_TW_ROOT}/"):
+        rest = url_path[len(f"{ZH_TW_ROOT}/") :]
+        if rest in ("", "index.html"):
+            cn_path = "/"
+        else:
+            cn_path = f"/{rest}"
+        cn_full = f"{BASE_URL}/" if cn_path == "/" else f"{BASE_URL}{cn_path}"
+        # 繁體首頁 hreflang 使用 /zh-TW/（與站內慣例一致）
+        if rest in ("", "index.html"):
+            tw_full = f"{BASE_URL}{ZH_TW_ROOT}/"
+        else:
+            tw_full = f"{BASE_URL}{url_path}"
+        return cn_full, tw_full
+
+    if url_path in ("/", "/index.html"):
+        cn_full = f"{BASE_URL}/"
+        tw_full = f"{BASE_URL}{ZH_TW_ROOT}/"
+        return cn_full, tw_full
+
+    cn_full = f"{BASE_URL}{url_path}"
+    tw_full = f"{BASE_URL}{ZH_TW_ROOT}{url_path}"
+    return cn_full, tw_full
 
 def get_url_and_priority(rel_path):
     """从相对路径生成 URL 和优先级（保留 .html 后缀）"""
@@ -74,16 +105,20 @@ def main():
     lines = ['<?xml version="1.0" encoding="UTF-8"?>']
     lines.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"')
     lines.append('        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"')
+    lines.append('        xmlns:xhtml="http://www.w3.org/1999/xhtml"')
     lines.append('        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9')
     lines.append('        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">')
     
     for url_path, priority, freq in urls:
         full_url = f"{BASE_URL}{url_path}"
+        cn_href, tw_href = hreflang_urls(url_path)
         lines.append('  <url>')
         lines.append(f'    <loc>{full_url}</loc>')
         lines.append(f'    <lastmod>{TODAY}</lastmod>')
         lines.append(f'    <changefreq>{freq}</changefreq>')
         lines.append(f'    <priority>{priority:.1f}</priority>')
+        lines.append(f'    <xhtml:link rel="alternate" hreflang="zh-CN" href="{cn_href}"/>')
+        lines.append(f'    <xhtml:link rel="alternate" hreflang="zh-TW" href="{tw_href}"/>')
         lines.append('  </url>')
     
     lines.append('</urlset>')

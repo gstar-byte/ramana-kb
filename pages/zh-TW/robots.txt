@@ -5,4 +5,3 @@ User-agent: *
 Allow: /
 
 Sitemap: https://ramanamaharshi.space/sitemap.xml
-Sitemap: https://ramanamaharshi.space/zh-TW/sitemap.xml
