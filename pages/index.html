@@ -9,7 +9,7 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://ramanamaharshi.space/">
         <!-- Open Graph -->
-    <meta property="og:title" content="拉玛那马哈希知识库 | 拉玛那马哈希">
+    <meta property="og:title" content="拉玛那马哈希知识库 | 灵性教示完整指南（核心著作/概念/问答/修行方法） | 拉玛那马哈希">
     <meta property="og:description" content="拉玛那马哈希知识库系统整理其灵性教示，包含18本经典著作完整导读、50+核心概念详解、500+精选问答、修行方法指南与关键人物传记，全面覆盖自我参究与静默之道的智慧体系。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ramanamaharshi.space/">
@@ -19,7 +19,7 @@
     <meta property="og:image" content="https://ramanamaharshi.space/images/og-default.jpg">
 
     
-    <title>拉玛那马哈希知识库 | 灵性教示完整指南（核心著作/概念/问答/修行方法）|拉玛那马哈希</title>
+    <title>拉玛那马哈希知识库 | 灵性教示完整指南（核心著作/概念/问答/修行方法） | 拉玛那马哈希</title>
     <!-- 预加载关键资源 -->
     <link rel="preload" href="styles.min.css" as="style">
     <link rel="preload" href="bundle.min.js" as="script">
@@ -42,7 +42,7 @@
     <!-- Google Analytics (异步加载，不阻塞渲染) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MYFWHFPSYB"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
+      window.dataLayer = window.dataLayer | [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-MYFWHFPSYB', {send_page_view: false});
@@ -90,7 +90,7 @@
     <link rel="alternate" hreflang="zh-CN" href="https://ramanamaharshi.space/">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="拉玛那马哈希知识库 | 拉玛那马哈希">
+    <meta name="twitter:title" content="拉玛那马哈希知识库">
     <meta name="twitter:description" content="拉玛那马哈希知识库系统整理其灵性教示，包含18本经典著作完整导读、50+核心概念详解、500+精选问答、修行方法指南与关键人物传记，全面覆盖自我参究与静默之道的智慧体系。本页收录拉玛那马哈希的核心教示，结合完整注释与修行背景，帮助修行者深入">
     <meta name="twitter:image" content="https://ramanamaharshi.space/images/og-default.jpg">
 </head>
@@ -386,7 +386,7 @@
             
             const q = query.toLowerCase();
             const matches = searchIndex.filter(item => 
-                item.title.toLowerCase().includes(q) || 
+                item.title.toLowerCase().includes(q) | 
                 item.excerpt.toLowerCase().includes(q)
             );
             
@@ -453,11 +453,11 @@
   // 检测平台
   const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
   const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-  const isInstalled = window.matchMedia('(display-mode: standalone)').matches || 
+  const isInstalled = window.matchMedia('(display-mode: standalone)').matches | 
                       window.navigator.standalone === true;
   const isDismissed = localStorage.getItem('pwa-install-dismissed');
   
-  if (isInstalled || isDismissed) return;
+  if (isInstalled | isDismissed) return;
   
   // iOS Safari 特殊处理
   if (isIOS && isSafari) {
