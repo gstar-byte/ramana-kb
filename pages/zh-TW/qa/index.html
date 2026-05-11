@@ -176,18 +176,18 @@
                     </div>
                 </div>
 
-                <!-- <!-- 分类筛选  -->
+                <!-- 分类筛选 -->
                 <div class="tab-nav" id="tabNav">
-                    <button class="tab-btn active" data-category="all">全部</button>
-                    <button class="tab-btn" data-category="真我">真我</button>
-                    <button class="tab-btn" data-category="心智">心智</button>
-                    <button class="tab-btn" data-category="參究">參究</button>
-                    <button class="tab-btn" data-category="靜默">靜默</button>
-                    <button class="tab-btn" data-category="恩典">恩典</button>
-                    <button class="tab-btn" data-category="三摩地">三摩地</button>
-                    <button class="tab-btn" data-category="日常">日常</button>
-                    <button class="tab-btn" data-category="世界">世界</button>
-                    <button class="tab-btn" data-category="解脫">解脫</button>
+                    <button class="tab-btn active" data-category="all" onclick="filterByCategory('all')">全部</button>
+                    <button class="tab-btn" data-category="真我" onclick="filterByCategory('真我')">真我</button>
+                    <button class="tab-btn" data-category="心智" onclick="filterByCategory('心智')">心智</button>
+                    <button class="tab-btn" data-category="參究" onclick="filterByCategory('參究')">參究</button>
+                    <button class="tab-btn" data-category="靜默" onclick="filterByCategory('靜默')">靜默</button>
+                    <button class="tab-btn" data-category="恩典" onclick="filterByCategory('恩典')">恩典</button>
+                    <button class="tab-btn" data-category="三摩地" onclick="filterByCategory('三摩地')">三摩地</button>
+                    <button class="tab-btn" data-category="日常" onclick="filterByCategory('日常')">日常</button>
+                    <button class="tab-btn" data-category="世界" onclick="filterByCategory('世界')">世界</button>
+                    <button class="tab-btn" data-category="解脫" onclick="filterByCategory('解脫')">解脫</button>
                 </div>
 
                 <!-- <!-- QA列表  -->
@@ -508,6 +508,43 @@
             initPagination();
             showPage(1);
         });
+
+        // 筛选分类
+        function filterByCategory(category) {
+            // 更新按钮状态
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector(`.tab-btn[data-category="${category}"]`).classList.add('active');
+            
+            // 筛选
+            if (category === 'all') {
+                filteredItems = [...allQaItems];
+            } else {
+                const categoryKeywords = {
+                    '真我': ['真我', 'self'],
+                    '心智': ['心智', 'mind', '念头', '思维'],
+                    '參究': ['參究', '我是谁', 'who am i'],
+                    '靜默': ['靜默', 'silence', '沉默'],
+                    '恩典': ['恩典', 'grace'],
+                    '奉爱': ['奉爱', 'bhakti', 'devotion'],
+                    '三摩地': ['三摩地', 'samadhi', '禪定'],
+                    '日常': ['日常', '生活', '工作', 'work'],
+                    '世界': ['世界', 'world'],
+                    '解脫': ['解脫', 'liberation']
+                };
+                const keywords = categoryKeywords[category] || [category];
+                filteredItems = allQaItems.filter(item => {
+                    const question = item.question.toLowerCase();
+                    return keywords.some(kw => question.includes(kw.toLowerCase()));
+                });
+            }
+            
+            currentPage = 1;
+            currentFilter = category;
+            updateUrlParams(currentPage, currentFilter);
+            updateSEO(currentPage, currentFilter, filteredItems.length);
+            initPagination();
+            showPage(1);
+        }
 
         // 頁面載入時啟動
         async function init() {
