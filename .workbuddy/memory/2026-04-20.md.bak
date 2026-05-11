@@ -1,0 +1,202 @@
+# 2026-04-20
+
+### ⚠️ 生成章节页必须遵循的规范（20260420教训）
+- **每次生成前**：必须先读取 `be-as-you-are-ch1.html` 作为完整模板基准
+- **生成后必查**：
+  1. 是否有双面包屑（检查是否有残留旧模板代码）
+  2. page-nav 是否只有1个（检查是否有残留旧模板的第二个 page-nav）
+  3. 侧边栏"其他书籍"链接路径是否正确（`../books/` 开头）
+  4. 面包屑路径 `../books/index.html` 而非 `index.html`
+- **书籍首页章节列表**：用整块可点击卡片（`<a class="chapter-card">`），非折叠面板+按钮
+- **生成脚本中的替换字符串**：生成后必须手动检查是否有未替换干净的旧模板内容
+
+### 书籍页"上一本/下一本"导航（20260420下午）
+- 书籍顺序（book-map）：be-as-you-are → gems → talks → back-to-heart → day-by-day → face-to-face → maharshi-gospel → search-secret-india → maha-yoga → collected-works → spiritual-stories → reflections → teachings → surpassing-love → crumbs → timeless
+- 所有16本书底部（footer前）添加 page-nav 翻页导航
+- talks/back-to-heart/day-by-day/face-to-face 这4个文件缺少 footer，用 fix_missing_footer.py 补上
+
+### 大瑜伽书籍页生成（20260420下午）
+- **源文件**: `pdf_content/maha_yoga.txt`（CRLF行分隔，约14万字，前65页已提取）
+- **章节行号**（0-indexed, CRLF）：
+  - Ch1 行297-794（第12页~第28页）
+  - Ch2 行795-972（第28页~第34页）
+  - Ch3 行973-1378（第34页~第47页）
+  - Ch4 行1378-1714（第47页~第58页）
+  - Ch5 行1715-2366+（第58页~第68页）
+- **已生成**: `pages/books/maha-yoga-ch1~5.html`（5章，每章约13KB）+ 更新 `maha-yoga.html` 章节导航
+- **maha_yoga.txt行分隔**: 用 `split('\n')` 不要用 `split('\r\n')`
+
+### UI调整 - 顶部菜单/面包屑字体 + 书籍源文档（20260420下午）
+- **顶部菜单字体**: 13px → 14px (styles.css `.topbar-nav a`)
+- **面包屑字体**: 20px → 15px (styles.css `.breadcrumb`)
+
+### Vercel 清理 + 项目整理
+- **Vercel Token**: `vcp_6qQrEND04FntvMjAs6HDoHo2Kdv8he2utq43KsSlz2yFZF1ZoH0PkCmB`（用户自己保管）
+- **已删除 kb01copy 项目**（API: DELETE v10/projects/prj_nnsLAugr7pxZlhlOHrS6QytPJzUw）
+- **已清理 kb01 24h前部署 66 条**（cleanup_vercel.py，auto-confirm=True）
+- **Vercel 项目**:
+  - kb01（主站，prj_T3WiRCU2UvF4BKc3SJrtytuyNHYa，绑定 ramanamaharshi.space）
+  - mro（原 site，已改名为 mro，prj_sDZNG0DN2KmbTlQmvcW99THpFlf6，关联 cross-border-trade）
+  - 20260410104230（旧废弃项目，API 已无法删，显示残留但实际已自动清理）
+- **GitHub 历史提交不删**：每次只存增量（压缩后几KB），一辈子也占不了多少空间
+- **Vercel 部署记录可删**：只是后台历史，不影响代码
+- **书籍源文档补充**: 为8本缺少源文档区域的书籍添加 📥 源文档 部分
+  - 自动添加: back-to-heart.html, day-by-day.html, face-to-face.html, talks.html
+  - 手动添加: maha-yoga.html, collected-works.html, spiritual-stories.html, reflections.html
+
+### 书籍页面统一（20260420）
+- **相关书籍区域**：为14本缺少的书籍添加 📚 相关书籍 区域
+- **概念标签统一**：将所有 `concept-tag`（无icon）改为 `tag`（有icon），并添加对应的emoji图标
+- **受影响文件**：back-to-heart.html, be-as-you-are.html, collected-works.html, crumbs.html, day-by-day.html, face-to-face.html, gems.html, maha-yoga.html, reflections.html, spiritual-stories.html, surpassing-love.html, talks.html, teachings.html, timeless.html
+
+### 书籍/章节页面结构修复（20260420）
+- **章节页面底部变形修复**：修复了44个章节页面的flex导航布局问题
+  - 将 `<div class="card" style="display:flex;justify-content:space-between;">` 改为嵌套结构
+  - 内部添加 `<div style="display:flex;justify-content:space-between;align-items:center;">` 保持布局
+- **书籍主页面结构统一**：
+  - 移除所有书籍主页面的"相关概念"区域（章节页面保留）
+  - 确保所有书籍主页面都有"相关书籍"区域
+  - be-as-you-are.html 和 gems.html 补充了相关书籍
+
+### 章节页面最终修复（20260420）
+- **翻页导航修复**：为45个章节页面添加了上一章/下一章导航
+  - 删除了之前批量处理时引入的乱码导航（显示为小方块）
+  - 为每个章节自动生成正确的翻页链接
+- **相关概念icon统一**：为所有章节页面的概念标签添加了emoji图标
+  - 我是谁→🔍、真我→🔮、心智→🧠、参究法→🛤️ 等
+
+### 章节导航乱码全面修复（20260420）
+- **问题**：be-as-you-are 等书籍的章节页面底部导航显示为小方块（乱码）
+- **修复范围**：
+  - be-as-you-are-ch1~9.html（9个文件）
+  - crumbs-ch1~4.html（4个文件）
+  - face-to-face-ch1~5.html（5个文件）
+  - reflections-ch1~2.html（2个文件）
+  - spiritual-stories-ch1~2.html（2个文件）
+  - surpassing-love-ch1~2.html（2个文件）
+  - teachings-ch1~2.html（2个文件）
+  - timeless-ch1~6.html（6个文件）
+- **共修复**：32个章节文件
+- **修复内容**：
+  - 面包屑导航中的书名乱码
+  - 章节导航链接中的href和文字乱码
+
+### BugFix - 全站内联脚本冲突修复（20260420下午）
+- **根因**：大量HTML页面（books/concepts/persons/qa/methods及根目录）存在内联`<script>`块，其中绑定了`.sidebar-section-title`的click事件，与`script.js`中的相同绑定造成双重触发（toggle两次 = 净效果为零）
+- **修复范围**：全站共53个文件（books:24 + concepts:19 + persons:4 + methods:1 + qa:2 + 根目录:3）
+- **修复方法**：删除内联`<script>`块，只保留`<script src="../script.js">`
+- **辅助脚本**：`fix_all_book_scripts.py`、`fix_all_pages_scripts.py`、`fix_remaining_scripts.py`、`check_all_inline.py`
+- **最终验证**：check_all_inline.py输出Total: 0
+
+### BugFix - 《印度探秘》三个问题修复（20260420）
+1. **侧边栏折叠按钮失效**：17个章节页（ch1~ch17）内联脚本与script.js双重绑定冲突，批量删除内联`<script>`块，只保留`<script src="../script.js">`
+2. **书名未改**：`books/index.html`中"秘密印度"→"印度探秘"
+3. **concept-tag样式缺失**：在styles.css中新增`.concept-tag`圆角标签样式（类似`.tag`但用`var(--link)`颜色）
+- 辅助脚本：`fix_chapter_scripts.py`（批量处理17个文件）
+
+## 知识库项目
+
+### 《马哈希福音》14章完整页面（20260419-20）
+- **新增**：ch1-ch14 完整章节页面
+- **每章结构**：
+  - 章节概要（3段落）
+  - 核心教导（quote-box）
+  - 经典比喻/深意
+  - 修行指引
+  - 核心洞见（ul列表）
+  - 相关概念（concept-tags）
+  - 章节导航
+- **修复问题**：
+  1. 内容区域宽度（移除page-content包裹）
+  2. HTML残留代码清理
+  3. 列表样式统一（ul内联样式）
+- **部署**：已推送到 ramanamaharshi.space
+
+### 样式微调（20260420上午）
+- **面包屑字体**：15px → 16px
+- **顶部间距统一**：page-header padding-top 36px → 48px（首页/问答页与概念页/人物页/方法页保持一致）
+- **概念页面链接字体**：12px → 14px
+- **图谱页面节点标签**：11px/14px → 13px/16px
+- **文件**：pages/styles.css, pages/graph.html
+
+### 样式修复（20260420上午第二次）
+- **首页/问答页添加面包屑**：与其他页面统一
+- **图谱页面概念链接字体**：添加内联样式覆盖 14px
+- **底部空白减小**：
+  - content-wrapper padding-bottom: 80px → 40px
+  - site-footer margin-top: 48px → 32px
+  - site-footer padding: 24px → 20px
+- **文件**：pages/styles.css, pages/index.html, pages/qa/index.html, pages/graph.html
+
+### 样式修复（20260420上午第三次）
+- **移除首页面包屑**：首页不需要面包屑
+- **进一步压缩底部空白**：
+  - content-wrapper padding-bottom: 40px → 24px
+  - site-footer margin-top: 32px → 20px
+  - site-footer padding: 20px → 16px
+- **概念页面统计**：现有39个概念详情页（不含index和template）
+- **文件**：pages/styles.css, pages/index.html
+
+### 样式修复（20260420上午第四次）
+- **首页顶部间距**：给首页 .page-header 添加内联样式 padding-top:60px（补偿缺失的面包屑）
+- **底部空白继续压缩**：修复媒体查询中残留的 60px/80px padding
+- **文件**：pages/styles.css, pages/index.html
+
+### 样式修复（20260420上午第五次）
+- **面包屑字体**：桌面 15px → 20px，移动端 14px → 15px
+- **页脚间距**：margin-top 20px → 8px，padding 16px → 6px
+- **人物页面链接修复**：6处 `/persons/xxx.html` 改为相对路径 `xxx.html`
+- **文件**：pages/styles.css, pages/persons/index.html
+
+### 概念页面丰富（20260420）
+- **新增39个概念详情页**（不含index.html和_template.html）
+- **页面结构**：
+  - 概念定义（quote-box）
+  - 核心教导/原文引用
+  - 修行指引
+  - 相关概念链接（concept-tags）
+- **概念分类**：
+  - 本体论(6)：真我、梵、本心、存在-意识-喜悦、摩耶、世界
+  - 心智与自我(10)：心智、自我、念头、习气、我念、觉知、无明、意识-物质纽结、自性、个体灵魂
+  - 修行法门(9)："我是谁？"、静默、三摩地、臣服、奉爱、念诵、禅定、参究、修行
+  - 解脱与境界(11)：解脱、恩典、上师、业力、觉者、开悟、自然安住、命运、自由意志、在生解脱、宿业、安宁
+- **文件**：pages/concepts/*.html（39个文件）
+
+### 样式调整（20260420）
+- **顶部菜单字体**：从 16px 减少到 13px（减少3px）
+- **文件**：pages/styles.css 第97行
+- **待推送**：与章节导航修复一起推送
+
+## 用户偏好
+- 中文交流
+- 绝对路径优先
+- 知识图谱需要清晰的节点标签显示
+- **重要工作流**：新增页面时必须同步完成SEO（title/description）+ 更新sitemap.xml + 更新sitemap.html
+
+### BugFix - QA页面脚本丢失 + 马哈希福音章节布局（20260420中午）
+- **QA加载不出来根因**：`pages/qa/index.html` 底部没有 `script.js` 引用，也没有 fetch qa-data.json 的代码（被之前的修改意外删除）
+- **修复方案**：在 `</body>` 前补回完整的 QA 加载脚本（fetch + 分页 + 筛选 + 渲染逻辑）
+- **马哈希福音ch11布局细长**：`content-wrapper` div 缺少关闭标签，导致内容区域宽度异常
+- **修复**：补上 `</div>`（关闭content-wrapper），使 div 开关从 24:23 变为 24:24 对称
+- **顺带修复**：ch9/ch10/ch12/ch13 末尾有残留的重复 `</body></html>` 代码（批量截断）
+- **commit**: f072819
+
+### 《权威合集》完整章节页（20260420傍晚）
+- **书名更名**：《全集》→《权威合集》（collected-works.html），同步更新 books/index.html 和侧边栏
+- **4个章节页**：手动创建完整HTML文件（避免Python format与JS花括号冲突）
+  - collected-works-self-enquiry.html（自我参究）
+  - collected-works-whoami.html（我是谁？）
+  - collected-works-upadesa-saram.html（本心十论）
+  - collected-works-upadesa-manjari.html（上师言颂）
+- **主页卡片全部可点击**：`<a class="chapter-card" href="...">` 整块链接
+- **上一本/下一本导航**：← 灵性故事 / 反思录 →
+- **每章结构**：章节概要 + 核心问答/十颂 + 修行指引 + 原文节选 + 相关概念
+
+### 《印度探秘》完整章节页面（20260420下午）
+- **书名**：印度探秘（A Search in Secret India），保罗·布朗顿 著（非「秘密印度」）
+- **新增**：ch1-ch17 完整章节页面（ch9已手动创建，其余16章通过脚本生成）
+- **生成脚本**：generate_search_india_chapters.py（已重写，修复嵌套双引号语法错误）
+- **每章结构**：章节概要(3段落) + 核心板块(关键词+洞见+引言) + 相关概念 + 章节导航
+- **书籍主页**：pages/books/search-secret-india.html（含完整17章目录）
+- **Sitemap更新**：sitemap.xml + sitemap.html 均已添加17章条目
+- **注意**：本次未发版，仅本地修改，待用户确认后再 git push

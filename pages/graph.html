@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="拉玛那马哈希核心概念知识图谱，可视化展示真我、心智、自我参究、上师恩典等概念之间的关系，涵盖本体论、心智模型、修行法门与世界本质的完整知识网络，助您建立系统认知。本页收录拉玛那马哈希的核心教示，结合完整注释与修行背景，帮助修行者深入理解非二元吠檀多智慧，走向内在真我的彻底觉醒与解脱。">
+    <meta name="keywords" content="拉玛那,马哈希,灵性修行,自我了悟,阿鲁那佳拉,真我,心智,解脱">
+    <meta name="author" content="Ramana Maharshi Knowledge Base">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ramanamaharshi.space/graph.html">
+    
+    <!-- <!-- Open Graph  -->
+    <meta property="og:title" content="拉玛那马哈希核心概念知识图谱 | 灵修思想可视化指南 | 拉玛那马哈希">
+    <meta property="og:description" content="拉玛那马哈希核心概念知识图谱，可视化展示真我、心智、自我参究、上师恩典等概念之间的关系，涵盖本体论、心智模型、修行法门与世界本质的完整知识网络，助您建立系统认知。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ramanamaharshi.space/graph.html">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:site_name" content="拉玛那马哈希知识库">
+    <meta name="publisher" content="拉玛那马哈希知识库">
+    <meta property="og:image" content="https://ramanamaharshi.space/images/og-default.jpg">
+
+    <meta property="og:title" content="拉玛那马哈希核心概念知识图谱 | 灵修思想可视化指南 | 拉玛那马哈希">
+    <meta property="og:description" content="拉玛那马哈希核心概念知识图谱，可视化展示真我、心智、自我参究、上师恩典等概念之间的关系，涵盖本体论、心智模型、修行法门与世界本质的完整知识网络，助您建立系统认知。">
+    <meta property="og:type" content="article">
+    <title>拉玛那马哈希核心概念知识图谱 | 灵修思想可视化指南 | 拉玛那马哈希</title>
+        <!-- <!-- 预加载关键资源  -->
+    <link rel="preload" href="styles.min.css" as="style">
+    <link rel="preload" href="bundle.min.js" as="script">
+
+    <!-- <!-- DNS 预解析  -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+
+<link rel="stylesheet" href="styles.min.css">
+    <style>
+        .graph-wrapper {
+            position: relative;
+            width: 100%;
+            min-height: 650px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: inset 0 0 100px rgba(0,0,0,0.3);
+        }
+        
+        #graph-svg {
+            width: 100%;
+            height: 650px;
+            /* 修复移动端触摸问题：允许触摸事件穿透到节点 */
+            touch-action: none;
+        }
+        
+        /* 概念分类链接字体 */
+        .concept-category a {
+            font-size: 14px !important;
+            padding: 3px 0 !important;
+        }
+        
+        /* 移动端适配 */
+        @media (max-width: 767px) {
+            .graph-wrapper {
+                min-height: 350px;
+                height: 350px;
+                margin: 0 -4px;
+            }
+            #graph-svg {
+                height: 350px;
+            }
+            .concept-categories {
+                grid-template-columns: 1fr !important;
+            }
+            .graph-controls {
+                top: 0.3rem;
+                right: 0.3rem;
+            }
+            .graph-controls button {
+                padding: 0.25rem 0.5rem;
+                font-size: 0.7rem;
+            }
+            /* 修复移动端汉堡菜单触摸 */
+            .hamburger {
+                touch-action: manipulation;
+                -webkit-tap-highlight-color: transparent;
+                /* 确保 z-index 足够高 */
+                z-index: 1001 !important;
+            }
+            /* 修复侧边栏触摸 */
+            .sidebar {
+                touch-action: pan-y; /* 允许垂直滚动，禁用水平手势 */
+                overscroll-behavior: contain;
+            }
+        }
+        
+        .node circle {
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 3px currentColor);
+        }
+        
+        .node text {
+            font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+            font-size: 14px;
+            fill: #ffffff;
+            pointer-events: none;
+            font-weight: 600;
+            stroke: #0f0f1a;
+            stroke-width: 4px;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            paint-order: stroke fill;
+        }
+        
+        .link {
+            stroke: rgba(150, 150, 200, 0.25);
+            stroke-width: 1.5;
+            transition: all 0.3s ease;
+            stroke-dasharray: 4,2;
+        }
+        
+        .link.highlight {
+            stroke: rgba(199, 125, 255, 0.9);
+            stroke-width: 3;
+            stroke-dasharray: none;
+        }
+        
+        .link.dim {
+            stroke-opacity: 0.05;
+        }
+        
+        /* 悬停提示框 */
+        .tooltip {
+            position: absolute;
+            background: rgba(20, 20, 40, 0.95);
+            border: 1px solid rgba(199, 125, 255, 0.5);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            font-size: 0.9rem;
+            color: #e8e0f0;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            max-width: 280px;
+            z-index: 100;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+        
+        .tooltip.visible {
+            opacity: 1;
+        }
+        
+        .tooltip .title {
+            color: #c77dff;
+            font-weight: bold;
+            margin-bottom: 0.4rem;
+            font-size: 1rem;
+        }
+        
+        .tooltip .type {
+            font-size: 0.75rem;
+            color: #a090b0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tooltip .desc {
+            line-height: 1.5;
+            color: #d0d0e0;
+        }
+        
+        /* 控制按钮 */
+        .graph-controls {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            z-index: 10;
+        }
+        
+        .graph-controls button {
+            background: rgba(30, 30, 60, 0.8);
+            border: 1px solid rgba(199, 125, 255, 0.4);
+            color: #e8e0f0;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+        
+        .graph-controls button:hover {
+            background: rgba(199, 125, 255, 0.3);
+            border-color: #c77dff;
+            transform: scale(1.05);
+        }
+        
+        /* 概念分类网格：PC端3列，移动端1列 */
+        .concept-categories {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        
+        /* 概念分类卡片：金色边框+紧凑 */
+        .concept-category {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(201, 160, 55, 0.25);
+            border-left: 3px solid var(--gold);
+        }
+        
+        .concept-category h3 {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--gold);
+        }
+        .concept-category a {
+            display: block;
+            padding: 2px 0;
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .concept-category a:hover {
+            color: var(--gold);
+        }
+        
+        /* 移动端：1列+紧凑 */
+        @media (max-width: 767px) {
+            .concept-categories {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            .mobile-instructions {
+                display: block !important;
+            }
+            .card p:first-of-type:not(.mobile-instructions) {
+                display: none;
+            }
+        }
+    </style>
+
+    <meta name="theme-color" content="#1a1a2e">
+
+
+    <!-- <!-- PWA 配置  -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="拉玛那知识库">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🙏%3C/text%3E%3C/svg%3E">
+    <!-- <!-- Google Analytics 预连接  -->
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MYFWHFPSYB"></script>
+<script>
+  window.dataLayer = window.dataLayer | [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MYFWHFPSYB');
+</script>
+
+
+  <!-- <!-- SEO JSON-LD Structured Data  -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "拉玛那马哈希知识库",
+      "item": "https://ramanamaharshi.space/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "知识图谱",
+      "item": "https://ramanamaharshi.space/graph.html"
+    }
+  ]
+}
+</script>
+
+    <link rel="alternate" hreflang="zh-TW" href="https://ramanamaharshi.space/zh-TW/">
+    <link rel="alternate" hreflang="zh-CN" href="https://ramanamaharshi.space/">
+    <!-- <!-- Twitter Card  -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="拉玛那马哈希核心概念知识图谱">
+    <meta name="twitter:description" content="拉玛那马哈希核心概念知识图谱，可视化展示真我、心智、自我参究、上师恩典等概念之间的关系，涵盖本体论、心智模型、修行法门与世界本质的完整知识网络，助您建立系统认知。本页收录拉玛那马哈希的核心教示，结合完整注释与修行背景，帮助修行者深入理解非二">
+    <meta name="twitter:image" content="https://ramanamaharshi.space/images/og-default.jpg">
+</head>
+<body>
+    <button class="hamburger" onclick="toggleSidebar()">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <div class="layout">
+
+<aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">🙏 拉玛那知识库</a>
+                <button class="sidebar-close-btn" title="收起侧边栏">◀</button>
+            </div>
+            
+            <!-- <!-- 搜索框  -->
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="搜索标题或内容..." autocomplete="off">
+                <div id="search-results"></div>
+            </div>
+            
+            <!-- <!-- 核心索引  -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">📚 核心索引</div>
+                <div class="sidebar-items">
+                    <a href="books/index.html" class="sidebar-item"><span class="emoji">📖</span> 书籍总览 <span class="count">18</span></a>
+                    <a href="concepts/index.html" class="sidebar-item"><span class="emoji">🔮</span> 核心概念 <span class="count">57+</span></a>
+                    <a href="methods/index.html" class="sidebar-item"><span class="emoji">🛤️</span> 修行方法 <span class="count">12</span></a>
+                    <a href="qa/index.html" class="sidebar-item"><span class="emoji">💬</span> 修行问答 <span class="count">28</span></a>
+                    <a href="persons/index.html" class="sidebar-item"><span class="emoji">👤</span> 人物索引 <span class="count">3</span></a>
+                    <a href="graph.html" class="sidebar-item active"><span class="emoji">🕸️</span> 知识图谱</a>
+                </div>
+            </div>
+            
+            <!-- <!-- 经典著作  -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">📖 经典著作</div>
+                <div class="sidebar-items">
+                    <a href="books/be-as-you-are.html" class="sidebar-item">📖 走向静默，如你本来</a>
+                    <a href="books/gems.html" class="sidebar-item">💎 宝钻集</a>
+                    <a href="books/talks.html" class="sidebar-item">💬 对谈录</a>
+                    <a href="books/back-to-heart.html" class="sidebar-item">📕 回到你心中</a>
+                </div>
+            </div>
+            
+            <!-- <!-- 核心概念  -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">🔮 核心概念</div>
+                <div class="sidebar-items">
+                    <a href="concepts/atman.html" class="sidebar-item">🔮 真我/Atman</a>
+                    <a href="concepts/whoami.html" class="sidebar-item">🔍 "我是谁？"</a>
+                    <a href="concepts/mind.html" class="sidebar-item">🧠 心智/Citta</a>
+                    <a href="concepts/ego.html" class="sidebar-item">🧠 自我/Ego</a>
+                    <a href="concepts/moksha.html" class="sidebar-item">🕊️ 解脱/Moksha</a>
+                    <a href="concepts/grace.html" class="sidebar-item">✨ 恩典/Grace</a>
+                </div>
+            </div>
+            
+            <!-- <!-- 修行方法  -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">🛤️ 修行方法</div>
+                <div class="sidebar-items">
+                    <a href="methods/index.html#whoami" class="sidebar-item">🔍 参究"我是谁"</a>
+                    <a href="methods/index.html#surrender" class="sidebar-item">🙏 臣服上师</a>
+                    <a href="methods/index.html#japa" class="sidebar-item">🔮 念诵咒语</a>
+                </div>
+            </div>
+            
+            <!-- <!-- 关键人物  -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">👤 关键人物</div>
+                <div class="sidebar-items">
+                    <a href="persons/ramana.html" class="sidebar-item">🙏 室利·拉玛那·马哈希</a>
+                    <a href="persons/david.html" class="sidebar-item">📝 大卫·高德曼</a>
+                    <a href="persons/venkataramana.html" class="sidebar-item">👩 韦卡罗达·南达</a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- <!-- 主内容区  -->
+        <main class="main-content">
+            <header class="topbar">
+                <button class="sidebar-open-btn" title="展开侧边栏">▶</button>
+                <div class="topbar-left">
+                    <span class="topbar-title">🕸️ 知识图谱</span>
+                </div>
+                <nav class="topbar-nav topbar-full">
+                    <a href="index.html">首页</a>
+                    <a href="books/index.html">书籍</a>
+                    <a href="concepts/index.html">概念</a>
+                    <a href="methods/index.html">方法</a>
+                    <a href="qa/index.html">问答</a>
+                    <a href="persons/index.html">人物</a>
+                    <a href="graph.html" class="active">图谱</a><a href="#" class="lang-toggle" style="border-left:1px solid rgba(255,255,255,.3);" title="切换为繁体中文" onclick="location.href=location.pathname.replace(/^\/([^\/]*\/)?/,'/zh-TW/$1');return false;">繁</a>
+                </nav>
+            </header>
+            
+            <div class="content-wrapper">
+                <nav class="breadcrumb">
+                    <a href="index.html">首页</a> / <span>知识图谱</span>
+                </nav>
+
+                <header class="page-header">
+                    <h1>🕸️ 知识图谱</h1>
+                    <p class="subtitle">30+核心概念 · 18本著作 · 关键人物关系网络</p>
+                </header>
+                
+                <div class="card">
+                    <p style="color:var(--text-muted);margin-bottom:1rem;font-size:0.9rem;">🖱️ 鼠标<strong>悬停</strong>节点查看关联线，<strong style="color:var(--primary);">单击</strong>跳转详情页</p>
+                    <p style="color:var(--text-muted);margin-bottom:1rem;font-size:0.9rem;display:none;" class="mobile-instructions">👆 点击查看关联线，3秒后可以跳转</p>
+                    
+                    <div class="graph-wrapper">
+                        <svg id="graph-svg"></svg>
+                        <div class="tooltip" id="tooltip">
+                            <div class="title"></div>
+                            <div class="type"></div>
+                            <div class="desc"></div>
+                        </div>
+                        <div class="graph-controls">
+                            <button onclick="resetZoom()">🔄 重置</button>
+                            <button onclick="zoomIn()">➕ 放大</button>
+                            <button onclick="zoomOut()">➖ 缩小</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- <!-- 概念分类速查 - 扩展版  -->
+                <div class="card">
+                    <h2 style="color:var(--primary);margin-bottom:1rem;font-size:1.1rem;">📚 概念分类速查</h2>
+                    <p style="color:var(--text-muted);margin-bottom:1.5rem;font-size:0.9rem;">点击任意概念跳转到详情页面</p>
+                    <div class="concept-categories">
+                        <div class="concept-category">
+                            <h3>🔮 本体论</h3>
+                            <a href="concepts/atman.html">真我/Atman</a>
+                            <a href="concepts/brahman.html">梵/Brahman</a>
+                            <a href="concepts/self.html">本我/Self</a>
+                            <a href="concepts/satchidananda.html">存在-意识-喜悦</a>
+                            <a href="concepts/heart.html">本心/Heart</a>
+                        </div>
+                        <div class="concept-category">
+                            <h3>🧠 心智与自我</h3>
+                            <a href="concepts/mind.html">心智/Citta</a>
+                            <a href="concepts/ego.html">自我/Ego</a>
+                            <a href="concepts/thoughts.html">念头/Thoughts</a>
+                            <a href="concepts/awareness.html">觉知/Awareness</a>
+                            <a href="concepts/vasanas.html">习气/Vasanas</a>
+                        </div>
+                        <div class="concept-category">
+                            <h3>🛤️ 修行法门</h3>
+                            <a href="concepts/whoami.html">"我是谁？"</a>
+                            <a href="concepts/silence.html">静默/Silence</a>
+                            <a href="concepts/surrender.html">臣服/Surrender</a>
+                            <a href="concepts/samadhi.html">三摩地/Samadhi</a>
+                            <a href="concepts/japa.html">念诵/Japa</a>
+                        </div>
+                        <div class="concept-category">
+                            <h3>🕊️ 解脱与境界</h3>
+                            <a href="concepts/moksha.html">解脱/Moksha</a>
+                            <a href="concepts/jnani.html">觉者/Jnani</a>
+                            <a href="concepts/enlightenment.html">开悟/Enlightenment</a>
+                            <a href="concepts/sahaja.html">自然安住/Sahaja</a>
+                            <a href="concepts/peace.html">平安/Peace</a>
+                        </div>
+                        <div class="concept-category">
+                            <h3>🙏 上师与恩典</h3>
+                            <a href="concepts/guru.html">上师/Guru</a>
+                            <a href="concepts/grace.html">恩典/Grace</a>
+                            <a href="concepts/upadesha.html">教示/Upadesha</a>
+                            <a href="concepts/bhakti.html">奉爱/Bhakti</a>
+                            <a href="concepts/satsang.html">莎桑/Satsang</a>
+                        </div>
+                        <div class="concept-category">
+                            <h3>🔄 业力与轮回</h3>
+                            <a href="concepts/karma.html">业力/Karma</a>
+                            <a href="concepts/maya.html">摩耶/Maya</a>
+                            <a href="concepts/prarabdha.html">宿业/Prarabdha</a>
+                            <a href="concepts/jiva.html">个体灵魂/Jiva</a>
+                            <a href="concepts/world.html">世界/World</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- <!-- 核心语录  -->
+                <div class="card">
+                    <h2 style="color:var(--primary);margin-bottom:1rem;font-size:1.1rem;">💎 核心语录</h2>
+                    <div class="quote-box">
+                        "知道你自己，一切都会被知晓。"
+                        <div class="source">— 室利·拉玛那·马哈希</div>
+                    </div>
+                    <div class="quote-box">
+                        "心智是碎片，真我是整体。一旦碎片融入整体，它们就不存在了。只有整体存在。"
+                        <div class="source">—《宝钻集》</div>
+                    </div>
+                    <div class="quote-box">
+                        "证悟不是到达某个地方。它是认识到你一直在那里，只是没有意识到。"
+                        <div class="source">— 室利·拉玛那·马哈希</div>
+                    </div>
+                </div>
+                
+                <!-- <!-- 关键书籍  -->
+                <div class="card">
+                    <h2 style="color:var(--primary);margin-bottom:1rem;font-size:1.1rem;">📖 核心著作</h2>
+                    <div class="concept-tags">
+                        <a href="books/be-as-you-are.html" class="tag">📖 走向静默，如你本来</a>
+                        <a href="books/gems.html" class="tag">💎 宝钻集</a>
+                        <a href="books/talks.html" class="tag">💬 对谈录</a>
+                        <a href="books/back-to-heart.html" class="tag">📕 回到你心中</a>
+                        <a href="books/day-by-day.html" class="tag">📅 日日与彼</a>
+                        <a href="books/face-to-face.html" class="tag">👁️ 面对面</a>
+                    </div>
+                </div>
+            </div>
+            
+            <footer class="site-footer">
+                <p><a href="index.html">拉玛那马哈希</a> | 传承自印度阿鲁那佳拉圣山</p>
+                <p style="margin-top:0.5rem; font-size:0.9rem; color: var(--text-muted);">© 2026 拉玛那马哈希. 保留所有权利。</p>
+                <p style="margin-top:1rem; font-size:0.9rem;"><a href="sitemap.html" style="color: var(--text-muted); text-decoration: underline;">🌐 网站地图</a> <span style="margin: 0 1rem;">|</span> <a href="mailto:591611431@qq.com" style="color: var(--text-muted); text-decoration: underline;">联系我</a></p>
+            </footer>
+        </main>
+    </div>
+    
+    <script src="d3.min.js"></script>
+    <script>
+        // 边栏切换
+        document.querySelectorAll('.sidebar-section-title').forEach(title => {
+            title.addEventListener('click', () => {
+                title.parentElement.classList.toggle('collapsed');
+            });
+        });
+        
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+        
+        // 阅读模式切换
+        function toggleReadingMode() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.querySelector('.main-content');
+            const toggleBtn = document.getElementById('sidebarToggle');
+            const topbar = document.querySelector('.topbar');
+            
+            sidebar.classList.toggle('hidden');
+            mainContent.classList.toggle('full-width');
+            toggleBtn.classList.toggle('collapsed');
+            
+            if (sidebar.classList.contains('hidden')) {
+                toggleBtn.innerHTML = '<span class="toggle-icon">▶</span>';
+                toggleBtn.title = '显示侧边栏 (R)';
+                topbar.classList.add('reading-mode');
+            } else {
+                toggleBtn.innerHTML = '<span class="toggle-icon">◀</span>';
+                toggleBtn.title = '切换阅读模式 (R)';
+                topbar.classList.remove('reading-mode');
+            }
+        }
+        
+        // 键盘快捷键
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') document.getElementById('sidebar').classList.remove('open');
+        });
+        
+        // ========== D3.js 知识图谱 ==========
+        // 判断是否触摸设备（移动端）
+        function isTouchDevice() {
+            return ('ontouchstart' in window) | (navigator.maxTouchPoints > 0);
+        }
+        
+        const svg = d3.select("#graph-svg");
+        const width = svg.node().getBoundingClientRect().width;
+        const height = 600;
+        
+        const g = svg.append("g");
+        
+        // 缩放
+        const zoom = d3.zoom()
+            .scaleExtent([0.3, 3])
+            .on("zoom", (event) => {
+                g.attr("transform", event.transform);
+            });
+        
+        svg.call(zoom);
+        
+        // 数据 - 扩展版
+        const nodes = [
+            // 中心
+            { id: "ramana", name: "🙏 拉玛那", type: "center", url: "persons/ramana.html", desc: "室利·拉玛那·马哈希（1879-1950），印度近代最伟大的灵性导师" },
+            
+            // 本体论
+            { id: "atman", name: "🔮 真我", type: "atman", url: "concepts/atman.html", desc: "永恒的、不变的真我本体，是一切众生内在的神性" },
+            { id: "brahman", name: "梵", type: "atman", url: "concepts/brahman.html", desc: "宇宙终极实相，无所不在的最高存在" },
+            { id: "maya", name: "🌊 摩耶", type: "atman", url: "concepts/maya.html", desc: "幻相之力，创造出虚幻的世界体验" },
+            { id: "self", name: "💎 本我", type: "atman", url: "concepts/self.html", desc: "不生不灭的真我本体" },
+            
+            // 心智与自我
+            { id: "mind", name: "🧠 心智", type: "mind", url: "concepts/mind.html", desc: "意识的工具，产生念头和感知的器官" },
+            { id: "ego", name: "🧠 自我", type: "mind", url: "concepts/ego.html", desc: "虚假的身分认同，是一切痛苦的根源" },
+            { id: "thoughts", name: "💭 念头", type: "mind", url: "concepts/thoughts.html", desc: "心智的产物，真我的障碍" },
+            
+            // 修行法门
+            { id: "whoami", name: "🔍 \"我是谁？\"", type: "practice", url: "concepts/whoami.html", desc: "最直接的自我了悟方法，马哈希核心教法" },
+            { id: "silence", name: "🤫 静默", type: "practice", url: "concepts/silence.html", desc: "马哈希的标志性教法：超越言语的教导" },
+            { id: "samadhi", name: "🧘 三摩地", type: "practice", url: "concepts/samadhi.html", desc: "禅定的高级状态，心意完全专注" },
+            { id: "surrender", name: "🙏 臣服", type: "practice", url: "concepts/surrender.html", desc: "放下自我意志，完全交托给上师或真我" },
+            
+            // 解脱与境界
+            { id: "moksha", name: "🕊️ 解脱", type: "moksha", url: "concepts/moksha.html", desc: "从轮回和无明中解脱，证悟真我" },
+            { id: "grace", name: "✨ 恩典", type: "moksha", url: "concepts/grace.html", desc: "上师的加持，觉醒的关键因素" },
+            { id: "guru", name: "👆 上师", type: "moksha", url: "concepts/guru.html", desc: "灵性导师，引导学生走向解脱" },
+            { id: "karma", name: "🔄 业力", type: "moksha", url: "concepts/karma.html", desc: "行动与果报的法则" },
+            
+            // 书籍
+            { id: "be-as-you-are", name: "📖 走向静默", type: "book", url: "books/be-as-you-are.html", desc: "马哈希最核心的问答精选" },
+            { id: "gems", name: "💎 宝钻集", type: "book", url: "books/gems.html", desc: "马哈希语录精华" },
+            { id: "talks", name: "💬 对谈录", type: "book", url: "books/talks.html", desc: "与马哈希的完整对话记录" },
+            { id: "back-to-heart", name: "📕 回到心中", type: "book", url: "books/back-to-heart.html", desc: "关于本心的教导" },
+            { id: "day-by-day", name: "📅 日日与彼", type: "book", url: "books/day-by-day.html", desc: "弟子记录的马哈希日常教示" },
+            { id: "face-to-face", name: "👁️ 面对面", type: "book", url: "books/face-to-face.html", desc: "马哈希与其弟子的对话" },
+            
+            // 人物
+            { id: "david", name: "📝 高德曼", type: "person", url: "persons/david.html", desc: "大卫·高德曼，马哈希文献的权威编纂者" },
+            { id: "venkataramana", name: "👩 南达", type: "person", url: "persons/venkataramana.html", desc: "韦卡罗达·南达，马哈希的姨母与静修院守护者" },
+
+            // 新增节点：修行相关
+            { id: "hrdaya", name: "💖 本心", type: "atman", url: "concepts/heart.html", desc: "本心/Heart，真我所居之处，是意识最深处" },
+            { id: "arunachala", name: "🏔️ 阿鲁那佳拉", type: "center", url: "persons/ramana.html#location", desc: "阿鲁那佳拉圣山，马哈希修行与圆寂之地" },
+            { id: "dhyana", name: "🧘 禅定", type: "practice", url: "concepts/samadhi.html", desc: "禅定/Dhyana，心的专注与寂静" },
+            { id: "japa", name: "🔮 念诵", type: "practice", url: "concepts/japa.html", desc: "念诵/Japa，持诵神圣音节或圣名" },
+            { id: "vairagya", name: "🌿 出离", type: "moksha", url: "concepts/sahaja.html", desc: "出离/Vairagya，对世俗的超越与放下" },
+            { id: "jnana", name: "🕯️ 智慧", type: "moksha", url: "concepts/jnana.html", desc: "智慧/Jnana，超越知识的究竟知识" },
+            { id: "avidya", name: "🌫️ 无明", type: "mind", url: "concepts/maya.html", desc: "无明/Avidya，对真实本性的无知" },
+            { id: "ananda", name: "✨ 喜悦", type: "atman", url: "concepts/satchidananda.html", desc: "喜悦/Ananda，真我的本质属性" },
+            { id: "samskara", name: "🔄 熏习", type: "mind", url: "concepts/samskara.html", desc: "熏习/Samskara，根深蒂固的心理印记，是Vasanas的来源" },
+            
+            // 新增节点10个 - 扩展概念
+            { id: "satchidananda", name: "✨ 存在-意识-喜悦", type: "atman", url: "concepts/satchidananda.html", desc: "存在-意识-喜悦/Satchidananda，梵的永恒本质" },
+            { id: "jnani", name: "🧙 觉者", type: "moksha", url: "concepts/jnani.html", desc: "觉者/Jnani，已证悟真我之人" },
+            { id: "enlightenment", name: "💡 开悟", type: "moksha", url: "concepts/enlightenment.html", desc: "开悟/Enlightenment，彻底觉醒的状态" },
+            { id: "sahaja", name: "🌿 自然安住", type: "moksha", url: "concepts/sahaja.html", desc: "自然安住/Sahaja，自发的觉知状态" },
+            { id: "bhakti", name: "💝 奉爱", type: "practice", url: "concepts/bhakti.html", desc: "奉爱/Bhakti，虔诚与爱神的修行之道" },
+            { id: "awareness", name: "👁️ 觉知", type: "mind", url: "concepts/awareness.html", desc: "觉知/Awareness，观照的意识本身" },
+            { id: "fate", name: "⚖️ 命运", type: "moksha", url: "concepts/fate.html", desc: "命运/Fate，业力在生命中的显现" },
+            { id: "freewill", name: "🕊️ 自由意志", type: "moksha", url: "concepts/freewill.html", desc: "自由意志/Free Will，超越业力的可能" },
+            { id: "world", name: "🌍 世界", type: "atman", url: "concepts/world.html", desc: "世界/World，摩耶的显现与幻相" },
+            { id: "svasthya", name: "🔄 自性", type: "mind", url: "concepts/svasthya.html", desc: "自性/Svasthya，心的本来状态" },
+            { id: "enquiry", name: "🔎 参究", type: "practice", url: "concepts/whoami.html", desc: "参究/Enquiry，引导心智回归本源的修习" },
+            
+            // 新增节点 - 20260420
+            { id: "aham-vritti", name: "💭 我念", type: "mind", url: "concepts/aham-vritti.html", desc: "我念/Aham-Vritti，所有念头的根源与真我的门户" },
+            { id: "jivanmukti", name: "✨ 在生解脱", type: "moksha", url: "concepts/jivanmukti.html", desc: "在生解脱/Jivanmukti，活着时即证悟真我的圆满境界" },
+            { id: "chit-jada-granthi", name: "🔗 意识-物质纽结", type: "mind", url: "concepts/chit-jada-granthi.html", desc: "意识-物质纽结/Chit-Jada Granthi，真我与身体之间的纽结" },
+            { id: "sadhana", name: "🧘 修行", type: "practice", url: "concepts/sadhana.html", desc: "修行/Sadhana，通往真我的灵性修习与实践" },
+            { id: "vasanas", name: "🔄 习气", type: "mind", url: "concepts/vasanas.html", desc: "习气/Vasanas，深层的心理印痕和倾向" },
+            { id: "prarabdha", name: "📜 宿业", type: "moksha", url: "concepts/prarabdha.html", desc: "宿业/Prarabdha，今生必须体验的成熟业力" },
+            { id: "jiva", name: "👤 个体灵魂", type: "mind", url: "concepts/jiva.html", desc: "个体灵魂/Jiva，认同身体的个体存在" },
+            { id: "avidya", name: "🌫️ 无明", type: "mind", url: "concepts/avidya.html", desc: "无明/Avidya，对真实本性的无知" },
+            
+            // 新增节点 - 20260421 扩展概念
+            { id: "sharanagati", name: "🙏 归依", type: "practice", url: "concepts/sharanagati.html", desc: "归依/Sharanagati，彻底归投上师的修行" },
+            { id: "santosha", name: "☮️ 知足", type: "moksha", url: "concepts/santosha.html", desc: "知足/Santosha，内在的满足与安然" },
+            { id: "abhyasa", name: "🧘 修行实践", type: "practice", url: "concepts/abhyasa.html", desc: "修行实践/Abhyasa，持续不断的修习" },
+            { id: "shraddha", name: "🙏 信心", type: "moksha", url: "concepts/shraddha.html", desc: "信心/Shraddha，灵性修行的基础" },
+            { id: "anityata", name: "🔄 无常", type: "atman", url: "concepts/anityata.html", desc: "无常/Anityata，一切皆变化的真相" },
+            { id: "sukha", name: "☀️ 世间乐", type: "atman", url: "concepts/sukha.html", desc: "世间乐/Sukha，相对的、短暂的幸福" },
+            { id: "siddhi", name: "✨ 神通", type: "practice", url: "concepts/siddhi.html", desc: "神通/Siddhi，超自然的灵性能力" },
+            { id: "turiya", name: "🌅 第四态", type: "mind", url: "concepts/turiya.html", desc: "第四态/Turiya，超越三态的觉知" },
+            { id: "peace", name: "☮️ 平安", type: "moksha", url: "concepts/peace.html", desc: "平安/Peace，真我的本质属性" },
+            { id: "meditation", name: "🧘 禅修", type: "practice", url: "concepts/meditation.html", desc: "禅修/Meditation，心意专注的练习" },
+            { id: "viveka", name: "⚡ 抉择", type: "mind", url: "concepts/viveka.html", desc: "抉择/Viveka，区分真假的能力" },
+            { id: "prana", name: "🌬️ 生命能", type: "mind", url: "concepts/prana.html", desc: "生命能/Prana，呼吸与生命的能量" },
+            { id: "body", name: "🧍 身体", type: "mind", url: "concepts/body.html", desc: "身体/Body，灵魂的载体与业力的显现" },
+            { id: "drishti", name: "👁️ 所见", type: "mind", url: "concepts/drishti.html", desc: "所见/Drishti，心智的观看方式" },
+            { id: "sraddha", name: "💫 信念", type: "moksha", url: "concepts/sraddha.html", desc: "信念/Sraddha，对真理的坚定信心" },
+
+            // 新增节点 - 20260427 扩展
+            { id: "upadesha", name: "📜 教示", type: "practice", url: "concepts/upadesha.html", desc: "教示/Upadesha，上师的无言与有言之教" },
+            { id: "antaryamin", name: "💕 内在之神", type: "atman", url: "concepts/antaryamin.html", desc: "内在之神/Antaryamin，居于心中的神性存在" },
+            { id: "dharma", name: "⚖️ 达摩", type: "moksha", url: "concepts/dharma.html", desc: "达摩/Dharma，宇宙法则与正道" },
+            { id: "jnana-yoga", name: "🛤️ 智慧瑜伽", type: "practice", url: "concepts/jnana.html", desc: "智慧瑜伽/Jnana Yoga，通过知识证悟真我" },
+            { id: "karma-yoga", name: "🔄 行动瑜伽", type: "practice", url: "concepts/karma.html", desc: "行动瑜伽/Karma Yoga，以无私行动修行" },
+            { id: "bhakti-yoga", name: "💝 奉爱瑜伽", type: "practice", url: "concepts/bhakti.html", desc: "奉爱瑜伽/Bhakti Yoga，以虔诚之爱修行" },
+            { id: "lakshya", name: "🎯 所缘", type: "mind", url: "concepts/lakshya.html", desc: "所缘/Lakshya，心念专注的对象" },
+            { id: "manonasha", name: "💫 心灭", type: "moksha", url: "concepts/manonasha.html", desc: "心灭/Manonasha，心智的彻底消亡" },
+            { id: "chit", name: "✨ 识", type: "atman", url: "concepts/chit.html", desc: "识/Chit，纯粹的意识本体" },
+            { id: "anahata", name: "💖 心轮", type: "practice", url: "concepts/heart.html", desc: "心轮/Anahata，真我居所的精神中心" },
+            { id: "mano", name: "💭 意", type: "mind", url: "concepts/mano.html", desc: "意/Manas，分别与思量的心识功能" },
+            { id: "satsang", name: "🙏 莎桑", type: "practice", url: "concepts/satsang.html", desc: "莎桑/Satsang，与真理之人的亲近与共处" },
+            { id: "sattva", name: "☀️ 善性", type: "atman", url: "concepts/sattva.html", desc: "善性/Sattva，三德中的清净之德" },
+            { id: "manas", name: "🧠 意根", type: "mind", url: "concepts/mano.html", desc: "意根/Manas，六根之一，统摄思维" },
+            { id: "self-enquiry", name: "🔎 自我参究", type: "practice", url: "concepts/whoami.html", desc: "自我参究/Self-Enquiry，马哈希核心修行法" },
+            { id: "chidabhasa", name: "🪞 意识之影", type: "mind", url: "concepts/awareness.html", desc: "意识之影/Chidabhasa，真我投射在心智上的倒影" },
+            { id: "sanchita", name: "📦 总业", type: "moksha", url: "concepts/prarabdha.html", desc: "总业/Sanchita，所有积累的业力仓库" },
+            { id: "agami", name: "🌱 新业", type: "moksha", url: "concepts/karma.html", desc: "新业/Agami，未来将要产生的业力" },
+            { id: "samadhi-sahaja", name: "🌿 自然三摩地", type: "moksha", url: "concepts/sahaja.html", desc: "自然三摩地/Sahaja Samadhi，觉者的恒常状态" },
+            { id: "neti-neti", name: "🚫 非此非彼", type: "practice", url: "concepts/viveka.html", desc: "非此非彼/Neti-Neti，否定一切非真我的方法论" },
+            { id: "japa-om", name: "🔮 嗡", type: "practice", url: "concepts/japa.html", desc: "嗡/Om，最古老的神圣音节，宇宙的原音" },
+            
+            // ===== 第1批新增（7个概念）=====
+            { id: "advaita", name: "☯️ 非二元", type: "atman", url: "concepts/advaita.html", desc: "非二元/Advaita，梵我不二的终极真理" },
+            { id: "shiva", name: "🕉️ 湿婆", type: "atman", url: "concepts/shiva.html", desc: "湿婆/Shiva，至上的意识与毁灭重生之力" },
+            { id: "satya", name: "💎 真理", type: "atman", url: "concepts/satya.html", desc: "真理/Satya，永恒不变的终极实在" },
+            { id: "vichara", name: "🕯️ 参究", type: "practice", url: "concepts/vichara.html", desc: "参究/Vichara，深入探究真我的修行" },
+            { id: "samsara", name: "🔄 轮回", type: "moksha", url: "concepts/samsara.html", desc: "轮回/Samsara，生死流转的循环" },
+            { id: "nishtha", name: "🎯 专住", type: "moksha", url: "concepts/nishtha.html", desc: "专住/Nishtha，安住于真我的坚定" },
+            { id: "kundalini", name: "🐍 昆达里尼", type: "practice", url: "concepts/kundalini.html", desc: "昆达里尼/Kundalini，沉睡的灵性能量" },
+            
+            // ===== 第2批新增（7个概念）=====
+            { id: "yoga", name: "🧘‍♂️ 瑜伽", type: "practice", url: "concepts/yoga.html", desc: "瑜伽/Yoga，与真我合一的修行之道" },
+            { id: "tapas", name: "🔥 苦行", type: "practice", url: "concepts/tapas.html", desc: "苦行/Tapas，自我净化的炽热修行" },
+            { id: "mantra", name: "📿 曼陀罗", type: "practice", url: "concepts/mantra.html", desc: "曼陀罗/Mantra，神圣音节与持诵之力" },
+            { id: "darshana", name: "👁️ 见地", type: "atman", url: "concepts/darshana.html", desc: "见地/Darshana，哲学观点与灵性洞见" },
+            { id: "isvara", name: "👑 伊湿瓦罗", type: "atman", url: "concepts/isvara.html", desc: "伊湿瓦罗/Isvara，至上的个人神与宇宙主宰" },
+            { id: "klesha", name: "😣 烦恼", type: "mind", url: "concepts/klesha.html", desc: "烦恼/Klesha，痛苦的根源与障碍" },
+            { id: "smriti", name: "🧠 忆念", type: "practice", url: "concepts/smriti.html", desc: "忆念/Smriti，正念与真我之忆" },
+        ];
+        
+        // 关系 - 扩展版
+        const links = [
+            // 中心与核心概念
+            { source: "ramana", target: "atman", relation: "证悟" },
+            { source: "ramana", target: "mind", relation: "超越" },
+            { source: "ramana", target: "whoami", relation: "教导" },
+            { source: "ramana", target: "silence", relation: "体现" },
+            { source: "ramana", target: "grace", relation: "体现" },
+            { source: "ramana", target: "guru", relation: "成为" },
+            { source: "ramana", target: "samadhi", relation: "证入" },
+            
+            // 真我关系
+            { source: "atman", target: "brahman", relation: "等同" },
+            { source: "atman", target: "self", relation: "等同" },
+            { source: "atman", target: "maya", relation: "对立" },
+            { source: "atman", target: "ego", relation: "消灭" },
+            { source: "atman", target: "moksha", relation: "证得" },
+            { source: "brahman", target: "maya", relation: "幻化" },
+            { source: "self", target: "moksha", relation: "开悟" },
+            
+            // 心智与自我
+            { source: "mind", target: "thoughts", relation: "产生" },
+            { source: "mind", target: "ego", relation: "构成" },
+            { source: "mind", target: "silence", relation: "平息" },
+            { source: "mind", target: "whoami", relation: "参究" },
+            { source: "ego", target: "thoughts", relation: "强化" },
+            { source: "ego", target: "moksha", relation: "阻碍" },
+            { source: "thoughts", target: "whoami", relation: "参究" },
+            { source: "thoughts", target: "silence", relation: "平息" },
+            
+            // 修行方法
+            { source: "whoami", target: "silence", relation: "归于" },
+            { source: "whoami", target: "samadhi", relation: "导向" },
+            { source: "whoami", target: "grace", relation: "依赖" },
+            { source: "whoami", target: "guru", relation: "指引" },
+            { source: "surrender", target: "grace", relation: "招感" },
+            { source: "silence", target: "samadhi", relation: "导向" },
+            { source: "surrender", target: "whoami", relation: "辅助" },
+            
+            // 解脱与业力
+            { source: "moksha", target: "grace", relation: "需要" },
+            { source: "moksha", target: "karma", relation: "超越" },
+            { source: "karma", target: "ego", relation: "强化" },
+            { source: "karma", target: "mind", relation: "累积" },
+            
+            // 上师关系
+            { source: "guru", target: "grace", relation: "赐予" },
+            { source: "guru", target: "whoami", relation: "传授" },
+            { source: "guru", target: "surrender", relation: "接受" },
+            
+            // 书籍关联
+            { source: "be-as-you-are", target: "atman", relation: "阐述" },
+            { source: "be-as-you-are", target: "whoami", relation: "核心" },
+            { source: "be-as-you-are", target: "silence", relation: "归于" },
+            { source: "gems", target: "silence", relation: "记录" },
+            { source: "gems", target: "atman", relation: "指向" },
+            { source: "gems", target: "self", relation: "指向" },
+            { source: "talks", target: "mind", relation: "讨论" },
+            { source: "talks", target: "ego", relation: "剖析" },
+            { source: "talks", target: "karma", relation: "探讨" },
+            { source: "back-to-heart", target: "self", relation: "主题" },
+            { source: "back-to-heart", target: "silence", relation: "归于" },
+            { source: "day-by-day", target: "silence", relation: "记录" },
+            { source: "day-by-day", target: "whoami", relation: "实践" },
+            { source: "face-to-face", target: "whoami", relation: "教导" },
+            { source: "face-to-face", target: "surrender", relation: "示范" },
+            
+            // 人物关联
+            { source: "david", target: "be-as-you-are", relation: "编纂" },
+            { source: "david", target: "gems", relation: "编纂" },
+            { source: "david", target: "talks", relation: "编纂" },
+            { source: "venkataramana", target: "ramana", relation: "陪伴" },
+            { source: "venkataramana", target: "grace", relation: "见证" },
+            
+            // 新增节点关系
+            { source: "ramana", target: "satchidananda", relation: "体现" },
+            { source: "ramana", target: "jnani", relation: "成为" },
+            { source: "atman", target: "satchidananda", relation: "本质" },
+            { source: "brahman", target: "satchidananda", relation: "等同" },
+            { source: "ananda", target: "satchidananda", relation: "组成" },
+            { source: "moksha", target: "enlightenment", relation: "达成" },
+            { source: "jnani", target: "enlightenment", relation: "证得" },
+            { source: "jnani", target: "sahaja", relation: "自然" },
+            { source: "grace", target: "jnani", relation: "加持" },
+            { source: "whoami", target: "jnani", relation: "导向" },
+            { source: "surrender", target: "jnani", relation: "导向" },
+            { source: "bhakti", target: "grace", relation: "招感" },
+            { source: "guru", target: "bhakti", relation: "回应" },
+            { source: "mind", target: "awareness", relation: "本质" },
+            { source: "silence", target: "awareness", relation: "归于" },
+            { source: "ego", target: "fate", relation: "受制" },
+            { source: "karma", target: "fate", relation: "决定" },
+            { source: "fate", target: "freewill", relation: "超越" },
+            { source: "jnani", target: "freewill", relation: "实现" },
+            { source: "maya", target: "world", relation: "创造" },
+            { source: "mind", target: "world", relation: "感知" },
+            { source: "svasthya", target: "mind", relation: "本态" },
+            { source: "samskara", target: "svasthya", relation: "影响" },
+            { source: "enquiry", target: "whoami", relation: "等同" },
+            { source: "enquiry", target: "silence", relation: "归于" },
+            
+            // 新增节点关系 - 20260421
+            { source: "sharanagati", target: "surrender", relation: "等同" },
+            { source: "sharanagati", target: "guru", relation: "归投" },
+            { source: "sharanagati", target: "grace", relation: "招感" },
+            { source: "santosha", target: "peace", relation: "带来" },
+            { source: "santosha", target: "moksha", relation: "铺垫" },
+            { source: "abhyasa", target: "whoami", relation: "实践" },
+            { source: "abhyasa", target: "meditation", relation: "包含" },
+            { source: "shraddha", target: "guru", relation: "基础" },
+            { source: "shraddha", target: "jnana", relation: "导向" },
+            { source: "anityata", target: "maya", relation: "体现" },
+            { source: "anityata", target: "jnana", relation: "领悟" },
+            { source: "sukha", target: "ananda", relation: "对比" },
+            { source: "sukha", target: "mind", relation: "依赖" },
+            { source: "siddhi", target: "samadhi", relation: "可能" },
+            { source: "siddhi", target: "jnani", relation: "非必需" },
+            { source: "turiya", target: "self", relation: "超越" },
+            { source: "turiya", target: "awareness", relation: "等同" },
+            { source: "peace", target: "silence", relation: "体现" },
+            { source: "peace", target: "atman", relation: "本质" },
+            { source: "meditation", target: "mind", relation: "平息" },
+            { source: "meditation", target: "samadhi", relation: "导向" },
+            { source: "viveka", target: "jnana", relation: "产生" },
+            { source: "viveka", target: "whoami", relation: "辅助" },
+            { source: "prana", target: "mind", relation: "连结" },
+            { source: "prana", target: "body", relation: "支撑" },
+            { source: "drishti", target: "mind", relation: "表现" },
+            { source: "drishti", target: "ego", relation: "强化" },
+
+            // 新增关系 - 20260427
+            { source: "upadesha", target: "guru", relation: "传授" },
+            { source: "upadesha", target: "silence", relation: "核心" },
+            { source: "upadesha", target: "whoami", relation: "引导" },
+            { source: "upadesha", target: "grace", relation: "载体" },
+            { source: "antaryamin", target: "atman", relation: "等同" },
+            { source: "antaryamin", target: "grace", relation: "体现" },
+            { source: "antaryamin", target: "guru", relation: "内在化" },
+            { source: "dharma", target: "karma", relation: "规范" },
+            { source: "dharma", target: "moksha", relation: "导向" },
+            { source: "jnana-yoga", target: "whoami", relation: "核心" },
+            { source: "jnana-yoga", target: "jnana", relation: "目标" },
+            { source: "jnana-yoga", target: "viveka", relation: "辅助" },
+            { source: "karma-yoga", target: "surrender", relation: "相近" },
+            { source: "karma-yoga", target: "ego", relation: "消融" },
+            { source: "bhakti-yoga", target: "bhakti", relation: "实践" },
+            { source: "bhakti-yoga", target: "surrender", relation: "导向" },
+            { source: "bhakti-yoga", target: "grace", relation: "招感" },
+            { source: "lakshya", target: "whoami", relation: "所缘" },
+            { source: "lakshya", target: "dhyana", relation: "对象" },
+            { source: "lakshya", target: "mind", relation: "指向" },
+            { source: "manonasha", target: "mind", relation: "消灭" },
+            { source: "manonasha", target: "moksha", relation: "达成" },
+            { source: "manonasha", target: "jnani", relation: "体验" },
+            { source: "chit", target: "atman", relation: "本质" },
+            { source: "chit", target: "satchidananda", relation: "组成" },
+            { source: "chit", target: "awareness", relation: "等同" },
+            { source: "anahata", target: "hrdaya", relation: "所在" },
+            { source: "anahata", target: "atman", relation: "居所" },
+            { source: "mano", target: "mind", relation: "部分" },
+            { source: "mano", target: "thoughts", relation: "产生" },
+            { source: "mano", target: "ego", relation: "强化" },
+            { source: "satsang", target: "guru", relation: "亲近" },
+            { source: "satsang", target: "satsang", relation: "修行" },
+            { source: "satsang", target: "grace", relation: "招感" },
+            { source: "sattva", target: "mind", relation: "影响" },
+            { source: "sattva", target: "jnana", relation: "辅助" },
+            { source: "self-enquiry", target: "whoami", relation: "等同" },
+            { source: "self-enquiry", target: "jnani", relation: "导向" },
+            { source: "chidabhasa", target: "awareness", relation: "反射" },
+            { source: "chidabhasa", target: "mind", relation: "介质" },
+            { source: "chidabhasa", target: "ego", relation: "混淆" },
+            { source: "sanchita", target: "karma", relation: "存储" },
+            { source: "sanchita", target: "prarabdha", relation: "包含" },
+            { source: "agami", target: "karma", relation: "新增" },
+            { source: "agami", target: "prarabdha", relation: "积累" },
+            { source: "samadhi-sahaja", target: "samadhi", relation: "终极" },
+            { source: "samadhi-sahaja", target: "jnani", relation: "常态" },
+            { source: "samadhi-sahaja", target: "sahaja", relation: "等同" },
+            { source: "neti-neti", target: "viveka", relation: "方法" },
+            { source: "neti-neti", target: "jnana", relation: "辅助" },
+            { source: "neti-neti", target: "atman", relation: "趋向" },
+            { source: "japa-om", target: "japa", relation: "核心" },
+            { source: "japa-om", target: "silence", relation: "消融" },
+            { source: "japa-om", target: "atman", relation: "共鸣" },
+            { source: "ramana", target: "upadesha", relation: "赐予" },
+            { source: "ramana", target: "antaryamin", relation: "体现" },
+            { source: "manas", target: "mano", relation: "等同" },
+            { source: "manas", target: "mind", relation: "功能" },
+
+            // 补充大量关联线 - 20260427
+            // ramana 与更多节点的关联
+            { source: "ramana", target: "arunachala", relation: "驻锡" },
+            { source: "ramana", target: "hrdaya", relation: "指向" },
+            { source: "ramana", target: "moksha", relation: "示范" },
+            { source: "ramana", target: "self", relation: "证悟" },
+            { source: "ramana", target: "bhakti", relation: "接纳" },
+            { source: "ramana", target: "jivanmukti", relation: "成为" },
+            { source: "ramana", target: "surrender", relation: "教导" },
+            { source: "ramana", target: "sadhana", relation: "指引" },
+            { source: "ramana", target: "peace", relation: "散发" },
+
+            // arunachala 关联
+            { source: "arunachala", target: "silence", relation: "象征" },
+            { source: "arunachala", target: "grace", relation: "赐予" },
+            { source: "arunachala", target: "atman", relation: "化身" },
+            { source: "arunachala", target: "guru", relation: "无形" },
+
+            // hrdaya 本心关联
+            { source: "hrdaya", target: "atman", relation: "等同" },
+            { source: "hrdaya", target: "self", relation: "居所" },
+            { source: "hrdaya", target: "awareness", relation: "源头" },
+            { source: "hrdaya", target: "anahata", relation: "超越" },
+
+            // jivanmukti 在生解脱
+            { source: "jivanmukti", target: "moksha", relation: "在世" },
+            { source: "jivanmukti", target: "jnani", relation: "状态" },
+            { source: "jivanmukti", target: "sahaja", relation: "表现" },
+            { source: "jivanmukti", target: "prarabdha", relation: "仍有" },
+
+            // sadhana 修行
+            { source: "sadhana", target: "whoami", relation: "核心" },
+            { source: "sadhana", target: "meditation", relation: "包含" },
+            { source: "sadhana", target: "japa", relation: "包含" },
+            { source: "sadhana", target: "surrender", relation: "包含" },
+            { source: "sadhana", target: "vasanas", relation: "消融" },
+
+            // vasanas 习气（新节点）
+            { source: "vasanas", target: "mind", relation: "驱动" },
+            { source: "vasanas", target: "ego", relation: "构成" },
+            { source: "vasanas", target: "karma", relation: "来源" },
+            { source: "vasanas", target: "samskara", relation: "等同" },
+            { source: "vasanas", target: "whoami", relation: "消融" },
+            { source: "vasanas", target: "moksha", relation: "障碍" },
+
+            // prarabdha 宿业
+            { source: "prarabdha", target: "karma", relation: "成熟" },
+            { source: "prarabdha", target: "body", relation: "决定" },
+            { source: "prarabdha", target: "mind", relation: "塑造" },
+            { source: "prarabdha", target: "jnani", relation: "继续" },
+
+            // jiva 个体灵魂
+            { source: "jiva", target: "ego", relation: "等同" },
+            { source: "jiva", target: "atman", relation: "本质" },
+            { source: "jiva", target: "maya", relation: "束缚" },
+            { source: "jiva", target: "moksha", relation: "证悟" },
+            { source: "jiva", target: "body", relation: "认同" },
+            { source: "jiva", target: "karma", relation: "承受" },
+
+            // aham-vritti 我念
+            { source: "aham-vritti", target: "ego", relation: "根源" },
+            { source: "aham-vritti", target: "thoughts", relation: "首念" },
+            { source: "aham-vritti", target: "whoami", relation: "参究对象" },
+            { source: "aham-vritti", target: "self", relation: "指向" },
+            { source: "aham-vritti", target: "mind", relation: "核心" },
+
+            // chit-jada-granthi 意识-物质纽结
+            { source: "chit-jada-granthi", target: "ego", relation: "形成" },
+            { source: "chit-jada-granthi", target: "body", relation: "混同" },
+            { source: "chit-jada-granthi", target: "awareness", relation: "遮蔽" },
+            { source: "chit-jada-granthi", target: "whoami", relation: "解开" },
+            { source: "chit-jada-granthi", target: "moksha", relation: "断除" },
+
+            // jnana 智慧
+            { source: "jnana", target: "atman", relation: "证得" },
+            { source: "jnana", target: "moksha", relation: "导向" },
+            { source: "jnana", target: "ego", relation: "消融" },
+            { source: "jnana", target: "maya", relation: "洞穿" },
+
+            // dhyana 禅定
+            { source: "dhyana", target: "mind", relation: "平息" },
+            { source: "dhyana", target: "samadhi", relation: "深化" },
+            { source: "dhyana", target: "silence", relation: "趋向" },
+            { source: "dhyana", target: "japa", relation: "辅助" },
+
+            // japa 念诵
+            { source: "japa", target: "mind", relation: "净化" },
+            { source: "japa", target: "silence", relation: "归于" },
+            { source: "japa", target: "bhakti", relation: "表达" },
+            { source: "japa", target: "guru", relation: "专注" },
+
+            // vairagya 出离
+            { source: "vairagya", target: "jnana", relation: "辅助" },
+            { source: "vairagya", target: "ego", relation: "削弱" },
+            { source: "vairagya", target: "moksha", relation: "铺垫" },
+            { source: "vairagya", target: "viveka", relation: "伴随" },
+
+            // ananda 喜悦
+            { source: "ananda", target: "atman", relation: "本质" },
+            { source: "ananda", target: "moksha", relation: "体验" },
+            { source: "ananda", target: "self", relation: "属性" },
+
+            // awareness 觉知
+            { source: "awareness", target: "atman", relation: "等同" },
+            { source: "awareness", target: "self", relation: "本质" },
+            { source: "awareness", target: "thoughts", relation: "观照" },
+            { source: "awareness", target: "ego", relation: "超越" },
+
+            // satchidananda 三位一体
+            { source: "satchidananda", target: "self", relation: "等同" },
+            { source: "satchidananda", target: "moksha", relation: "体验" },
+            { source: "satchidananda", target: "ananda", relation: "包含" },
+
+            // enlightenment 开悟
+            { source: "enlightenment", target: "self", relation: "认识" },
+            { source: "enlightenment", target: "ego", relation: "消融" },
+            { source: "enlightenment", target: "silence", relation: "体现" },
+            { source: "enlightenment", target: "grace", relation: "赋予" },
+
+            // sahaja 自然安住
+            { source: "sahaja", target: "awareness", relation: "恒住" },
+            { source: "sahaja", target: "silence", relation: "本质" },
+            { source: "sahaja", target: "moksha", relation: "表现" },
+            { source: "sahaja", target: "peace", relation: "包含" },
+
+            // bhakti 奉爱
+            { source: "bhakti", target: "surrender", relation: "深化" },
+            { source: "bhakti", target: "guru", relation: "归依" },
+            { source: "bhakti", target: "jnana", relation: "合一" },
+            { source: "bhakti", target: "atman", relation: "归向" },
+
+            // fate & freewill
+            { source: "freewill", target: "moksha", relation: "终极" },
+            { source: "freewill", target: "ego", relation: "幻觉" },
+            { source: "fate", target: "prarabdha", relation: "体现" },
+
+            // world 世界
+            { source: "world", target: "jiva", relation: "体验" },
+            { source: "world", target: "brahman", relation: "本质" },
+            { source: "world", target: "ego", relation: "投射" },
+
+            // svasthya 自性
+            { source: "svasthya", target: "self", relation: "趋向" },
+            { source: "svasthya", target: "silence", relation: "体现" },
+            { source: "svasthya", target: "awareness", relation: "等同" },
+
+            // samskara 习气（与vasanas已关联，补充更多）
+            { source: "samskara", target: "karma", relation: "强化" },
+            { source: "samskara", target: "thoughts", relation: "触发" },
+            { source: "samskara", target: "ego", relation: "巩固" },
+
+            // enquiry 参究
+            { source: "enquiry", target: "atman", relation: "趋向" },
+            { source: "enquiry", target: "ego", relation: "消融" },
+            { source: "enquiry", target: "self-enquiry", relation: "等同" },
+
+            // jnani 觉者
+            { source: "jnani", target: "silence", relation: "安住" },
+            { source: "jnani", target: "grace", relation: "传递" },
+            { source: "jnani", target: "world", relation: "不受" },
+
+            // peace 平安
+            { source: "peace", target: "self", relation: "本质" },
+            { source: "peace", target: "moksha", relation: "象征" },
+
+            // turiya 第四态
+            { source: "turiya", target: "samadhi", relation: "超越" },
+            { source: "turiya", target: "silence", relation: "体现" },
+            { source: "turiya", target: "atman", relation: "等同" },
+
+            // siddhi 神通
+            { source: "siddhi", target: "ego", relation: "诱惑" },
+            { source: "siddhi", target: "sadhana", relation: "副产品" },
+
+            // viveka 抉择
+            { source: "viveka", target: "vairagya", relation: "带来" },
+            { source: "viveka", target: "maya", relation: "识破" },
+            { source: "viveka", target: "ego", relation: "觉察" },
+
+            // prana 生命能
+            { source: "prana", target: "thoughts", relation: "驱动" },
+            { source: "prana", target: "samadhi", relation: "止息" },
+            { source: "prana", target: "ego", relation: "支撑" },
+
+            // body 身体
+            { source: "body", target: "ego", relation: "认同" },
+            { source: "body", target: "mind", relation: "载体" },
+            { source: "body", target: "prarabdha", relation: "体现" },
+
+            // drishti 所见
+            { source: "drishti", target: "world", relation: "创造" },
+            { source: "drishti", target: "maya", relation: "强化" },
+            { source: "drishti", target: "awareness", relation: "净化" },
+
+            // sraddha/shraddha 信念/信心
+            { source: "sraddha", target: "sadhana", relation: "基础" },
+            { source: "sraddha", target: "guru", relation: "依止" },
+            { source: "sraddha", target: "moksha", relation: "铺垫" },
+            { source: "shraddha", target: "sadhana", relation: "推动" },
+            { source: "shraddha", target: "whoami", relation: "坚持" },
+
+            // santosha 知足
+            { source: "santosha", target: "vairagya", relation: "相近" },
+            { source: "santosha", target: "ananda", relation: "趋向" },
+
+            // abhyasa 修行实践
+            { source: "abhyasa", target: "sadhana", relation: "构成" },
+            { source: "abhyasa", target: "japa", relation: "包含" },
+            { source: "abhyasa", target: "dhyana", relation: "包含" },
+            { source: "abhyasa", target: "vasanas", relation: "削减" },
+
+            // anityata 无常
+            { source: "anityata", target: "world", relation: "揭示" },
+            { source: "anityata", target: "vairagya", relation: "生起" },
+            { source: "anityata", target: "sukha", relation: "揭穿" },
+
+            // sukha 世间乐
+            { source: "sukha", target: "world", relation: "依附" },
+            { source: "sukha", target: "ego", relation: "强化" },
+
+            // meditation 禅修
+            { source: "meditation", target: "dhyana", relation: "等同" },
+            { source: "meditation", target: "japa", relation: "配合" },
+            { source: "meditation", target: "awareness", relation: "培养" },
+            { source: "meditation", target: "vasanas", relation: "削弱" },
+
+            // dharma 达摩
+            { source: "dharma", target: "karma-yoga", relation: "体现" },
+            { source: "dharma", target: "jiva", relation: "约束" },
+            { source: "dharma", target: "prarabdha", relation: "相关" },
+
+            // lakshya 所缘
+            { source: "lakshya", target: "atman", relation: "最终" },
+            { source: "lakshya", target: "meditation", relation: "对象" },
+            { source: "lakshya", target: "samadhi", relation: "支撑" },
+
+            // manonasha 心灭
+            { source: "manonasha", target: "ego", relation: "消灭" },
+            { source: "manonasha", target: "thoughts", relation: "止息" },
+            { source: "manonasha", target: "awareness", relation: "显现" },
+
+            // chit 识
+            { source: "chit", target: "self", relation: "等同" },
+            { source: "chit", target: "ananda", relation: "伴随" },
+
+            // mano & manas
+            { source: "mano", target: "vasanas", relation: "储存" },
+            { source: "mano", target: "awareness", relation: "遮蔽" },
+            { source: "manas", target: "thoughts", relation: "产生" },
+            { source: "manas", target: "ego", relation: "构成" },
+
+            // satsang 莎桑
+            { source: "satsang", target: "silence", relation: "传递" },
+            { source: "satsang", target: "bhakti", relation: "深化" },
+            { source: "satsang", target: "jnani", relation: "亲近" },
+
+            // sattva 善性
+            { source: "sattva", target: "viveka", relation: "产生" },
+            { source: "sattva", target: "meditation", relation: "辅助" },
+            { source: "sattva", target: "peace", relation: "带来" },
+
+            // upadesha 教示
+            { source: "upadesha", target: "satsang", relation: "包含" },
+            { source: "upadesha", target: "surrender", relation: "引导" },
+            { source: "upadesha", target: "atman", relation: "指向" },
+
+            // antaryamin 内在之神
+            { source: "antaryamin", target: "self", relation: "等同" },
+            { source: "antaryamin", target: "hrdaya", relation: "居于" },
+            { source: "antaryamin", target: "surrender", relation: "接受" },
+
+            // sharanagati 归依
+            { source: "sharanagati", target: "bhakti", relation: "包含" },
+            { source: "sharanagati", target: "antaryamin", relation: "归向" },
+            { source: "sharanagati", target: "jnani", relation: "亲近" },
+
+            // chidabhasa 意识之影
+            { source: "chidabhasa", target: "jiva", relation: "构成" },
+            { source: "chidabhasa", target: "atman", relation: "折射" },
+            { source: "chidabhasa", target: "thoughts", relation: "赋能" },
+
+            // sanchita & agami
+            { source: "sanchita", target: "vasanas", relation: "积累" },
+            { source: "sanchita", target: "jiva", relation: "承载" },
+            { source: "agami", target: "vasanas", relation: "加深" },
+            { source: "agami", target: "ego", relation: "产生" },
+            { source: "agami", target: "surrender", relation: "消融" },
+
+            // samadhi-sahaja 自然三摩地
+            { source: "samadhi-sahaja", target: "awareness", relation: "恒住" },
+            { source: "samadhi-sahaja", target: "peace", relation: "体验" },
+            { source: "samadhi-sahaja", target: "turiya", relation: "超越" },
+
+            // neti-neti 非此非彼
+            { source: "neti-neti", target: "ego", relation: "解构" },
+            { source: "neti-neti", target: "maya", relation: "识破" },
+            { source: "neti-neti", target: "body", relation: "排除" },
+
+            // japa-om 嗡
+            { source: "japa-om", target: "dhyana", relation: "导入" },
+            { source: "japa-om", target: "mind", relation: "集中" },
+            { source: "japa-om", target: "brahman", relation: "象征" },
+
+            // jnana-yoga 智慧瑜伽
+            { source: "jnana-yoga", target: "neti-neti", relation: "运用" },
+            { source: "jnana-yoga", target: "atman", relation: "证悟" },
+            { source: "jnana-yoga", target: "enquiry", relation: "核心" },
+
+            // karma-yoga 行动瑜伽
+            { source: "karma-yoga", target: "vasanas", relation: "消融" },
+            { source: "karma-yoga", target: "karma", relation: "净化" },
+            { source: "karma-yoga", target: "moksha", relation: "铺垫" },
+
+            // bhakti-yoga 奉爱瑜伽
+            { source: "bhakti-yoga", target: "atman", relation: "归向" },
+            { source: "bhakti-yoga", target: "satsang", relation: "践行" },
+            { source: "bhakti-yoga", target: "jnana-yoga", relation: "汇合" },
+
+            // avidya 无明（两个同名节点已存在，统一用一个）
+            { source: "avidya", target: "ego", relation: "生起" },
+            { source: "avidya", target: "maya", relation: "等同" },
+            { source: "avidya", target: "jnana", relation: "对立" },
+            { source: "avidya", target: "vasanas", relation: "维持" },
+
+            // david & venkataramana 更多关联
+            { source: "david", target: "ramana", relation: "研究" },
+            { source: "david", target: "face-to-face", relation: "编纂" },
+            { source: "david", target: "day-by-day", relation: "参考" },
+            { source: "venkataramana", target: "arunachala", relation: "守护" },
+            { source: "venkataramana", target: "bhakti", relation: "体现" },
+
+            // 书籍更多关联
+            { source: "be-as-you-are", target: "surrender", relation: "阐述" },
+            { source: "be-as-you-are", target: "guru", relation: "介绍" },
+            { source: "be-as-you-are", target: "mind", relation: "分析" },
+            { source: "gems", target: "guru", relation: "强调" },
+            { source: "gems", target: "moksha", relation: "指引" },
+            { source: "gems", target: "mind", relation: "教导" },
+            { source: "talks", target: "atman", relation: "阐释" },
+            { source: "talks", target: "grace", relation: "探讨" },
+            { source: "talks", target: "samadhi", relation: "描述" },
+            { source: "back-to-heart", target: "hrdaya", relation: "探讨" },
+            { source: "back-to-heart", target: "atman", relation: "主旨" },
+            { source: "back-to-heart", target: "guru", relation: "论述" },
+            { source: "day-by-day", target: "bhakti", relation: "记录" },
+            { source: "day-by-day", target: "grace", relation: "见证" },
+            { source: "face-to-face", target: "grace", relation: "体现" },
+            { source: "face-to-face", target: "atman", relation: "触及" },
+
+            // 三脉瑜伽之间互联
+            { source: "jnana-yoga", target: "bhakti-yoga", relation: "互补" },
+            { source: "jnana-yoga", target: "karma-yoga", relation: "共存" },
+            
+            // ===== 第1批新增关系（7个概念）=====
+            { source: "advaita", target: "atman", relation: "核心" },
+            { source: "advaita", target: "brahman", relation: "不二" },
+            { source: "advaita", target: "maya", relation: "破除" },
+            { source: "shiva", target: "atman", relation: "象征" },
+            { source: "shiva", target: "brahman", relation: "体现" },
+            { source: "satya", target: "atman", relation: "本质" },
+            { source: "satya", target: "brahman", relation: "等同" },
+            { source: "vichara", target: "whoami", relation: "深入" },
+            { source: "vichara", target: "jnana", relation: "产生" },
+            { source: "vichara", target: "atman", relation: "趋向" },
+            { source: "samsara", target: "maya", relation: "创造" },
+            { source: "samsara", target: "ego", relation: "维系" },
+            { source: "samsara", target: "moksha", relation: "超越" },
+            { source: "nishtha", target: "jnani", relation: "安住" },
+            { source: "nishtha", target: "atman", relation: "定于" },
+            { source: "kundalini", target: "hrdaya", relation: "上升" },
+            { source: "kundalini", target: "samadhi", relation: "触发" },
+            
+            // ===== 第2批新增关系（7个概念）=====
+            { source: "yoga", target: "atman", relation: "合一" },
+            { source: "yoga", target: "sadhana", relation: "方法" },
+            { source: "yoga", target: "samadhi", relation: "导向" },
+            { source: "tapas", target: "ego", relation: "净化" },
+            { source: "tapas", target: "mind", relation: "降伏" },
+            { source: "tapas", target: "grace", relation: "招感" },
+            { source: "mantra", target: "japa", relation: "形式" },
+            { source: "mantra", target: "mind", relation: "集中" },
+            { source: "mantra", target: "atman", relation: "共鸣" },
+            { source: "darshana", target: "atman", relation: "洞见" },
+            { source: "darshana", target: "jnana", relation: "产生" },
+            { source: "isvara", target: "brahman", relation: "人格化" },
+            { source: "isvara", target: "guru", relation: "体现" },
+            { source: "isvara", target: "grace", relation: "赐予" },
+            { source: "klesha", target: "ego", relation: "根源" },
+            { source: "klesha", target: "mind", relation: "扰乱" },
+            { source: "klesha", target: "moksha", relation: "障碍" },
+            { source: "smriti", target: "whoami", relation: "保持" },
+            { source: "smriti", target: "atman", relation: "忆念" },
+            { source: "smriti", target: "mind", relation: "净化" },
+        ];
+        
+        // 颜色映射
+        const colorMap = {
+            center: "#c77dff",
+            atman: "#e0aaff",
+            mind: "#ffd700",
+            practice: "#4ecdc4",
+            moksha: "#00b894",
+            book: "#fd79a8",
+            person: "#74b9ff"
+        };
+        
+        // 力导向模拟
+        const simulation = d3.forceSimulation(nodes)
+            .force("link", d3.forceLink(links).id(d => d.id).distance(120))
+            .force("charge", d3.forceManyBody().strength(-500))
+            .force("center", d3.forceCenter(width / 2, svg.node().getBoundingClientRect().height / 2))
+            .force("collision", d3.forceCollide().radius(d => d.type === "center" ? 55 : d.type === "book" | d.type === "person" ? 45 : 40).strength(0.8))
+            .alphaDecay(0.02);  // 减慢收敛，让布局更稳定
+        
+        // 绘制连线
+        const link = g.append("g")
+            .selectAll("line")
+            .data(links)
+            .join("line")
+            .attr("class", "link")
+            .attr("stroke", d => colorMap[nodes.find(n => n.id === d.source.id)?.type | "center"] | "#c77dff")
+            .attr("stroke-opacity", 0.3);
+        
+        // 绘制节点组
+        const node = g.append("g")
+            .selectAll("g")
+            .data(nodes)
+            .join("g")
+            .attr("class", "node")
+            .style("cursor", "pointer");
+
+        // 仅在非触摸设备上启用拖拽
+        if (!isTouchDevice()) {
+            node.call(d3.drag()
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended)
+            );
+        }
+        
+        // 节点圆圈
+        node.append("circle")
+            .attr("r", d => d.type === "center" ? 30 : d.type === "book" | d.type === "person" ? 20 : 18)
+            .attr("fill", d => colorMap[d.type])
+            .attr("stroke", "#fff")
+            .attr("stroke-width", 2);
+        
+        // 节点标签
+        node.append("text")
+            .text(d => d.name)
+            .attr("text-anchor", "middle")
+            .attr("dy", d => (d.type === "center" ? 50 : 35))
+            .style("font-size", d => d.type === "center" ? "16px" : "13px");
+        
+        // 悬停效果
+        const tooltip = document.getElementById("tooltip");
+        
+        function showNodeDetails(d, element) {
+            // 强化当前节点
+            d3.select(element).select("circle")
+                .transition()
+                .duration(200)
+                .attr("r", d.type === "center" ? 35 : d.type === "book" | d.type === "person" ? 25 : 22);
+            
+            // 高亮关联连线
+            link.classed("highlight", l => l.source.id === d.id | l.target.id === d.id)
+                .classed("dim", l => l.source.id !== d.id && l.target.id !== d.id);
+            
+            // 高亮关联节点
+            const relatedIds = new Set();
+            links.forEach(l => {
+                if (l.source.id === d.id) relatedIds.add(l.target.id);
+                if (l.target.id === d.id) relatedIds.add(l.source.id);
+            });
+            node.style("opacity", n => n.id === d.id | relatedIds.has(n.id) ? 1 : 0.3);
+            
+            // 显示提示框
+            tooltip.querySelector(".title").textContent = d.name;
+            tooltip.querySelector(".type").textContent = d.type === "atman" ? "本体论" : 
+                                                        d.type === "mind" ? "心智与自我" :
+                                                        d.type === "practice" ? "修行法门" :
+                                                        d.type === "moksha" ? "解脱境界" :
+                                                        d.type === "book" ? "核心著作" :
+                                                        d.type === "person" ? "关键人物" : "中心";
+            tooltip.querySelector(".desc").textContent = d.desc;
+            tooltip.classList.add("visible");
+            
+            // 绘制蜘蛛网效果
+            drawSpiderWeb(d, relatedIds);
+        }
+        
+        function hideNodeDetails(d, element) {
+            // 恢复节点大小
+            d3.select(element).select("circle")
+                .transition()
+                .duration(200)
+                .attr("r", d.type === "center" ? 30 : d.type === "book" | d.type === "person" ? 20 : 18);
+            
+            // 恢复连线
+            link.classed("highlight", false).classed("dim", false);
+            
+            // 恢复节点透明度
+            node.style("opacity", 1);
+            
+            // 隐藏提示框
+            tooltip.classList.remove("visible");
+            
+            // 清除蜘蛛网
+            g.selectAll(".spider-line").remove();
+        }
+        
+        node.on("mouseover", function(event, d) {
+            // 移动端不触发 mouseover
+            if (isTouchDevice()) return;
+            showNodeDetails(d, this);
+        })
+        .on("mousemove", function(event) {
+            if (isTouchDevice()) return;
+            tooltip.style.left = (event.offsetX + 15) + "px";
+            tooltip.style.top = (event.offsetY - 10) + "px";
+        })
+        .on("mouseout", function(event, d) {
+            if (isTouchDevice()) return;
+            hideNodeDetails(d, this);
+        })
+        .on("click", function(event, d) {
+            // 显示节点详情
+            showNodeDetails(d, this);
+
+            // 移动端延迟3秒后跳转，PC端立即跳转
+            if (d.url) {
+                if (isTouchDevice()) {
+                    // 移动端：3秒后跳转
+                    setTimeout(() => {
+                        hideNodeDetails(d, this);
+                        window.location.href = d.url;
+                    }, 3000);
+                } else {
+                    // PC端：立即跳转
+                    window.location.href = d.url;
+                }
+            }
+        });
+        
+        // 绘制蜘蛛网效果
+        function drawSpiderWeb(centerNode, relatedIds) {
+            g.selectAll(".spider-line").remove();
+            
+            const relatedNodes = nodes.filter(n => relatedIds.has(n.id));
+            const centerX = centerNode.x;
+            const centerY = centerNode.y;
+            
+            relatedNodes.forEach(n => {
+                // 计算角度和距离
+                const angle = Math.atan2(n.y - centerY, n.x - centerX);
+                const dist = Math.sqrt(Math.pow(n.x - centerX, 2) + Math.pow(n.y - centerY, 2));
+                
+                // 绘制从中心到关联节点的蜘蛛丝
+                g.append("line")
+                    .attr("class", "spider-line")
+                    .attr("x1", centerX)
+                    .attr("y1", centerY)
+                    .attr("x2", n.x)
+                    .attr("y2", n.y)
+                    .attr("stroke", colorMap[n.type])
+                    .attr("stroke-width", 2)
+                    .attr("stroke-dasharray", "5,3")
+                    .attr("stroke-opacity", 0.8);
+                
+                // 在中点添加小圆点
+                g.append("circle")
+                    .attr("class", "spider-line")
+                    .attr("cx", (centerX + n.x) / 2)
+                    .attr("cy", (centerY + n.y) / 2)
+                    .attr("r", 3)
+                    .attr("fill", colorMap[n.type]);
+            });
+        }
+        
+        // 更新位置
+        simulation.on("tick", () => {
+            link
+                .attr("x1", d => d.source.x)
+                .attr("y1", d => d.source.y)
+                .attr("x2", d => d.target.x)
+                .attr("y2", d => d.target.y);
+            
+            node.attr("transform", d => `translate(${d.x},${d.y})`);
+        });
+        
+        // 拖拽函数
+        function dragstarted(event) {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            event.subject.fx = event.subject.x;
+            event.subject.fy = event.subject.y;
+        }
+        
+        function dragged(event) {
+            event.subject.fx = event.x;
+            event.subject.fy = event.y;
+        }
+        
+        function dragended(event) {
+            if (!event.active) simulation.alphaTarget(0);
+            event.subject.fx = null;
+            event.subject.fy = null;
+        }
+        
+        // 控制函数
+        function resetZoom() {
+            // 获取当前实际高度（移动端可能不同）
+            const currentHeight = svg.node().getBoundingClientRect().height;
+            // 缩小显示，让所有节点都可见
+            const scale = Math.min(width / 800, 0.7);
+            const x = width / 2 - (width / 2) * scale;
+            const y = currentHeight / 2 - (currentHeight / 2) * scale;
+            svg.transition().duration(500).call(
+                zoom.transform, 
+                d3.zoomIdentity.translate(x, y).scale(scale)
+            );
+        }
+        
+        // 页面加载时自动缩小显示全部
+        setTimeout(resetZoom, 1000);
+        
+        // 第3秒后强制停止节点抖动
+        setTimeout(() => {
+            // 方案1：完全停止 simulation，让节点固定在当前位置
+            simulation.stop();
+
+            // 方案2：同时固定所有节点位置，防止任何后续运动
+            nodes.forEach(d => {
+                d.fx = d.x;
+                d.fy = d.y;
+                d.vx = 0;  // 清除速度
+                d.vy = 0;
+            });
+
+            // 500ms 后允许拖拽（松开固定），但 simulation 已停止，节点不会抖动
+            setTimeout(() => {
+                nodes.forEach(d => {
+                    d.fx = null;
+                    d.fy = null;
+                    // vx/vy 保持为 0，确保节点不动
+                });
+            }, 500);
+        }, 3000);
+        
+        function zoomIn() {
+            svg.transition().duration(300).call(zoom.scaleBy, 1.3);
+        }
+        
+        function zoomOut() {
+            svg.transition().duration(300).call(zoom.scaleBy, 0.7);
+        }
+        
+        // 移动端菜单切换
+        function toggleSidebar() {
+            const s = document.getElementById('sidebar');
+            const o = document.getElementById('sidebarOverlay');
+            s.classList.toggle('open');
+            if (o) o.classList.toggle('open');
+        }
+    </script>
+    <script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('sw.js')
+                .then(function(registration) {
+                    console.log('SW registered:', registration.scope);
+                })
+                .catch(function(error) {
+                    console.log('SW registration failed:', error);
+                });
+        });
+    }
+    </script>
+<script src="pwa-analytics.js" defer></script>
+    <script>document.addEventListener("click",function(e){if(e.target.closest(".sidebar-close-btn,.sidebar-open-btn")){e.preventDefault();var s=document.getElementById("sidebar"),m=document.querySelector(".main-content"),t=document.querySelector(".topbar"),b=document.querySelector(".sidebar-close-btn");if(!s)return;if(s.classList.contains("desktop-hidden")){s.classList.remove("desktop-hidden");if(m)m.classList.remove("full-width");if(t)t.classList.remove("reading-mode");if(b){b.textContent="◀";b.title="收起侧边栏";}}else{s.classList.add("desktop-hidden");if(m)m.classList.add("full-width");if(t)t.classList.add("reading-mode");if(b){b.textContent="▶";b.title="展开侧边栏";}}}});</script>
+<!-- sidebar-toggle-css -->
+<style>.sidebar.desktop-hidden{transform:translateX(-100%) !important;transition:transform .3s ease;}.sidebar-close-btn{display:block;background:rgba(255,255,255,.1);border:none;color:#cbd5e1;font-size:14px;cursor:pointer;padding:6px 10px;border-radius:4px;transition:all .15s;line-height:1;}.sidebar-close-btn:hover{background:rgba(255,255,255,.2);color:#fff;}.main-content.full-width{margin-left:0 !important;max-width:100vw !important;transition:margin-left .3s ease;}.main-content.full-width .topbar{left:0 !important;width:100% !important;}.main-content.full-width .content-wrapper,.main-content.full-width main{max-width:100% !important;}.main-content.full-width .content-wrapper{padding:24px 48px !important;}.sidebar-open-btn{display:none;position:fixed;top:9px;left:8px;z-index:201;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);color:#cbd5e1;font-size:16px;cursor:pointer;padding:5px 10px;border-radius:4px;transition:all .15s;line-height:1.2;}.sidebar-open-btn:hover{background:rgba(255,255,255,.25);color:#fff;}.main-content.full-width .sidebar-open-btn{display:block;}</style>
+<!-- sidebar-toggle -->
+</body>
+</html>

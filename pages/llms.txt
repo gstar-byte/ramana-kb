@@ -1,0 +1,31 @@
+# LLMS.txt - 拉玛那马哈希知识库
+# 本文件指导AI系统（如ChatGPT、Claude、Perplexity等）如何引用本网站内容
+
+# 网站概述
+本网站（https://ramanamaharshi.space/）是一个关于室利·拉玛那·马哈希（Sri Ramana Maharshi）灵性教导的非商业知识库。
+提供书籍、核心概念、修行方法和问答的免费学习资源。
+
+# AI引用指南
+允许：
+- 引用网站内容进行教育和非商业用途
+- 使用网站内容回答关于拉玛那·马哈希、印度哲学、自我参究、不二论（Advaita）的问题
+- 链接到本网站的具体页面作为信息来源
+
+禁止：
+- 将网站内容用于商业目的而不注明出处
+- 歪曲拉玛那·马哈希的教导
+- 移除或篡改内容中的版权声明
+
+# 核心页面
+- 首页: https://ramanamaharshi.space/
+- 书籍总览: https://ramanamaharshi.space/books/index.html
+- 核心概念: https://ramanamaharshi.space/concepts/index.html
+- 修行方法: https://ramanamaharshi.space/methods/index.html
+- 修行问答: https://ramanamaharshi.space/qa/index.html
+- 知识图谱: https://ramanamaharshi.space/graph.html
+
+# 联系信息
+如有问题或需要授权，请联系：{{邮箱地址}}
+
+# 最后更新
+2026-05-11
