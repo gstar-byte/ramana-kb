@@ -85,7 +85,7 @@
             
             <!-- 搜索框 -->
             <div class="search-box">
-                <input type="text" id="search-input" placeholder="搜索标题或内容..." autocomplete="off">
+                <input type="text" id="search-input" placeholder="搜索标题或內容..." autocomplete="off">
                 <div id="search-results"></div>
             </div>
             
@@ -102,7 +102,7 @@
                 </div>
             </div>
             
-            <!-- 经典著作 -->
+            <!-- 經典著作 -->
             <div class="sidebar-section">
                 <div class="sidebar-section-title">📖 經典著作</div>
                 <div class="sidebar-items">
@@ -178,13 +178,13 @@
                     <button class="tab-btn active" data-category="all">全部</button>
                     <button class="tab-btn" data-category="真我">真我</button>
                     <button class="tab-btn" data-category="心智">心智</button>
-                    <button class="tab-btn" data-category="参究">參究</button>
-                    <button class="tab-btn" data-category="静默">靜默</button>
+                    <button class="tab-btn" data-category="參究">參究</button>
+                    <button class="tab-btn" data-category="靜默">靜默</button>
                     <button class="tab-btn" data-category="恩典">恩典</button>
                     <button class="tab-btn" data-category="三摩地">三摩地</button>
                     <button class="tab-btn" data-category="日常">日常</button>
                     <button class="tab-btn" data-category="世界">世界</button>
-                    <button class="tab-btn" data-category="解脱">解脫</button>
+                    <button class="tab-btn" data-category="解脫">解脫</button>
                 </div>
 
                 <!-- QA列表 -->
@@ -223,7 +223,7 @@
         let allQaItems = [];
         let filteredItems = [];
         
-        // 从URL获取参数
+        // 从URL獲取参数
         function getUrlParams() {
             const params = new URLSearchParams(window.location.search);
             return {
@@ -249,14 +249,14 @@
                 'all': '全部',
                 '真我': '真我',
                 '心智': '心智',
-                '参究': '参究',
-                '静默': '静默',
+                '參究': '參究',
+                '靜默': '靜默',
                 '恩典': '恩典',
                 '奉爱': '奉爱',
                 '三摩地': '三摩地',
                 '日常': '日常',
                 '世界': '世界',
-                '解脱': '解脱'
+                '解脫': '解脫'
             };
             
             const filterText = filterNames[filter] | '';
@@ -452,19 +452,19 @@
                 } else {
                     console.log('[QA] 筛选类别:', category);
                     filteredItems = allQaItems.filter(item => {
-                        // 只根据问题中的关键词匹配
+                        // 只根据问题中的關鍵词匹配
                         const question = item.question.toLowerCase();
                         const categoryKeywords = {
                             '真我': ['真我', 'self'],
                             '心智': ['心智', 'mind', '念头', '思维'],
-                            '参究': ['参究', '我是谁', 'who am i'],
-                            '静默': ['静默', 'silence', '沉默'],
+                            '參究': ['參究', '我是谁', 'who am i'],
+                            '靜默': ['靜默', 'silence', '沉默'],
                             '恩典': ['恩典', 'grace'],
                             '奉爱': ['奉爱', 'bhakti', 'devotion'],
-                            '三摩地': ['三摩地', 'samadhi', '禅定'],
+                            '三摩地': ['三摩地', 'samadhi', '禪定'],
                             '日常': ['日常', '生活', '工作', 'work'],
                             '世界': ['世界', 'world'],
-                            '解脱': ['解脱', 'liberation']
+                            '解脫': ['解脫', 'liberation']
                         };
                         const keywords = categoryKeywords[category] | [category];
                         return keywords.some(kw => question.includes(kw.toLowerCase()));
@@ -515,7 +515,7 @@
             currentPage = params.page;
             currentFilter = params.filter;
             
-            // 应用筛选
+            // 應用筛选
             if (currentFilter !== 'all') {
                 // 更新按钮状态
                 const buttons = document.querySelectorAll('.tab-btn');
@@ -530,14 +530,14 @@
                 const categoryKeywords = {
                     '真我': ['真我'],
                     '心智': ['心智', 'mind', '念头', '思维'],
-                    '参究': ['参究', '我是谁', 'who am i'],
-                    '静默': ['静默', 'silence', '沉默'],
+                    '參究': ['參究', '我是谁', 'who am i'],
+                    '靜默': ['靜默', 'silence', '沉默'],
                     '恩典': ['恩典', 'grace'],
                     '奉爱': ['奉爱', 'bhakti', 'devotion'],
-                    '三摩地': ['三摩地', 'samadhi', '禅定'],
+                    '三摩地': ['三摩地', 'samadhi', '禪定'],
                     '日常': ['日常', '生活', '工作', 'work'],
                     '世界': ['世界', 'world'],
-                    '解脱': ['解脱', 'liberation']
+                    '解脫': ['解脫', 'liberation']
                 };
                 const keywords = categoryKeywords[currentFilter] | [currentFilter];
                 filteredItems = allQaItems.filter(item => {
@@ -549,7 +549,7 @@
             // 更新SEO
             updateSEO(currentPage, currentFilter, filteredItems.length);
             
-            // 显示页面
+            // 显示頁面
             initPagination();
             showPage(currentPage);
         }
