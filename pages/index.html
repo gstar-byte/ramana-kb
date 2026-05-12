@@ -440,85 +440,85 @@
 <script>
 // PWA 安装提示
 (function() {
-  let deferredPrompt = null;
   const banner = document.getElementById('pwa-install-banner');
   const installBtn = document.getElementById('pwa-install-btn');
   const dismissBtn = document.getElementById('pwa-dismiss-btn');
+  const DISMISS_DURATION = 7 * 24 * 60 * 60 * 1000;
   
-  // 检测平台
+  function isStandalone() {
+    return window.matchMedia('(display-mode: standalone)').matches || 
+           window.navigator.standalone === true;
+  }
+  
+  function isDismissed() {
+    const dismissed = localStorage.getItem('pwa-install-dismissed');
+    if (!dismissed) return false;
+    const elapsed = Date.now() - parseInt(dismissed, 10);
+    return elapsed < DISMISS_DURATION;
+  }
+  
+  function isInstalled() {
+    if (isStandalone()) return true;
+    const wasInstalled = localStorage.getItem('pwa-was-installed');
+    return wasInstalled === 'true';
+  }
+  
+  function hideBanner() {
+    if (banner) banner.style.display = 'none';
+  }
+  
+  function dismiss() {
+    localStorage.setItem('pwa-install-dismissed', Date.now().toString());
+    hideBanner();
+  }
+  
+  if (isInstalled() || isDismissed()) {
+    hideBanner();
+    return;
+  }
+  
   const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-  const isInstalled = window.matchMedia('(display-mode: standalone)').matches || 
-                      window.navigator.standalone === true;
-  const isDismissed = localStorage.getItem('pwa-install-dismissed');
+  let deferredPrompt = null;
   
-  if (isInstalled || isDismissed) return;
-  
-  // iOS Safari 特殊处理
-  if (isIOS && isSafari) {
-    // iOS 没有 beforeinstallprompt，直接显示提示
+  if (isIOS) {
     setTimeout(() => {
-      if (banner) {
-        // 修改按钮文字为"查看方法"
-        if (installBtn) installBtn.textContent = '查看方法';
-        banner.style.display = 'block';
-      }
-    }, 3000);
+      if (installBtn) installBtn.textContent = '查看方法';
+      hideBanner();
+    }, 2000);
     
-    // iOS 点击显示安装说明弹窗
     if (installBtn) {
-      installBtn.addEventListener('click', () => {
-        showIOSInstallGuide();
-      });
+      installBtn.addEventListener('click', showIOSInstallGuide);
     }
   } else {
-    // Android/Chrome 监听安装提示事件
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       deferredPrompt = e;
-      
-      setTimeout(() => {
-        if (banner) banner.style.display = 'block';
-      }, 3000);
+      setTimeout(hideBanner, 2000);
     });
     
-    // Android 安装按钮
     if (installBtn) {
       installBtn.addEventListener('click', async () => {
         if (!deferredPrompt) return;
-        
-        deferredPrompt.prompt();
         const { outcome } = await deferredPrompt.userChoice;
-        
         if (outcome === 'accepted') {
-          console.log('PWA: User accepted install');
-          if (banner) banner.style.display = 'none';
+          localStorage.setItem('pwa-was-installed', 'true');
         }
-        
         deferredPrompt = null;
       });
     }
   }
   
-  // 稍后按钮点击（通用）
   if (dismissBtn) {
-    dismissBtn.addEventListener('click', () => {
-      if (banner) banner.style.display = 'none';
-      localStorage.setItem('pwa-install-dismissed', Date.now().toString());
-      setTimeout(() => {
-        localStorage.removeItem('pwa-install-dismissed');
-      }, 24 * 60 * 60 * 1000);
-    });
+    dismissBtn.addEventListener('click', dismiss);
   }
   
-  // 监听安装完成事件
   window.addEventListener('appinstalled', () => {
-    console.log('PWA: App installed');
-    if (banner) banner.style.display = 'none';
+    localStorage.setItem('pwa-was-installed', 'true');
+    localStorage.removeItem('pwa-install-dismissed');
+    hideBanner();
     deferredPrompt = null;
   });
   
-  // iOS 安装指南弹窗
   function showIOSInstallGuide() {
     const guide = document.createElement('div');
     guide.id = 'ios-install-guide';
