@@ -18,3 +18,18 @@
 .lang-toggle{position:fixed;top:56px;right:16px;z-index:1000;display:inline-flex;align-items:center;justify-content:center;padding:6px 14px;background:rgba(255,255,255,0.9);border:1px solid var(--border);border-radius:20px;font-size:13px;font-weight:600;color:var(--text);text-decoration:none;transition:all .2s ease;box-shadow:0 2px 8px rgba(0,0,0,0.08);}
 .lang-toggle:hover{background:var(--gold);border-color:var(--gold);color:white;transform:translateY(-1px);box-shadow:0 4px 12px rgba(184,134,11,0.25);}
 @media(max-width:768px){.lang-toggle{top:52px;right:8px;padding:5px 10px;font-size:12px;}}
+
+/* Mobile Sidebar Styles */
+@media(max-width:768px){
+.sidebar-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:99;display:none;opacity:0;transition:opacity .3s ease;}
+.sidebar-overlay.active{display:block;opacity:1;}
+.hamburger,.menu-toggle{display:flex !important;align-items:center;justify-content:center;}
+.sidebar{transform:translateX(-100%);transition:transform .3s ease;}
+.sidebar.open{transform:translateX(0);}
+.sidebar.open ~ .sidebar-overlay{opacity:1;}
+.topbar{left:0 !important;}
+.lang-toggle{top:52px;}}
+@media(min-width:769px){
+.sidebar-overlay{display:none !important;}
+.sidebar{transform:none !important;}}
+
