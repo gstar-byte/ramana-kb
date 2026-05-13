@@ -10,6 +10,9 @@
 .main-content.full-width .topbar{left:0 !important;width:100% !important;}
 .main-content.full-width .content-wrapper,.main-content.full-width main{max-width:100% !important;}
 .main-content.full-width .content-wrapper{padding:24px 48px !important;}
+.sidebar-close-btn{display:block;background:rgba(255,255,255,.1);border:none;color:#cbd5e1;font-size:14px;cursor:pointer;padding:6px 10px;border-radius:4px;transition:all .15s;line-height:1;}
+.sidebar-close-btn:hover{background:rgba(255,255,255,.2);color:#fff;}
+.sidebar.desktop-hidden .sidebar-close-btn{display:none;}
 .sidebar-open-btn{display:none;position:fixed;top:9px;left:8px;z-index:201;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);color:#cbd5e1;font-size:16px;cursor:pointer;padding:5px 10px;border-radius:4px;transition:all .15s;line-height:1.2;}
 .sidebar-open-btn:hover{background:rgba(255,255,255,.25);color:#fff;}
 .main-content.full-width .sidebar-open-btn{display:block;}
@@ -27,6 +30,8 @@
 .sidebar{transform:translateX(-100%);transition:transform .3s ease;}
 .sidebar.open{transform:translateX(0);}
 .sidebar.open ~ .sidebar-overlay{opacity:1;}
+.sidebar-close-btn{display:none !important;}
+.sidebar.open .sidebar-close-btn{display:block !important;}
 .topbar{left:0 !important;}
 .lang-toggle{top:52px;}}
 @media(min-width:769px){
