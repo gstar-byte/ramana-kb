@@ -34,7 +34,11 @@
     <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
 
 <style>
-        .sidebar-close-btn { visibility: hidden; opacity: 0; }
+        .sidebar-close-btn, .sidebar-open-btn { 
+            visibility: hidden; 
+            opacity: 0; 
+            display: none; 
+        }
     </style>
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -375,7 +379,7 @@
         <!-- 主内容区 -->
         <main class="main-content">
             <header class="topbar">
-                <button class="sidebar-open-btn" title="展开侧边栏">▶</button>
+                <button class="sidebar-open-btn" title="展开侧边栏" style="visibility:hidden;opacity:0;display:none;">▶</button>
                 <div class="topbar-left">
                     <span class="topbar-title">🕸️ 知识图谱</span>
                 </div>
