@@ -468,11 +468,13 @@
   // 检测平台
   const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
   const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-  const isInstalled = window.matchMedia('(display-mode: standalone)').matches | 
-                      window.navigator.standalone === true;
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+  const isIOSStandalone = window.navigator.standalone === true;
+  const wasInstalled = localStorage.getItem('pwa-was-installed');
   const isDismissed = localStorage.getItem('pwa-install-dismissed');
   
-  if (isInstalled | isDismissed) return;
+  // 如果已安装或已选择稍后，则不再显示
+  if (isStandalone || isIOSStandalone || wasInstalled || isDismissed) return;
   
   // iOS Safari 特殊处理
   if (isIOS && isSafari) {
@@ -552,12 +554,16 @@
           <p style="margin:8px 0;">2. 向上滑动，找到 <span style="color:#d4a574;font-weight:600;">添加到主屏幕</span></p>
           <p style="margin:8px 0;">3. 点击 <span style="color:#d4a574;font-weight:600;">添加</span> 完成安装</p>
         </div>
-        <button onclick="document.getElementById('ios-install-guide').remove();" style="background:#d4a574;color:#1a1a2e;border:none;padding:12px 32px;border-radius:8px;font-weight:600;font-size:15px;cursor:pointer;width:100%;">知道了</button>
+        <button onclick="document.getElementById('ios-install-guide').remove();localStorage.setItem('pwa-was-installed','true');document.getElementById('pwa-install-banner').style.display='none';" style="background:#d4a574;color:#1a1a2e;border:none;padding:12px 32px;border-radius:8px;font-weight:600;font-size:15px;cursor:pointer;width:100%;">知道了</button>
       </div>
     `;
     document.body.appendChild(guide);
     guide.addEventListener('click', (e) => {
-      if (e.target === guide) guide.remove();
+      if (e.target === guide) {
+        guide.remove();
+        localStorage.setItem('pwa-was-installed', 'true');
+        if (banner) banner.style.display = 'none';
+      }
     });
   }
 })();
