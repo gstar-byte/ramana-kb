@@ -1620,32 +1620,23 @@ main,
    苹果移动端 Safari 特定优化
    ============================================ */
 
-/* 使用媒体查询和 Safari 特定前缀检测 iOS Safari */
-@media screen and (max-width: 1024px) {
-    /* iOS Safari 检测 */
-    @supports (-webkit-touch-callout: none) {
-        /* 顶部导航栏字体增加35% */
-        .topbar-nav a {
-            font-size: 17px !important;
-        }
-        
-        /* 面包屑字体增加20% */
-        .breadcrumb {
-            font-size: 16px !important;
-        }
-        
-        /* 首页副标题（声震寰宇那段）字体增加20% */
-        .page-header .subtitle {
-            font-size: 18px !important;
-        }
-        
-        /* 繁简切换按钮字体增加35% */
-        .lang-toggle {
-            font-size: 13px !important;
-            height: 26px !important;
-            line-height: 26px !important;
-            padding: 0 8px !important;
-            border-radius: 13px !important;
-        }
-    }
+/* 使用 .is-ios-safari class 检测 iOS Safari（由 JavaScript 添加） */
+.is-ios-safari .topbar-nav a {
+    font-size: 17px !important;
+}
+
+.is-ios-safari .breadcrumb {
+    font-size: 16px !important;
+}
+
+.is-ios-safari .page-header .subtitle {
+    font-size: 18px !important;
+}
+
+.is-ios-safari .lang-toggle {
+    font-size: 13px !important;
+    height: 26px !important;
+    line-height: 26px !important;
+    padding: 0 8px !important;
+    border-radius: 13px !important;
 }
