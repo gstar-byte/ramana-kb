@@ -443,10 +443,12 @@
 <script>
   // iOS Safari 检测并添加 class
   (function() {
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const isSafari = /Safari/i.test(navigator.userAgent) && !/Chrome/i.test(navigator.userAgent);
+    console.log('iOS Safari检测:', { isIOS, isSafari });
     if (isIOS && isSafari) {
       document.documentElement.classList.add('is-ios-safari');
+      console.log('已添加 is-ios-safari class');
     }
   })();
 </script>
@@ -476,15 +478,22 @@
   const dismissBtn = document.getElementById('pwa-dismiss-btn');
   
   // 检测平台
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const isSafari = /Safari/i.test(navigator.userAgent) && !/Chrome/i.test(navigator.userAgent);
   const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
   const isIOSStandalone = window.navigator.standalone === true;
   const wasInstalled = localStorage.getItem('pwa-was-installed');
   const isDismissed = localStorage.getItem('pwa-install-dismissed');
   
+  // 调试日志
+  console.log('PWA检测:', { isIOS, isSafari, isStandalone, isIOSStandalone, wasInstalled, isDismissed });
+  
   // 如果已安装或已选择稍后，则不再显示
-  if (isStandalone || isIOSStandalone || wasInstalled || isDismissed) return;
+  if (isStandalone || isIOSStandalone || wasInstalled) {
+    console.log('PWA: 已安装或已标记为已安装，隐藏banner');
+    if (banner) banner.style.display = 'none';
+    return;
+  }
   
   // iOS Safari 特殊处理
   if (isIOS && isSafari) {

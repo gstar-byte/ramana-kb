@@ -1621,22 +1621,42 @@ main,
    ============================================ */
 
 /* 使用 .is-ios-safari class 检测 iOS Safari（由 JavaScript 添加） */
-.is-ios-safari .topbar-nav a {
+/* 使用更具体的选择器确保优先级 */
+html.is-ios-safari body .topbar-nav a,
+html.is-ios-safari .topbar-nav a {
     font-size: 17px !important;
 }
 
-.is-ios-safari .breadcrumb {
+html.is-ios-safari body .breadcrumb,
+html.is-ios-safari .breadcrumb {
     font-size: 16px !important;
 }
 
-.is-ios-safari .page-header .subtitle {
+html.is-ios-safari body .page-header .subtitle,
+html.is-ios-safari .page-header .subtitle {
     font-size: 18px !important;
 }
 
-.is-ios-safari .lang-toggle {
+html.is-ios-safari body .lang-toggle,
+html.is-ios-safari .lang-toggle {
     font-size: 13px !important;
     height: 26px !important;
     line-height: 26px !important;
     padding: 0 8px !important;
     border-radius: 13px !important;
+}
+
+/* 移动端媒体查询中的样式也需要覆盖 */
+@media screen and (max-width: 768px) {
+    html.is-ios-safari body .topbar-nav a,
+    html.is-ios-safari .topbar-nav a {
+        font-size: 17px !important;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    html.is-ios-safari body .topbar-nav a,
+    html.is-ios-safari .topbar-nav a {
+        font-size: 17px !important;
+    }
 }
