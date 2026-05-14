@@ -33,14 +33,7 @@
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
     <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
 
-<style>
-        .sidebar-close-btn, .sidebar-open-btn { 
-            visibility: hidden; 
-            opacity: 0; 
-            display: none; 
-        }
-    </style>
-    <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css">
     <style>
         .graph-wrapper {
             position: relative;
@@ -309,7 +302,6 @@
 <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <a href="index.html" class="logo">🙏 拉玛那知识库</a>
-                <button class="sidebar-close-btn" title="收起侧边栏" style="visibility:hidden;opacity:0;">◀</button>
             </div>
             
             <!-- 搜索框 -->
@@ -379,7 +371,6 @@
         <!-- 主内容区 -->
         <main class="main-content">
             <header class="topbar">
-                <button class="sidebar-open-btn" title="展开侧边栏" style="visibility:hidden;opacity:0;display:none;">▶</button>
                 <div class="topbar-left">
                     <span class="topbar-title">🕸️ 知识图谱</span>
                 </div>
@@ -1557,7 +1548,7 @@
     </script>
 <script src="pwa-analytics.js" defer></script>
     <script src="script.js" defer></script>
-<script>function toggleSidebar(){var s=document.getElementById("sidebar"),o=document.getElementById("sidebarOverlay");if(!s)return;if(s.classList.contains("open")){s.classList.remove("open");if(o)o.classList.remove("active")}else{s.classList.add("open");if(o)o.classList.add("active")}}document.addEventListener("DOMContentLoaded",function(){document.addEventListener("click",function(e){var target=e.target.closest(".sidebar-item");if(target&&window.innerWidth<769){var href=target.getAttribute("href");if(href){e.preventDefault();if(href.startsWith("#")){setTimeout(function(){toggleSidebar();setTimeout(function(){var el=document.querySelector(href);if(el)el.scrollIntoView({behavior:"smooth",block:"start"})},300)},50)}else{toggleSidebar();setTimeout(function(){window.location.href=href},100)}}})});document.addEventListener("click",function(e){var closeBtn=e.target.closest(".sidebar-close-btn");var openBtn=e.target.closest(".sidebar-open-btn");if(closeBtn||openBtn){e.preventDefault();var s=document.getElementById("sidebar"),m=document.querySelector(".main-content"),t=document.querySelector(".topbar"),b=document.querySelector(".sidebar-close-btn");if(!s)return;if(s.classList.contains("desktop-hidden")){s.classList.remove("desktop-hidden");if(m)m.classList.remove("full-width");if(t)t.classList.remove("reading-mode");if(b){b.textContent="◀";b.title="收起侧边栏"}}else{s.classList.add("desktop-hidden");if(m)m.classList.add("full-width");if(t)t.classList.add("reading-mode");if(b){b.textContent="▶";b.title="展开侧边栏"}}}});</script>
+<script>function toggleSidebar(){var s=document.getElementById("sidebar"),o=document.getElementById("sidebarOverlay");if(!s)return;if(s.classList.contains("open")){s.classList.remove("open");if(o)o.classList.remove("active")}else{s.classList.add("open");if(o)o.classList.add("active")}}document.addEventListener("DOMContentLoaded",function(){document.addEventListener("click",function(e){var target=e.target.closest(".sidebar-item");if(target&&window.innerWidth<769){var href=target.getAttribute("href");if(href){e.preventDefault();if(href.startsWith("#")){setTimeout(function(){toggleSidebar();setTimeout(function(){var el=document.querySelector(href);if(el)el.scrollIntoView({behavior:"smooth",block:"start"})},300)},50)}else{toggleSidebar();setTimeout(function(){window.location.href=href},100)}}})});</script>
 <!-- sidebar-toggle -->
 </body>
 </html>

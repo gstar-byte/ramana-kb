@@ -33,14 +33,7 @@
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
     <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
 
-<style>
-        .sidebar-close-btn, .sidebar-open-btn { 
-            visibility: hidden; 
-            opacity: 0; 
-            display: none; 
-        }
-    </style>
-    <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css">
         <style>
         .graph-wrapper {
             position: relative;
@@ -310,7 +303,6 @@
 <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <a href="index.html" class="logo">🙏 拉瑪那知識庫</a>
-                <button class="sidebar-close-btn" title="收起側邊欄" style="visibility:hidden;opacity:0;display:none;">◀</button>
             </div>
             
             <!-- 搜索框 -->
@@ -380,7 +372,6 @@
         <!-- 主內容區 -->
         <main class="main-content">
             <header class="topbar">
-                <button class="sidebar-open-btn" title="展開側邊欄" style="visibility:hidden;opacity:0;display:none;">▶</button>
                 <div class="topbar-left">
                     <span class="topbar-title">🕸️ 知識圖譜</span>
                 </div>
@@ -1584,7 +1575,7 @@
     </script>
 <script src="pwa-analytics.js" defer></script>
     <script src="script.js" defer></script>
-<script>document.addEventListener("click",function(e){if(e.target.closest(".sidebar-close-btn,.sidebar-open-btn")){e.preventDefault();var s=document.getElementById("sidebar"),m=document.querySelector(".main-content"),t=document.querySelector(".topbar"),b=document.querySelector(".sidebar-close-btn");if(!s)return;if(s.classList.contains("desktop-hidden")){s.classList.remove("desktop-hidden");if(m)m.classList.remove("full-width");if(t)t.classList.remove("reading-mode");if(b){b.textContent="◀";b.title="收起側邊欄";}}else{s.classList.add("desktop-hidden");if(m)m.classList.add("full-width");if(t)t.classList.add("reading-mode");if(b){b.textContent="▶";b.title="展開側邊欄";}}}});</script>
+
 
 </body>
 </html>
