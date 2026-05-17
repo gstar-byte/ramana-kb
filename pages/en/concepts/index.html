@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="In-depth analysis of the core concepts in Sri Ramana Maharshi's teachings. Explore the direct path of Self-Inquiry, the nature of the Self, mind, ego, and the role of grace.">
+    <meta name="keywords" content="Ramana Maharshi, Core Concepts, Self-Inquiry, Atman, Brahman, Silence, Grace, Advaita Vedanta">
+    <meta name="author" content="Ramana Maharshi Knowledge Base">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ramanamaharshi.space/en/concepts/index.html">
+    
+    <title>Core Concepts | Ramana Maharshi Knowledge Base</title>
+    
+    <link rel="preload" href="../styles.min.css" as="style">
+    <link rel="preload" href="../bundle.min.js" as="script">
+    <link rel="stylesheet" href="../styles.min.css">
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🙏%3C/text%3E%3C/svg%3E">
+
+    <style>
+        .concept-categories {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .concept-category {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .concept-category h3 {
+            color: var(--primary);
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.2rem;
+            border-bottom: 1px solid rgba(199, 125, 255, 0.1);
+            padding-bottom: 0.75rem;
+        }
+        .concept-category a {
+            display: block;
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            padding-left: 0.5rem;
+            border-left: 2px solid transparent;
+        }
+        .concept-category a:hover {
+            color: var(--primary);
+            border-left-color: var(--primary);
+            padding-left: 0.75rem;
+        }
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .book-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+        }
+        .book-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            background: rgba(255,255,255,0.05);
+        }
+        .book-card h3 { color: var(--gold); margin-bottom: 0.75rem; font-size: 1.1rem; }
+        .book-card .desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+        
+        @media (max-width: 768px) {
+            .concept-categories { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <button class="hamburger" onclick="toggleSidebar()">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <div class="layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="logo">🙏 Sri Ramana KB</a>
+                <button class="sidebar-close-btn" title="Close sidebar">◀</button>
+            </div>
+            
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+                <div id="search-results"></div>
+            </div>
+            
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">📚 Core Index</div>
+                <div class="sidebar-items">
+                    <a href="../books/index.html" class="sidebar-item"><span class="emoji">📖</span> Books <span class="count">18</span></a>
+                    <a href="index.html" class="sidebar-item active"><span class="emoji">🔮</span> Concepts <span class="count">50+</span></a>
+                    <a href="../methods/index.html" class="sidebar-item"><span class="emoji">🛤️</span> Methods <span class="count">12</span></a>
+                    <a href="../qa/index.html" class="sidebar-item"><span class="emoji">💬</span> Q&A <span class="count">600</span></a>
+                    <a href="../persons/index.html" class="sidebar-item"><span class="emoji">👤</span> Persons <span class="count">3</span></a>
+                    <a href="../graph.html" class="sidebar-item"><span class="emoji">🕸️</span> Knowledge Graph</a>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <button class="sidebar-open-btn" title="Open sidebar">▶</button>
+                <div class="topbar-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                    <span class="topbar-title">🔮 Core Concepts</span>
+                </div>
+                <nav class="topbar-nav topbar-full">
+                    <a href="../index.html">Home</a>
+                    <a href="../books/index.html">Books</a>
+                    <a href="index.html" class="active">Concepts</a>
+                    <a href="../methods/index.html">Methods</a>
+                    <a href="../qa/index.html">Q&A</a>
+                    <a href="../persons/index.html">Persons</a>
+                    <a href="../graph.html">Graph</a>
+                    <div class="lang-dropdown">
+                        <button class="lang-dropdown-btn">EN ▾</button>
+                        <div class="lang-dropdown-menu">
+                            <a href="../../concepts/index.html">简体中文</a>
+                            <a href="../../zh-TW/concepts/index.html">繁體中文</a>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+            
+            <div class="content-wrapper">
+                <nav class="breadcrumb"><a href="../index.html">Home</a> / <span>Core Concepts</span></nav>
+                
+                <header class="page-header">
+                    <h1>🔮 Core Concepts</h1>
+                    <p class="subtitle">50+ Core Concepts · Key Insights for Self-Realization</p>
+                </header>
+                
+                <div class="concept-categories">
+                    <!-- Ontology -->
+                    <div class="concept-category">
+                        <h3>🔮 Ontology</h3>
+                        <a href="atman.html">🔮 The Self / Atman — The eternal, unchanging reality</a>
+                        <a href="brahman.html">Brahman — The Absolute Reality</a>
+                        <a href="heart.html">💖 The Heart / Hrdaya — Seat of the Self</a>
+                        <a href="maya.html">🌊 Maya — The power of illusion</a>
+                        <a href="satchidananda.html">✨ Sat-Chit-Ananda — Nature of Brahman</a>
+                        <a href="advaita.html">🔯 Advaita — Non-duality</a>
+                        <a href="satya.html">💎 Truth / Satya — Ultimate Reality</a>
+                    </div>
+                    
+                    <!-- Mind & Ego -->
+                    <div class="concept-category">
+                        <h3>🧠 Mind and Ego</h3>
+                        <a href="mind.html">🧠 Mind / Citta — Instrument of thought</a>
+                        <a href="ego.html">👤 Ego / Ahamkara — False identification</a>
+                        <a href="aham-vritti.html">💭 I-thought / Aham-Vritti — Root of all thoughts</a>
+                        <a href="vasanas.html">🔄 Latent Tendencies / Vasanas — Deep imprints</a>
+                        <a href="samskara.html">🧠 Samskara — Subconscious imprints</a>
+                        <a href="avidya.html">🌫️ Ignorance / Avidya — Nescience</a>
+                        <a href="chit-jada-granthi.html">🔗 Knot of Matter — Bond of ego</a>
+                        <a href="awareness.html">👁️ Awareness — Pure observation</a>
+                    </div>
+                    
+                    <!-- Practice -->
+                    <div class="concept-category">
+                        <h3>🛤️ Practice Methods</h3>
+                        <a href="whoami.html">🔍 "Who am I?" — The direct inquiry</a>
+                        <a href="sadhana.html">🧘 Sadhana — Spiritual practice</a>
+                        <a href="bhakti.html">💝 Devotion / Bhakti — Path of love</a>
+                        <a href="samadhi.html">🧘 Samadhi — States of absorption</a>
+                        <a href="surrender.html">🙏 Surrender — Letting go of will</a>
+                        <a href="japa.html">🔮 Japa — Repetition of names</a>
+                        <a href="silence.html">🤫 Silence — The highest teaching</a>
+                        <a href="vichara.html">🪔 Vichara — Deep investigation</a>
+                    </div>
+                    
+                    <!-- Karma & Rebirth -->
+                    <div class="concept-category">
+                        <h3>☸️ Karma and Rebirth</h3>
+                        <a href="karma.html">☸️ Karma — Action and result</a>
+                        <a href="prarabdha.html">📜 Destiny / Prarabdha — Allocated karma</a>
+                        <a href="samsara.html">🔄 Samsara — Cycle of rebirth</a>
+                        <a href="jiva.html">👤 Individual Soul / Jiva</a>
+                        <a href="fate.html">⚖️ Fate — Manifestation of karma</a>
+                        <a href="freewill.html">🕊️ Free Will — Beyond destiny</a>
+                    </div>
+                </div>
+                
+                <div class="card" style="margin-top:3rem;">
+                    <h2 style="color:var(--primary);margin-bottom:1.5rem;">💎 Essential Concepts</h2>
+                    <div class="book-grid">
+                        <a href="atman.html" class="book-card">
+                            <h3>🔮 The Self / Atman</h3>
+                            <p class="desc">The eternal, unchanging reality that is the true nature of every being. Realizing Atman is the goal of human life.</p>
+                        </a>
+                        <a href="mind.html" class="book-card">
+                            <h3>🧠 The Mind</h3>
+                            <p class="desc">A collection of thoughts. Maharshi taught that the mind must be turned inward to find its source in the Self.</p>
+                        </a>
+                        <a href="whoami.html" class="book-card">
+                            <h3>🔍 "Who am I?"</h3>
+                            <p class="desc">The most direct path to Self-Realization, where one traces the source of the "I" thought back to the Heart.</p>
+                        </a>
+                        <a href="silence.html" class="book-card">
+                            <h3>🤫 Silence</h3>
+                            <p class="desc">Considered by Maharshi as the highest and most potent form of teaching, transcending all spoken words.</p>
+                        </a>
+                        <a href="grace.html" class="book-card">
+                            <h3>✨ Grace / Anugraha</h3>
+                            <p class="desc">The divine power that aids the seeker. Maharshi taught that Guru, Grace, and Self are one and the same.</p>
+                        </a>
+                        <a href="surrender.html" class="book-card">
+                            <h3>🙏 Surrender</h3>
+                            <p class="desc">The process of handing over the individual ego to the Divine. It is functionally identical to Self-Inquiry.</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <footer class="site-footer">
+                <p>© 2026 Ramana Maharshi Knowledge Base | Heritage of Arunachala</p>
+            </footer>
+        </main>
+    </div>
+
+    <script src="../bundle.min.js" defer></script>
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Persons | Ramana Maharshi Knowledge Base</title>
+    <meta name="description" content="Discover the key figures in the life and legacy of Sri Ramana Maharshi, including his biographers like David Godman and dedicated disciples like Venkataramana Nanda.">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Ramana Maharshi Knowledge Base">
+    <link rel="canonical" href="https://ramanamaharshi.space/en/persons/index.html">
+    
+    <link rel="alternate" hreflang="zh-CN" href="https://ramanamaharshi.space/persons/index.html">
+    <link rel="alternate" hreflang="zh-TW" href="https://ramanamaharshi.space/zh-TW/persons/index.html">
+    <link rel="alternate" hreflang="en" href="https://ramanamaharshi.space/en/persons/index.html">
+    
+    <link rel="preload" href="../styles.min.css" as="style">
+    <link rel="preload" href="../bundle.min.js" as="script">
+    <link rel="stylesheet" href="../styles.min.css">
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🙏%3C/text%3E%3C/svg%3E">
+
+    <style>
+        .person-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .person-card-enhanced {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            height: 100%;
+        }
+        .person-card-enhanced:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .avatar-large {
+            font-size: 3.5rem;
+            width: 80px;
+            height: 80px;
+            background: rgba(199, 125, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-bottom: 0.5rem;
+        }
+        .meta-info {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        .person-desc {
+            line-height: 1.7;
+            color: var(--text-muted);
+            flex-grow: 1;
+        }
+        .btn-more {
+            align-self: flex-start;
+            padding: 0.6rem 1.2rem;
+            background: rgba(199, 125, 255, 0.1);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+        .btn-more:hover {
+            background: var(--primary);
+            color: white;
+        }
+        .chapter-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
+            padding: 1.25rem;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .chapter-card h4 { color: var(--gold); margin-bottom: 0.5rem; }
+    </style>
+</head>
+<body>
+    <button class="hamburger" onclick="toggleSidebar()">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <div class="layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="logo">🙏 Sri Ramana KB</a>
+                <button class="sidebar-close-btn" title="Close sidebar">◀</button>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">📚 Core Index</div>
+                <div class="sidebar-items">
+                    <a href="../books/index.html" class="sidebar-item">📖 Books <span class="count">18</span></a>
+                    <a href="../concepts/index.html" class="sidebar-item">🔮 Concepts <span class="count">50+</span></a>
+                    <a href="../methods/index.html" class="sidebar-item">🛤️ Methods <span class="count">12</span></a>
+                    <a href="../qa/index.html" class="sidebar-item">💬 Q&A <span class="count">600</span></a>
+                    <a href="index.html" class="sidebar-item active">👤 Persons <span class="count">3</span></a>
+                    <a href="../graph.html" class="sidebar-item">🕸️ Knowledge Graph</a>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <button class="sidebar-open-btn" title="Open sidebar">▶</button>
+                <div class="topbar-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                    <span class="topbar-title">👤 Key Persons</span>
+                </div>
+                <nav class="topbar-nav topbar-full">
+                    <a href="../index.html">Home</a>
+                    <a href="../books/index.html">Books</a>
+                    <a href="../concepts/index.html">Concepts</a>
+                    <a href="../methods/index.html">Methods</a>
+                    <a href="../qa/index.html">Q&A</a>
+                    <a href="index.html" class="active">Persons</a>
+                    <a href="../graph.html">Graph</a>
+                    <div class="lang-dropdown">
+                        <button class="lang-dropdown-btn">EN ▾</button>
+                        <div class="lang-dropdown-menu">
+                            <a href="../../persons/index.html">简体中文</a>
+                            <a href="../../zh-TW/persons/index.html">繁體中文</a>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+            
+            <div class="content-wrapper">
+                <nav class="breadcrumb"><a href="../index.html">Home</a> / <span>Key Persons</span></nav>
+                
+                <header class="page-header">
+                    <h1>👤 Key Persons</h1>
+                    <p class="subtitle">3 Key Figures · The Pillars of Ramana's Legacy</p>
+                </header>
+                
+                <div class="person-grid">
+                    <!-- Person 1: Sri Ramana Maharshi -->
+                    <div class="person-card-enhanced">
+                        <div class="avatar-large">🙏</div>
+                        <div>
+                            <h2 style="color:var(--primary);margin-bottom:0.25rem;">Sri Ramana Maharshi</h2>
+                            <p class="meta-info">Bhagavan (1879–1950)</p>
+                            <p class="person-desc">One of India's most beloved and recognized sages. He taught the direct path of Self-Inquiry ("Who am I?") and resided at the foot of the sacred hill Arunachala for over 50 years, radiating a silent presence that transformed millions.</p>
+                        </div>
+                        <a href="ramana.html" class="btn-more">Full Biography →</a>
+                    </div>
+
+                    <!-- Person 2: David Godman -->
+                    <div class="person-card-enhanced">
+                        <div class="avatar-large">📝</div>
+                        <div>
+                            <h2 style="color:var(--primary);margin-bottom:0.25rem;">David Godman</h2>
+                            <p class="meta-info">Author & Chronicler (1953–)</p>
+                            <p class="person-desc">The foremost contemporary biographer and editor of Ramana Maharshi's teachings. Through his 16 books and extensive research, he has meticulously preserved the authentic oral and written legacy of the Maharshi for the global community.</p>
+                        </div>
+                        <a href="david.html" class="btn-more">Full Biography →</a>
+                    </div>
+
+                    <!-- Person 3: Venkataramana Nanda -->
+                    <div class="person-card-enhanced">
+                        <div class="avatar-large">👩</div>
+                        <div>
+                            <h2 style="color:var(--primary);margin-bottom:0.25rem;">Venkataramana Nanda</h2>
+                            <p class="meta-info">Dedicated Disciple (1873–1951)</p>
+                            <p class="person-desc">Maharshi's aunt and one of his most devoted attendants. She cared for his daily needs and played a vital role in the management of Sri Ramanasramam, ensuring the preservation of the Ashram's sacred traditions.</p>
+                        </div>
+                        <a href="venkataramana.html" class="btn-more">Full Biography →</a>
+                    </div>
+                </div>
+                
+                <div class="card" style="margin-top:3rem;">
+                    <h2 style="color:var(--primary);margin-bottom:1.5rem;">🌟 Other Important Figures</h2>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.5rem;">
+                        <div class="chapter-card">
+                            <h4>Paul Brunton</h4>
+                            <p class="summary" style="font-size:0.9rem;">The British author who introduced Maharshi to the West through his 1934 bestseller <i>A Search in Secret India</i>.</p>
+                        </div>
+                        <div class="chapter-card">
+                            <h4>A. Devaraja Mudaliar</h4>
+                            <p class="summary" style="font-size:0.9rem;">A close devotee who recorded daily conversations in <i>Day by Day with Bhagavan</i>, capturing the sage's practical wisdom.</p>
+                        </div>
+                        <div class="chapter-card">
+                            <h4>Muruganar</h4>
+                            <p class="summary" style="font-size:0.9rem;">The saint-poet who recorded thousands of Maharshi's sayings in profound Tamil verse, later translated as <i>Guru Vachaka Kovai</i>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <footer class="site-footer">
+                <p>© 2026 Ramana Maharshi Knowledge Base | Heritage of Arunachala</p>
+            </footer>
+        </main>
+    </div>
+
+    <script src="../bundle.min.js" defer></script>
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satsang | Ramana Maharshi Knowledge Base</title>
+    <meta name="description" content="Satsang - Core concepts of Sri Ramana Maharshi's spiritual teachings.">
+    <link rel="stylesheet" href="../styles.min.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🙏%3C/text%3E%3C/svg%3E">
+    <style>
+        .concept-section { margin-bottom: 2.5rem; }
+        .concept-section h2 { color: var(--primary); margin-bottom: 1.2rem; font-size: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; }
+        .quote-block { background: rgba(255,255,255,0.03); border-left: 4px solid var(--primary); padding: 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; font-style: italic; }
+        .tag-list { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1rem; }
+        .tag { background: rgba(59, 130, 246, 0.1); color: #60a5fa; padding: 0.4rem 0.8rem; border-radius: 6px; font-size: 0.85rem; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <button class="hamburger" onclick="toggleSidebar()">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <div class="layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="logo">🙏 Sri Ramana KB</a>
+                <button class="sidebar-close-btn" title="Close sidebar">◀</button>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">📚 Navigation</div>
+                <div class="sidebar-items">
+                    <a href="../index.html" class="sidebar-item">🏛️ Home</a>
+                    <a href="../books/index.html" class="sidebar-item">📖 Books</a>
+                    <a href="index.html" class="sidebar-item active">🔮 Concepts <span class="count">85+</span></a>
+                    <a href="../methods/index.html" class="sidebar-item">🛤️ Methods <span class="count">12</span></a>
+                    <a href="../qa/index.html" class="sidebar-item">💬 Q&A <span class="count">15</span></a>
+                </div>
+            </div>
+        </aside>
+
+        <main class="content">
+            <div class="language-switcher">
+                <a href="https://ramanamaharshi.space/concepts/satsang.html">简体</a>
+                <a href="https://ramanamaharshi.space/zh-TW/concepts/satsang.html">繁體</a>
+                <a href="https://ramanamaharshi.space/en/concepts/satsang.html" class="active">EN</a>
+            </div>
+
+            <div class="main-content">
+                <div class="concept-header">
+                    <h1>🤝 Satsang</h1>
+                    <p class="concept-subtitle">Association with the Truth</p>
+                </div>
+                <div class="concept-content">
+                    <div class="concept-section"><h2>Holy Company</h2><p>Satsang is being in the presence of a Sage or the Self. It is the most powerful aid for a seeker.</p></div>
+                    <div class="concept-section">
+                        <h2>🔗 Related Concepts</h2>
+                        <div class="tag-list"><a href="guru.html" class="tag">Guru</a></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="../bundle.min.js"></script>
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+            document.getElementById('sidebarOverlay').classList.toggle('active');
+        }
+        document.querySelector('.sidebar-close-btn').addEventListener('click', toggleSidebar);
+    </script>
+</body>
+</html>

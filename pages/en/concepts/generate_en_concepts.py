@@ -24,7 +24,7 @@ def make_page(slug, title, emoji, subtitle, tags, html_content):
     <div class="layout">
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
-                <a href="../index.html" class="logo">🙏 Ramana Knowledge Base</a>
+                <a href="../index.html" class="logo">🙏 Sri Ramana KB</a>
                 <button class="sidebar-close-btn" title="Close sidebar">◀</button>
             </div>
             <div class="sidebar-section">

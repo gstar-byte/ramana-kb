@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silence (Mauna) | Practice Method | Ramana Maharshi</title>
+    <link rel="stylesheet" href="../styles.min.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🙏%3C/text%3E%3C/svg%3E">
+    <style>
+        .method-hero { background: rgba(100, 200, 255, 0.05); padding: 40px; border-radius: 20px; margin-bottom: 30px; border: 1px solid rgba(100, 200, 255, 0.1); }
+        .method-emoji { font-size: 3em; margin-bottom: 15px; }
+        .path-badge { display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 0.85em; margin-bottom: 15px; background: rgba(100, 200, 255, 0.2); color: #64c8ff; }
+        .section-title { color: #64c8ff; border-left: 4px solid #64c8ff; padding-left: 15px; margin: 30px 0 20px 0; }
+        .practice-step { background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: 10px; margin-bottom: 15px; border-left: 3px solid rgba(100, 200, 255, 0.3); }
+        .step-num { font-weight: bold; color: #64c8ff; margin-right: 10px; }
+        .tip-box { background: rgba(255, 165, 0, 0.05); border: 1px dashed rgba(255, 165, 0, 0.3); padding: 20px; border-radius: 10px; margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <button class="hamburger" onclick="toggleSidebar()">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <div class="layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="logo">🙏 Sri Ramana KB</a>
+                <button class="sidebar-close-btn" title="Close sidebar">◀</button>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">📚 Navigation</div>
+                <div class="sidebar-items">
+                    <a href="../index.html" class="sidebar-item">🏛️ Home</a>
+                    <a href="../books/index.html" class="sidebar-item">📖 Books</a>
+                    <a href="../concepts/index.html" class="sidebar-item">🔮 Concepts <span class="count">85+</span></a>
+                    <a href="index.html" class="sidebar-item active">🛤️ Methods <span class="count">12</span></a>
+                    <a href="../qa/index.html" class="sidebar-item">💬 Q&A <span class="count">15</span></a>
+                </div>
+            </div>
+        </aside>
+
+        <main class="content">
+            <div class="language-switcher">
+                <a href="https://ramanamaharshi.space/methods/silence.html">简体</a>
+                <a href="https://ramanamaharshi.space/zh-TW/methods/silence.html">繁體</a>
+                <a href="https://ramanamaharshi.space/en/methods/silence-detail.html" class="active">EN</a>
+            </div>
+
+            <div class="main-content">
+                <nav class="breadcrumb"><a href="../index.html">Home</a> / <a href="index.html">Methods</a> / <span>Silence (Mauna)</span></nav>
+                
+                <div class="method-hero">
+                    <div class="method-emoji">🤫</div>
+                    <span class="path-badge">Direct Path</span>
+                    <h1>Silence (Mauna)</h1>
+                    <p>The practice of remaining in silent awareness.</p>
+                </div>
+
+                <h2 class="section-title">How to Practice</h2>
+                <div class="steps-container">
+                    <div class="practice-step"><span class="step-num">01.</span> Observe periods of external silence.</div><div class="practice-step"><span class="step-num">02.</span> Cultivate internal silence by stilling the mind.</div>
+                </div>
+
+                <div class="tip-box">
+                    <h3 style="color:#ffcc66;margin-top:0;">💡 Practical Tips</h3>
+                    <p>True silence is the state of the Self, beyond speech and thought.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="../bundle.min.js"></script>
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+            document.getElementById('sidebarOverlay').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

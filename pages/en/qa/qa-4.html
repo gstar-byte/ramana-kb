@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surrender | Ramana Maharshi Q&A</title>
+    <meta name="description" content="The path of devotion and letting go of personal will.">
+    <link rel="stylesheet" href="../styles.min.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🙏%3C/text%3E%3C/svg%3E">
+    <style>
+        /* Fix for fixed topbar overlapping content */
+        .content-wrapper {
+            margin-top: 60px !important;
+        }
+    </style>
+</head>
+<body>
+    <button class="hamburger" onclick="toggleSidebar()">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <div class="layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="logo">🙏 Sri Ramana KB</a>
+                <button class="sidebar-close-btn" title="Close sidebar">◀</button>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">📚 Navigation</div>
+                <div class="sidebar-items">
+                    <a href="../books/index.html" class="sidebar-item">📖 Books <span class="count">17</span></a>
+                    <a href="../concepts/index.html" class="sidebar-item">🔮 Concepts <span class="count">85+</span></a>
+                    <a href="../methods/index.html" class="sidebar-item">🛤️ Methods <span class="count">12</span></a>
+                    <a href="index.html" class="sidebar-item active">💬 Q&A <span class="count">15</span></a>
+                    <a href="../persons/index.html" class="sidebar-item">👤 Persons <span class="count">3</span></a>
+                    <a href="../graph.html" class="sidebar-item">🕸️ Knowledge Graph</a>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <button class="sidebar-open-btn" title="Open sidebar">▶</button>
+                <div class="topbar-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                    <span class="topbar-title">💬 Q&A</span>
+                </div>
+                <nav class="topbar-nav topbar-full">
+                    <a href="../index.html">Home</a>
+                    <a href="../books/index.html">Books</a>
+                    <a href="../concepts/index.html">Concepts</a>
+                    <a href="../methods/index.html">Methods</a>
+                    <a href="index.html" class="active">Q&A</a>
+                    <a href="../persons/index.html">Persons</a>
+                    <a href="../graph.html">Graph</a>
+                    <div class="lang-dropdown"><button class="lang-dropdown-btn">EN ▾</button><div class="lang-dropdown-menu"><a href="../../qa/qa-4.html">简体中文</a></div></div>
+                </nav>
+            </header>
+
+            <div class="content-wrapper">
+                <nav class="breadcrumb"><a href="../index.html">Home</a> / <a href="index.html">Q&A</a> / <span>Philosophy</span></nav>
+                <div class="page-header">
+                    <h1>💬 Surrender</h1>
+                    <p class="subtitle">The path of devotion and letting go of personal will.</p>
+                </div>
+                <div class="qa-container">
+                    
+                        <div class="qa-item">
+                            <h3 class="qa-q">❓ What is the essence of Surrender?</h3>
+                            <div class="qa-a">In the Maharshi's teaching, surrender is fundamentally about returning to the source. It is not about gaining something new, but about removing the ignorance that veils the truth.</div>
+                        </div>
+                        <div class="qa-item">
+                            <h3 class="qa-q">❓ How should a seeker approach Surrender?</h3>
+                            <div class="qa-a">By remaining as one is, without the interference of the ego. This is the simplest and most direct way to realize the truth of any spiritual concept.</div>
+                        </div>
+                </div>
+                <div class="pagination">
+                    <a href="qa-3.html" class="page-link">Previous</a>
+                    <a href="index.html" class="page-link">Index</a>
+                    <a href="qa-5.html" class="page-link">Next</a>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="../bundle.min.js"></script>
+    <script>
+    function toggleSidebar() {
+        var s=document.getElementById('sidebar'),o=document.getElementById('sidebarOverlay');
+        if(!s)return;
+        var open=s.classList.toggle('open');
+        if(o)o.classList.toggle('active',open);
+    }
+    </script>
+</body>
+</html>

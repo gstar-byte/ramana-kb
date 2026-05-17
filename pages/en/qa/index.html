@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="600+ curated Q&A with Sri Ramana Maharshi. Explore core teachings on Self, Mind, Self-Inquiry, Surrender, and Liberation. Authentic dialogues and practical guidance for spiritual seekers.">
+    <meta name="keywords" content="Ramana Maharshi, Q&A, Self-Inquiry, Who am I, Spirituality, Self-Realization, Arunachala, Advaita Vedanta">
+    <meta name="author" content="Ramana Maharshi Knowledge Base">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ramanamaharshi.space/en/qa/index.html">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Q&A | Ramana Maharshi Knowledge Base">
+    <meta name="twitter:description" content="Explore the profound teachings of Sri Ramana Maharshi through 600+ curated questions and answers.">
+    <meta name="twitter:image" content="https://ramanamaharshi.space/images/og-default.jpg">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Curated Q&A | Ramana Maharshi Knowledge Base">
+    <meta property="og:description" content="600+ curated Q&A covering core themes: Self, Mind, Inquiry, Devotion, Silence, Grace, Samadhi, and more.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ramanamaharshi.space/en/qa/index.html">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Ramana Maharshi Knowledge Base">
+    <meta property="og:image" content="https://ramanamaharshi.space/images/og-default.jpg">
+
+    <title>Curated Q&A | Ramana Maharshi</title>
+    <style>
+        .page-header { text-align: center; margin-bottom: 2rem; }
+        .page-header h1 { color: var(--primary); margin-bottom: 0.5rem; }
+        .page-header .subtitle { color: var(--text-muted); font-size: 1.1rem; }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; }
+        .stat-card { background: var(--card-bg); padding: 1.2rem; border-radius: 8px; text-align: center; border: 1px solid var(--border); }
+        .stat-card .number { font-size: 2rem; font-weight: bold; color: var(--primary); }
+        .stat-card .label { font-size: 0.9rem; color: var(--text-muted); margin-top: 0.3rem; }
+        .tab-nav { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; justify-content: flex-start; }
+        .tab-btn { padding: 0.5rem 1rem; border: 1px solid var(--border); background: var(--card-bg); color: var(--text); border-radius: 6px; cursor: pointer; transition: all 0.2s; font-size: 0.9rem; position: relative; z-index: 10; }
+        .tab-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .tab-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+        .qa-list { display: flex; flex-direction: column; gap: 1rem; }
+        .qa-item { background: var(--card-bg); border-radius: 8px; border: 1px solid var(--border); overflow: hidden; cursor: pointer; transition: all 0.3s; }
+        .qa-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .qa-item.expanded .qa-answer { max-height: 500px; padding: 1rem; opacity: 1; }
+        .qa-question, .qa-answer { display: flex; gap: 1rem; padding: 1rem; }
+        .qa-icon { font-size: 1.5rem; flex-shrink: 0; }
+        .qa-content h3 { margin: 0 0 0.5rem 0; font-size: 1rem; color: var(--text); }
+        .qa-content p { margin: 0; color: var(--text2); line-height: 1.6; }
+        .qa-meta { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.3rem; }
+        .qa-answer { background: rgba(212, 165, 116, 0.1); border-top: 1px solid var(--border); max-height: 0; padding: 0 1rem; overflow: hidden; opacity: 0; transition: all 0.3s; }
+        .page-btn { padding: 0.5rem 1rem; border: 1px solid var(--border); background: var(--card-bg); color: var(--text); border-radius: 6px; cursor: pointer; }
+        .page-btn:hover:not(:disabled) { border-color: var(--primary); color: var(--primary); }
+        .page-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        @media (max-width: 768px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+    
+        /* Language Dropdown */
+        .lang-dropdown{position:relative;display:inline-flex;align-items:center;border-left:1px solid rgba(255,255,255,.3);margin-left:0;}
+        .lang-dropdown-btn{background:rgba(255,255,255,.1);border:none;color:#e2e8f0;font-size:13px;font-weight:600;cursor:pointer;padding:5px 10px;border-radius:4px;white-space:nowrap;display:flex;align-items:center;gap:3px;transition:background .15s;}
+        .lang-dropdown-btn:hover{background:rgba(255,255,255,.2);}
+        .lang-dropdown-menu{display:none;position:absolute;top:calc(100% + 6px);right:0;min-width:120px;background:#1e293b;border:1px solid rgba(255,255,255,.15);border-radius:6px;box-shadow:0 8px 24px rgba(0,0,0,.4);z-index:9999;overflow:hidden;}
+        .lang-dropdown.open .lang-dropdown-menu{display:block;}
+        .lang-dropdown-menu a{display:block;padding:8px 16px;color:#cbd5e1;font-size:13px;text-decoration:none;white-space:nowrap;transition:background .1s;}
+        .lang-dropdown-menu a:hover{background:rgba(255,255,255,.1);color:#fff;}
+        .lang-dropdown-menu a.current{color:#f59e0b;pointer-events:none;}
+    </style>
+    <link rel="preload" href="../styles.min.css" as="style">
+    <link rel="preload" href="../bundle.min.js" as="script">
+    <link rel="stylesheet" href="../styles.min.css">
+    <meta name="theme-color" content="#1a1a2e">
+    <link rel="manifest" href="../manifest.json">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🙏%3C/text%3E%3C/svg%3E">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MYFWHFPSYB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MYFWHFPSYB');
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ramana Maharshi Knowledge Base",
+          "item": "https://ramanamaharshi.space/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Q&A",
+          "item": "https://ramanamaharshi.space/en/qa/index.html"
+        }
+      ]
+    }
+    </script>
+    <link rel="alternate" hreflang="zh-CN" href="https://ramanamaharshi.space/qa/">
+    <link rel="alternate" hreflang="zh-TW" href="https://ramanamaharshi.space/zh-TW/qa/">
+</head>
+<body>
+    <button class="hamburger" onclick="toggleSidebar()">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <div class="layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="logo">🙏 Sri Ramana KB</a>
+                <button class="sidebar-close-btn" title="Close sidebar">◀</button>
+            </div>
+            
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+                <div id="search-results"></div>
+            </div>
+            
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">📚 Core Index</div>
+                <div class="sidebar-items">
+                    <a href="../books/index.html" class="sidebar-item"><span class="emoji">📖</span> Books <span class="count">18</span></a>
+                    <a href="../concepts/index.html" class="sidebar-item"><span class="emoji">🔮</span> Concepts <span class="count">39+</span></a>
+                    <a href="../methods/index.html" class="sidebar-item"><span class="emoji">🛤️</span> Methods <span class="count">12</span></a>
+                    <a href="index.html" class="sidebar-item active"><span class="emoji">💬</span> Q&A <span class="count">600</span></a>
+                    <a href="../persons/index.html" class="sidebar-item"><span class="emoji">👤</span> Persons <span class="count">3</span></a>
+                    <a href="../graph.html" class="sidebar-item"><span class="emoji">🕸️</span> Knowledge Graph</a>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <button class="sidebar-open-btn" title="Open sidebar">▶</button>
+                <div class="topbar-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                    <span class="topbar-title">💬 Q&A</span>
+                </div>
+                <nav class="topbar-nav">
+                    <a href="../index.html">Home</a>
+                    <a href="../books/index.html">Books</a>
+                    <a href="../concepts/index.html">Concepts</a>
+                    <a href="../methods/index.html">Methods</a>
+                    <a href="index.html" class="active">Q&A</a>
+                    <a href="../persons/index.html">Persons</a>
+                    <a href="../graph.html">Graph</a>
+                    <div class="lang-dropdown">
+                        <button class="lang-dropdown-btn">EN ▾</button>
+                        <div class="lang-dropdown-menu">
+                            <a href="#" onclick="location.href='/qa/'+location.pathname.substring(7);return false;">简体中文</a>
+                            <a href="#" onclick="location.href='/zh-TW/qa/'+location.pathname.substring(7);return false;">繁體中文</a>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+            
+            <div class="content-wrapper">
+                <nav class="breadcrumb"><a href="../index.html">Home</a> / <span>Q&A</span></nav>
+                <header class="page-header">
+                    <h1>💬 Q&A</h1>
+                    <p class="subtitle">600 Curated Q&A · Explore Direct Teachings</p>
+                </header>
+
+                <div class="stats-grid" style="margin-bottom:2rem;">
+                    <div class="stat-card">
+                        <div class="number" id="totalQaCount">...</div>
+                        <div class="label">Curated Q&A</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">70</div>
+                        <div class="label">Topic Pages</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">20+</div>
+                        <div class="label">Core Themes</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">18</div>
+                        <div class="label">Source Books</div>
+                    </div>
+                </div>
+
+                <div class="tab-nav" id="tabNav">
+                    <button class="tab-btn active" data-category="all" onclick="filterByCategory('all')">All</button>
+                    <button class="tab-btn" data-category="Self" onclick="filterByCategory('Self')">Self</button>
+                    <button class="tab-btn" data-category="Mind" onclick="filterByCategory('Mind')">Mind</button>
+                    <button class="tab-btn" data-category="Inquiry" onclick="filterByCategory('Inquiry')">Inquiry</button>
+                    <button class="tab-btn" data-category="Silence" onclick="filterByCategory('Silence')">Silence</button>
+                    <button class="tab-btn" data-category="Grace" onclick="filterByCategory('Grace')">Grace</button>
+                    <button class="tab-btn" data-category="Samadhi" onclick="filterByCategory('Samadhi')">Samadhi</button>
+                    <button class="tab-btn" data-category="Daily" onclick="filterByCategory('Daily')">Daily Life</button>
+                    <button class="tab-btn" data-category="World" onclick="filterByCategory('World')">World</button>
+                    <button class="tab-btn" data-category="Liberation" onclick="filterByCategory('Liberation')">Liberation</button>
+                </div>
+
+                <div class="qa-list" id="qaList">
+                    <div style="text-align:center;padding:3rem;color:var(--text2);">
+                        <p>Loading Q&A content...</p>
+                    </div>
+                </div>
+
+                <div class="pagination" id="pagination" style="margin-top:2rem;justify-content:center;flex-wrap:wrap;gap:12px;display:none;">
+                    <button class="page-btn" id="prevBtn" onclick="changePage(-1)">← Prev</button>
+                    <span id="pageInfo" style="padding:0 1rem;color:var(--text2);"></span>
+                    <select id="pageSelect" onchange="goToPage(this.value)" style="padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--text);font-size:14px;cursor:pointer;min-width:120px;">
+                    </select>
+                    <button class="page-btn" id="nextBtn" onclick="changePage(1)">Next →</button>
+                </div>
+                
+                <p style="text-align:center;color:var(--text2);font-size:14px;margin-top:1rem;">✨ More Q&A are being organized...</p>
+
+                <footer class="site-footer">
+                    <p><a href="../index.html">Ramana Maharshi</a> | Heritage of Arunachala</p>
+                    <p style="margin-top:0.5rem; font-size:0.9rem; color: var(--text-muted);">© 2026 Ramana Maharshi. All rights reserved.</p>
+                    <p style="margin-top:1rem; font-size:0.9rem;"><a href="../sitemap.html" style="color: var(--text-muted); text-decoration: underline;">🌐 Sitemap</a> <span style="margin: 0 1rem;">|</span> <a href="mailto:591611431@qq.com" style="color: var(--text-muted); text-decoration: underline;">Contact Me</a></p>
+                </footer>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        const itemsPerPage = 12;
+        let currentPage = 1;
+        let currentFilter = 'all';
+        let allQaItems = [];
+        let filteredItems = [];
+        
+        function getUrlParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                page: parseInt(params.get('page')) || 1,
+                filter: params.get('filter') || 'all'
+            };
+        }
+        
+        function updateUrlParams(page, filter) {
+            const params = new URLSearchParams();
+            if (page > 1) params.set('page', page);
+            if (filter && filter !== 'all') params.set('filter', filter);
+            const newUrl = params.toString() 
+                ? `${window.location.pathname}?${params.toString()}`
+                : window.location.pathname;
+            window.history.replaceState({}, '', newUrl);
+        }
+        
+        function updateSEO(page, filter) {
+            const filterNames = {
+                'all': 'All', 'Self': 'Self', 'Mind': 'Mind', 'Inquiry': 'Inquiry',
+                'Silence': 'Silence', 'Grace': 'Grace', 'Samadhi': 'Samadhi',
+                'Daily': 'Daily Life', 'World': 'World', 'Liberation': 'Liberation'
+            };
+            const filterText = filterNames[filter] || '';
+            const pageText = page > 1 ? `Page ${page}` : '';
+            let title = 'Curated Q&A | Ramana Maharshi Knowledge Base';
+            if (filterText && filterText !== 'All') title = `${filterText} Q&A | ${title}`;
+            if (pageText) title = `${pageText} - ${title}`;
+            document.title = title;
+        }
+
+        document.querySelectorAll('.sidebar-section-title').forEach(title => {
+            title.addEventListener('click', () => title.parentElement.classList.toggle('collapsed'));
+        });
+        function toggleSidebar() { 
+            document.getElementById('sidebar').classList.toggle('open'); 
+        }
+
+        async function loadAllQa() {
+            try {
+                const response = await fetch('./qa-data.json');
+                if (!response.ok) throw new Error('Load failed');
+                allQaItems = await response.json();
+                document.getElementById('totalQaCount').textContent = allQaItems.length + '+';
+                filteredItems = [...allQaItems];
+                initPagination();
+                showPage(currentPage);
+            } catch (e) {
+                console.error('[QA] Error:', e);
+                // Fallback for demo if JSON is missing
+                allQaItems = [
+                    { question: "What is the Self?", answer: "The Self is pure awareness, the silent witness of all experience. It is not something to be reached, but realized as ever-present.", meta: "Source: Be As You Are", category: "Self" },
+                    { question: "How to practice Self-Inquiry?", answer: "Investigate the source of the 'I'-thought. When thoughts arise, ask 'To whom does this thought arise?' and 'Who am I?'", meta: "Source: Nan Yar", category: "Inquiry" }
+                ];
+                filteredItems = [...allQaItems];
+                initPagination();
+                showPage(1);
+            }
+        }
+
+        function initPagination() {
+            const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+            const pagination = document.getElementById('pagination');
+            if (totalPages > 1) {
+                pagination.style.display = 'flex';
+                updatePageSelect();
+            } else {
+                pagination.style.display = 'none';
+            }
+        }
+
+        function updatePageSelect() {
+            const pageSelect = document.getElementById('pageSelect');
+            const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+            pageSelect.innerHTML = '';
+            for (let i = 1; i <= totalPages; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = `Page ${i}`;
+                pageSelect.appendChild(option);
+            }
+        }
+
+        function showPage(page) {
+            const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+            currentPage = page;
+            updateUrlParams(currentPage, currentFilter);
+            updateSEO(currentPage, currentFilter);
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageItems = filteredItems.slice(start, end);
+            const qaList = document.getElementById('qaList');
+            qaList.innerHTML = pageItems.map(item => `
+                <div class="qa-item">
+                    <div class="qa-question">
+                        <span class="qa-icon">❓</span>
+                        <div class="qa-content">
+                            <h3>${item.question}</h3>
+                            ${item.meta ? `<p class="qa-meta">${item.meta}</p>` : ''}
+                        </div>
+                    </div>
+                    <div class="qa-answer">
+                        <span class="qa-icon">💡</span>
+                        <div class="qa-content">
+                            <p>${item.answer}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            document.querySelectorAll('.qa-item').forEach(item => {
+                item.addEventListener('click', () => item.classList.toggle('expanded'));
+            });
+            document.getElementById('pageInfo').textContent = `Page ${page} / ${totalPages}`;
+            document.getElementById('prevBtn').disabled = page === 1;
+            document.getElementById('nextBtn').disabled = page === totalPages || totalPages === 0;
+            document.getElementById('pageSelect').value = page;
+        }
+
+        function changePage(delta) {
+            const newPage = currentPage + delta;
+            const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+            if (newPage >= 1 && newPage <= totalPages) showPage(newPage);
+        }
+
+        function goToPage(page) {
+            currentPage = parseInt(page);
+            showPage(currentPage);
+        }
+
+        function filterByCategory(category) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector(`.tab-btn[data-category="${category}"]`).classList.add('active');
+            currentFilter = category;
+            if (category === 'all') {
+                filteredItems = [...allQaItems];
+            } else {
+                filteredItems = allQaItems.filter(item => 
+                    item.category === category || 
+                    item.question.toLowerCase().includes(category.toLowerCase())
+                );
+            }
+            currentPage = 1;
+            initPagination();
+            showPage(1);
+        }
+        
+        loadAllQa();
+    </script>
+
+    <style>
+        .sidebar.desktop-hidden{transform:translateX(-100%) !important;}
+        
+        .main-content.full-width{margin-left:0 !important;}
+    </style>
+    <script>
+        document.addEventListener("click",function(e){
+            if(e.target.closest(".sidebar-close-btn,.sidebar-open-btn")){
+                document.getElementById("sidebar").classList.toggle("desktop-hidden");
+                document.querySelector(".main-content").classList.toggle("full-width");
+            }
+        });
+    </script>
+</body>
+</html>
